@@ -65,3 +65,9 @@ nav:
     - About Us: about.md
     - Releases:
       - Changelog: changelog.md
+  - Documentation:
+    - Documentation: documentation.md
+    - Architecture:
+      - Specification: 
+        - XSM Architecture Specifcation: arch-spec.md
+        - Machine Organisation: "arch-spec/machine-org.md"
