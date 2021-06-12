@@ -12,11 +12,13 @@ theme:
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
+      primary: teal
       toggle:
         icon: material/lightbulb-outline
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
+      primary: teal
       toggle:
         icon: material/lightbulb
         name: Switch to light mode
@@ -29,5 +31,10 @@ extra:
       link: https://github.com/exposnitc
     - icon: fontawesome/brands/google
       link: https://groups.google.com/g/xos-users
-
-
+markdown_extensions:
+  - attr_list
+  - toc:
+      permalink: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
