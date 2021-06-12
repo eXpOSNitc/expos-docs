@@ -15,7 +15,7 @@ hide:
     <br/>
     <span style="color: red;">Trial version</span>, errors are being corrected as reported.
     <br/>
-    Last updated: 5th April 2021 (see <a href="/releases/">Release Notes</a>) 
+    Last updated: 5th April 2021 (see <a href="/changelog/">Release Notes</a>) 
     </p>
 </div>
 

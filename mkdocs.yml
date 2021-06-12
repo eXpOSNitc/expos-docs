@@ -1,9 +1,7 @@
 site_name: eXpOS NITC
-site_url: https://ghoshishan.github.io/expos-v2/
-nav:
-  - Home: index.md
-  - About Us: about.md
-  - Release Notes: releases.md
+site_url: https://ghoshishan.github.io/
+
+# Configuration
 theme:
   name: material
   favicon: assets/favicon.png
@@ -25,12 +23,23 @@ theme:
   features:
     - navigation.tabs
     - navigation.top
+    - navigation.sections
+
+# Plugins
+plugins:
+  - search
+  - minify:
+      minify_html: true
+
+# Customization
 extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/exposnitc
     - icon: fontawesome/brands/google
       link: https://groups.google.com/g/xos-users
+
+# Extensions
 markdown_extensions:
   - attr_list
   - toc:
@@ -38,3 +47,11 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
+
+# Page tree
+nav:
+  - Home: index.md
+  - About Us:
+    - About Us: about.md
+    - Releases:
+      - Changelog: changelog.md

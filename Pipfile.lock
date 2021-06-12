@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "bb64b683ec088b7ed40079311d078611016099c8da27a12e208b8e33d670eb2a"
+            "sha256": "34b820358e68cbb61b9b65bf5d4665279d5de07ab54374480d228e87dc40556c"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -30,6 +30,12 @@
             ],
             "version": "==2.0.1"
         },
+        "htmlmin": {
+            "hashes": [
+                "sha256:50c1ef4630374a5d723900096a961cff426dff46b48f34d194a81bbe14eca178"
+            ],
+            "version": "==0.1.12"
+        },
         "importlib-metadata": {
             "hashes": [
                 "sha256:833b26fb89d5de469b24a390e9df088d4e52e4ba33b01dc5e0e4f41b81a16c00",
@@ -45,6 +51,12 @@
             ],
             "markers": "python_version >= '3.6'",
             "version": "==3.0.1"
+        },
+        "jsmin": {
+            "hashes": [
+                "sha256:b6df99b2cd1c75d9d342e4335b535789b8da9107ec748212706ef7bbe5c2553b"
+            ],
+            "version": "==2.2.2"
         },
         "markdown": {
             "hashes": [
@@ -125,6 +137,14 @@
             ],
             "markers": "python_version >= '3.5'",
             "version": "==1.0.1"
+        },
+        "mkdocs-minify-plugin": {
+            "hashes": [
+                "sha256:8893aef8410458a2c1d6454342fc6d1db30439d60f7850c144803932262fd89c",
+                "sha256:b975ab8e72b9aeadaa8ba2e2901be401475b280a1d8f1789653d66734ea7d8cc"
+            ],
+            "index": "pypi",
+            "version": "==0.4.0"
         },
         "packaging": {
             "hashes": [
