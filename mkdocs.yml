@@ -67,15 +67,23 @@ markdown_extensions:
 # Page tree
 nav:
   - Home: index.md
-  - About:
-    - About: about.md
-    - Releases:
-      - Changelog: changelog.md
-  - Roadmap: "roadmap/index.md"
   - Documentation:
     - Documentation: documentation.md
     - Architecture:
       - Specification: 
         - XSM Architecture Specifcation: arch-spec.md
         - Machine Organisation: "arch-spec/machine-org.md"
-  - Feedback: "feedback.md"
+  - Roadmap:
+    - Roadmap: roadmap.md
+    # Stage 1: roadmap/stage1.md
+    # Stage 2: roadmap/stage2.md
+  - FAQ: faq.md
+  - Student Feedback:
+    - Student Feedback: feedback.md
+    # 2021: feedback/2021.md
+    # 2020: feedback/2020.md
+  - User Contributions: https://exposnitc.github.io/user-contrib/" target="_blank # can be moved later in this site itself
+  - About Us:
+    - About Us: about.md
+    - Changelog: changelog.md
+  - XOS: http://xosnitc.github.io" target="_blank # *hack* injected in the anchor code
