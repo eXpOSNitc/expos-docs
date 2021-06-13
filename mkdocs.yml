@@ -74,8 +74,8 @@ nav:
         - XSM Architecture Specifcation: arch-spec.md
         - Machine Organisation: "arch-spec/machine-org.md"
   - Roadmap:
-    - Roadmap: roadmap.md
-    # Stage 1: roadmap/stage1.md
+    - Roadmap: roadmap/index.md
+    - Stage 1: roadmap/stage1.md
     # Stage 2: roadmap/stage2.md
   - FAQ: faq.md
   - Student Feedback:
