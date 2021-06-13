@@ -10,7 +10,8 @@ This roadmap is divided into stages. Each stage is to be done in sequential orde
 It is very important that you proceed with the roadmap on a regular schedule and not get lost in the links. Hence, an approximate amount of time (in hours) which you are expected to spend on each stage is noted along with the stage. If you find that reading a particular documentation/link takes too much time, skip it for the time being and come back to it only when needed.
 
 !!!note "Preparatory Stages:"
-    The preparatory stages help you to get familiarized with the disk bootstrap loading process, disk access mechanism, file-system specification, debugger, paging hardware, interrupt handling mechanism, program loading, library linkage and function calling conventions, application binary interface (ABI), context switching between applications and so forth. You will need 2-3 weeks to complete these stages.
+    The preparatory stages help you to get familiarized with the disk bootstrap loading process, disk access mechanism, file-system specification, debugger, paging hardware, interrupt handling mechanism, program loading, library linkage and function calling conventions, application binary interface (ABI), context switching between applications and so forth. 
+    You will need 2-3 weeks to complete these stages.
 
 [:octicons-link-external-16: Stage 1 : Setting up the System](#){ .stage-link }
 [:octicons-link-external-16: Stage 2 : Understanding the Filesystem (2 Hours)](#){ .stage-link }

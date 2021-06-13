@@ -8,3 +8,6 @@
     border-bottom: 2px solid rgb(175, 175, 175);
     color: #555 !important;
 }
+.stage-link:last-child {
+    border-bottom: 0;
+}
