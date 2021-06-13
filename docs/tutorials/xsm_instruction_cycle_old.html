@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <!-- Basic Page Needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <title>Architecture Tutorial</title>
+
+    <!-- Mobile Specific Metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/png" href="../img/favicon.jpg"/>
+
+    <!-- CSS
+    ================================================== -->       
+    <!-- Bootstrap css file-->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font awesome css file-->
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <!-- Superslide css file-->
+    <link rel="stylesheet" href="../css/superslides.css">
+    <!-- Slick slider css file -->
+    <link href="../css/slick.css" rel="stylesheet"> 
+    <!-- smooth animate css file -->
+    <link rel="stylesheet" href="../css/animate.css">  
+    <!-- Elastic grid css file -->
+    <link rel="stylesheet" href="../css/elastic_grid.css"> 
+    <!-- Circle counter cdn css file -->
+    <link rel='stylesheet prefetch' href='../css/jquery.circliful.css'>    
+    <!-- Default Theme css file -->
+    <link id="orginal" href="../css/themes/eucalyptus-theme.css" rel="stylesheet">
+    <!-- Main structure css file -->
+    <link href="../style.css" rel="stylesheet">
+   
+    <!-- Google fonts -->
+    <link href='../css/opensans.css' rel='stylesheet' type='text/css'>
+    <link href='../css/varela.css' rel='stylesheet' type='text/css'>
+    <link href='../css/montserrat.css' rel='stylesheet' type='text/css'>
+
+  </head>
+  <body> 
+     <!-- BEGAIN PRELOADER -->
+    <div id="preloader">
+      <div id="status">&nbsp;</div>
+    </div>
+    <!-- END PRELOADER -->
+
+  
+    <!--=========== BEGIN HEADER SECTION ================-->
+    <header id="header">
+      <!-- BEGIN MENU -->
+      <div class="menu_area">
+        <nav class="navbar navbar-default navbar-fixed-top past-main" role="navigation"> 
+          <div class="container">
+          <div class="navbar-header">
+            <!-- FOR MOBILE VIEW COLLAPSED BUTTON -->
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+              <!-- LOGO -->
+
+            <!-- TEXT BASED LOGO -->
+            <a class="navbar-brand" href="../index.html">eXpOS<span>NITC</span></a>
+            
+                              
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul id="top-menu" class="nav navbar-nav navbar-right main_nav">
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../documentation.html" target="_blank">Documentation</a></li> 
+              <li><a href="../Roadmap.html" target="_blank">Roadmap</a></li> 
+               <li><a href="../faq.html" target="_blank">FAQ</a></li>
+              <li><a href="../About_us.html" target="_blank">About Us</a></li>                                     
+            </ul>           
+          </div>
+          </div>     
+        </nav>  
+      </div>
+      <!-- END MENU -->
+
+
+      
+    </header>
+    <!--=========== End HEADER SECTION ================--> 
+    
+   
+    <!-- Beginning of section -->
+
+   <section id="expfs">
+		<br>
+		<br>
+		<br>
+          <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12">
+            <div class="about_area">
+             
+                <!-- START ABOUT HEADING -->
+              <div class="heading">
+                <h2 >XSM Instruction Execution Cycle</h2>
+                <br/>
+                <br/>
+                
+				<p>In this tutorial we will walk you through the instruction execution cycle of XSM architecture. <br>
+					For this purpose, we will use the following SPL program that will display the contents of the first entry of the root file as the OS startup code. You can refer the SPL specification <a href ="../support_tools-files/spl.html" target="_blank">here</a>. <br>
+					The SPL program is given below:
+					<div>
+					<pre>//Program to print the first entry of root file
+
+alias counter R0;
+alias word R1;
+counter = 0;
+
+loadi(62,5);
+
+while(counter < 8) do
+  word = [62 * 512 + counter];
+  print(word);
+  counter = counter + 1;
+endwhile; </pre> 
+					</div>
+				</p>
+				<p><br>This corresponds to the following XSM code. 
+				<div>
+					<pre>// Initialising counter(R0) to 0
+MOV R0, 0	
+
+// Load block num 5 (root file) to page 62  
+LOADI 62, 5
+
+_L1:
+
+// Check for R0 < 8
+MOV R16, 8
+GT R16, R0
+JZ R16, _L2
+
+// R16 = 512 * 62 + R0
+MOV R16, 62
+MUL R16, 512
+ADD R16, R0
+
+// Transfer contents of memory location pointed to by R16 to R1
+MOV R1, [R16]
+
+// Printing word (R1)
+PORT P1, R1
+OUT
+
+// counter = counter + 1
+MOV R16, R0
+ADD R16, 1
+MOV R0, R16
+
+JMP _L1
+_L2:
+
+HALT</pre>
+
+				</div>
+				</p>
+
+				<p>
+				<i>We assume that the given XSM code will be loaded into disk block 0 by the XFS Interface. <br>
+				All the labels in the code are translated to corresponding machine address by the xfs-interface.
+				</i>				
+				</p>
+				
+
+			<p>	The ROM code is assumed to be present at the memory page 0. Here are the contents of the ROM code (page 0) of XSM memory
+				</p>
+				<div>
+				<pre>LOADI 1,0
+JMP 512</pre>
+
+				<p> When the machine starts execution, the values of the Instruction pointer(IP) register is set to 0.
+				
+				The XSM machine therefore fetches the instruction present at memory locations 0 and 1. Note that each instruction in XSM occupies two words in memory. <br> 
+
+</p>
+
+				<p>
+				The first instruction of ROM code is to load the OS startup code from block 0 of disk to page 1 of memory.
+				</p>
+
+				<center>
+				<img src="img/1.png">
+				</center>
+
+				<p> Let us see the execution of this instruction in detail. 
+				
+				<font size="3">				
+				<ol>
+
+			<li>	The first step is called the Instruction Fetch (IF).			
+				The machine fetches the instruction from the memory and places it in the Instruction Register(IR). </li>
+
+			<li>	The second step is the Instruction decode. 
+				In this step the opcode part of the IR register is examined to see the instruction type. 
+				The machine recognises that the instruction is a LOADI instruction.
+			</li>
+				
+			<li>	The parameters of LOADI are passed to the Disk Controller. The system pauses its execution till the Disk transfer completes and resumes the execution.
+			</li>
+				</ol> </p>
+
+				</font>				
+			
+				<p>After the execution of each instruction, the value of the IP Register is incremented by 2 by the XSM machine. 
+				 
+				</p>
+				<p> The value of IP register is now 2. The machine fetches the instruction from memory address 2 and 3. </p>
+
+				<center>
+				<img src="img/2.png">
+				</center>
+
+				<p>This instruction sets the value of IP Regiser to 512 and hence transfers control to the 
+				OS startup code loaded into page 1 of memory, ie. memory address 512.</p>
+
+				
+				<center>
+				<img src="img/3.png">
+				</center>
+
+
+				<p>OS startup code is loaded at memory address 512. 
+				Hence MOV R0, 0 is executed next. IP is incremented to 514.
+				The machine continues execution until the HALT instruction is encountered. 
+				The system halts on execution of HALT instruction. </p>
+
+				<p> Now let us consider the execution of the instruction at memory address 520.
+				The instruction is JZ R16, 544.
+				<i> Note that the translanslation of label _L2 to memory address 544 					is done by the XFS Interface at the time of loading OS startup code to the XSM disk.
+				 </i>
+				</p>
+				
+				<ol>
+					<li>In the IF stage the instruction is fetched to the IR register.</li>
+					<li>The ID stage recognises the instructuion as JZ. </li>
+					<li>   </li>
+					<li>    </li>
+				</ol>
+		
+		</div> 
+             </div>
+           </div>
+         </div>
+    </section> 
+
+
+
+
+    <!-- End of section -->
+
+
+      <!--=========== BEGIN FOOTER ================-->
+     <footer id="footer">
+       <div class="container">
+         <div class="row">
+<a style="float: right" rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="../img/creativecommons.png" /></a>
+           <div class="col-lg-6 col-md-6 col-sm-6">
+             <div class="footer_left">
+               <p><a href="http://www.nitc.ac.in/">National Institute of Technology, Calicut</a></p>
+             </div>
+           </div>
+         </div>
+       </div>
+      </footer>
+      <!--=========== END FOOTER ================-->
+
+     <!-- Javascript Files
+     ================================================== -->
+  
+     <!-- initialize jQuery Library -->
+    <script src="../js/jquery.min.js"></script>
+    <!-- Google map -->
+    <script src="../js/map_js.js"></script>
+    <script src="../js/jquery.ui.map.js"></script>
+     <!-- For smooth animatin  -->
+    <script src="../js/wow.min.js"></script> 
+    <!-- Bootstrap js -->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- superslides slider -->
+    <script src="../js/jquery.superslides.min.js" type="text/javascript"></script>
+    <!-- slick slider -->
+    <script src="../js/slick.min.js"></script>    
+    <!-- for circle counter -->
+    <script src='../js/jquery.circliful.min.js'></script>
+    <!-- for portfolio filter gallery -->
+    <script src="../js/modernizr.custom.js"></script>
+    <script src="../js/classie.js"></script>
+    <script src="../js/elastic_grid.min.js"></script>
+    <script src="../js/portfolio_slider.js"></script>
+
+    <!-- Custom js-->
+    <script src="../js/custom.js"></script>
+  </body>
+</html>

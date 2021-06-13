@@ -11,11 +11,16 @@ copyright: >-
     <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png" />
   </a>
 
+extra_css:
+  - assets/css/extra.css
+repo_url: https://github.com/eXpOSNitc/eXpOSNitc.github.io
+repo_name: eXpOSNitc/eXpOSNitc.github.io
 # Configuration
 theme:
   name: material
   favicon: assets/favicon.png
   logo: assets/logo.png
+  custom_dir: overrides
   theme:
   palette:
     - media: "(prefers-color-scheme: light)"
@@ -52,6 +57,7 @@ extra:
 # Extensions
 markdown_extensions:
   - attr_list
+  - admonition
   - toc:
       permalink: true
   - pymdownx.emoji:
@@ -61,13 +67,15 @@ markdown_extensions:
 # Page tree
 nav:
   - Home: index.md
-  - About Us:
-    - About Us: about.md
+  - About:
+    - About: about.md
     - Releases:
       - Changelog: changelog.md
+  - Roadmap: "roadmap/index.md"
   - Documentation:
     - Documentation: documentation.md
     - Architecture:
       - Specification: 
         - XSM Architecture Specifcation: arch-spec.md
         - Machine Organisation: "arch-spec/machine-org.md"
+  - Feedback: "feedback.md"
