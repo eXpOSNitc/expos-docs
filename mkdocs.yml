@@ -73,6 +73,13 @@ nav:
       - Specification: 
         - XSM Architecture Specifcation: arch-spec.md
         - Machine Organisation: "arch-spec/machine-org.md"
+      - Tutorials:
+        - MultiUser Implementation: "tutorials/multiuser_implementation.md"
+        - FileSystem Implementation: "tutorials/filesystem_implementation.md"
+        - Process Management Implementation: "tutorials/process_management_implementation.md"
+        - XSM Instruction Cycle: "tutorials/xsm_instruction_cycle.md"
+        - XSM Interrupts tutorial: "tutorials/xsm_interrupts_tutorial.md"
+        - XSM Unprivileged tutorial: "tutorials/xsm_unprivileged_tutoral.md"
   - Roadmap: roadmap/index.md
   - FAQ: faq.md
   - Student Feedback:
