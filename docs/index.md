@@ -2,6 +2,7 @@
 hide:
     - navigation
     - toc
+original_url: anandu.net
 ---
 # eXpOS NITC
 <div style="float: right; border-style: solid; padding: 16px; border-radius: 16px; margin: 16px;">

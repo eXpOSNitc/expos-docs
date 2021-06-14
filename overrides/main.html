@@ -1,4 +1,8 @@
 {% extends "base.html" %}
 {% block announce %}
-TODO: Show the V1 url  here
+ORL URL: 
+{% if page and page.meta and page.meta.original_url %}
+    <a href="{{ page.meta.original_url }}">{{ page.meta.original_url }}</a>
+{% endif %}
+
 {% endblock %}

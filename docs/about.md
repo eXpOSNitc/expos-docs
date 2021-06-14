@@ -1,6 +1,6 @@
 ---
 title: "About"
-original_url: https://anandu.net
+original_url: https://exposnitc.github.io/About_us.html
 hide:
     - toc
 ---

@@ -1,5 +1,6 @@
 ---
 title: FAQ
+original_url: https://exposnitc.github.io/faq.html
 hide:
   - navigation
   - toc
