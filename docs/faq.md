@@ -6,7 +6,7 @@ hide:
   - toc
 ---
 
-!!! question "1. What is eXpOS? What is its purpose?"
+??? question "1. What is eXpOS? What is its purpose?"
     <p>eXpOS stands for eXperimental Operating System. The <a href="os_spec.html" target="_blank">eXpOS
     specification</a> describes a very simple multi-user multi-tasking operating system. </p>
     <p>eXpOS is not intended to be used as a practical operating system. It is designed with the
@@ -24,7 +24,7 @@ hide:
     </p>
 
 
-!!! question "2. Who will benefit by implementing eXpOS?"
+??? question "2. Who will benefit by implementing eXpOS?"
     If you are a non-expert in computer science – like an undergraduate student or some non-specialist
     systems enthusiast – and you have a basic understanding of programming, and computer organization,
     implementing eXpOS will help you to get a feel of some of the core ideas involved in implementing a
@@ -45,10 +45,10 @@ hide:
     unmanned flight in two months. (The flight will not be usable outside the laboratory!)
 
 
-!!! question "3. What are the OS concepts that eXpOS will help me to comprehend better than – say just learning from a text book?"
+??? question "3. What are the OS concepts that eXpOS will help me to comprehend better than – say just learning from a text book?"
     Please see FAQ 2.
 
-!!! question "4. What are the prerequisites for doing the eXpOS project?"
+??? question "4. What are the prerequisites for doing the eXpOS project?"
     The project presumes that the student has undergone a basic sophomore course in computer
     organization and data structures and has either completed or is currently undergoing a theory
     course in operating systems. The project does not require the student
@@ -58,7 +58,7 @@ hide:
     at appropriate places in the project roadmap.
 
 
-!!! question "5. Who must not be spending time on eXpOS?"
+??? question "5. Who must not be spending time on eXpOS?"
     <p>People who want to learn about operating systems, but who belong to the following category are not
     advised to proceed with eXpOS:</p>
     <ol>
@@ -74,11 +74,11 @@ hide:
     </ol>
 
 
-!!! question "6. Can eXpOS be actually be used in a real application?"
+??? question "6. Can eXpOS be actually be used in a real application?"
     Please see FAQ 2.
 
 
-!!! question "7. What are the important OS concepts I miss out when working with eXpOS?"
+??? question "7. What are the important OS concepts I miss out when working with eXpOS?"
     <p>What you learn is very little compared to what is needed to become an OS expert. So, listing out
     everything is impossible. But here are some important misses: </p>
     <ol>
@@ -95,14 +95,14 @@ hide:
     </ol>
 
 
-!!! question "8. What are the system requirements for working on the eXpOS package?"
+??? question "8. What are the system requirements for working on the eXpOS package?"
     <p>We expect you to have a Linux/Unix Machine with Lex/Flex and Yacc/Bison software packages
     installed. (For Flex/Bison installation on your Linux system, see <a href="http://en.kioskea.net/faq/30635-how-to-install-flex-and-bison-under-ubuntu"
     target="_blank">link</a>). Once you have these, you can download the eXpOS package by following
     instructions at <a href="./support_tools-files/setting-up.html" target="_blank"> Setting Up</a>.</p>
 
 
-!!! question "9. What are the contents of the eXpOS package?"
+??? question "9. What are the contents of the eXpOS package?"
     <p>The eXpOS package available <a href="./support_tools-files/setting-up.html" target="_blank">here</a>
     comes with the following: </p>
     <ol>
@@ -126,13 +126,13 @@ hide:
     </ol>
 
 
-!!! question "10. I have downloaded the eXpOS package. How can I get started with the work?"
+??? question "10. I have downloaded the eXpOS package. How can I get started with the work?"
     <p>The best way is to follow the eXpOS roadmap. It is a journey taken one simple step at a time. You
     will be provided with links to learn the concepts on a “learn when needed” way. Just go ahead
     following this <a href="Roadmap.html" target="_blank">link</a>.</p>
 
 
-!!! question "11. What differenciates eXpOS from other educational packages like NACHOS?"
+??? question "11. What differenciates eXpOS from other educational packages like NACHOS?"
     <p>It is difficult to answer this question for all similar packages available elsewhere, but here is
     a comparison with NACHOS. </p>
     <p>NACHOS learning system asks you to implement OS software that allows application programs in the
@@ -150,7 +150,7 @@ hide:
     simple enough so that additional complexity is manageable for a short term project. </p>
 
 
-!!! question "12. What is the difference between eXpOS and XOS?"
+??? question "12. What is the difference between eXpOS and XOS?"
     <p><a href="http://xosnitc.github.io/" target="_blank">XOS</a> is an earlier version of this project.
     XOS did not support blocking system calls.</p>
     <p> This means that a process will never do a context switch while it is running in the kernel mode.
@@ -165,7 +165,7 @@ hide:
     features is minor. </p>
 
 
-!!! question "13. How do I write OS code and load the OS in the eXpOS system?"
+??? question "13. How do I write OS code and load the OS in the eXpOS system?"
     You have to write your OS code from your Linux/Unix system in a custom programming language called
     SPL that comes with the eXpOS package, compile the code and install the target code into the hard
     disk of the XSM machine. The xfs-interface tool allows you to do this pre-loading. Your OS code
@@ -173,13 +173,13 @@ hide:
     rest of the OS into memory during bootstrap.
 
 
-!!! question "14. How do I write application programs that run on eXpOS?"
+??? question "14. How do I write application programs that run on eXpOS?"
     Application programs must be compiled in the Linux/Unix environment outside and pre-loaded into
     the XSM machine's disk. The ExpL language allows applications to be written and compiled into the
     eXpOS executable format called the <a href="abi.html#xexe" target="_blank"> XEXE </a> format.
 
 
-!!! question "15. What is meant by user mode and kernel mode?"
+??? question "15. What is meant by user mode and kernel mode?"
     In a multitasking OS like Linux, there are two types of programs running. Firstly, there are
     application programs that users write. These are called "user mode programs". Secondly, there are
     "kernel mode programs" which constitute the OS code. These routines implement the system call
@@ -197,7 +197,7 @@ hide:
     support. XSM machine is equipped with the necessary hardware support.
 
 
-!!! question "16. Why do you need two programming languages in the eXpOS package – the SPL and ExpL?"
+??? question "16. Why do you need two programming languages in the eXpOS package – the SPL and ExpL?"
     We need separate programming systems for writing user mode programs and kernel mode programs
     because these languages serve different purposes. The high level language - ExpL provided with the
     package can be used for writing application programs that run on top of the operating system.
@@ -206,7 +206,7 @@ hide:
 
 
 
-!!! question "17. What is eXpOS Library?"
+??? question "17. What is eXpOS Library?"
     The ExpOS library is a piece of code that provides a generic interface for application programs to
     access OS services like system calls and dynamic memory management routines.
 
@@ -216,13 +216,13 @@ hide:
     application at run time.
 
 
-!!! question "18. What is XFS interface?"
+??? question "18. What is XFS interface?"
     XFS interface is a tool that permits you to transfer programs and data files between your host
     system and the XSM machine's simulated hard disk. The tool is capable of handling various eXpOS
     file types (like OS modules, application programs, data files, library etc.) and store them in the
     XSM disk, updating the disk data structures appropriately.
 
-!!! question "19. My friend has implemented eXpOS after downloading the package and following the roadmap. I want to write a program and test his implementation. How to do it?"
+??? question "19. My friend has implemented eXpOS after downloading the package and following the roadmap. I want to write a program and test his implementation. How to do it?"
     You must write your code in ExpL language in your Unix/Linux machine, compile it using the ExpL
     compiler that comes with the eXpOS package and load the target executable file into the XSM
     machine's disk using the xfs-interface tool. Now start the machine (assuming that your friend has
@@ -231,7 +231,7 @@ hide:
     in the name of your executable program and execute it, just like in bash.
 
 
-!!! question "20. I am a teacher and wants to use eXpOS for laboratory instruction. How should I proceed?"
+??? question "20. I am a teacher and wants to use eXpOS for laboratory instruction. How should I proceed?"
     You are welcome use eXpOS. You may also fork the project on GitHub and customize the project to
     your own needs subject to the <a href="http://creativecommons.org/licenses/by-nc/4.0/">Creative
     Commons</a> license conditions.
