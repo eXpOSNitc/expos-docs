@@ -74,5 +74,5 @@ Machine is halting.
        No. This is because after the execution of the ROM Code, IP points to *512* which is the 1<sup>st</sup>
        instruction of Page 1. So if the OS Startup Code is not loaded to Page 1, it results in an <a href="./arch_spec-files/interrupts_exception_handling.html" target="_blank">exception</a> and leads to system crash.
 
-!!! todo "Assignment 1"
+!!! assignment "Assignment 1"
        Write an assembly program to print numbers from 1 to 20 and run it as the OS Startup code.
