@@ -41,7 +41,7 @@ It is very important that you proceed with the roadmap on a regular schedule and
 !!!note "Final Stages"
     Stage 20-Stage 27 are the final stages of the project where you will implement all the system calls stipulated in the ABI documentation. Typically 5-6 weeks will be needed to complete these stages. At the end of the twentieth stage, basic system calls for process creation and termination – Fork, Exec and Exit will be completed. The next two stages take up system calls implementing signals and semaphores. The next three stages address the implementation of the file system. The subsequent stages add multi-user support and virtual memory support. (An advanced stage (Stage 28) describing how the OS can be ported to a two-core extension of the XSM machine has been added subsequently.)
 
-[:octicons-link-external-16: Stage 20 : Process Creation and Termination (12 Hours)](./stage_20){.stage-link}
+[:octicons-link-external-16: Stage 20 : Process Creation and Termination (12 Hours)](./stage_20/){.stage-link}
 [:octicons-link-external-16: Stage 21 : Process Synchronization (4 Hours)](./stage_21/){.stage-link}
 [:octicons-link-external-16: Stage 22 : Semaphores (4 Hours)](./stage_22/){.stage-link}
 [:octicons-link-external-16: Stage 23 : File Creation and Deletion (6 Hours)](./stage_23/){.stage-link}
@@ -49,4 +49,4 @@ It is very important that you proceed with the roadmap on a regular schedule and
 [:octicons-link-external-16: Stage 25 : File Write (12 Hours)](./stage_25){.stage-link}
 [:octicons-link-external-16: Stage 26 : User Management (12 Hours)](./stage_26/){.stage-link}
 [:octicons-link-external-16: Stage 27 : Pager Module (18 Hours)](./stage_27/){.stage-link}
-[:octicons-link-external-16: Stage 28 : Multi-Core Extension (12 Hours)](./stage_28){.stage-link}
+[:octicons-link-external-16: Stage 28 : Multi-Core Extension (12 Hours)](./stage_28/){.stage-link}

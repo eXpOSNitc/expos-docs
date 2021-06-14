@@ -1,6 +1,5 @@
 ---
-title: 'Stage 20 :
-                        Process Creation and Termination (12 Hours)'
+title: 'Stage 20 : Process Creation and Termination (12 Hours)'
 ---
 <div class="panel-collapse collapse" id="collapse20">
  <div class="panel-body">
