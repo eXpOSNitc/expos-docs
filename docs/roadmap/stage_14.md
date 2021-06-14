@@ -488,10 +488,6 @@ loadi(51,64);</pre>
                       with these 3 processes along with idle process.
   <br/>
   <br/>
-  <a data-toggle="collapse" href="#collapse14">
-   <span class="fa fa-times">
-   </span>
-   Close
-  </a>
+ 
  </div>
 </div>

@@ -22,7 +22,9 @@ hide:
 Project eXpOS (eXperimental Operating System) is an on-line educational platform which helps undergraduate students to learn the working on an operating system. A detailed project roadmap that is part of the platform provides step by step guidance to the student towards writing a small operating system from scratch. The student learns the implementation of various OS data structures and kernel routines during the course of the project. The OS written by the student will run on a machine simulator supplied along with the platform. The project assumes that the student has undergone a course in computer organization, and is comfortable with programming.
 
 ## Roadmap
-If you wish to work on the project, the approach we suggest is to follow the project roadmap. The roadmap takes you through a step by step journey towards the complete implementation of the operating system. At each step, you will be asked to read concepts, specifications and interfaces that are required for that step. In fact, you will be asked to read only what is necessary for completing that step. The links to the relevant reading material will be given at appropriate places in the roadmap. Proceed to [Roadmap :material-road:](roadmap.md){target=_blank}.
+If you wish to work on the project, the approach we suggest is to follow the project roadmap. The roadmap takes you through a step by step journey towards the complete implementation of the operating system. At each step, you will be asked to read concepts, specifications and interfaces that are required for that step. In fact, you will be asked to read only what is necessary for completing that step. The links to the relevant reading material will be given at appropriate places in the roadmap.
+
+[Proceed to Roadmap :material-road:](./roadmap/){ .md-button .md-button--primary  target=_blank}
 
 ## Final System
 ![Final User View](assets/img/user-view.png){ align=left }

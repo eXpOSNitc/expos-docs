@@ -1,6 +1,5 @@
 ---
-title: 'Stage 9 :
-                        Handling kernel stack (4 Hours)'
+title: 'Stage 9 : Handling kernel stack (4 Hours)'
 ---
 <div class="panel-collapse collapse" id="collapse9">
  <div class="panel-body">
@@ -308,10 +307,6 @@ ireturn;
                         process in timer interrupt before returning to user mode.
                         You can look up this value from the System Status Table.
   </p>
-  <a data-toggle="collapse" href="#collapse9">
-   <span class="fa fa-times">
-   </span>
-   Close
-  </a>
+ 
  </div>
 </div>

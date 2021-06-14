@@ -868,10 +868,6 @@ JNZ Ri, L1</pre>
   Right now, all kernel code (except scheduler) operates with a single KERN_LOCK. Instead, suppose you put different lock variables for each kernel data structure, clearly, better use of parallelism can be achieved. What are the issues you have to consider when such a re-design is one? (You don’t have to do the experiment, but try to work out the design details on pen and paper). Do you think this will make the kernel run considerably faster? Can such a design lead to deadlocks?
   <br/>
   <br/>
-  <a data-toggle="collapse" href="#collapse28">
-   <span class="fa fa-times">
-   </span>
-   Close
-  </a>
+ 
  </div>
 </div>

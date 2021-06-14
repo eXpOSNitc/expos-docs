@@ -707,10 +707,6 @@ bit (in the buffer table) of all the buffered disk blocks of the file.
                       stage 2).
   <br/>
   <br/>
-  <a data-toggle="collapse" href="#collapse23">
-   <span class="fa fa-times">
-   </span>
-   Close
-  </a>
+ 
  </div>
 </div>

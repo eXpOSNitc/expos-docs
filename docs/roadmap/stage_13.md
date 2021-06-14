@@ -252,10 +252,6 @@ title: 'Stage 13 :
    </div>
   </div>
   <!-- End Learning Objectives-->
-  <a data-toggle="collapse" href="#collapse13">
-   <span class="fa fa-times">
-   </span>
-   Close
-  </a>
+ 
  </div>
 </div>

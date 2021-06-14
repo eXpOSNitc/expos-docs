@@ -1,102 +1,33 @@
 ---
 title: 'Stage 2 : Understanding the Filesystem  (2 Hours)'
 ---
-<div class="panel-collapse collapse" id="collapse2">
- <div class="panel-body">
-  <!-- Begin Learning Objectives-->
-  <div class="container col-md-12">
-   <div class="section_area">
-    <ul class="list-group">
-     <li class="list-group-item" style="background:#dff0d8">
-      <span class="fa fa-book">
-      </span>
-      <a data-toggle="collapse" href="#lo2">
-       Learning
-                                Objectives
-      </a>
-      <div class="panel-collapse expand" id="lo2">
-       <ul>
-        <li style="margin-bottom: -2px">
-         <span class="fa fa-hand-o-right">
-         </span>
-         Load/retrieve data and executable files from/to your host (Unix) system into the
-                                    XSM disk.
-        </li>
-        <li style="margin-bottom: -2px">
-         <span class="fa fa-hand-o-right">
-         </span>
-         Explain the disk data structures of the XFS file system - INODE table, disk free
-                                    list and root file.
-        </li>
-        <li style="margin-bottom: -2px">
-         <span class="fa fa-hand-o-right">
-         </span>
-         Find out the data blocks into which a data/executable file is stored in the XSM
-                                    disk by examining the INODE table and root file.
-        </li>
-       </ul>
-      </div>
-     </li>
-     <li class="list-group-item" style="background:#dff0d8">
-      <span class="fa fa-book">
-      </span>
-      <a data-toggle="collapse" href="#lo2a">
-       Pre-requisite
-                                Reading
-      </a>
-      <div class="panel-collapse expand" id="lo2a">
-       <ul>
-        <li style="margin-bottom: -2px">
-         <span class="fa fa-hand-o-right">
-         </span>
-         Quickly go through the
-         <a href="os_spec-files/eXpFS.html" target="_blank">
-          Filesystem
-                                      (eXpFS) Specification
-         </a>
-         and
-         <a href="./support_tools-files/xfs-interface.html" target="_blank">
-          XFS-Interface Specification
-         </a>
-         (interface between the UNIX
-                                    System and eXpFS). Do not spent more than 30 minutes!
-        </li>
-       </ul>
-      </div>
-     </li>
-    </ul>
-   </div>
-  </div>
-  <!-- End Learning Objectives-->
-  <p>
-   The eXpOS package that you had downloaded in the previous stage consists mainly of a machine
-                        simulator. The machine is called the
-   <b>
-    eXperimental String Machine (XSM)
-   </b>
-   and consists of a
-                        processor, memory and disk. Some support tools that help you to program the machine are also
-                        provided.
-  </p>
-  <p>
-   One important point to note about the system is that the machine is a bare, and comes with no
-                        software in it (except for a boot ROM). Hence, the only way to insert some software code into
-                        the system is to prepare the code "outside" (that is, in your Linux/Unix system) and insert
-                        your code into the machine. The support tools provided along with the package are precisely
-                        designed to help you with this task.
-  </p>
-  <p>
-   The package comes with three major support tools - two compilers and a disk interface tool
-                        called
-   <a href="support_tools-files/xfs-interface.html" target="_blank">
-    XFS-Interface
-   </a>
-   . The
-                        compilers allow you to write high level code and translate it into the XSM machine code. We
-                        will look at them in later stages. The XFS-Inteface tool helps you to transfer files between
-                        your Linux/Unix system and the XSM machines disk.
-  </p>
-  <p>
+
+!!! note "Learning Objectives" 
+      - Load/retrieve data and executable files from/to your host (Unix) system into the XSM disk.
+      - Explain the disk data structures of the XFS file system - INODE table, disk free list and root file.
+      - Find out the data blocks into which a data/executable file is stored in the XSM disk by examining the INODE table and root file.
+
+!!! todo "Pre-requisite Reading"
+      - Quickly go through the <a href="os_spec-files/eXpFS.html" target="_blank">Filesystem(eXpFS) Specification</a> and <a href="./support_tools-files/xfs-interface.html" target="_blank"> XFS-Interface Specification</a>(interface between the UNIX System and eXpFS). Do not spent more than 30 minutes!
+
+The eXpOS package that you had downloaded in the previous stage consists mainly of a machine
+simulator. The machine is called the <b>eXperimental String Machine (XSM)</b> and consists of a
+processor, memory and disk. Some support tools that help you to program the machine are also
+provided.
+
+One important point to note about the system is that the machine is a bare, and comes with no
+software in it (except for a boot ROM). Hence, the only way to insert some software code into
+the system is to prepare the code "outside" (that is, in your Linux/Unix system) and insert
+your code into the machine. The support tools provided along with the package are precisely
+designed to help you with this task.
+
+The package comes with three major support tools - two compilers and a disk interface tool
+called <a href="support_tools-files/xfs-interface.html" target="_blank">XFS-Interface</a>.
+The compilers allow you to write high level code and translate it into the XSM machine code. We
+will look at them in later stages. The XFS-Inteface tool helps you to transfer files between
+your Linux/Unix system and the XSM machines disk.
+
+
    XSM machine's disk contains 512 blocks, each capable of storing
                         512 words. When files are stored in the disk, some format has
                         to be followed so that one can figure out where in the disk
@@ -199,8 +130,10 @@ title: 'Stage 2 : Understanding the Filesystem  (2 Hours)'
        <br>
         Type the following commands in the xfs-interface prompt.
         <div>
-         <pre># fdisk
-# exit</pre>
+```
+# fdisk
+# exit
+```
         </div>
         <p>
          You will be back in the UNIX shell and a file named
@@ -606,65 +539,40 @@ peppermint wind</pre>
       </li>
      </br>
     </ol>
-    <!--=========== BEGIN contents SECTION ================-->
-    <div class="container col-md-12">
-     <div class="section_area">
-      <ul class="list-group">
-       <li class="list-group-item">
-        <a data-toggle="collapse" href="#collapseq1">
-         <b>
-          Q1.
-         </b>
-         When a file is created entries
-                                are made in the Inode table as well as the Root file. What is the need for this
-                                duplication?
-        </a>
-        <div class="panel-collapse collapse" id="collapseq1">
-         Inode table is a data structure which is accessible only in Kernel mode, whereas Root
-                                file is accessible both in Kernel and User mode. This enables the user to search for a
-                                file from an application program itself by reading the Root file.
-        </div>
-       </li>
-      </ul>
-     </div>
-    </div>
-    <p>
-     <b style="color:#26A65B">
-      Assignment 1 :
-     </b>
-     Copy the contents of Root File (from Block 5 of
-                        XFS disk) to a UNIX file
-     <tt>
-      $HOME/myexpos/root_file.txt
-     </tt>
-     and verify that an entry for
-     <tt>
-      sample.dat
-     </tt>
-     is made in it also.
-    </p>
-    <p>
-     <b style="color:#26A65B">
-      Assignment 2 :
-     </b>
-     Delete the
-     <tt>
-      sample.dat
-     </tt>
-     from the XSM
-                        machine using xfs-interface and note the changes for the entries for this file in
-     <i>
-      inode
-                          table, root file and disk free list
-     </i>
-     .
-    </p>
-    <a data-toggle="collapse" href="#collapse2">
-     <span class="fa fa-times">
-     </span>
-     Close
-    </a>
-   </br>
-  </br>
- </div>
-</div>
+
+
+??? question "Q1: When a file is created entries are made in the Inode table as well as the Root file. What is the need for this duplication?"
+      Inode table is a data structure which is accessible only in Kernel mode, whereas Root file is accessible both in Kernel and User mode. This enables the user to search for a file from an application program itself by reading the Root file.
+   
+<b style="color:#26A65B">
+Assignment 1 :
+</b>
+Copy the contents of Root File (from Block 5 of
+XFS disk) to a UNIX file
+<tt>
+$HOME/myexpos/root_file.txt
+</tt>
+and verify that an entry for
+<tt>
+sample.dat
+</tt>
+is made in it also.
+</p>
+<p>
+<b style="color:#26A65B">
+Assignment 2 :
+</b>
+Delete the
+<tt>
+sample.dat
+</tt>
+from the XSM
+machine using xfs-interface and note the changes for the entries for this file in
+<i>
+inode
+table, root file and disk free list
+</i>
+.
+</p>
+
+

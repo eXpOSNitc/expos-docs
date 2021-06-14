@@ -920,10 +920,6 @@ title: 'Stage 22 :
   .
   <br/>
   <br/>
-  <a data-toggle="collapse" href="#collapse22">
-   <span class="fa fa-times">
-   </span>
-   Close
-  </a>
+ 
  </div>
 </div>

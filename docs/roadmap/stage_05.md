@@ -1,6 +1,5 @@
 ---
-title: 'Stage 5 :
-                        XSM Debugging (2 Hours)'
+title: 'Stage 5 : XSM Debugging (2 Hours)'
 ---
 <div class="panel-collapse collapse" id="collapse5">
  <div class="panel-body">
@@ -125,10 +124,6 @@ endwhile; </pre>
     <pre>c</pre>
    </li>
   </ol>
-  <a data-toggle="collapse" href="#collapse5">
-   <span class="fa fa-times">
-   </span>
-   Close
-  </a>
+ 
  </div>
 </div>

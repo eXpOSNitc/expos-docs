@@ -1,6 +1,5 @@
 ---
-title: 'Stage 8 :
-                        Handling Timer Interrupt (2 Hours)'
+title: 'Stage 8 : Handling Timer Interrupt (2 Hours)'
 ---
 <div class="panel-collapse collapse" id="collapse8">
  <div class="panel-body">
@@ -233,10 +232,6 @@ ireturn;
 ./xsm --timer 2</pre>
   </ol>
   <!--========= Stage descrptions ends here ===========-->
-  <a data-toggle="collapse" href="#collapse8">
-   <span class="fa fa-times">
-   </span>
-   Close
-  </a>
+ 
  </div>
 </div>

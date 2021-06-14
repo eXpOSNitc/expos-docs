@@ -588,10 +588,6 @@ SP = 2*512;</pre>
    </p>
   </ol>
   <!--========= Stage descrptions ends here ===========-->
-  <a data-toggle="collapse" href="#collapse6">
-   <span class="fa fa-times">
-   </span>
-   Close
-  </a>
+ 
  </div>
 </div>

@@ -519,10 +519,6 @@ userSP=SP;</pre>
   </p>
   <br/>
   <br/>
-  <a data-toggle="collapse" href="#collapse16">
-   <span class="fa fa-times">
-   </span>
-   Close
-  </a>
+ 
  </div>
 </div>

@@ -551,10 +551,6 @@ endif;
   </p>
   <br/>
   <br/>
-  <a data-toggle="collapse" href="#collapse12">
-   <span class="fa fa-times">
-   </span>
-   Close
-  </a>
+ 
  </div>
 </div>

@@ -1,7 +1,5 @@
 ---
-title: '
-Stage 7 : ABI and XEXE Format (2 Hours)
-                    '
+title: 'Stage 7 : ABI and XEXE Format (2 Hours)'
 ---
 <div class="panel-collapse collapse" id="collapse7">
  <div class="panel-body">

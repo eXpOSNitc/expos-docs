@@ -1,6 +1,5 @@
 ---
-title: 'Stage 11 :
-                        Introduction to ExpL (4 Hours)'
+title: 'Stage 11 : Introduction to ExpL (4 Hours)'
 ---
 <div class="panel-collapse collapse" id="collapse11">
  <div class="panel-body">
@@ -273,10 +272,6 @@ end
    ) and return control
                         back to the application.
   </p>
-  <a data-toggle="collapse" href="#collapse11">
-   <span class="fa fa-times">
-   </span>
-   Close
-  </a>
+ 
  </div>
 </div>

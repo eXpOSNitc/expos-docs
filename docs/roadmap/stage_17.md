@@ -788,10 +788,6 @@ title: 'Stage 17 :
   <br/>
   <!--<b style="color:#26A65B">Assignment 2: </b> Run the program of the previous assignment, after adding  <i>breakpoints</i> immediately after GetFreePage() function and ReleasePage() function of the memory manager module and print out in debug mode the contents of the memory free list and the system status table entries.  <i>p</i> and <i>pt</i> options of xsm debugger.  Add another <i>breakpoint</i> just before return from the timer interrupt handler to print out the same contents.  
                             <br>-->
-  <a data-toggle="collapse" href="#collapse17">
-   <span class="fa fa-times">
-   </span>
-   Close
-  </a>
+ 
  </div>
 </div>

@@ -1,6 +1,5 @@
 ---
-title: 'Stage 10 :
-                        Console output (4 Hours)'
+title: 'Stage 10 : Console output (4 Hours)'
 ---
 <div class="panel-collapse collapse" id="collapse10">
  <div class="panel-body">
@@ -526,10 +525,6 @@ loadi(17,30);
                         run the
                         system with timer enabled.
   </p>
-  <a data-toggle="collapse" href="#collapse10">
-   <span class="fa fa-times">
-   </span>
-   Close
-  </a>
+ 
  </div>
 </div>

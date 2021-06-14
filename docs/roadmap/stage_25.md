@@ -972,10 +972,6 @@ title: 'Stage 25 :
     </ul>
    </div>
   </div>
-  <a data-toggle="collapse" href="#collapse25">
-   <span class="fa fa-times">
-   </span>
-   Close
-  </a>
+ 
  </div>
 </div>

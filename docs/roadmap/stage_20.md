@@ -717,10 +717,6 @@ title: 'Stage 20 :
                       numbers are printed out in sequential order.
   <br/>
   <br/>
-  <a data-toggle="collapse" href="#collapse20">
-   <span class="fa fa-times">
-   </span>
-   Close
-  </a>
+ 
  </div>
 </div>
