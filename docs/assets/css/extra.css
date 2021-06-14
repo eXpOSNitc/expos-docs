@@ -11,3 +11,13 @@
 .stage-link:last-child {
     border-bottom: 0;
 }
+
+/* For the admonition on homepage */
+.custom-large {
+    width: 16.7rem;
+}
+@media screen and (min-width: 45em) {
+    .custom-large {
+        width: 16.7rem !important;
+    }
+}
