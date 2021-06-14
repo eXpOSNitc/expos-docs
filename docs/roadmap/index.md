@@ -13,18 +13,18 @@ It is very important that you proceed with the roadmap on a regular schedule and
     The preparatory stages help you to get familiarized with the disk bootstrap loading process, disk access mechanism, file-system specification, debugger, paging hardware, interrupt handling mechanism, program loading, library linkage and function calling conventions, application binary interface (ABI), context switching between applications and so forth. 
     You will need 2-3 weeks to complete these stages.
 
-[:octicons-link-external-16: Stage 1 : Setting up the System](./stage_01/){ .stage-link }
-[:octicons-link-external-16: Stage 2 : Understanding the Filesystem (2 Hours)](./stage_02/){ .stage-link }
-[:octicons-link-external-16: Stage 3 : Bootstrap Loader (2 Hours)](./stage_03/){ .stage-link }
-[:octicons-link-external-16: Stage 4 : Learning the SPL Language (2 Hours)](./stage_04/){ .stage-link }
-[:octicons-link-external-16: Stage 5 : XSM Debugging (2 Hours)](./stage_05/){ .stage-link }
-[:octicons-link-external-16: Stage 6 : Running a user program (4 Hours)](./stage_06/){ .stage-link }
-[:octicons-link-external-16: Stage 7 : ABI and XEXE Format (2 Hours)](./stage_07/){ .stage-link }
-[:octicons-link-external-16: Stage 8 : Handling Timer Interrupt (2 Hours)](./stage_08/){ .stage-link }
-[:octicons-link-external-16: Stage 9 : Handling kernel stack (4 Hours)](./stage_09/){ .stage-link }
-[:octicons-link-external-16: Stage 10 : Console output (4 Hours)](./stage_10/){ .stage-link }
-[:octicons-link-external-16: Stage 11 : Introduction to ExpL (4 Hours)](./stage_11/){ .stage-link }
-[:octicons-link-external-16: Stage 12 : Introduction to Multiprogramming (4 Hours)](./stage_12/){ .stage-link }
+[:octicons-link-external-16: Stage 1 : Setting up the System](./stage_01.md){ .stage-link }
+[:octicons-link-external-16: Stage 2 : Understanding the Filesystem (2 Hours)](./stage_02.md){ .stage-link }
+[:octicons-link-external-16: Stage 3 : Bootstrap Loader (2 Hours)](./stage_03.md){ .stage-link }
+[:octicons-link-external-16: Stage 4 : Learning the SPL Language (2 Hours)](./stage_04.md){ .stage-link }
+[:octicons-link-external-16: Stage 5 : XSM Debugging (2 Hours)](./stage_05.md){ .stage-link }
+[:octicons-link-external-16: Stage 6 : Running a user program (4 Hours)](./stage_06.md){ .stage-link }
+[:octicons-link-external-16: Stage 7 : ABI and XEXE Format (2 Hours)](./stage_07.md){ .stage-link }
+[:octicons-link-external-16: Stage 8 : Handling Timer Interrupt (2 Hours)](./stage_08.md){ .stage-link }
+[:octicons-link-external-16: Stage 9 : Handling kernel stack (4 Hours)](./stage_09.md){ .stage-link }
+[:octicons-link-external-16: Stage 10 : Console output (4 Hours)](./stage_10.md){ .stage-link }
+[:octicons-link-external-16: Stage 11 : Introduction to ExpL (4 Hours)](./stage_11.md){ .stage-link }
+[:octicons-link-external-16: Stage 12 : Introduction to Multiprogramming (4 Hours)](./stage_12.md){ .stage-link }
 
 !!!note "Intermediate Stages"
     In these stages, you will come across more advanced hardware features like, disk interrupt handling and exception handling. You will be implementing some basic kernel subsystems that will be used throughout the project. You will modularize your kernel into functional subsystems for resource management, memory management, device management, etc. You will implement a primitive user interface (Shell) and the final version of the OS loader (Exec system call). The amount of implementation details given in the road map will gradually diminish and many details will be left to be worked out by you. You wil need 3-4 weeks to complete these stages.
