@@ -1,6 +1,5 @@
 ---
-title: 'Stage 16 :
-                        Console Input (6 Hours)'
+title: 'Stage 16 : Console Input (6 Hours)'
 ---
 <div class="panel-collapse collapse" id="collapse16">
  <div class="panel-body">

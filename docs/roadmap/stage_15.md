@@ -69,8 +69,7 @@ repeatedly invokes the scheduler if the terminal is not free.
 **This kind of a waiting loop is called a busy loop or <a href="https://en.wikipedia.org/wiki/Busy_waiting" target="_blank">
 busy wait </a>.**
 
-*Why can't the process wait just once for a resource and simply proceed
-to acquire the resource when it is scheduled?*
+*Why can't the process wait just once for a resource and simply proceed to acquire the resource when it is scheduled?*
 In other words, what is the need for a wait in a loop? Pause to think before you read the explanation below.
 You will encounter such busy loops several times in this project, inside various module functions described in later
 stages.
