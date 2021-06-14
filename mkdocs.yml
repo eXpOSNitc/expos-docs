@@ -81,7 +81,39 @@ nav:
         - XSM Instruction Cycle: "tutorials/xsm_instruction_cycle.md"
         - XSM Interrupts tutorial: "tutorials/xsm_interrupts_tutorial.md"
         - XSM Unprivileged tutorial: "tutorials/xsm_unprivileged_tutoral.md"
-  - Roadmap: roadmap/index.md
+  - Roadmap:
+    - Roadmap: roadmap/index.md
+    - Preparatory Stages:
+      - Stage 1: roadmap/stage_01.md
+      - Stage 2: roadmap/stage_02.md
+      - Stage 3: roadmap/stage_03.md
+      - Stage 4: roadmap/stage_04.md
+      - Stage 5: roadmap/stage_05.md
+      - Stage 6: roadmap/stage_06.md
+      - Stage 7: roadmap/stage_07.md
+      - Stage 8: roadmap/stage_08.md
+      - Stage 9: roadmap/stage_09.md
+      - Stage 10: roadmap/stage_10.md
+      - Stage 11: roadmap/stage_11.md
+      - Stage 12: roadmap/stage_12.md
+    - Intermediate Stages:
+      - Stage 13: roadmap/stage_13.md
+      - Stage 14: roadmap/stage_14.md
+      - Stage 15: roadmap/stage_15.md
+      - Stage 16: roadmap/stage_16.md
+      - Stage 17: roadmap/stage_17.md
+      - Stage 18: roadmap/stage_18.md
+      - Stage 19: roadmap/stage_19.md
+    - Final Stages:
+      - Stage 20: roadmap/stage_20.md
+      - Stage 21: roadmap/stage_21.md
+      - Stage 22: roadmap/stage_22.md
+      - Stage 23: roadmap/stage_23.md
+      - Stage 24: roadmap/stage_24.md
+      - Stage 25: roadmap/stage_25.md
+      - Stage 26: roadmap/stage_26.md
+      - Stage 27: roadmap/stage_27.md
+      - Stage 28: roadmap/stage_28.md
   - FAQ: faq.md
   - Student Feedback:
     - Student Feedback: feedback.md
