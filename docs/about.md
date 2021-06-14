@@ -1,8 +1,6 @@
 ---
 title: "About"
 original_url: https://exposnitc.github.io/About_us.html
-hide:
-    - toc
 ---
 
 ### eXpOS Philosophy
@@ -132,7 +130,7 @@ The content in the website and the documentation has been authored in the Depart
     - Nikhil Sojan
 
 ### License
-<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="/assets/img/creativecommons.png" /></a><br><br>
+<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-nc/4.0/88x31.png" /></a><br>
 eXpOS by Dr. Murali Krishnan K, Department of Computer Science and Engineering, National Institute of Technology, Calicut is licensed under a <a href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>. Based on a work at <a href="https://github.com/eXpOSNitc/">https://github.com/eXpOSNitc</a>
 
 ### Acknowledgement
