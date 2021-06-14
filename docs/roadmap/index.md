@@ -46,7 +46,7 @@ It is very important that you proceed with the roadmap on a regular schedule and
 [:octicons-link-external-16: Stage 22 : Semaphores (4 Hours)](./stage_22/){.stage-link}
 [:octicons-link-external-16: Stage 23 : File Creation and Deletion (6 Hours)](./stage_23/){.stage-link}
 [:octicons-link-external-16: Stage 24 : File Read (12 Hours)](./stage_24/){.stage-link}
-[:octicons-link-external-16: Stage 25 : File Write (12 Hours)](./stage_25){.stage-link}
+[:octicons-link-external-16: Stage 25 : File Write (12 Hours)](./stage_25/){.stage-link}
 [:octicons-link-external-16: Stage 26 : User Management (12 Hours)](./stage_26/){.stage-link}
 [:octicons-link-external-16: Stage 27 : Pager Module (18 Hours)](./stage_27/){.stage-link}
 [:octicons-link-external-16: Stage 28 : Multi-Core Extension (12 Hours)](./stage_28/){.stage-link}
