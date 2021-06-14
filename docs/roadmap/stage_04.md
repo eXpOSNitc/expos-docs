@@ -3,58 +3,11 @@ title: 'Stage 4 : Learning the SPL Language (2 Hours)'
 ---
 
 !!! note "Learning Objectives"
-  - Use the SPL language to write a small <i>OS startup code</i> and generate target using the SPL compiler.
-<div class="panel-collapse collapse" id="collapse4">
- <div class="panel-body">
-  <!-- Begin Learning Objectives-->
-  <div class="container col-md-12">
-   <div class="section_area">
-    <ul class="list-group">
-     <li class="list-group-item" style="background:#dff0d8">
-      <span class="fa fa-book">
-      </span>
-      <a data-toggle="collapse" href="#lo4">
-       Learning
-                                Objectives
-      </a>
-      <div class="panel-collapse expand" id="lo4">
-       <ul>
-        <li style="margin-bottom: -2px">
-         <span class="fa fa-hand-o-right">
-         </span>
-         
-        </li>
-       </ul>
-      </div>
-     </li>
-     <li class="list-group-item" style="background:#dff0d8">
-      <span class="fa fa-book">
-      </span>
-      <a data-toggle="collapse" href="#lo4a">
-       Pre-requisite
-                                Reading
-      </a>
-      <div class="panel-collapse expand" id="lo4a">
-       <ul>
-        <li style="margin-bottom: -2px">
-         <span class="fa fa-hand-o-right">
-         </span>
-         Quickly go through
-         <a href="support_tools-files/spl.html" target="_blank">
-          SPL
-                                      specification
-         </a>
-         . (Do not spend more than 15 minutes).
-        </li>
-       </ul>
-      </div>
-     </li>
-    </ul>
-   </div>
-  </div>
-  <!-- End Learning Objectives-->
+    Use the SPL language to write a small <i>OS startup code</i> and generate target using the SPL compiler.
 
-<p>
+!!! info "Pre-requisite Reading"
+    Quickly go through <a href="support_tools-files/spl.html" target="_blank">SPL specification</a>. (Do not spend more than 15 minutes).
+
 SPL (Systems Programming Language) allows high level programs to be written for the XSM
 machine (eliminating the need to write all the code in assembly language). SPL is not a full
 fledged programming language, but is an extension to the XSM assembly language with support for
@@ -62,95 +15,50 @@ high level constructs like if-then-else, while-do etc. Programs written in SPL l
 to be compiled to XSM assembly code using the SPL compiler supplied along with the eXpOS
 package before loading for execution on the XSM simulator. You will be writing the eXpOS kernel
 using the SPL language.
-</p>
-<p>
+
 In this stage you will write a program in SPL and compile it using the
-<a href="support_tools-files/spl.html" target="_blank">
-SPL
-</a>
-compiler. After compilation, the target machine code is generated. We
-will then load this compiled code to block 0 of the disk as the OS startup code, using the XFS-
-Interface, and get it executed by the machine as in the previous stage.
-</p>
-<ol style="list-style-type:decimal;margin-left:2px">
-<li>
-Create the program to print odd numbers from 1 to 20 using SPL. (You can see more examples of
-SPL programs in
-<tt>
-$HOME/myexpos/spl/samples
-</tt>
-.)
-<br>
-<br>
-Here is the SPL Code to
-print odd numbers from 1 to 20 :
-<br/>
-<br/>
-<div>
-<pre>
+<a href="support_tools-files/spl.html" target="_blank">SPL</a>compiler.
+After compilation, the target machine code is generated. We will then load this compiled code 
+to block 0 of the disk as the OS startup code, using the XFS-Interface, and get it executed by 
+the machine as in the previous stage.
+
+1) Create the program to print odd numbers from 1 to 20 using SPL. (You can see more examples of
+SPL programs in `$HOME/myexpos/spl/samples`.)
+
+Here is the SPL Code to print odd numbers from 1 to 20 :
+```
 alias counter R0;
 counter = 0;
-while(counter &lt;= 20) do
-if(counter%2 != 0) then
-print counter;
-endif;
-counter = counter + 1;
-endwhile; </pre>
-</div>
+while(counter <= 20) do
+  if(counter%2 != 0) then
+    print counter;
+  endif;
+  counter = counter + 1;
+endwhile;
+```
+
 SPL doesn't support variables. Instead you can directly use XSM registers for storing program
-data. For convenience, you can
-<a href="support_tools-files/spl.html" target="_blank">
-alias
-</a>
+data. For convenience, you can <a href="support_tools-files/spl.html" target="_blank"> alias</a>
 the registers with appropriate identifiers to imitate the behaviour of variables. In the
-above program register R0 is aliased to the identifier
-<var>
-counter
-</var>
-.
-</br>
-</br>
-</li>
-<li>
-Save this file as
-<tt>
-$HOME/myexpos/spl/spl_progs/oddnos.spl
-</tt>
-. Compile this SPL program
-using the commands
-<br/>
-<br/>
-<div>
-<pre>cd $HOME/myexpos/spl
-./spl $HOME/myexpos/spl/spl_progs/oddnos.spl</pre>
-</div>
-</li>
-<li>
+above program register R0 is aliased to the identifier `counter`.
+
+2) Save this file as `$HOME/myexpos/spl/spl_progs/oddnos.spl`. Compile this SPL program using the commands
+
+```
+cd $HOME/myexpos/spl
+./spl $HOME/myexpos/spl/spl_progs/oddnos.spl
+```
+
 Go through the generated assembly code in file 'oddnos.xsm' and make sure that the
 generated assembly code indeed gives the desired output.
-</li>
-<li>
-Load the file generated by the SPL compiler (
-<tt>
-$HOME/myexpos/spl/spl_progs/oddnos.xsm
-</tt>
-)
-as the OS startup code to
-<tt>
-disk.xfs
-</tt>
-using the XFS Interface.
-<br/>
-</li>
-<li>
-Run the machine.
-</li>
-</ol>
+
+3) Load the file generated by the SPL compiler (`$HOME/myexpos/spl/spl_progs/oddnos.xsm`)
+as the OS startup code to `disk.xfs` using the XFS Interface.
+
+4) Run the machine.
+
 The machine will halt after printing all odd numbers from 1 to 20.
-<br/>
-<br/>
-<div>
-<pre>
+```
 1
 3
 5
@@ -161,15 +69,9 @@ The machine will halt after printing all odd numbers from 1 to 20.
 15
 17
 19
-Machine is halting</pre>
-</div>
-<p>
-<b style="color:#26A65B">
-Assignment 1 :
-</b>
-Write the spl program to print sum of squares of
-the first 20 natural numbers. Load it using xfs interface and run the in the machine.
-</p>
+Machine is halting
+```
 
-</div>
-</div>
+!!! assignment "Assignment 1"
+    Write the spl program to print sum of squares of
+    the first 20 natural numbers. Load it using xfs interface and run the in the machine.
