@@ -6,7 +6,7 @@
     padding: .25em 0;
     margin: 0 0 .25em;
     border-bottom: 2px solid rgb(175, 175, 175);
-    color: #555 !important;
+    color: var(--md-code-fg-color) !important;
 }
 .stage-link:last-child {
     border-bottom: 0;
