@@ -59,6 +59,7 @@ markdown_extensions:
   - attr_list
   - admonition
   - pymdownx.details
+  - pymdownx.tabbed
   - toc:
       permalink: true
   - pymdownx.emoji:
@@ -98,11 +99,11 @@ nav:
         - XSM Interrupts tutorial: "tutorials/xsm_interrupts_tutorial.md"
         - XSM Unprivileged tutorial: "tutorials/xsm_unprivileged_tutoral.md"
       - Support Tools:
-        - Setting up: ""
-        - XFS Interface: ""
-        - SPL: ""
-        - ExpL: ""
-        - XSM Simulator: ""
+        - Setting up: support-tools/setting-up.md
+        - XFS Interface: support-tools/xfs-interface.md
+        - SPL: support-tools/spl.md
+        - ExpL: support-tools/expl.md
+        - XSM Simulator: support-tools/xsm-simulator.md
       - Application Interface:
         - Application Binary Interface (ABI): abi.md
         - Low Level System Call Interface: os-design/sw_interface.md
