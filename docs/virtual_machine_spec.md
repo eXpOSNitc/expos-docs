@@ -31,7 +31,7 @@ for its user processes and divide the allocated address space for an application
 data, stack, heap etc.
 
 <figure>
-    <img src="img/addr_transln.png">
+    <img src="https://exposnitc.github.io/img/addr_transln.png">
 </figure>
 
 ### Interrupts
