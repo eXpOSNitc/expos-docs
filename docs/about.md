@@ -118,7 +118,8 @@ The content in the website and the documentation has been authored in the Depart
     - Avinash
     - Deepak Goyal
     - Jeril K George
-    - K Dinesh, Mathew Kumpalamthanam
+    - K Dinesh
+    - Mathew Kumpalamthanam
     - Naseem Iqbal
     - Nitish Kumar
     - Ramnath Jayachandran
