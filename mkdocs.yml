@@ -74,6 +74,17 @@ nav:
       - Specification: 
         - XSM Architecture Specifcation: arch-spec.md
         - Machine Organisation: "arch-spec/machine-org.md"
+      - Modules:
+        - Modules: "modules/index.md"
+        - Module 0: "modules/module_00.md"
+        - Module 1: "modules/module_01.md"
+        - Module 2: "modules/module_02.md"
+        - Module 3: "modules/module_03.md"
+        - Module 4: "modules/module_04.md"
+        - Module 5: "modules/module_05.md"
+        - Module 6: "modules/module_06.md"
+        - Module 7: "modules/module_07.md"
+        - Module 8: "modules/module_08.md"
       - Tutorials:
         - MultiUser Implementation: "tutorials/multiuser_implementation.md"
         - FileSystem Implementation: "tutorials/filesystem_implementation.md"
