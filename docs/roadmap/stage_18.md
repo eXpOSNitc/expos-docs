@@ -132,7 +132,7 @@ be initialized in this user area page. Since the newly created process has not o
 files or semaphores, each entry in the per-process table is initialized to -1.
 
 
-#### Modifications to boot module
+#### 5. Modifications to boot module
 
 Following modifications are done in boot module :
 
