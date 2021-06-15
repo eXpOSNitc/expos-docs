@@ -25,17 +25,19 @@ This module is responsible for allocating and releasing the different resources.
 
 _**Description**_: Acquire the buffer corresponding to buffer number given as input. Assumes a valid PID and a valid buffer number are given.  
 
-<pre><code>
-while ( Buffer is locked ){   /* Check the Locking PID field in the [Buffer Status Table](/os_design-files/mem_ds.html#buffer_table) \*/
-    Set state of the process as ( WAIT\_BUFFER , Buffer Number );
-    Call the **switch\_context()** function from the [Scheduler Module](Module_5.html).
+<pre>
+<code>
+while ( Buffer is locked ){   /* Check the Locking PID field in the <a href="/os_design-files/mem_ds.html#buffer_table" target="_blank">Buffer Status Table</a> */
+    Set state of the process as ( WAIT_BUFFER , Buffer Number );
+    Call the <b>switch_context()</b> function from the <a href="Module_5.html">Scheduler Module</a>.
 }
-</code></pre>
 
 Lock the Buffer by setting the PID of the current process in the Locking PID field
-in the [Buffer Status Table](/os_design-files/mem_ds.html#buffer_table) ;
+in the <a href="/os_design-files/mem_ds.html#buffer_table" target="_blank">Buffer Status Table</a> ;
 
 return;
+</code>
+</pre>
 
 Called by BufRead and BufWrite functions in the [File Manager](Module_3.html).
 
@@ -43,34 +45,35 @@ Called by BufRead and BufWrite functions in the [File Manager](Module_3.html).
 
 _**Description**_ : Release the buffer corresponding to buffer number given as input. Assumes a valid PID and a valid buffer number are given.  
   
+<pre><code>
+If PID given as input is not equal to the LOCKING PID in the <a href="/os_design-files/mem_ds.html#buffer_table" target="_blank">Buffer Status Table</a>, return -1.
 
-If PID given as input is not equal to the LOCKING PID in the [Buffer Status Table](/os_design-files/mem_ds.html#buffer_table), return -1.
-
-Free the lock in the the [Buffer Status Table](/os_design-files/mem_ds.html#buffer_table) entry corresponding to
-the buffer Number; /\* Set Locking PID field to -1 \*/
-
+Free the lock in the the <a href="/os_design-files/mem_ds.html#buffer_table" target="_blank">Buffer Status Table</a> entry corresponding to 
+the buffer Number; /* Set Locking PID field to -1 */
 loop through the process table{ 
-       if (the process state is ( WAIT\_BUFFER , Buffer Number ) ){
-             Set state of process as (READY , \_ )
+       if (the process state is ( WAIT_BUFFER , Buffer Number ) ){
+             Set state of process as (READY , _ )
          } 
 }
 return 0;
+</code></pre>
 
 Called by BufRead and BufWrite functions in the [File Manager](Module_3.html).
 
 ### Acquire Disk
 
 _**Description**_ : Locks the disk device. Assumes that a valid PID is given as input.  
-  
 
-while ( disk is locked ){        /\* Check the _Status_ field in the [Disk Status Table](../os_design-files/mem_ds.html#ds_table). \*/
-    Set state of the process as ( WAIT\_DISK , - );
-    Call the **switch\_context()** function from the [Scheduler Module](Module_5.html).
+<pre><code>
+while ( disk is locked ){  /* Check the <i>Status</i> field in the <a href="../os_design-files/mem_ds.html#ds_table" target="_blank">Disk Status Table</a>. */
+    Set state of the process as ( WAIT_DISK , - );
+    Call the <b>switch_context()</b> function from the <a href="Module_5.html">Scheduler Module</a>.
 }
 
-Lock the disk by setting PID and the status field in the [Disk Status Table.](../os_design-files/mem_ds.html#ds_table)
+Lock the disk by setting PID and the status field in the <a href="../os_design-files/mem_ds.html#ds_table" target="_blank">Disk Status Table.</a>
 
 return;
+</code></pre>
 
 Called by BufRead and BufWrite functions in the [File Manager](Module_3.html) and the exception handler for swap-in.
 
@@ -78,18 +81,19 @@ Called by BufRead and BufWrite functions in the [File Manager](Module_3.html) an
 
 _**Description**_ : Locks the Inode entry corresponding to the inodeindex given as input. Assumes a valid PID and a valid inode index are given.  
   
-
-while ( inode is locked ){   /\* Check the Lock field in the [File Status Table](../os_design-files/mem_ds.html#file_lock_status_table). \*/
-    Set state of the process as ( WAIT\_FILE , Inode Index );
-    Call the **switch\_context()** function from the [Scheduler Module](Module_5.html).
+<pre><code>
+while ( inode is locked ){   /* Check the Lock field in the <a href="../os_design-files/mem_ds.html#file_lock_status_table" target="_blank">File Status Table</a>. */
+    Set state of the process as ( WAIT_FILE , Inode Index );
+    Call the <b>switch_context()</b> function from the <a href="Module_5.html">Scheduler Module</a>.
 } 
 
-If inode becomes invalid, return -1. /\* File was deleted by the time the inode was acquired \*/
+If inode becomes invalid, return -1. /* File was deleted by the time the inode was acquired */
 
-Lock the Inode by setting the Lock field in the [File Status Table](../os_design-files/mem_ds.html#file_lock_status_table) 
+Lock the Inode by setting the Lock field in the <a href="../os_design-files/mem_ds.html#file_lock_status_table" target="_blank">File Status Table</a> 
 to the PID of the current process.;
 
 return 0;
+</code></pre>
 
 Called by Delete, Read, Write and Seek system calls.
 
@@ -97,33 +101,32 @@ Called by Delete, Read, Write and Seek system calls.
 
 _**Description**_ : Frees the lock of the inode entry corresponding to the inodeindex given as input. Assumes a valid PID and a valid inode index are given.  
   
+<pre><code>
+If PID given as input is not equal to the LOCKING PID in the <a href="../os_design-files/mem_ds.html#file_lock_status_table" target="_blank">File Status Table</a>, return -1.
 
-If PID given as input is not equal to the LOCKING PID in the [File Status Table](../os_design-files/mem_ds.html#file_lock_status_table), return -1.
-
-Free the lock in the File Status Table corresponding to the inode index;       /\* Set the Lock field to -1 \*/
+Free the lock in the File Status Table corresponding to the inode index;       /* Set the Lock field to -1 */
 
 loop through the process table{ 
-       if (the process state is ( WAIT\_FILE, Inode Index ) ){
-             Set state of process as (READY , \_ )
+       if (the process state is ( WAIT_FILE, Inode Index ) ){
+             Set state of process as (READY , _ )
          } 
 }
 return 0;
-
+</code></pre>
 Called by Read, Write and Seek system calls.
 
 ### Acquire Semaphore
 
 _**Description**_ : Acquires a semaphore and returns it's semaphore number. Assumes a valid PID is given as input. Returns -1 upon failure.  
-  
 
- 
+<pre> <code>
+Find the index of a free entry in <a href="../os_design-files/mem_ds.html#sem_table" target="_blank">Semaphore table</a>. If no free entry, return -1.
+/* Free entry is indicated by a Process Count of 0. */ 
 
-Find the index of a free entry in [Semaphore table](../os_design-files/mem_ds.html#sem_table). If no free entry, return -1.
-/\* Free entry is indicated by a Process Count of 0. \*/ 
+Set the PROCESS_COUNT to 1 and LOCKING_PID to -1.
 
-Set the PROCESS\_COUNT to 1 and LOCKING\_PID to -1.
-
-Return the Semaphore table index.   /\* success \*/
+Return the Semaphore table index. /* success */
+</code></pre>
 
 Called by the [Semget system call](../os_design-files/semaphore_algos.html#semget).
 
@@ -131,20 +134,20 @@ Called by the [Semget system call](../os_design-files/semaphore_algos.html#semge
 
 _**Description**_ : Releases a semaphore. Assumes a valid PID and semaphore table index are given as input.  
   
-
- 
-If ( semaphore is locked by the current process)   /\*Check the Locking PID in the [Semaphore table](../os_design-files/mem_ds.html#sem_table)\*/
-	Set the Locking PID to -1.  /\* Unlock the semaphore before release \*/
-	loop through the process table{ /\*wake up processes blocked by the semaphore \*/
-       		if (the process state is ( WAIT\_SEMAPHORE, SEMTABLEINDEX ) ){
-             	Set state of process as (READY , \_ )
+<pre><code>
+If ( semaphore is locked by the current process) /*Check the Locking PID in the <a href="../os_design-files/mem_ds.html#sem_table" target="_blank">Semaphore table</a>*/
+	Set the Locking PID to -1. /* Unlock the semaphore before release */
+	loop through the process table{ /*wake up processes blocked by the semaphore */
+       		if (the process state is ( WAIT_SEMAPHORE, SEMTABLEINDEX ) ){
+             	Set state of process as (READY , _ )
          	} 
 	}
 
 Decrement the process count of the semaphore in the semaphore table.
-/\* When the count becomes 0, the semaphore is free. \*/
-	     
+/* When the count becomes 0, the semaphore is free. */
 
+</code></pre>
+	     
 Called by the [Semrelease](../os_design-files/semaphore_algos.html#semrelease) and exit system call.
 
 ### Acquire Terminal
@@ -152,32 +155,35 @@ Called by the [Semrelease](../os_design-files/semaphore_algos.html#semrelease) a
 _**Description**_ : Locks the Terminal device. Assumes a valid PID is given as input.  
   
 
-while ( Terminal device is locked ){    /\* Check the Status field in the [Terminal Status Table](../os_design-files/mem_ds.html#ts_table) \*/
-    Set state of the process as ( WAIT\_TERMINAL , - );
-    Call the **switch\_context()** function from the [Scheduler Module](Module_5.html).
+<pre><code>
+while ( Terminal device is locked ){    /* Check the Status field in the <a href="../os_design-files/mem_ds.html#ts_table" target="_blank">Terminal Status Table</a> */
+    Set state of the process as ( WAIT_TERMINAL , - );
+    Call the <b>switch_context()</b> function from the <a href="Module_5.html">Scheduler Module</a>.
 }
     
-Lock the Terminal device by setting the Status and PID fields in the [Terminal Status Table](../os_design-files/mem_ds.html#ts_table).
+Lock the Terminal device by setting the Status and PID fields in the <a href="../os_design-files/mem_ds.html#ts_table" target="_blank">Terminal Status Table</a>.
 
 return;
-
+</code></pre>
 Called by the Terminal Read and Terimnal Write functions of the [Device Manager Module](Module_4.html).
 
 ### Release Terminal
 
 _**Description**_ : Frees the Terminal device. Assumes a valid PID is given as input.  
 
-If PID given as input is not equal to the LOCKING PID in the [Teminal Status Table](../os_design-files/mem_ds.html#ts_table), return -1.
+<pre><code>
+If PID given as input is not equal to the LOCKING PID in the <a href="../os_design-files/mem_ds.html#ts_table">Teminal Status Table</a>, return -1.
 
-Release the lock on the Terminal by updating the Terminal Status Table.;
+    Release the lock on the Terminal by updating the Terminal Status Table.;
 
-loop through the process table{ 
-if (the process state is ( WAIT\_TERMINAL , - ) ){
-        Set state of process as (READY , \_ )
-    } 
-}
+    loop through the process table{ 
+       if (the process state is ( WAIT_TERMINAL , - ) ){
+             Set state of process as (READY , _ )
+         } 
+    }
 
-Return 0
-
+    Return 0
+ 
+</code></pre>
 
 Called by the Terimnal Write function in the [Device Manager Module](Module_4.html).
