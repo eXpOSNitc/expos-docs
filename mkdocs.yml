@@ -70,9 +70,14 @@ nav:
   - Home: index.md
   - Documentation:
     - Documentation: documentation.md
+    - Operating System:
+      - Specification: os-spec/index.md
+      - Design: os_design/index.md
+      - Implementation: os_implementation.md
     - Architecture:
       - Specification: 
         - XSM Architecture Specifcation: arch-spec/index.md
+        - Virtual Machine Model: virtual_machine_spec.md
         - Machine Organisation: "arch-spec/machine-org.md"
       - Modules:
         - Modules: "modules/index.md"
@@ -92,6 +97,17 @@ nav:
         - XSM Instruction Cycle: "tutorials/xsm_instruction_cycle.md"
         - XSM Interrupts tutorial: "tutorials/xsm_interrupts_tutorial.md"
         - XSM Unprivileged tutorial: "tutorials/xsm_unprivileged_tutoral.md"
+      - Support Tools:
+        - Setting up: ""
+        - XFS Interface: ""
+        - SPL: ""
+        - ExpL: ""
+        - XSM Simulator: ""
+      - Application Interface:
+        - Application Binary Interface (ABI): abi.md
+        - Low Level System Call Interface: os-design/sw_interface.md
+        - High Level Library Interface: os-spec/dynamicmemoryrouties.md
+        - Low Level Library Interface: abi.md
     - Others:
       - Test Programs:
         - Test Program 01: test_programs/test_program_01.md
