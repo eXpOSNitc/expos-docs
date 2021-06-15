@@ -92,28 +92,29 @@ nav:
         - XSM Instruction Cycle: "tutorials/xsm_instruction_cycle.md"
         - XSM Interrupts tutorial: "tutorials/xsm_interrupts_tutorial.md"
         - XSM Unprivileged tutorial: "tutorials/xsm_unprivileged_tutoral.md"
-    - Test Programs:
-      - Test Program 01: test_programs/test_program_01.md
-      - Test Program 02: test_programs/test_program_02.md
-      - Test Program 03: test_programs/test_program_03.md
-      - Test Program 04: test_programs/test_program_04.md
-      - Test Program 05: test_programs/test_program_05.md
-      - Test Program 06: test_programs/test_program_06.md
-      - Test Program 07: test_programs/test_program_07.md
-      - Test Program 08: test_programs/test_program_08.md
-      - Test Program 09: test_programs/test_program_09.md
-      - Test Program 10: test_programs/test_program_10.md
-      - Test Program 11: test_programs/test_program_11.md
-      - Test Program 12: test_programs/test_program_12.md
-      - Test Program 13a: test_programs/test_program_13a.md
-      - Test Program 13b: test_programs/test_program_13b.md
-      - Test Program 14a: test_programs/test_program_14a.md
-      - Test Program 14b: test_programs/test_program_14b.md
-      - Test Program 15: test_programs/test_program_15.md
-      - Test Program 16a: test_programs/test_program_16a.md
-      - Test Program 16b: test_programs/test_program_16b.md
-      - Test Program 16c: test_programs/test_program_16c.md
-      - Test Program 16d: test_programs/test_program_16d.md
+    - Others:
+      - Test Programs:
+        - Test Program 01: test_programs/test_program_01.md
+        - Test Program 02: test_programs/test_program_02.md
+        - Test Program 03: test_programs/test_program_03.md
+        - Test Program 04: test_programs/test_program_04.md
+        - Test Program 05: test_programs/test_program_05.md
+        - Test Program 06: test_programs/test_program_06.md
+        - Test Program 07: test_programs/test_program_07.md
+        - Test Program 08: test_programs/test_program_08.md
+        - Test Program 09: test_programs/test_program_09.md
+        - Test Program 10: test_programs/test_program_10.md
+        - Test Program 11: test_programs/test_program_11.md
+        - Test Program 12: test_programs/test_program_12.md
+        - Test Program 13a: test_programs/test_program_13a.md
+        - Test Program 13b: test_programs/test_program_13b.md
+        - Test Program 14a: test_programs/test_program_14a.md
+        - Test Program 14b: test_programs/test_program_14b.md
+        - Test Program 15: test_programs/test_program_15.md
+        - Test Program 16a: test_programs/test_program_16a.md
+        - Test Program 16b: test_programs/test_program_16b.md
+        - Test Program 16c: test_programs/test_program_16c.md
+        - Test Program 16d: test_programs/test_program_16d.md
   - Roadmap:
     - Roadmap: roadmap/index.md
     - Preparatory Stages:
