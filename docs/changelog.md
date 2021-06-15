@@ -56,7 +56,7 @@ original_url: https://exposnitc.github.io/release_notes
     *   **nexfs-interface:** Commands for loading Bootstrap code for secondary core, software interrupt 19 and module 8-11 are added.
     *   **nexsm:** XSM machine is modified to simulate a two-core machine.
     
-??? note "20th January 2019**]"
+??? note "20th January 2019"
     
     Stage 27 (Pager Module) has been modified. A swapper daemon is introduced as a new process similar to the idle program, with PID=15, and the Pager Module is called from the context of this process. To add fairness for the swapped out processes, if the TICK field of any swapped out process exceeds a threshold, that process is swapped in after swapping out another process in memory. The changes in the sub-directories are:-
     
