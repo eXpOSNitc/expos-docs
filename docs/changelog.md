@@ -1,6 +1,6 @@
 ---
 title: Release notes
-original_url: https://exposnitc.github.io/release_quotes
+original_url: https://exposnitc.github.io/release_notes
 hide:
     - navigation
 ---
