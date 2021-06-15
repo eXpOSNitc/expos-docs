@@ -1,5 +1,5 @@
 ---
-title: Release quotes
+title: Release notes
 original_url: https://exposnitc.github.io/release_quotes
 hide:
     - navigation
