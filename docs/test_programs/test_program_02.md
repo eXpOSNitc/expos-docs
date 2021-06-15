@@ -1,9 +1,10 @@
 ---
-title: Test Program 2
+title: 'Test Program 2'
 ---
-
 ```
-type List
+
+type
+List
 {
     int data;
     List next;

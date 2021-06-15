@@ -1,0 +1,58 @@
+---
+title: 'Test Program 6'
+---
+```
+
+int main()
+{
+decl
+    int temp, x, a, pidone, pidtwo, semid, iter, data, permission, fd;
+    string filename;
+enddecl
+
+begin
+    temp=exposcall("Read",-1,filename);
+    temp=exposcall("Read",-1,permission);
+    temp=exposcall("Create",filename, permission);
+
+    pidone = exposcall("Fork");
+    if (pidone != 0 ) then
+        fd=exposcall("Open",filename);
+        iter=1;
+        while(iter <= 100) do
+            a=exposcall("Read",fd, data);
+            if(a!=-2) then
+                temp=exposcall("Write",-2, data);
+                iter=iter+1;
+            endif;
+        endwhile;
+    else
+        semid = exposcall("Semget");
+        fd=exposcall("Open",filename);
+
+        pidtwo =  exposcall("Fork");
+        if(pidtwo == 0) then
+            iter = 1;
+            while(iter <= 100) do
+                temp = exposcall("SemLock", semid);
+                temp=exposcall("Write",fd, iter);
+                temp = exposcall("SemUnLock", semid);
+                iter=iter+2;
+            endwhile;
+        else
+            iter = 2;
+            while(iter <= 100) do
+                temp = exposcall("SemLock", semid);
+                temp=exposcall("Write",fd, iter);
+                temp = exposcall("SemUnLock", semid);
+                iter=iter+2;
+            endwhile;
+        endif;
+        
+        temp = exposcall("Semrelease", semid);
+    endif;
+    
+    return 0;
+end
+}
+```

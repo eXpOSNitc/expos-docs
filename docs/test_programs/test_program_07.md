@@ -1,0 +1,66 @@
+---
+title: 'Test Program 7 (Extended Shell)'
+---
+```
+
+int main()
+{
+decl
+    int temp, pid, a, flag, retcom;
+    string input, username, password;
+enddecl
+
+begin
+    a=1;
+    while(a == 1) do
+        temp = exposcall("Write",-2, "---Enter---");
+        temp = exposcall("Read",-1, input);
+
+        flag=0;
+        if(input == "Logout" OR input == "Shutdown") then
+            flag=1;
+        endif;
+              
+        if(input == "Remusr" OR input == "Getuid" OR input == "Getuname") then
+            flag=1;
+            temp = exposcall("Read",-1, username);
+        endif;
+              
+        if(input == "Newusr" OR input == "Setpwd") then
+            flag=1;
+            temp = exposcall("Read",-1, username);
+            temp = exposcall("Read",-1, password);
+        endif;
+              
+        if(flag==1) then
+            retcom = exposcall(input, username, password);
+            if(retcom < 0) then
+                temp = exposcall("Write",-2, "BAD COMMAND");
+            else
+                if(input == "Getuid" OR input == "Getuname") then
+                    temp = exposcall("Write",-2, retcom);
+                endif;
+            endif;
+        else
+            pid = exposcall("Fork");
+            if(pid < 0) then
+                temp = exposcall("Write",-2, "Fork Fail");
+                continue;
+            endif;
+            
+            if(pid != 0) then
+                temp = exposcall("Wait",pid);
+            else
+                temp = exposcall("Exec",input);
+                if(temp != 0) then
+                    temp = exposcall("Write",-2, "BAD COMMAND");
+                    break;
+                endif;
+            endif;
+        endif;
+    endwhile;
+          
+    return 0;
+end
+}
+```

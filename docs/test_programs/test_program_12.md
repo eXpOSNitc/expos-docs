@@ -1,0 +1,77 @@
+---
+title: 'Test Program 12'
+---
+```
+
+decl
+    int data;
+    int fdread, fdwrite, temp, permission, offset, pid, iter;
+    string filename, newfile;
+enddecl
+
+int main()
+{
+begin
+    fdread=exposcall("Open", "numbers.dat");
+          
+    pid=exposcall("Getpid");
+    if(pid==3) then
+        newfile="three.dat";
+    endif;
+    if(pid==4) then
+        newfile="four.dat";
+    endif;
+    if(pid==5) then
+        newfile="five.dat";
+    endif;
+    if(pid==6) then
+        newfile="six.dat";
+    endif;
+    if(pid==7) then
+        newfile="seven.dat";
+    endif;
+    if(pid==8) then
+        newfile="eight.dat";
+    endif;
+    if(pid==9) then
+        newfile="nine.dat";
+    endif;
+    if(pid==10) then
+        newfile="ten.dat";
+    endif;
+    if(pid==11) then
+        newfile="eleven.dat";
+    endif;
+    if(pid==12) then
+        newfile="twelve.dat";
+    endif;
+    if(pid==13) then
+        newfile="thirteen.dat";
+    endif;
+    if(pid==14) then
+        newfile="fourteen.dat";
+    endif;
+          
+    temp=exposcall("Create", newfile, 1);
+    fdwrite=exposcall("Open", newfile);
+    if(fdread>=0 AND fdwrite>=0) then
+        offset=(pid-3)*100;
+        temp=exposcall("Seek",fdread, offset);
+              
+        iter=0;
+        while(iter<=99) do
+            temp=exposcall("Read",fdread, data);
+            temp=exposcall("Write",fdwrite, data);
+            iter=iter+1;
+        endwhile;
+              
+        temp=exposcall("Close",fdread);
+        temp=exposcall("Close",fdwrite);
+    else
+        temp=exposcall("Write",-2, "OPEN FAIL");
+    endif;
+
+    return 0;
+end
+}
+```
