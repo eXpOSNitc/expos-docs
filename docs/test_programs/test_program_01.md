@@ -1,5 +1,7 @@
 ---
 title: 'Test Program 1 (Shell version-II without multiuser)'
+hide:
+    - navigation
 ---
 
 ```

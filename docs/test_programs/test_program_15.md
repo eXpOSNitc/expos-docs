@@ -1,8 +1,9 @@
 ---
 title: 'Test Program 15 (Merge Files)'
+hide:
+  - navigation
 ---
 ```
-
 decl
     int store(str file, int start);
     int merge(str out, str in1, str in2);
