@@ -97,7 +97,7 @@ nav:
         - Process Management Implementation: "tutorials/process_management_implementation.md"
         - XSM Instruction Cycle: "tutorials/xsm_instruction_cycle.md"
         - XSM Interrupts tutorial: "tutorials/xsm_interrupts_tutorial.md"
-        - XSM Unprivileged tutorial: "tutorials/xsm_unprivileged_tutoral.md"
+        - XSM Unprivileged tutorial: tutorials/xsm_unprivileged_tutorial.md
       - Support Tools:
         - Setting up: support-tools/setting-up.md
         - XFS Interface: support-tools/xfs-interface.md
