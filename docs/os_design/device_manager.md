@@ -1,106 +1,17 @@
 ---
-title: 'Device Manager'
+title: 'Module 4: Device Manager'
 original_url: 'http://eXpOSNitc.github.io/os_design-files/device_manager.html'
+hide:
+    - navigation
 ---
 
+### `Dwrite(page#, block#)`
 
+#### Arguments 
+Memory page number, Disk block number 
 
 
-
-Device Manager
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-
-
-
-
-
-
-
-Module 4: Device Manager
-------------------------
-
-
-  
-
-  
-
-
-Dwrite(page#, block#)
----------------------
-
-
-  
-  
-
-**Arguments:** Memory page number, Disk block number 
-
-
-**Return Value:**
-
-
-
+#### Return Value
 
 |  |  |
 | --- | --- |
@@ -108,36 +19,21 @@ Dwrite(page#, block#)
 | -1 | Failure |
 
 
-#### **Algorithm:**
-
-
- Block for acquiring the disk.
-
-
+#### Algorithm
+```
+Block for acquiring the disk.
 Transfer contents of page number to disk block number.
-
-
 Block for the transfer to complete.
-
-
 Return success.
+```
 
 
+### `Dread(block#,page#)`
 
-Dread(block#,page#)
--------------------
+#### Arguments 
+Disk block number, Memory page number 
 
-
-  
-  
-
-**Arguments:** Disk block number, Memory page number 
-
-
-**Return Value:**
-
-
-
+#### Return Value
 
 |  |  |
 | --- | --- |
@@ -145,36 +41,21 @@ Dread(block#,page#)
 | -1 | Failure |
 
 
-#### **Algorithm:**
+#### Algorithm
 
-
+```
 Acquire the disk.
-
-
 Transfer contents of disk block number to page number.
-
-
 Block for the transfer to complete.
-
-
 Return success.
+```
 
+### `Twrite(data)`
 
+#### Arguments 
+data 
 
-Twrite(data)
-------------
-
-
-  
-  
-
-**Arguments:** data 
-
-
-**Return Value:**
-
-
-
+#### Return Value
 
 |  |  |
 | --- | --- |
@@ -182,27 +63,19 @@ Twrite(data)
 | -1 | Failure |
 
 
-#### **Algorithm:**
-
-
+#### Algorithm
+```
 Writes data into the terminal (non-blocking).
+```
 
 
+### `Tread(bufferptr)`
 
-Tread(bufferptr)
-----------------
-
-
-  
-  
-
-**Arguments:** bufferptr 
+#### Arguments 
+bufferptr 
 
 
-**Return Value:**
-
-
-
+#### Return Value
 
 |  |  |
 | --- | --- |
@@ -210,55 +83,9 @@ Tread(bufferptr)
 | -1 | Failure |
 
 
-#### **Algorithm:**
+#### Algorithm
 
-
- Block for the terminal.
-
-
+```
+Block for the terminal.
 Read data and transfer to buffer.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```
