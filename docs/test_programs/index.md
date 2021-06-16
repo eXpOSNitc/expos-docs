@@ -19,7 +19,7 @@ Executes given xsm program/halt system if input is "Shutdown"
 **Description :** shell version II without the multiuser
 
   
-The code for the test program can be found [here](test_prog/test_prog_1.html)
+The code for the test program can be found [here](./test_program_01.md)
 
   
   
@@ -42,7 +42,7 @@ N integers entered in the input.
 **Description :** The program given below implements a linked list for integers. The program reads an integer N from the console. It then creates a linked list and inserts N integers entered from console into the linked list in the same order. The program traverses the linked list and prints data to the console.
 
   
-The code for the test program can be found [here](test_prog/test_prog_2.html)
+The code for the test program can be found [here](./test_program_02.md)
 
   
   
@@ -65,7 +65,7 @@ Integers 1 to 100, not necessarily in the order.
 **Description :** The program creates a linked list with numbers 1 to 100 in them. The program invokes fork to create a child process. The parent and the child process reads from the shared linked list with different pointers and prints the data read to the console. Parent process prints the even numbers 2, 4, 6, 8.. and child process prints 1, 3, 5 ..
 
   
-The code for the test program can be found [here](test_prog/test_prog_3.html)
+The code for the test program can be found [here](./test_program_03.md)
 
   
   
@@ -88,7 +88,7 @@ Integers from 1 to 100, but not necessarily in sequential order.
 **Description :** The reader-writer program provides below has two writers and one reader. The parent process will create two child processes by invoking _fork_. The parent and two child processes share a buffer of one word. At a time only one process can read/write to this buffer. To acheive this, these three processes use a shared semaphore. A writer process can write to the buffer if it is empty and the reader process can only read from the buffer if it is full. Before the word in the buffer is overwritten the reader process must read it and print the word to the console. The parent process is the reader process and its two children are writers. One child process writes even numbers from 1 to 100 and other one writes odd numbers from 1 to 100 to the buffer. The parent process reads the numbers and prints them on to the console.
 
   
-The code for the test program can be found [here](test_prog/test_prog_4.html)
+The code for the test program can be found [here](./test_program_04.md)
 
   
   
@@ -156,7 +156,7 @@ Ouput of corresponding to shell command or executable file.
 
 **Description :** Shell program given below reads command from console. If the command is halt, then program will invoke Shutdown system call. If the command is built in shell command, then shell will read suitable number of arguments from the console and corresponding system call is invoked from shell itself. If the command is an executable file, shell will fork and exec with the given executable file.
 
-Note that the shell program should fit in 2 blocks/pages provided in [disk/memory organization](os_implementation.html). The program given below is optimized to fits in 2 blocks/pages. In order to optimize the code, the program violates some of the type checkings. Even with type checking errors, the program will still compile and execute correctly. Also some system calls are invoked with arguments, even though the system call does not need any arguments. This will not cause any problem as these arguments will simply be ignored in the corresponding system call.
+Note that the shell program should fit in 2 blocks/pages provided in [disk/memory organization](../os_implementation.md). The program given below is optimized to fits in 2 blocks/pages. In order to optimize the code, the program violates some of the type checkings. Even with type checking errors, the program will still compile and execute correctly. Also some system calls are invoked with arguments, even though the system call does not need any arguments. This will not cause any problem as these arguments will simply be ignored in the corresponding system call.
 
   
 The code for the test program can be found [here](./test_program_07.md)
