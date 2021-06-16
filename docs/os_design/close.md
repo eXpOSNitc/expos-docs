@@ -1,99 +1,15 @@
 ---
-title: 'Close'
+title: 'Close System Call'
 original_url: 'http://eXpOSNitc.github.io/os_design-files/close.html'
+hide:
+    - navigation
+    - toc
 ---
 
 
-
-
-
-
-
-Close
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-
-
-
-
-Close System Call
------------------
-
-
-  
-
-  
-
 Arguments: File Descriptor (Integer) 
 
-
 Return Value:
-
-
-
 
 |  |  |
 | --- | --- |
@@ -101,64 +17,53 @@ Return Value:
 | -1 | File Descriptor given is invalid |
 
 
-***Description*** : The Close system call closes an open file. The file descriptor ceases to be valid once the close system call is invoked. 
+#### Description 
+The Close system call closes an open file. The file descriptor ceases to be valid once the close system call is invoked. 
 
-
-
-  
-
-
-![](../img/roadmap/close.png)
-  
-
-Control flow diagram for *Close* system call
-
+<figure>
+<img src="http://exposnitc.github.io/img/roadmap/close.png">
+<figcaption>Control flow diagram for *Close* system call</figcaption>
+</figure>
   
   
 
-#### **Algorithm**:
+#### Algorithm
+<pre><code>
+Set the MODE_FLAG in the <a href="process_table.html">process table</a> entry to 3, 
+indicating that the process is in the close system call.
 
+//Switch to Kernel Stack - See <a href="stack_smcall.html">Kernel Stack Management during System Calls</a>. 
+Save the value of SP to the USER SP field in the <a href="process_table.html">Process Table</a> entry of the process.
+Set the value of SP to the beginning of User Area Page.
 
+If file descriptor is invalid, return -1. &nbsp;&nbsp; /* File descriptor value should be within the range 0 to 7 (both included). */
 
-```
+Locate the Per-Process Resource Table of the current process.
+	Find the PID of the current process from the <a href="./mem_ds.html#ss_table" target="_blank">System Status Table</a>.
+	Find the User Area page number from the <a href="process_table.html#per_process_table" target="_blank">Process Table </a>entry.
+	The <a href="../os_design-files/process_table.html#per_process_table">Per-Process Resource Table</a> is located at the  <a href="constants.html" target="_blank">RESOURCE_TABLE_OFFSET</a> from the base of the <a href="./process_table.html#user_area" target="_blank"> User Area Page</a>
 
-	Set the MODE\_FLAG in the [process table](process_table.html) entry to 3, 
-	indicating that the process is in the close system call.
+If the Resource identifier field of the <a href="process_table.html#per_process_table" target="_blank">Per Process Resource Table</a> entry is invalid or does not indicate a <a href="constants.html" target="_blank">FILE</a>, return -1.   
 
-	//Switch to Kernel Stack - See [Kernel Stack Management during System Calls](stack_smcall.html). 
-	Save the value of SP to the USER SP field in the [Process Table](process_table.html) entry of the process.
-	Set the value of SP to the beginning of User Area Page.
+/* No file is open with this file descriptor. */
 
-	If file descriptor is invalid, return -1.    /* File descriptor value should be within the range 0 to 7 (both included). */
+Get the index of the <a href="mem_ds.html#file_table" target="_blank">Open File Table</a> entry from Per-Process Resource Table entry.
 
-	[Locate the Per-Process Resource Table of the current process.](#collapse5a)             
- Find the PID of the current process from the [System Status Table](./mem_ds.html#ss_table).
- Find the User Area page number from the [Process Table](process_table.html#per_process_table) entry.
- The [Per-Process Resource Table](../os_design-files/process_table.html#per_process_table) is located at the [RESOURCE\_TABLE\_OFFSET](constants.html) from the base of the  [User Area Page](./process_table.html#user_area) . 
-	If the Resource identifier field of the [Per Process Resource Table](process_table.html#per_process_table) entry is invalid or does not indicate a [FILE](constants.html), return -1.     
-                     /* No file is open with this file descriptor. */
+Call the <b>close()</b> function in the <a href="../os_modules/Module_3.html">File Manager module</a> with the Open File Table index as arguement.
 
-	Get the index of the [Open File Table](mem_ds.html#file_table) entry from Per-Process Resource Table entry.
+Invalidate the <a href="process_table.html#per_process_table" target="_blank">Per-Process Resource Table</a> entry.
 
-	Call the **close()** function in the [File Manager module](../os_modules/Module_3.html) with the Open File Table index as arguement.
-	
-	Invalidate the [Per-Process Resource Table](process_table.html#per_process_table) entry.
+Set the MODE_FLAG in the <a href="process_table.html">process table</a> entry to 0.
+Switch back to the user stack.
 
-	Set the MODE\_FLAG in the [process table](process_table.html) entry to 0.
-	Switch back to the user stack.
+Return from system call with 0. &nbsp;&nbsp; /* success */
+</code></pre>
 
-	Return from system call with 0.    /* success */
-	
-	**Note:**  At each point of return from the system call, remember to reset the MODE FLAG and switch back to the user stack.
-	
-```
-
+!!! note
+	At each point of return from the system call, remember to reset the MODE FLAG and switch back to the user stack.
   
-
-#### Questions
-
-
-1. Why did we not check if the file is locked?
+!!! question "Question"
+	Why did we not check if the file is locked?
 
 
 
