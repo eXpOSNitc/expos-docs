@@ -1,106 +1,16 @@
 ---
-title: 'Process Manager'
+title: 'Module 1: Process Manager'
 original_url: 'http://eXpOSNitc.github.io/os_design-files/process_manager.html'
+hide:
+    - navigation
 ---
 
+#### GetPcbEntry()
+##### Arguments
+NIL 
 
 
-
-
-Process Manager
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-
-
-
-
-
-
-
-Module 1: Process Manager
--------------------------
-
-
-  
-
-  
-
-
-GetPcbEntry()
--------------
-
-
-  
-  
-
-**Arguments:** NIL 
-
-
-**Return Value:**
-
-
-
+##### Return Value
 
 |  |  |
 | --- | --- |
@@ -108,32 +18,22 @@ GetPcbEntry()
 | -1 | Failure |
 
 
-#### **Algorithm:**
-
-
+##### Algorithm
+```
 Search the process table for a free entry.
-
 
 If found, return index of the free entry.
 
-
 else, return -1.
+```
  
  
-FreePcbEntry(PID)
------------------
+#### FreePcbEntry(PID)
 
+##### Arguments
+Process Identifier( PID ) 
 
-  
-  
-
-**Arguments:** Process Identifier( PID ) 
-
-
-**Return Value:**
-
-
-
+##### Return Value
 
 |  |  |
 | --- | --- |
@@ -141,18 +41,16 @@ FreePcbEntry(PID)
 | -1 | Failure |
 
 
-#### **Algorithm:**
+##### **Algorithm:**
 
-
+```
 Release files, semaphores and locks if any.
 
-
 Release pages, swap blocks, and any other resources held by the process.
+```
 
-
-**Note:** Must not be invoked if the process is blocked. 
-
-
+!!! note 
+    Must not be invoked if the process is blocked.
 
 
 
