@@ -63,8 +63,8 @@ The following figure gives a high level picture of the OS that you will build by
 
 ![High Level Design of eXpOS](assets/img/high-level-design.png){ style="display:block; margin-left: auto; margin-right: auto; width: 50%;" }
 
-The [eXpOS specification](os-spec.md) provides an informal description of OS from the view point of the user/application programmer. You may also have a quick look at the high level system design for a closer view of the OS.
+The [eXpOS specification](os-spec/index.md) provides an informal description of OS from the view point of the user/application programmer. You may also have a quick look at the high level system design for a closer view of the OS.
 
 eXpOS evolved from a primitive version called [XOS](http://xosnitc.github.io/) developed a few years back. The eXpOS [FAQ](faq.md) and [About us](about.md) pages provide some more information.
 
-We wish you enjoy doing the project following the [Roadmap :material-road:](roadmap.md).
+We wish you enjoy doing the project following the [Roadmap :material-road:](roadmap/index.md).

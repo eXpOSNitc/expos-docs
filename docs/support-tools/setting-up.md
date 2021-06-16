@@ -51,19 +51,19 @@ If the setting up of the system is done correctly the following directories will
 ![](https://exposnitc.github.io/img/xsm_folders.png)
 
 -   **$HOME/myexpos/expl**  
-    This directory contains the [ExpL](./expl.html) (Experimental Language) compiler required to compile user programs to XSM machine instructions.
+    This directory contains the [ExpL](./expl.md) (Experimental Language) compiler required to compile user programs to XSM machine instructions.
   
 -   **$HOME/myexpos/spl**  
-    This directory contains the [SPL](./spl.html) (System Programmer's Language) Compiler required to compile system programs (i.e. operating system routines) to XSM machine instructions.
+    This directory contains the [SPL](./spl.md) (System Programmer's Language) Compiler required to compile system programs (i.e. operating system routines) to XSM machine instructions.
   
 -   **$HOME/myexpos/xfs-interface**  
-    This directory contains an interface ([XFS Interface](./xfs-interface.html) or eXperimental File System Interface) through which files from your UNIX machine can be loaded into the File System of XSM. The interface can format the disk, dump the disk data structures, load/remove files, list files, transfer data and executable files between eXpFS filesystem and the host (UNIX) file system and copy specified blocks of the XFS disk to a UNIX file.
+    This directory contains an interface ([XFS Interface](./xfs-interface.md) or eXperimental File System Interface) through which files from your UNIX machine can be loaded into the File System of XSM. The interface can format the disk, dump the disk data structures, load/remove files, list files, transfer data and executable files between eXpFS filesystem and the host (UNIX) file system and copy specified blocks of the XFS disk to a UNIX file.
   
 -   **$HOME/myexpos/xsm**  
-    This directory contains the machine simulator ([XSM](./xsm-simulator.html) or eXperimental String Machine).
+    This directory contains the machine simulator ([XSM](./xsm-xsm-simulator.md) or eXperimental String Machine).
   
 -   **$HOME/myexpos/test**  
-    This directory contains the test scripts for [eXpOS](../os_spec.html)
+    This directory contains the test scripts for [eXpOS](../os-spec/index.md)
 
 
 
@@ -120,16 +120,16 @@ If the setting up of the system is done correctly the following directories will
 ![](https://exposnitc.github.io/img/nexsm_folders.png)
 
 -   **$HOME/mynexpos/expl**  
-    This directory contains the [ExpL](./expl.html) (Experimental Language) compiler required to compile user programs to NEXSM machine instructions.
+    This directory contains the [ExpL](./expl.md) (Experimental Language) compiler required to compile user programs to NEXSM machine instructions.
   
 -   **$HOME/mynexpos/nespl**  
-    This directory contains the [SPL](./spl.html) (System Programmer's Language) Compiler required to compile system programs (i.e. operating system routines) to NEXSM machine instructions.
+    This directory contains the [SPL](./spl.md) (System Programmer's Language) Compiler required to compile system programs (i.e. operating system routines) to NEXSM machine instructions.
   
 -   **$HOME/mynexpos/nexfs-interface**  
-    This directory contains an interface ([XFS Interface](./xfs-interface.html) or eXperimental File System Interface) through which files from your UNIX machine can be loaded into the File System of NEXSM. The interface can format the disk, dump the disk data structures, load/remove files, list files, transfer data and executable files between eXpFS filesystem and the host (UNIX) file system and copy specified blocks of the XFS disk to a UNIX file.
+    This directory contains an interface ([XFS Interface](./xfs-interface.md) or eXperimental File System Interface) through which files from your UNIX machine can be loaded into the File System of NEXSM. The interface can format the disk, dump the disk data structures, load/remove files, list files, transfer data and executable files between eXpFS filesystem and the host (UNIX) file system and copy specified blocks of the XFS disk to a UNIX file.
   
 -   **$HOME/mynexpos/nexsm**  
-    This directory contains the machine simulator ([NEXSM](./xsm-simulator.html) or NExt eXperimental String Machine).
+    This directory contains the machine simulator ([NEXSM](./xsm-simulator.md) or NExt eXperimental String Machine).
   
 -   **$HOME/mynexpos/test**  
-    This directory contains the test scripts for [eXpOS](../os_spec.html).
+    This directory contains the test scripts for [eXpOS](../os_spec/index.md).
