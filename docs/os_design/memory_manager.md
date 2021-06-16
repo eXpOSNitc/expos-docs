@@ -1,106 +1,16 @@
 ---
-title: 'Memory Manager'
+title: 'Module 2: Memory Manager'
 original_url: 'http://eXpOSNitc.github.io/os_design-files/memory_manager.html'
+hide:
+    - navigation
 ---
 
+### Getpage()
 
+#### Argument
+NIL 
 
-
-
-Memory Manager
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-
-
-
-
-
-
-
-Module 2: Memory Manager
-------------------------
-
-
-  
-
-  
-
-
-Getpage()
----------
-
-
-  
-  
-
-**Arguments:** NIL 
-
-
-**Return Value:**
-
-
-
+#### Return Value
 
 |  |  |
 | --- | --- |
@@ -108,32 +18,21 @@ Getpage()
 | -1 | Failure |
 
 
-#### **Algorithm:**
-
-
- Run the second chance algorithm (if necessary)
-
+#### Algorithm
+```
+Run the second chance algorithm (if necessary)
 
 If found,return the page number of a free memory page.
 
-
 else, return -1.
+``` 
  
- 
-Releasepage(page#)
-------------------
+### Releasepage(page#)
 
+#### Arguments
+Memory page number
 
-  
-  
-
-**Arguments:** Memory page number
-
-
-**Return Value:**
-
-
-
+#### Return Value
 
 |  |  |
 | --- | --- |
@@ -141,16 +40,15 @@ Releasepage(page#)
 | -1 | Failure |
 
 
-#### **Algorithm:**
+#### Algorithm
 
-
+```
 Release the page.
-
 
 Update memory free list and system status table.
 
-
 Return success.
+```
 
 
 
