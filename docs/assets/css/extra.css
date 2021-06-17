@@ -41,3 +41,22 @@
     -webkit-mask-image: var(--md-admonition-icon--assignment);
     mask-image: var(--md-admonition-icon--assignment);
 }
+
+/* For tables */
+
+
+.table-bordered thead {
+    background-color: var(--md-default-fg-color--light);
+    color: var(--md-default-bg-color);
+    min-width: 5rem;
+    padding: .9375em 1.25em;
+    vertical-align: top;
+}
+.table-bordered {
+    border: 1px solid var(--md-code-fg-color);
+    border-collapse: collapse;
+}
+
+.table-bordered th, .table-bordered td {        
+    border: 1px solid var(--md-code-fg-color);
+}
