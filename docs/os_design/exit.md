@@ -1,6 +1,9 @@
 ---
 title: 'Exit system call'
 original_url: 'http://eXpOSNitc.github.io/os_design-files/exit.html'
+hide:
+    - navigation
+    - toc
 ---
 
 ### Arguments
