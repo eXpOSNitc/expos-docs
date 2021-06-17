@@ -1,88 +1,11 @@
 ---
 title: 'Disk Data Structures'
 original_url: 'http://eXpOSNitc.github.io/os_design-files/disk_ds.html'
+hide:
+    - navigation
 ---
 
-
-
-
-
-Disk Data Structures
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-  
-
-
-
-
-Inode Table
------------
-
-
-  
-
-  
+### Inode Table
 
 The Inode table is stored in the disk and has an entry for each file present in the disk (A copy of the Inode table is maintained in the memory when the OS is running). It consists of MAX\_FILE\_NUM entries. Thus [eXpFS](../os_spec-files/eXpFS.html) permits a maximum of MAX\_FILE\_NUM files. This version of eXpOS sets MAX\_FILE\_NUM = 60. 
 
@@ -96,66 +19,53 @@ The Inode table is stored in the disk and has an entry for each file present in 
 The entry of an Inode table has the following format:
 
 
+<table class="table table-bordered">
+<tbody><tr>
+<td>FILE TYPE</td>
+<td>FILE NAME</td>
+<td>FILE SIZE</td>
+<td><font color="red">USER ID</font></td>
+<td><font color="red">PERMISSION</font></td>
+<td>Unused (3 words)</td>
+<td>DATA BLOCK 1</td>
+<td>DATA BLOCK 2</td>
+<td>DATA BLOCK 3</td>
+<td>DATA BLOCK 4</td>
+<td>Unused (4 words)</td>
+</tr>
+</tbody></table>
 
-
-|  |  |  |  |  |  |  |  |  |  |  |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| FILE TYPE | FILE NAME | FILE SIZE | USER ID | PERMISSION | Unused (3 words) | DATA BLOCK 1 | DATA BLOCK 2 | DATA BLOCK 3 | DATA BLOCK 4 | Unused (4 words) |
-
-
-* **FILE TYPE**  (1 word) - specifies the type of the given file ([DATA](../support_tools-files/constants.html), [EXEC](../support_tools-files/constants.html) or [ROOT](../support_tools-files/constants.html)). More information about file types is given [here](../os_spec-files/eXpFS.html).
-* **FILE NAME** (1 word) - Name of the file
-* **FILE SIZE** (1 word) - Size of the file. Maximum size for File = MAX\_FILE\_SIZE = 2048 words
-* **USER ID** (1 word) - User Id of the owner of the file.
-* **PERMISSION** (1 word) - Permission of the file; it can be [OPEN\_ACCESS](../support_tools-files/constants.html) or [EXCLUSIVE](../support_tools-files/constants.html).
-* **Unused** (3 words)
-* **DATA BLOCK 1 to 4** (4 words) - each DATA BLOCK column stores the block number of a data block of the file. If a file does not use a particular DATA BLOCK , it is set to -1.
-* **Unused** (4 words)
-
+- <b>FILE TYPE </b> (1 word) - specifies the type of the given file (<a href="../support_tools-files/constants.html">DATA</a>, <a href="../support_tools-files/constants.html">EXEC</a> or <a href="../support_tools-files/constants.html">ROOT</a>). More information about file types is given <a href="../os_spec-files/eXpFS.html" target="_blank">here</a>. 
+- <b>FILE NAME</b> (1 word) - Name of the file 
+- <b>FILE SIZE</b> (1 word) - Size of the file. Maximum size for File = MAX_FILE_SIZE = 2048 words 
+- <b><font color="red">USER ID</b> (1 word) - User Id of the owner of the file.</font> 
+- <b><font color="red">PERMISSION</b> (1 word) - Permission of the file; it can be <a href="../support_tools-files/constants.html">OPEN_ACCESS</a> or <a href="../support_tools-files/constants.html">EXCLUSIVE</a>.</font> 
+- <b>Unused</b> (3 words)                   
+- <b>DATA BLOCK 1 to 4</b> (4 words) - each DATA BLOCK column stores the block number of a data block of the file. If a file does not use a particular DATA BLOCK , it is set to -1.
+- <b>Unused</b> (4 words) 
+    
+</ul>  
 
 An unused entry is indicated by -1 in the FILE NAME field.
 
 
-**Note 1** : fdisk command of XFS Interface initilizes the inode table entry of the root file with values FILE TYPE = 1, FILE SIZE = 512, and DATA BLOCK = 5 (Root file is stored in block 5 of disk. See [Disk Organisation](../os_implementation.html)).
+!!! note "Note 1"
+    fdisk command of XFS Interface initilizes the inode table entry of the root file with values FILE TYPE = 1, FILE SIZE = 512, and DATA BLOCK = 5 (Root file is stored in block 5 of disk. See [Disk Organisation](../os_implementation.html)).
+
+!!! note "Note 2"
+    A Free inode entry is denoted by  **-1**  in the  **FILENAME**  field.
+
+!!! note "Note 3"
+    Memory copy of the Inode Table is present in page 59 of the memory (see [Memory Organisation](../os_implementation.html)), and the SPL constant [INODE\_TABLE](../support_tools-files/constants.html) points to the starting address of the table.
+
+!!! warning "Importanat Note"
+    eXpOS requires that the index of the inode table entry of a file and the 
+    index of its root file entry must match. For example, suppose the 5th entry of the inode table holds
+    information about a file, then the entry for the same file in the root must be the 5th entry. XFS
+    interface stores files into the disk following this convention.
 
 
-**Note 2** : A Free inode entry is denoted by  **-1**  in the  **FILENAME**  field.
-
-
-**Note 3 :** Memory copy of the Inode Table is present in page 59 of the memory (see [Memory Organisation](../os_implementation.html)), and the SPL constant [INODE\_TABLE](../support_tools-files/constants.html) points to the starting address of the table.
-
-
- **Importanat Note:** eXpOS requires that the index of the inode table entry of a file and the 
- index of its root file entry must match. For example, suppose the 5th entry of the inode table holds
- information about a file, then the entry for the same file in the root must be the 5th entry. XFS
- interface stores files into the disk following this convention.
-
-
-
-
-
-
-  
-
-  
-
-
-
-  
-
-  
-
-  
-
-
-
-
-Disk Free List
---------------
-
-
-  
-
+### Disk Free List
   
 
 The Disk Free List consists of DISK\_SIZE entries. (The value of DISK\_SIZE is fixed to 512 in the present version). Each entry is of size one word and thus, the size of the disk free list is DISK\_SIZE = 512 words. For each block in the disk there is an entry in the Disk Free List which contains either 0 (free) or 1 (used). 
@@ -164,36 +74,11 @@ The Disk Free List consists of DISK\_SIZE entries. (The value of DISK\_SIZE is f
 When the system starts up, the OS startup code loads the Disk Free List to memory. It is stored back when the system halts or a Shutdown system call is executed.
 
 
-**Note :** Memory copy of the Disk Free List is present in page 61 of the memory (see [Memory Organisation](../os_implementation.html)), and the SPL constant [DISK\_FREE\_LIST](../support_tools-files/constants.html) points to the starting address of the table.
+!!! note
+    Memory copy of the Disk Free List is present in page 61 of the memory (see [Memory Organisation](../os_implementation.html)), and the SPL constant [DISK\_FREE\_LIST](../support_tools-files/constants.html) points to the starting address of the table.
 
 
-
-
-
-
-  
-
-  
-
-
-
-
-  
-
-  
-
-  
-
-
-
-
-Root File
----------
-
-
-  
-
-  
+### Root File
 
 The Root File is stored in the disk and has an entry for each file present in the disk (A copy of the Root File is maintained in the memory when the OS is running). It consists of MAX\_FILE\_NUM entries. Thus eXpFS permits a maximum of MAX\_FILE\_NUM files. This version of eXpOS sets MAX\_FILE\_NUM = 60. 
 
@@ -203,56 +88,41 @@ The Root File is stored in the disk and has an entry for each file present in th
 
 The entry of Root file has the following format:
 
+<table class="table table-bordered">
+<tbody><tr>
+<td>FILE NAME</td>
+<td>FILE SIZE</td>
+<td>FILE TYPE</td>
+<td><font color="red">USER NAME</font></td>
+<td><font color="red">PERMISSION</font></td>
+<td>Unused</td>
+</tr>
+</tbody></table>
 
 
-
-|  |  |  |  |  |  |
-| --- | --- | --- | --- | --- | --- |
-| FILE NAME | FILE SIZE | FILE TYPE | USER NAME | PERMISSION | Unused |
-
-
-* **FILE NAME** (1 word) - Name of the file
-* **FILE SIZE** (1 word) - Size of the file
-* **FILE TYPE**  (1 word) - Specifies the type of the given file (ROOT indicated by 1 , DATA indicated by 2 or EXEC indicated by 3).
-* **USER NAME** (1 word) - Name of the owner of the file
-* **PERMISSION** (1 word) - Permission of the file; open-access (1) or exclusive (0)
-* **Unused** (3 words)
+- **FILE NAME** (1 word) - Name of the file
+- **FILE SIZE** (1 word) - Size of the file
+- **FILE TYPE**  (1 word) - Specifies the type of the given file (ROOT indicated by 1 , DATA indicated by 2 or EXEC indicated by 3).
+- <span style="color:red">**USER NAME** (1 word) - Name of the owner of the file</span>
+- <span style="color:red">**PERMISSION** (1 word) - Permission of the file; open-access (1) or exclusive (0)</span>
+- **Unused** (3 words)
 
 
 An unused entry is indicated by -1 in the FILE NAME field.
 
 
-**Note :** Memory copy of the Root File is present in page 62 of the memory (see [Memory Organisation](../os_implementation.html)), and the SPL constant [ROOT\_FILE](../support_tools-files/constants.html) points to the starting address of data structure.
+!!! note
+    Memory copy of the Root File is present in page 62 of the memory (see [Memory Organisation](../os_implementation.html)), and the SPL constant [ROOT\_FILE](../support_tools-files/constants.html) points to the starting address of data structure.
 
 
- **Important Note:** eXpOS requires that the index of the inode table entry of a file and the 
- index of its root file entry must match. For example, suppose the 5th entry of the inode table holds
- information about a file, then the entry for the same file in the root must be the 5th entry. XFS
- interface stores files into the disk following this convention.
+!!! warning "Important Note"
+    eXpOS requires that the index of the inode table entry of a file and the 
+    index of its root file entry must match. For example, suppose the 5th entry of the inode table holds
+    information about a file, then the entry for the same file in the root must be the 5th entry. XFS
+    interface stores files into the disk following this convention.
 
+### User Table
 
-
-
-
-
-
-
-  
-
-  
-
-  
-
-
-
-
-User Table
-----------
-
-
-  
-
-  
 
 The User table is stored in the disk and has an entry for each user. (A copy of the User table is maintained in the memory when the OS is running). It consists of MAX\_USER\_NUM entries. This version of eXpOS sets MAX\_USER\_NUM = 16 including entries for the kernel and the root. 
 
@@ -262,71 +132,32 @@ The User table is stored in the disk and has an entry for each user. (A copy of 
 
 The entry of an User table has the following format:
 
+<table class="table table-bordered">
+<tbody><tr>
+<td>USER NAME</td>
+<td>ENCRYPTED PASSWORD</td>                      
+</tr>
+</tbody></table>
 
 
-
-|  |  |
-| --- | --- |
-| USER NAME | ENCRYPTED PASSWORD |
+- **USER NAME** (1 word) - Name of the user
+- **ENCRYPTED PASSWORD** (1 word) - Password of the user in an encrypted form.
 
 
-* **USER NAME** (1 word) - Name of the user
-* **ENCRYPTED PASSWORD** (1 word) - Password of the user in an encrypted form.
+All unused entries are set to -1.  
 
 
-   
+The User table entry for two special users - the kernel and root are set at the time of disk formatting.  
 
- All unused entries are set to -1.  
-  
+The userid assigned to a user is the index of the curresponding entry in the user table. The userid of kernel is 0 and the root is 1.
 
- The User table entry for two special users - the kernel and root are set at the time of disk formatting.  
+The inode table entry of a file contains the userid of the owner of the file.
 
-
-
+The password field for kernel is empty because kernel is a non - loginable user.
 
 
+!!! warning "Important note"
+    There must be some mechanism to initialize the root password. In the XSM Machine, if you run the <a href="../support_tools-files/xfs-interface.html">xfs-interface</a> FDISK, the default password of root is set to "root" (without quotes).  When FDISK is run, the encryped password field of the user root is initialized in the user table.  The value corresponds to that obtained by running the ENCRYPT function on the string "root".  
 
-
-  
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+!!! note
+    Memory copy of the User Table is present in page 60 of the memory (see <a href="../os_implementation.html">Memory Organisation</a>), and the SPL constant <a href="../support_tools-files/constants.html">USER_TABLE</a> points to the starting address of data structure.

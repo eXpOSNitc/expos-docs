@@ -1,6 +1,9 @@
 ---
 title: 'Load/Store'
 original_url: 'http://eXpOSNitc.github.io/os_design-files/load_store.html'
+hide:
+    - navigation
+    - toc
 ---
 
 ### Steps to Load/Store

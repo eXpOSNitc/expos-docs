@@ -57,6 +57,7 @@
     border-collapse: collapse;
 }
 
-.table-bordered th, .table-bordered td {        
+.table-bordered th, .table-bordered td {     
+    padding: 1em;   
     border: 1px solid var(--md-code-fg-color);
 }
