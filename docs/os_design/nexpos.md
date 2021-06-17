@@ -1,94 +1,9 @@
 ---
 title: 'eXpOS Design for NEXSM (Two Core) Machine'
 original_url: 'http://eXpOSNitc.github.io/os_design-files/nexpos.html'
+hide:
+    - navigation
 ---
-
-
-
-
-
-
-eXpOS Design for NEXSM (Two Core) Machine
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-  
-
-
-
-
-
-
-
-eXpOS Design for NEXSM (Two Core) Machine
------------------------------------------
-
-
-  
-
-  
-
 
 [NEXSM](../arch_spec-files/nexsm.html) is an extension of the XSM architecture with a dual-core feature. The machine has two identical cores with the same set of internal registers sharing a common memory. All registers in XSM are present in both the cores. Additionally, NEXSM cores contain an extra register called the **core flag**. A few additional privileged instructions provide primitives for synchronization between the two cores. One of the processors is called the **primary core** and the other called the **secondary core**. The machine can operate in two modes – **active mode** and **reset mode**. **In the reset mode, the secondary is non-functional.** The mode in which the machine operates can be controlled by the primary using a pair of special privileged instructions – START and RESET.
  
@@ -98,28 +13,16 @@ eXpOS Design for NEXSM (Two Core) Machine
 
 #### **Modifications to User Interface**
 
+The user interface is eXpOS undergoes no change.
 
-
- The user interface is eXpOS undergoes no change.
- 
-
-
-  
 
 #### **Modifications to Application Interface**
 
-
-
- The application interface specification of the eXpOS undergoes minor modification when moving to NEXSM. The version of eXpOS running on NEXSM supports an additional software interrupt INT 19. There are four system calls that gets mapped to INT 19 routine. These are:
+The application interface specification of the eXpOS undergoes minor modification when moving to NEXSM. The version of eXpOS running on NEXSM supports an additional software interrupt INT 19. There are four system calls that gets mapped to INT 19 routine. These are:
  
 
-
-
-
-
-|  |  |
-| --- | --- |
 | **System Call Name** | **System Call Number** |
+| --- | --- |
 | Test4 | 100 |
 | Test5 | 101 |
 | Test6 | 102 |
@@ -162,14 +65,8 @@ eXpOS Design for NEXSM (Two Core) Machine
 
  NEXSM disk has 16 additional disk blocks (block numbers 512 to 527). The OS uses these blocks for loading the following handlers:
  
-
-
-
-
-
-|  |  |
-| --- | --- |
 | **Block Number** | **Contents** |
+| --- | --- |
 | 512-513 | Secondary Bootstrap Loader |
 | 514-515 | INT 19 handler |
 | 516-517 | Module 8 |
@@ -196,9 +93,8 @@ eXpOS Design for NEXSM (Two Core) Machine
  NEXSM has 16 additional pages of memory (pages 128 to 144). The first four new pages are reserved by the machine. These are:
  
 
-|  |  |
-| --- | --- |
 | **Page Number** | **Contents** |
+| --- | --- |
 | 128-129 | Secondary bootstrap loader (bootstrap loader for secondary core) |
 | 130-131 | Software interrupt, INT 19 (currently INT19 is unused) |
 
@@ -214,10 +110,8 @@ eXpOS Design for NEXSM (Two Core) Machine
 
  From among the remaining 12 available pages, eXpOS reserves the next eight pages for storing OS code as follows:
  
-
-|  |  |
-| --- | --- |
 | **Page Number** | **Contents** |
+| --- | --- |
 | 132-133 | Module 8 ([Access Control Module](../os_modules/Module_8.html)) |
 | 134-135 | Module 9 (TestA Module) |
 | 136-137 | Module 10 (TestB Module) |
@@ -298,10 +192,8 @@ eXpOS Design for NEXSM (Two Core) Machine
 
 
 
-
-|  |  |
-| --- | --- |
 | **Field** | **Function** |
+| --- | --- |
 | KERN\_LOCK | Common access lock to be set before running any critical kernel code other than scheduling. Before performing any kernel function, this lock must be set by the kernel module/interrupt handler so that the other core waits till the critical action is completed. |
 | SCHED\_LOCK | Access lock to run the Scheduler Module. If one core has set the SCHED\_LOCK in the Scheduler Module, the other core runs in a busy loop until execution of the Scheduler Module is completed. |
 | GLOCK | A general purpose lock variable that is left unused for future use. |
@@ -416,49 +308,5 @@ Acquire****Lock() {
   
 
 
- A detailed description of the changes required to the eXpOS kernel are outlined in the Stage 28 page of the [Roadmap](../Roadmap.html).
+A detailed description of the changes required to the eXpOS kernel are outlined in the Stage 28 page of the [Roadmap](../roadmap/stage_28.md).
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
