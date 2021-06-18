@@ -1,6 +1,8 @@
 ---
 title: 'Terminal Interrupt Handler'
 original_url: 'http://eXpOSNitc.github.io/os_design-files/term_handler.html'
+hide:
+    - navigation
 ---
 
 ### Description
