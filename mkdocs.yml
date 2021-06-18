@@ -79,7 +79,7 @@ nav:
       - Specification: 
         - XSM Architecture Specifcation: arch-spec/index.md
         - Virtual Machine Model: virtual_machine_spec.md
-        - Machine Organisation: "arch-spec/machine-org.md"
+        - Machine Organisation: "arch-spec/machine_organization.md"
       - Modules:
         - Modules: "modules/index.md"
         - Module 0: "modules/module_00.md"
