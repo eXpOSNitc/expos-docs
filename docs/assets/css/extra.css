@@ -85,3 +85,12 @@ details.code-accordion >summary::before {
     mask-image: none;
     display: none;
 }
+
+
+/* Reports page */
+.report-row {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+    width: 100%
+}
