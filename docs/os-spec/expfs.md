@@ -1,6 +1,8 @@
 ---
 title: Experimental File System (eXpFS)
 original_url: https://exposnitc.github.io/os_spec-files/eXpFS.html
+hide:
+    - navigation
 ---
 
 eXpOS assumes that the disk is a sequence of blocks, where each block can store a sequence of words.The number of words in a block is hardware dependent. Generally, the hardware comes with machine instructions to transfer a block from the disk to a contiguous space in memory and back.
@@ -16,7 +18,7 @@ In this section we discuss the abstract logical view provided by eXpFS to the eX
 
 The eXpFS logical file system comprises of files organized in a single directory called the root. The root is also treated conceptually as a file. As noted already, every eXpFS file is a sequence of words. Associated with each eXpFS file there are three attributes - name, size and type, each attribute being one word long. The file name must be a string. Each file must have a unique name. The size of the file will be the total number of words stored in the file. (The maximum size of a file is operating system dependent).
 
-\* In [extended eXpOS](http://exposnitc.github.io/os_spec-files/multiuser.html), a file has two additional attributes, username and permission.
+:red_circle: In [extended eXpOS](http://exposnitc.github.io/os_spec-files/multiuser.html), a file has two additional attributes, username and permission.
 
 There are three types of eXpFS files - the root, data files and executable files. Each file in eXpFS has an entry in the root called its root entry.
 
@@ -39,15 +41,15 @@ A data file is a sequence of words. The maximum number of words permissible in a
 
 eXpOS allows an application program to perform the following operations (by invoking appropriate system calls) on data files: **Create**, **Delete**, **Open, Close, Read, Write, Seek**. Application programs can create only data files using the Create system call. In addition to this, data files may be loaded into the eXpFS file system using the external interface (see [XFS Interface](../support_tools-files/xfs-interface.html)). A detailed specification of the file system calls is given [here](systemcallinterface.html).
 
-\* In [Multiuser](http://exposnitc.github.io/os_spec-files/multiuser.html) implementation of eXpOS, the username of a data file corresponds to the user who creates the file. Its permission can be either exclusive (0) or open (1) according to the value specified by the user at the time of creating the file.
+:red_circle: In [Multiuser](http://exposnitc.github.io/os_spec-files/multiuser.html) implementation of eXpOS, the username of a data file corresponds to the user who creates the file. Its permission can be either exclusive (0) or open (1) according to the value specified by the user at the time of creating the file.
 
-\*\* If a data file is externally loaded into the file system (see [XFS Interface](http://exposnitc.github.io/support_tools-files/xfs-interface.html)), the owner field is set to root (value = 1) and the access permission is set to open access (value = 1).
+:blue_circle: If a data file is externally loaded into the file system (see [XFS Interface](http://exposnitc.github.io/support_tools-files/xfs-interface.html)), the owner field is set to root (value = 1) and the access permission is set to open access (value = 1).
 
 
 ### eXpFS Executable files
 These contain executable code for programs that can be loaded and run by the operating system. From the point of view of the eXpFS file system alone, executable files are just like data files except that file type is EXEC in the root entry. **eXpFS specification does not allow executable files to be created by application programs**. They can only be created externally and loaded using the external interface (see [XFS Interface](../support_tools-files/xfs-interface.html) for XSM architecture.)
 
-\* In [Multiuser](http://exposnitc.github.io/os_spec-files/multiuser.html) implementation of eXpOS, the access permission field for executable files is not used (value = -1). By default, the owner of all excecutable files is set to 0 (kernel).< /p>
+:red_circle: In [Multiuser](http://exposnitc.github.io/os_spec-files/multiuser.html) implementation of eXpOS, the access permission field for executable files is not used (value = -1). By default, the owner of all excecutable files is set to 0 (kernel).
 
 Executable files are essentially program files that must be loaded and run by the operating system. Hence the Operating system imposes certain structure on these files (called the **executable file format**). Moreover, the instructions must execute on the machine on which the OS is running. Thus, there is dependency on the hardware as well. Typically, an application program written in a high level language (like [ExpL](../support_tools-files/expl.html)) is compiled using a compiler that generates the executable file. The compiler generates executable file that is dependent on the operating system as well as the target machine.
 
