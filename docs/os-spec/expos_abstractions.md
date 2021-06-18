@@ -1,115 +1,21 @@
 ---
 title: 'eXpOS Abstractions'
 original_url: 'http://eXpOSNitc.github.io/os_spec-files/expos_abstractions.html'
+hide:
+    - navigation
 ---
 
+eXpOS provides the following fundamental abstractions to an application program:
 
+1. The eXpFS logical file system
+2. The process abstraction for programs in execution
+3. Methods of resource sharing
+4. Primitives for concurrent access control and process synchronization
+5. The system call interface that specifies the interface through which application programs can invoke the system calls and access the OS services.
+6. The extended eXpOS specification provides a user abstraction as discussed here.
 
 
-
-
-eXpOS Abstractions
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-Toggle navigation
-
-
-
-
-
-
-[eXpOSNITC](#)
-
-
-* [Home](../index.html)
-* [Documentation](../documentation.html)
-* [Roadmap](../Roadmap.html)
-* [FAQ](../faq.html)
-* [About Us](../About_us.html)
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-  
-
-
-
-
-
-
-
-eXpOS Abstractions
-------------------
-
-
-  
-
-
-
-
-
-
-
-
-
-#### 
-The eXpFS logical file system
-
-
-
-
+### The eXpFS logical file system
 
 The eXpOS kernal provides a hardware independent logical file system model (called the **experimental file system or eXpFS**) for application programs. The application program views files as being organized and stored in the eXpFS logical file system. Application programs are not permitted to access files directly. Instead, they must invoke the appropriate **file system call** for creating, modifying or accessing files. The OS routine implementing each system call internally translates the request into disk block operations, hiding the hardware details from the application program.
 
@@ -130,17 +36,7 @@ A detailed discussion of the file system structure, file system calls and XEXE f
 
 
 
-
-
-
-
-
-#### 
-The eXpOS process Abstraction
-
-
-
-
+### The eXpOS process Abstraction
 
 It was noted earlier that at the end of bootstrap, eXpOS loads into memory a program stored in a pre-determined part of the disk and creates the first process called the INIT process. Once a process is created, it can spawn new processes using the **fork**  system call. When a process spawns a new process, the former is called the **parent process** and the later is called the **child process**. A process can decide to terminate itself using the **exit** system call. 
 
@@ -169,18 +65,7 @@ The OS expects that executable files respect the programming conventions laid do
 It must be noted here that an application program is free to violate the ABI conventions and decide to use its virtual address space in its own way. It is only required that the executable file follows XEXE format in order to ensure that exec system call does not fail. As long as such a process operates within its own address space, the OS permits the process to execute. However, if at any point during its execution, the process generates a virtual address beyond its permitted virtual address space, a hardware exception will be generated and the OS routine handling the exception will terminate the process. 
 
 
-
-
-
-
-
-
-#### 
-Access Control and Synchronization
-
-
-
-
+### Access Control and Synchronization
 
 Two concurrently executing processes sharing resources like files or memory (for example, parent and child processes sharing the heap) would like to ensure that only one of them execute critical section code that access/modify a resource that is shared between them. 
 
@@ -191,17 +76,7 @@ A classical solution to this problem is using [semaphores](http://en.wikipedia.o
 The **Wait** system call allows a process to suspend its own execution until another process wakes it up using the **Signal** system call. This primitive is useful when a process must be made to wait at a point during its execution until another related process signals it to continue.
 
 
-
-
-
-
-
-
-#### 
-Resource Sharing in eXpOS
-
-
-
+### Resource Sharing in eXpOS
 
 
 It was already noted that the child process shares the **heap** of the parent process. Hence memory allocated in the heap will be a **shared memory** between both the processes. However, if either the parent or the child process loads another program into its virtual address space using the exec system call, then the shared heap is detached from that process and the surviving process will have the heap intact. The file pointers handled by the parent process are also shared by the child process.
@@ -215,14 +90,7 @@ The file sharing semantics between users in Multiuser extension to eXpOS is desc
 
  
 
-
-
-
-
-
-
-#### 
-System Calls
+### System Calls
 
 
 
@@ -237,14 +105,12 @@ Application programs are not permitted to directly access files/semaphores or cr
 eXpOS system calls can be classified as file system calls, process system calls and system calls for access control and synchronization. The following table lists the system calls. A detailed specification can be found [here](systemcallinterface.html).
 
 
-### File system calls
+#### <a href="../systemcallinterface/">File system calls</a>
 
-
-
-
-|  |  |  |  |  |  |  |  |  |  |  |  |  |  |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Create | Create an eXpFS file || Delete | Delete an eXpFS file |
+| Name | Description  | 
+| --- | --- |
+| Create | Create an eXpFS file |
+| Delete | Delete an eXpFS file |
 | Open | Open an eXpFS file and return a file handle to the calling process |
 | Close | Close an eXpFS file already opened by the calling process |
 | Read | Read one word from the location pointed to by the file pointer and advance the file pointer to the next word in the file |
@@ -253,12 +119,9 @@ eXpOS system calls can be classified as file system calls, process system calls 
 
 
 
-### Process system calls
+#### <a href="../systemcallinterface/">Process system calls</a>
 
-
-
-
-|  |  |
+| Name | Description  | 
 | --- | --- |
 | Fork | Create a child process allocating a new address space.  |
 | Exec | Load and execute an eXpFS executable file into the virtual address space of the present process.  |
@@ -267,14 +130,15 @@ eXpOS system calls can be classified as file system calls, process system calls 
 | Getppid | Get the process ID of the parent process of the invoking process. |
 
 
-### System calls for access control and synchronization:
+#### <a href="../systemcallinterface/">System calls for access control and synchronization</a>
 
 
 
 
-|  |  |  |  |  |  |  |  |  |  |  |  |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Signal | Send a signal to a process specified in the call.  || Wait | Suspend execution of the current process until the process specified sends a signal or terminates.  |
+| Name | Description  | 
+| --- | --- |
+| Signal | Send a signal to a process specified in the call.  |
+| Wait | Suspend execution of the current process until the process specified sends a signal or terminates.  |
 | Semget | Acquire a new semaphore |
 | Semrelease | Release a semaphore already acquired by the process |
 | SemLock | Get exclusive access permission to semaphore specified. (Process blocks till lock is obtained.)  |
@@ -283,12 +147,9 @@ eXpOS system calls can be classified as file system calls, process system calls 
 
 
 
-### System calls for Multiuser extension to eXpOS:
+#### <a href="../systemcallinterface/"><span style="color:red">System calls for Multiuser extension to eXpOS</span></a>
 
-
-
-
-|  |  |
+| Name | Description  | 
 | --- | --- |
 | Newusr | Creates a new user with the specified user name and password  |
 | Remusr | Removes the user specified by the username  |
@@ -296,61 +157,5 @@ eXpOS system calls can be classified as file system calls, process system calls 
 | Getuid | Returns the userid of the user with the corresponding username |
 | Getuname | Returns the username of the user with the corresponding userid |
 | Login | Logs in a new user  ||
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-[![](../img/spec_icon.jpg)](../os_spec.html)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
