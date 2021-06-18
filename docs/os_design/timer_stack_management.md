@@ -1,88 +1,9 @@
 ---
 title: 'Kernel Stack Management During Context switch'
 original_url: 'http://eXpOSNitc.github.io/os_design-files/timer_stack_management.html'
+hide:
+    - navigation
 ---
-
-
-
-
-
-
-
-Kernel Stack Management During Context switch
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-  
-
-
-Kernel Stack Management During Context Switch
----------------------------------------------
-
-
-  
-  
-
-
-  
 
 Context switch involves switching a machine from executing one process to executing another even before the former is completed. This involves saving the state of all volatile data like registers, PTBR, BP, etc. (in other words the "context") and, then loading the context of a new process or starting a new process from scratch which will have its own context. This technique allows the machine to concurrently execute multiple processes.
 
@@ -147,75 +68,49 @@ In spite of the above convention, **the ExpL compiler fails to save the value of
 
   
 
-###  Scheduler Module
+##  Scheduler Module
 
 
 
- The scheduler module is responsible for performing the actual context switch. Context switch happens by a change of SP, PTBR and PTLR registers. We store these register values of the old process to its Process Table and restore SP, PTBR and PTLR values from the Process Table of the new process. 
+The scheduler module is responsible for performing the actual context switch. Context switch happens by a change of SP, PTBR and PTLR registers. We store these register values of the old process to its Process Table and restore SP, PTBR and PTLR values from the Process Table of the new process. 
 
 
 
 
-**Important Note**: The **offset of SP register within the user area page**  will be stored in the KPTR field of the process table(and **not** the physical address of the kernel stack pointer). The value of the offset can be calculated by the fomula *offset = SP – (512 * USER AREA PAGE NUMBER)*.
- The purpose of storing the offset (instead of the physical address) is to allow the OS to relocate the user area page to another physical memory page during swapping. 
+!!! warning "Important Note"
+	The **offset of SP register within the user area page**  will be stored in the KPTR field of the process table(and **not** the physical address of the kernel stack pointer). The value of the offset can be calculated by the fomula `offset = SP – (512 * USER AREA PAGE NUMBER)`
+	The purpose of storing the offset (instead of the physical address) is to allow the OS to relocate the user area page to another physical memory page during swapping. 
 
 
 
  After switching the registers, the scheduler module executes the return instruction resulting in IP value being set from the top of the kernel stack of the new process (except for one special case which we will see below). This transfers control to the next instruction in the kernel handler/module in the new process.
  
 
+### **Actions done by the scheduler:**
 
+1) Save register BP to the kernel stack of current process.  
 
+2) Save the current kernel stack pointer offset in the KPTR field of the process table.  
 
+3) Save the current PTBR and PTLR values in the process table of the leaving process. (This operation is redundant)
 
+4) Find the pid of the next process to be scheduled.
 
-#### **Actions done by the scheduler:**
+5) Restore the PTBR, PTLR and kernel stack pointer (KPTR) values from the process table of the entering process.
 
+6) Restore register BP from the top of kernel stack of entering process.  
 
+7) Identify whether the state* of the new process is a READY/CREATED from the state field of the process table. (A process that has never been scheduled for execution previously will be in CREATED state. The fork system call creates the child process in the CREATED state.)
 
-
-   1. Save register BP to the kernel stack of current process.  
- 
-
-   2. Save the current kernel stack pointer offset in the KPTR field of the process table.  
-
-
-   3. Save the current PTBR and PTLR values in the process table of the leaving process. (This operation is redundant)
-  
-
-   4. Find the pid of the next process to be scheduled.  
- 
-
-   5. Restore the PTBR, PTLR and kernel stack pointer (KPTR) values from the process table of the entering process.
-  
-
-   6. Restore register BP from the top of kernel stack of entering process.  
-
-   7. Identify whether the state* of the new process is a READY/CREATED from the state field of the process table. (A process that has never been scheduled for execution previously will be in CREATED state. The fork system call creates the child process in the CREATED state.)
-
- 
-
-
-  
-  
 
 ####  **Case 1 : The new process is in READY state**
 
-
-
-   7. Compute the physical address corresponding to the offset stored in KPTR field of the process table entry of the new process, and store this to SP.
+8) Compute the physical address corresponding to the offset stored in KPTR field of the process table entry of the new process, and store this to SP.
 
  
-
-
-
-![](../img/kernel_mode_timer_step2.i.a.png)
-
-
-
-```
-
-						
+<div style="padding: 1em;border: 1px solid var(--md-code-fg-color);">
+<img src="http://exposnitc.github.io/img/kernel_mode_timer_step2.i.a.png">
+<pre><code>			
 ...
 						
 MOV R4, User Area Page Number*512
@@ -230,45 +125,24 @@ MOV SP, R4
 	   stack pointer in SP
 
 ...
-					
-	
-					
-```
+</code></pre>
+<b>Fig.2.a - Setting the kernel SP from the offset value in the KPTR field of the process table.</b>
+</div>
 
-
-
-
-
-  
-**Fig.2.a - Setting the kernel SP from the offset value in the KPTR field of the process table.** 
-
-
-
-
-
+9) return instruction is executed and control goes back to the Interrupt routine or kernel module that called the scheduler.
  
-    8. return instruction is executed and control goes back to the Interrupt routine or kernel module that called the scheduler.
  
-  
-  
 
 ####  **Case 2 : The new process is in CREATED state**
 
 
 
-   7. Set SP to the address stored in the UPTR field of the process table of the new process.
-
- 
+8) Set SP to the address stored in the UPTR field of the process table of the new process.
 
 
-
-![](../img/user_mode_timer_step2c.png)
-
-
-
-```
-
-						
+<div style="padding: 1em;border: 1px solid var(--md-code-fg-color);">
+<img src="http://exposnitc.github.io/img/user_mode_timer_step2c.png">
+<pre><code>
 ...
 						
 MOV SP, UPTR
@@ -276,30 +150,17 @@ MOV SP, UPTR
 IRET
 
 ...
-					
-	
-					
-```
+</code></pre>
+<b>Fig.2.a - Setting the kernel SP from the offset value in the KPTR field of the process table.</b>
+</div>
 
 
-
-
-
-  
-**Fig.2.a - Setting the kernel SP from the offset value in the KPTR field of the process table.** 
-
-
-
-
-
- 
-    8. ireturn statement is executed. (In this case, the scheduler directly kicks off execution of the new process in
- user mode.)
+9) `ireturn` statement is executed. (In this case, the scheduler directly kicks off execution of the new process in user mode.)
   
   
 
-*`Note :` A process may invoke the scheduler for several reasons. As noted earlier as Case 1, one reason is that the time slice of the process is finished. Other possibilities (handled under Case 2) includes waiting for disk, terminal, semaphore, file etc. Before calling the scheduler a process must set the STATE field of the process table entry to indicate the correct reason 
-for invoking the scheduler. Note that the scheduler cannot set the STATE field as only the caller will know the cause.
+!!! note
+	A process may invoke the scheduler for several reasons. As noted earlier as Case 1, one reason is that the time slice of the process is finished. Other possibilities (handled under Case 2) includes waiting for disk, terminal, semaphore, file etc. Before calling the scheduler a process must set the STATE field of the process table entry to indicate the correct reason for invoking the scheduler. Note that the scheduler cannot set the STATE field as only the caller will know the cause.
 
    
   
