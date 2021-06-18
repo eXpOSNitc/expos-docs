@@ -1,102 +1,53 @@
 ---
-title: 'Process Table'
+title: 'Process Table (Process Control Block)'
 original_url: 'http://eXpOSNitc.github.io/os_design-files/process_table.html'
+hide:
+    - navigation
 ---
-
-
-
-
-
-Process Table
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-
-
-
-
-
-
-Process Table (Process Control Block)
--------------------------------------
-
-
-  
-
-  
 
 The Process Table (PT) contains an entry for each [process](../os_spec-files/processmodel.html) present in the system. The entry is created when the process is created by a Fork system call. Each entry contains several fields that stores all the information pertaining to a single process. The maximum number of entries in PT (which is maximum number of processes allowed to exist at a single point of time in eXpOS) is MAX\_PROC\_NUM. In the current version of eXpOS, MAX\_PROC\_NUM = 16.
 
 
 Each entry in the Process Table has a constant size, defined by the PT\_ENTRY\_SIZE. In this version of eXpOS, PT\_ENTRY\_SIZE is set to 16 words. Any entry of PT has the following fields:
 
-
-
-
-|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Offset | 0 | 1 | 2 | 3 | 4 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 |
-| Field Name | TICK | PID | PPID | USERID | STATE | SWAP FLAG | INODE INDEX | INPUT BUFFER | MODE FLAG | USER AREA SWAP STATUS | USER AREA PAGE NUMBER | KERNEL STACK POINTER (KPTR) | USER STACK POINTER (UPTR) | PTBR | PTLR |
+<table class="table table-bordered" style="font-size:0.5rem">
+<tbody><tr>
+<td style="border: 1px solid black; background-color: #90EE90">Offset</td>
+<td >0</td>
+<td >1</td>
+<td >2</td>
+<td ><font color="red">3</font></td>
+<td >4</td>
+<td >6</td>                                                                
+<td >7</td>
+<td >8</td>
+<td >9</td>
+<td >10</td>
+<td >11</td>
+<td >12</td>
+<td >13</td>                      
+<td >14</td>
+<td >15</td>
+</tr>
+<tr>
+<td style="border: 1px solid black; background-color: #90EE90">Field Name</td>
+<td >TICK</td>
+<td >PID</td>
+<td >PPID</td>
+<td ><font color="red">USERID</font></td>
+<td >STATE</td>
+<td >SWAP FLAG</td>                                                                
+<td >INODE INDEX</td>
+<td >INPUT BUFFER</td>
+<td >MODE FLAG</td>
+<td >USER AREA SWAP STATUS</td>
+<td >USER AREA PAGE NUMBER</td>
+<td >KERNEL STACK POINTER (KPTR)</td>
+<td >USER STACK POINTER (UPTR)</td>                      
+<td >PTBR</td>
+<td >PTLR</td>
+</tr>
+</tbody></table>
 
 
 * **TICK** (1 word)- keeps track of how long the process was in memory/ swapped state. It has an initial value of 0 and is updated whenever the scheduler is called. TICK is reset to 0 when a process is swapped out or in.
@@ -156,7 +107,8 @@ The tuple can take the following values
 Process states and transitions can be viewed [here](state_diag.html).
 
 
-**Note:**  When a process terminates, the STATE field in it's process table entry is marked TERMINATED to indicate that the process table entry is free for allocation to new processes. 
+!!! note
+    When a process terminates, the STATE field in it's process table entry is marked TERMINATED to indicate that the process table entry is free for allocation to new processes. 
 
 
 
@@ -179,11 +131,14 @@ The Per-Process Page Table contains information regarding the physical location 
 Associated with each page table entry, typically **auxiliary information** is also stored. This is to store information like whether the process has write permission to the page, whether the page is dirty, referenced, valid etc. The exact details are architecture dependent. The eXpOS specification expects that the hardware provides support for reference, valid and write bits. (See page table structure of XSM [here](../arch_spec-files/paging_hardware.html)). 
 
 
-
-
-|  |  |  |  |
-| --- | --- | --- | --- |
-| PHYSICAL PAGE NUMBER | REFERENCE BIT | VALID BIT | WRITE BIT |
+<table class="table table-bordered">
+<tbody><tr>
+<td style="border: 1px solid black">PHYSICAL PAGE NUMBER</td>
+<td style="border: 1px solid black">REFERENCE BIT</td>
+<td style="border: 1px solid black">VALID BIT</td>
+<td style="border: 1px solid black">WRITE BIT</td>
+</tr>
+</tbody></table>
 
 
 * **Reference bit** - The reference bit for a page table entry is set to 0 by the OS when the page is loaded to memory and the page table initialized. When a page is accessed by a running process, the corresponding reference bit is set to 1 by the machine hardware. This bit is used by the page replacement algorithm of the OS.
@@ -197,30 +152,22 @@ Associated with each page table entry, typically **auxiliary information** is al
 
   
 
-**Note1:** In the XSM machine, the first three bits of the second word stores the reference bit, valid bit and the write permission bit. The fourth bit is the dirty bit which is not used by eXpOS.
+!!! note
+    In the XSM machine, the first three bits of the second word stores the reference bit, valid bit and the write permission bit. The fourth bit is the dirty bit which is not used by eXpOS.
 
 For more information, see [XSM.](../arch_spec.html)
 
 
-**Note2:** In the eXpOS implementation on the XSM architecture, if a page is not loaded to the memory, but is stored in a disk block, the disk block number corresponding to the physical page number is stored in the [disk map table](#disk_map_table) of the process. If memory access is made to a page whose page table entry is invalid, a *page fault* occurs and the machine transfers control to the Exception Handler routine, which is responsible for loading the correct physical page.
+!!! note
+    In the eXpOS implementation on the XSM architecture, if a page is not loaded to the memory, but is stored in a disk block, the disk block number corresponding to the physical page number is stored in the [disk map table](#disk_map_table) of the process. If memory access is made to a page whose page table entry is invalid, a *page fault* occurs and the machine transfers control to the Exception Handler routine, which is responsible for loading the correct physical page.
 
 
-**Note3:** The Page Table is present in page 58 of the memory (see [Memory Organisation](../os_implementation.html)), and the SPL constant [PAGE\_TABLE\_BASE](../support_tools-files/constants.html) points to the starting address of the table. PAGE\_TABLE\_BASE + PID*20 gives the begining address of page table entry corresponding to the process with identifier PID.
+!!! note
+    The Page Table is present in page 58 of the memory (see [Memory Organisation](../os_implementation.html)), and the SPL constant [PAGE\_TABLE\_BASE](../support_tools-files/constants.html) points to the starting address of the table. PAGE\_TABLE\_BASE + PID*20 gives the begining address of page table entry corresponding to the process with identifier PID.
 
 
 
-
-  
-
-
-  
-
-
-  
-
-  
-
-  
+ 
 
 #### PER-PROCESS DISK MAP TABLE
 
@@ -231,27 +178,31 @@ The per-process Disk Map Table stores the disk block number corresponding to the
 
 The entry in the disk map table entry has the following format: 
 
-
-
-
-|  |  |  |  |  |  |  |  |  |  |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Unused | Unused | Heap 1 in disk | Heap 2 in disk | Code 1 in disk | Code 2 in disk | Code 3 in disk | Code 4 in disk | Stack Page 1 in disk | Stack Page 2 in disk |
+<table class="table table-bordered">
+<tbody><tr>
+<td style="border: 1px solid black">Unused</td>
+<td style="border: 1px solid black">Unused</td>
+<td style="border: 1px solid black">Heap 1 in disk</td>
+<td style="border: 1px solid black">Heap 2 in disk</td>
+<td style="border: 1px solid black">Code 1 in disk</td>
+<td style="border: 1px solid black">Code 2 in disk</td>
+<td style="border: 1px solid black">Code 3 in disk</td>
+<td style="border: 1px solid black">Code 4 in disk</td>
+<td style="border: 1px solid black">Stack Page 1 in disk</td>
+<td style="border: 1px solid black">Stack Page 2 in disk</td>
+</tr>
+</tbody></table>
 
 
  If a memory page is not stored in a disk block, the corresponding entry must be set to -1. 
 
 
-**Note1:** The Disk Map Table is present in page 58 of the memory (see [Memory Organisation](../os_implementation.html)), and the SPL constant [DISK\_MAP\_TABLE](../support_tools-files/constants.html) points to the starting address of the table. DISK\_MAP\_TABLE + PID*10 gives the begining address of disk map table entry corresponding to the process with identifier PID.
+!!! note
+    The Disk Map Table is present in page 58 of the memory (see [Memory Organisation](../os_implementation.html)), and the SPL constant [DISK\_MAP\_TABLE](../support_tools-files/constants.html) points to the starting address of the table. DISK\_MAP\_TABLE + PID*10 gives the begining address of disk map table entry corresponding to the process with identifier PID.
 
 
 
 
-
-  
-
-
-  
 
 #### USER AREA
 
@@ -266,16 +217,7 @@ Hence in eXpOS, each process has a kernel stack in addition to user stack. We ma
 
   
 
-![User Area](../img/user_area_new.png)
-
-
-
-  
-
-
-  
-
-  
+![User Area](http://exposnitc.github.io/img/user_area_new.png)
 
   
 
@@ -288,12 +230,12 @@ The Per-Process Resource Table has 8 entries and each entry is of 2 words. **The
 
 The per-process resource table entry has the following format. 
 
-
-
-
-|  |  |
-| --- | --- |
-| Resource Identifier (1 word) | Index of Open File Table/ Semaphore Table entry (1 word) |
+<table class="table table-bordered">
+<tbody><tr>
+<td style="border: 1px solid black">Resource Identifier (1 word)</td>                  
+<td style="border: 1px solid black">Index of Open File Table/ Semaphore Table entry (1 word)</td>                      
+</tr>
+</tbody></table>
 
 
 File descriptor, returned by Open system call, is the index of the per-process resource table entry for that open instance of the file.
@@ -304,25 +246,19 @@ A free entry is denoted by -1 in the Resource Identifier field.
 
 
 
-
-  
-
-
-  
-
-  
-
   
 
 #### PER-PROCESS KERNEL STACK
 
 
 
-Control is tranferred from a user program to a kernel module on the occurence of one of the following events : 1.  The user program executes a system call
+Control is tranferred from a user program to a kernel module on the occurence of one of the following events : 
+
+1.  The user program executes a system call
 2.  When an interrupt/exception occurs.
 
 
- In either case, the kernel allocates a separate stack **for each process** (called the kernel stack of the process) which is different from the stack used by the process while executing in the user mode (called the user stack). Kernel modules use the space in the kernel stack for storing local data and do not use the user stack. This is to avoid user "hacks" into the kernel using the application's stack.
+In either case, the kernel allocates a separate stack **for each process** (called the kernel stack of the process) which is different from the stack used by the process while executing in the user mode (called the user stack). Kernel modules use the space in the kernel stack for storing local data and do not use the user stack. This is to avoid user "hacks" into the kernel using the application's stack.
 
 
 In the case of a system call, the application will store the parameters for the system call in its user stack. Upon entering the kernel module (system call), the kernel will extract these parameters from the application's stack and then change the stack pointer to its own stack before further execution. Since the application invokes the kernel module 
@@ -341,48 +277,3 @@ Here is a detailed tutorial on  [kernel stack management in system calls, interr
 
 
   
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
