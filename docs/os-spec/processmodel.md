@@ -1,127 +1,34 @@
 ---
-title: 'Process Model'
+title: 'The eXpOS Process Model'
 original_url: 'http://eXpOSNitc.github.io/os_spec-files/processmodel.html'
+hide:
+    - navigation
 ---
 
+A program under execution is called a process. A process is newly created when a process already in execution invokes the **Fork** system call. The first process, the INIT process, is created by the OS during bootstrap by loading a code stored in a pre-defined disk location to memory and setting up a process. The OS assigns a unique integer identifier called **process id** for each process when it is created. The process id does not change during the lifetime of the process. The process that creates the new process is called the **parent process** of the newly created process.
 
+* In Multiuser implemention of eXpOS, each process is assigned a userid corresponding to the currently logged in user.
 
 
-
-
-Process Model
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-Toggle navigation
-
-
-
-
-
-
-[eXpOSNITC](index.html)
-
-
-* [Home](../index.html)
-* [Documentation](../documentation.html)
-* [Roadmap](../Roadmap.html)
-* [FAQ](../faq.html)
-* About Us
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-  
-
-
-
-
-
-
-
-The eXpOS Process Model
------------------------
-
-
-  
-
-
-
-
-
-
-
-
-
-#### 
-The structure of Processes
-
-
-
-
+### The structure of Processes
 
 eXpOS associates a **virtual (memory) address space** for each process.
 
 
-
-
-|  |
-| --- |
-| Shared Library |
-| Heap |
-| Text/Code |
-| Stack |
+<table class="table table-bordered">
+<tbody><tr style="border: 2px solid black;">
+<td>Shared Library</td>
+</tr>
+<tr style="border: 2px solid black;">
+<td>Heap</td>
+</tr>
+<tr style="border: 2px solid black;">
+<td>Text/Code</td>
+</tr>
+<tr style="border: 2px solid black;">
+<td>Stack</td>
+</tr>
+</tbody></table>
 
 
  The address space of a process is a contiguous sequence of memory addresses, starting from zero, accessible to a process. The maximum limit on the address space of a process is 5120 (10 pages). The eXpOS logically partitions the address space into four regions **library, heap, code and stack**. These regions are mapped into physical memory using hardware mechanisms like paging/segmentation.[(Mapping virtual to physical address in XSM)](../arch_spec-files/paging_hardware.html).
@@ -145,8 +52,7 @@ A process can get its process id using the **Getpid** system call. The pid of th
 
 
 
-#### 
-Operations on Processes
+### Operations on Processes
 
 
 
@@ -155,7 +61,7 @@ Operations on Processes
 The two most fundamental operations associated with process are **Fork and Exec**. The remaining operations are **Exit, Wait, Signal, Getpid and Getppid.**
 
 
-### Semantics of Exec operation:
+#### Semantics of Exec operation:
 
 
 1. The OS closes all files and semaphores opened by the process. A new address space is created replacing the existing one. ( what happens to the original address space is irrelevant to the application/system programmer. But it is important to know that any other process sharing code/heap/library regions with this process will not be affected. This is discussed in [Section 5](synchronization.html)). **The new process inherits the process id of the calling process.**
@@ -166,7 +72,7 @@ The two most fundamental operations associated with process are **Fork and Exec*
 When a process executes the **Fork** system call, the following sequence of events occur.
 
 
-### Semantics of Fork operation:
+#### Semantics of Fork operation:
 
 
 1. A new child process with a new process id and address space is created which is an exact replica of the original process with the same library, code,stack and heap regions. (The OS assigns a new process id for the child and returns this value to the parent as the return parameter of the fork system call.) The **heap, code and library regions of the parent are shared by the child.** This means, any modification of contents of these regions by one process during subsequent execution will change the other as well. Note that both processes are in concurrent execution subsequent to the fork operation. Stack is separate for the child and is not shared.
@@ -187,12 +93,7 @@ The **Exit** system call terminates a process after closing all files and semaph
 
 
 
-#### 
-Special Processes in eXpOS
-
-
-
-
+### Special Processes in eXpOS
 
 eXpOS specifies two special processes, the **idle** and the **init** process. These are stored in a predefined location in the disk and loaded to the memory by the bootstrap loader. The main purpose of idle process is to run as a background process in an infinite loop. This is demanded by the OS so that the scheduler will always have a process to schedule. The init process is the first process executed by the OS. The process identifiers for the idle and init processes are fixed as 0 and 1 respectively.
 
