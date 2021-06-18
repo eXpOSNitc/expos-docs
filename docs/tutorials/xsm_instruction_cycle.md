@@ -1,5 +1,6 @@
 ---
 title: XSM Instruction Execution Cycle
+original_url: http://exposnitc.github.io/Tutorials/xsm-instruction-cycle.html
 ---
 
 This tutorial will help you to understand the architectural features of the XSM machine
@@ -106,7 +107,7 @@ writing the OS bootstrap loader and storing it in block 0 in Stage 3 of the eXpO
 
 
 <figure>
-<img src="../img/architecture/boot.png" style="display:block;margin-left:auto;margin-right:auto">
+<img src="http://exposnitc.github.io/img/architecture/boot.png">
 </figure>
 
 
