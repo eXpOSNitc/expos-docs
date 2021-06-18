@@ -69,6 +69,7 @@ details.code-accordion {
     font-size: 0.6rem;
     border-left: none;
     background: inherit;
+    box-shadow: none;
     padding: 0;
 }
 details.code-accordion summary {
