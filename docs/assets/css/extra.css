@@ -61,3 +61,25 @@
     padding: 1em;   
     border: 1px solid var(--md-code-fg-color);
 }
+
+
+/* For the accordions inside code */
+
+details.code-accordion {
+    font-size: 0.6rem;
+    border-left: none;
+    background: inherit;
+    padding: 0;
+}
+details.code-accordion summary {
+    border-left: 0;
+    background-color: rgb(223 223 223);
+    margin:0;
+}
+
+details.code-accordion >summary::before {
+    background-color: rgb(43, 155, 70);
+    -webkit-mask-image: none;
+    mask-image: none;
+    display: none;
+}
