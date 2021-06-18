@@ -1,7 +1,6 @@
 ---
 title: eXpOS File system and Implementation Tutorial
-extra:
-    original_url: asdf
+original_url: http://eXpOSNitc.github.io/Tutorials/filesystem_implementation.html
 ---
 
 !!! note "Prerequisites"
@@ -113,14 +112,11 @@ Here we will be concerned only about the case when the entry corresponds to an o
 
 <p>As an example, consider the following scenario. Let process B be a child of process A. Assume that an open instance of a file by name <i>myfile.dat</i> be shared by A and B. Suppose the inode index of <i>myfile.dat</i> is 5. Assume that the open file table index for the open instance is - say 2. The following figure shows the various table entries for the open instance.</p><br>
 
-<figure style="text-align: center;">
-                           <img src="img/file_system.png" style="display:block;margin-left:auto;margin-right:auto" >
-                           <br>
-                           <figcaption style="font-size: 16px">File data structures entries in the above scenario</figcaption>
-                           </figure>
+<figure>
+<img src="http://exposnitc.github.io/Tutorials/img/file_system.png">
+<figcaption>File data structures entries in the above scenario</figcaption>
+</figure>
 
-                           <br>
-<br>
 
 <p>In addition to the above data structures, the OS maintains the following global data structures:</p>
 

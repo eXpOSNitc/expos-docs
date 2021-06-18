@@ -5,6 +5,8 @@ hide:
     - navigation
 ---
 
+![](http://exposnitc.github.io/img/architecture/machine_organisation_new.png)
+
 ### Processor
 
 The processor consists of a set of **registers** and **ports** along with the hardware for performing control and arithmetic/logic operations, paging etc. Each register/port can store a string.
@@ -180,7 +182,7 @@ Note that the interrupt vector table is hard-coded in the ROM code of the XSM si
 
   
 
-![](../img/architecture/boot.png)
+![](https://exposnitc.github.io/img/architecture/boot.png)
   
 
   
