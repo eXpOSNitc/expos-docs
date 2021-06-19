@@ -1,5 +1,6 @@
 ---
 title: "ExpL Specification"
+original_url: https://exposnitc.github.io/support_tools-files/expl.html
 ---
 
 ExpL is a simple programming language designed specifically for instructional purposes. Application programs for eXpOS may be written in ExpL.

@@ -1,5 +1,6 @@
 ---
 title: XSM Interrupts and Exception Handling
+original_url: https://exposnitc.github.io/Tutorials/xsm_interrupts_tutorial.html
 ---
 
 We have seen that an application program can transfer control to a privileged mode
