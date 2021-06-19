@@ -113,7 +113,7 @@ Here we will be concerned only about the case when the entry corresponds to an o
 <p>As an example, consider the following scenario. Let process B be a child of process A. Assume that an open instance of a file by name <i>myfile.dat</i> be shared by A and B. Suppose the inode index of <i>myfile.dat</i> is 5. Assume that the open file table index for the open instance is - say 2. The following figure shows the various table entries for the open instance.</p><br>
 
 <figure>
-<img src="http://exposnitc.github.io/Tutorials/img/file_system.png">
+<img src="../assets/img/tutorials/file_system.png">
 <figcaption>File data structures entries in the above scenario</figcaption>
 </figure>
 
