@@ -1,5 +1,6 @@
 ---
 title: eXpOS Process Management Implementation Tutorial
+original_url: http://eXpOSNitc.github.io/Tutorials/process_management_implementation.html
 ---
 
 !!! note "Prerequisites"
@@ -52,11 +53,10 @@ The OS expects that the application program logically divides the 10 page logica
 
 The ​<i>Exec</i> system call uses the ​<i>DiskLoad</i> function of the ​<a href="../os_modules/Module_4.html" target="_blank">Device Manager Module</a>​ to load the contents of the executable file specified into logical pages 4,5,6 and 7. (That is, the disk blocks will be loaded to the physical pages corresponding to these logical pages). Logical pages 0 and 1 are mapped to the eXpOS ​<a href="../abi.html" target="_blank">run time library​</a>. The OS pre-loads the library into memory pages 63 and 64 at boot time. The ​<i>Exec</i> system call sets the page table entries for the logical pages 0 and 1 of each process to physical pages 63 and 64. Pages are allocated using the <i>GetFreePage</i>​ function of the ​Memory Manager Module​ for stack and heap regions of memory during program loading.
 
-<figure style="text-align: center;">
-                           <img src="../img/roadmap/exec3.png" style="display:block;margin-left:auto;margin-right:auto" >
-                           <br>
-                           <figcaption style="font-size: 16px">Control flow diagram for <i>Exec</i> system call</figcaption>
-                           </figure>
+<figure>
+    <img src="http://exposnitc.github.io/img/roadmap/exec3.png">
+    <figcaption>Control flow diagram for <i>Exec</i> system call</figcaption>
+</figure>
 
 In actual implementation, code and heap pages may not be allocated at the time of program loading, but may be allocated dynamically through a ​<b>lazy strategy on demand</b>. This makes use of the ​<a href="../os_design-files/exe_handler.html" target="_blank">exception handling mechanism​</a> provided by the machine, and will be introduced in the road-map at appropriate stages. For simplicity of exposition, we assume here that all pages are allocated at load time.
 
@@ -100,12 +100,10 @@ A newly created process (called the ​<i>child</i> process in OS jargon) inheri
 After initializing process meta-data in child’s process table and setting up the address space of the child, <b><i>Fork</i> sets the state of the child process as CREATED</b>​.
 
 After completing the work, ​<i>Fork</i> returns to the parent and the parent process continues execution immediately. The OS scheduler will put the child to execution in due course of round robin scheduling.
-
-<figure style="text-align: center;">
-                           <img src="../img/roadmap/fork.png" style="display:block;margin-left:auto;margin-right:auto" >
-                           <br>
-                           <figcaption style="font-size: 16px">Control flow diagram for <i>Fork</i> system call</figcaption>
-                           </figure>
+<figure>
+    <img src="http://exposnitc.github.io/img/roadmap/fork.png">
+    <figcaption>Control flow diagram for <i>Fork</i> system call</figcaption>
+</figure>
 
                            
 

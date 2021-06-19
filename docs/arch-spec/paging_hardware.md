@@ -79,18 +79,18 @@ Assume the per-process page table is as shown below:
 ##### Example 1
 
 Given a logical address of 3532, the translation occurs as follows:
+```
+Logical page number = index of page table entry   /* index starts from 0 */
+                    = 3532/512 = 6
 
-Logical page number = index of page table entry   /\* index starts from 0 \*/
+Location of page table entry = PTBR + 2 * 6
 
-\= 3532/512 = 6
-
-Location of page table entry = PTBR + 2 \* 6
-
-Physical Page Number = \[PTBR + 2 \* 6 \] = first word of the 7th entry in page table = 48
+Physical Page Number = [PTBR + 2 * 6 ] = first word of the 7th entry in page table = 48
 
 Offset = 3532%512 = 460
 
-Physical Address = 48 \* 512 + 460 = 25036
+Physical Address = 48 * 512 + 460 = 25036
+```
 
 ##### Example 2
 
