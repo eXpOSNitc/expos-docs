@@ -73,31 +73,31 @@ nav:
     - Documentation: documentation.md
     - Operating System:
       - Specification: os-spec/index.md
-      - Design: os_design/index.md
-      - Implementation: os_implementation.md
+      - Design: os-design/index.md
+      - Implementation: os-implementation.md
     - Architecture:
       - Specification: 
         - XSM Architecture Specifcation: arch-spec/index.md
-        - Virtual Machine Model: virtual_machine_spec.md
-        - Machine Organisation: "arch-spec/machine_organization.md"
+        - Virtual Machine Model: virtual-machine-spec.md
+        - Machine Organisation: "arch-spec/machine-organization.md"
       - Modules:
         - Modules: "modules/index.md"
-        - Module 0: "modules/module_00.md"
-        - Module 1: "modules/module_01.md"
-        - Module 2: "modules/module_02.md"
-        - Module 3: "modules/module_03.md"
-        - Module 4: "modules/module_04.md"
-        - Module 5: "modules/module_05.md"
-        - Module 6: "modules/module_06.md"
-        - Module 7: "modules/module_07.md"
-        - Module 8: "modules/module_08.md"
+        - Module 0: "modules/module-00.md"
+        - Module 1: "modules/module-01.md"
+        - Module 2: "modules/module-02.md"
+        - Module 3: "modules/module-03.md"
+        - Module 4: "modules/module-04.md"
+        - Module 5: "modules/module-05.md"
+        - Module 6: "modules/module-06.md"
+        - Module 7: "modules/module-07.md"
+        - Module 8: "modules/module-08.md"
       - Tutorials:
-        - MultiUser Implementation: "tutorials/multiuser_implementation.md"
-        - FileSystem Implementation: "tutorials/filesystem_implementation.md"
-        - Process Management Implementation: "tutorials/process_management_implementation.md"
-        - XSM Instruction Cycle: "tutorials/xsm_instruction_cycle.md"
-        - XSM Interrupts tutorial: "tutorials/xsm_interrupts_tutorial.md"
-        - XSM Unprivileged tutorial: tutorials/xsm_unprivileged_tutorial.md
+        - MultiUser Implementation: "tutorials/multiuser-implementation.md"
+        - FileSystem Implementation: "tutorials/filesystem-implementation.md"
+        - Process Management Implementation: "tutorials/process-management-implementation.md"
+        - XSM Instruction Cycle: "tutorials/xsm-instruction-cycle.md"
+        - XSM Interrupts tutorial: "tutorials/xsm-interrupts-tutorial.md"
+        - XSM Unprivileged tutorial: tutorials/xsm-unprivileged-tutorial.md
       - Support Tools:
         - Setting up: support-tools/setting-up.md
         - XFS Interface: support-tools/xfs-interface.md
@@ -106,44 +106,44 @@ nav:
         - XSM Simulator: support-tools/xsm-simulator.md
       - Application Interface:
         - Application Binary Interface (ABI): abi.md
-        - Low Level System Call Interface: os_design/sw_interface.md
+        - Low Level System Call Interface: os-design/sw-interface.md
         - High Level Library Interface: os-spec/dynamicmemoryroutines.md
         - Low Level Library Interface: abi.md
     - Others:
-      - Test Programs: test_programs/index.md
+      - Test Programs: test-programs/index.md
   - Roadmap:
     - Roadmap: roadmap/index.md
     - Preparatory Stages:
-      - Stage 1: roadmap/stage_01.md
-      - Stage 2: roadmap/stage_02.md
-      - Stage 3: roadmap/stage_03.md
-      - Stage 4: roadmap/stage_04.md
-      - Stage 5: roadmap/stage_05.md
-      - Stage 6: roadmap/stage_06.md
-      - Stage 7: roadmap/stage_07.md
-      - Stage 8: roadmap/stage_08.md
-      - Stage 9: roadmap/stage_09.md
-      - Stage 10: roadmap/stage_10.md
-      - Stage 11: roadmap/stage_11.md
-      - Stage 12: roadmap/stage_12.md
+      - Stage 1: roadmap/stage-01.md
+      - Stage 2: roadmap/stage-02.md
+      - Stage 3: roadmap/stage-03.md
+      - Stage 4: roadmap/stage-04.md
+      - Stage 5: roadmap/stage-05.md
+      - Stage 6: roadmap/stage-06.md
+      - Stage 7: roadmap/stage-07.md
+      - Stage 8: roadmap/stage-08.md
+      - Stage 9: roadmap/stage-09.md
+      - Stage 10: roadmap/stage-10.md
+      - Stage 11: roadmap/stage-11.md
+      - Stage 12: roadmap/stage-12.md
     - Intermediate Stages:
-      - Stage 13: roadmap/stage_13.md
-      - Stage 14: roadmap/stage_14.md
-      - Stage 15: roadmap/stage_15.md
-      - Stage 16: roadmap/stage_16.md
-      - Stage 17: roadmap/stage_17.md
-      - Stage 18: roadmap/stage_18.md
-      - Stage 19: roadmap/stage_19.md
+      - Stage 13: roadmap/stage-13.md
+      - Stage 14: roadmap/stage-14.md
+      - Stage 15: roadmap/stage-15.md
+      - Stage 16: roadmap/stage-16.md
+      - Stage 17: roadmap/stage-17.md
+      - Stage 18: roadmap/stage-18.md
+      - Stage 19: roadmap/stage-19.md
     - Final Stages:
-      - Stage 20: roadmap/stage_20.md
-      - Stage 21: roadmap/stage_21.md
-      - Stage 22: roadmap/stage_22.md
-      - Stage 23: roadmap/stage_23.md
-      - Stage 24: roadmap/stage_24.md
-      - Stage 25: roadmap/stage_25.md
-      - Stage 26: roadmap/stage_26.md
-      - Stage 27: roadmap/stage_27.md
-      - Stage 28: roadmap/stage_28.md
+      - Stage 20: roadmap/stage-20.md
+      - Stage 21: roadmap/stage-21.md
+      - Stage 22: roadmap/stage-22.md
+      - Stage 23: roadmap/stage-23.md
+      - Stage 24: roadmap/stage-24.md
+      - Stage 25: roadmap/stage-25.md
+      - Stage 26: roadmap/stage-26.md
+      - Stage 27: roadmap/stage-27.md
+      - Stage 28: roadmap/stage-28.md
   - FAQ: faq.md
   - Student Feedback:
     - Student Feedback: feedback/index.md
