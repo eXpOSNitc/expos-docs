@@ -106,8 +106,8 @@ nav:
         - XSM Simulator: support-tools/xsm-simulator.md
       - Application Interface:
         - Application Binary Interface (ABI): abi.md
-        - Low Level System Call Interface: os-design/sw_interface.md
-        - High Level Library Interface: os-spec/dynamicmemoryrouties.md
+        - Low Level System Call Interface: os_design/sw_interface.md
+        - High Level Library Interface: os-spec/dynamicmemoryroutines.md
         - Low Level Library Interface: abi.md
     - Others:
       - Test Programs: test_programs/index.md
