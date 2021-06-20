@@ -44,7 +44,6 @@
 
 /* For tables */
 
-
 .table-bordered thead {
     background-color: var(--md-default-fg-color--light);
     color: var(--md-default-bg-color);
@@ -52,44 +51,40 @@
     padding: .9375em 1.25em;
     vertical-align: top;
 }
+
 .table-bordered {
     border: 1px solid var(--md-code-fg-color);
     border-collapse: collapse;
 }
 
-.table-bordered th, .table-bordered td {     
-    padding: 1em;   
+.table-bordered th, .table-bordered td {
+    padding: 1em;
     border: 1px solid var(--md-code-fg-color);
 }
-
 
 /* For the accordions inside code */
 
 details.code-accordion {
-    font-size: 0.6rem;
-    border-left: none;
-    background: inherit;
-    box-shadow: none;
-    padding: 0;
-}
-details.code-accordion summary {
-    border-left: 0;
-    background-color: rgb(223 223 223);
-    margin:0;
-    padding: 0.4rem;
+    all: unset;
+    white-space: pre-wrap;
+    margin: 0.6rem 0;
 }
 
-details.code-accordion >summary::before {
-    background-color: rgb(43, 155, 70);
-    -webkit-mask-image: none;
-    mask-image: none;
+details.code-accordion summary {
+    all: unset;
+    text-decoration: underline;
+    cursor: pointer;
+    white-space: pre-wrap;
+    color: var(--md-typeset-a-color);
+}
+
+details.code-accordion>summary::before,details.code-accordion>summary::after  {
     display: none;
 }
-
-
 /* Reports page */
+
 .report-row {
-    display:grid;
+    display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1em;
     width: 100%
