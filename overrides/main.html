@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 
 {% block announce %}
-    OLD URL: 
     {% if page and page.meta and page.meta.original_url %}
+        <b>Site is undergoing migration.</b>
+        Old URL:
         <a href="{{ page.meta.original_url }}">{{ page.meta.original_url }}</a>
     {% endif %}
 {% endblock %}

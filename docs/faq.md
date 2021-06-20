@@ -7,21 +7,20 @@ hide:
 ---
 
 ??? question "1. What is eXpOS? What is its purpose?"
-    <p>eXpOS stands for eXperimental Operating System. The <a href="os_spec.html" target="_blank">eXpOS
-    specification</a> describes a very simple multi-user multi-tasking operating system. </p>
-    <p>eXpOS is not intended to be used as a practical operating system. It is designed with the
+    eXpOS stands for eXperimental Operating System. The <a href="os_spec.html" target="_blank">eXpOS
+    specification</a> describes a very simple multi-user multi-tasking operating system.
+
+    eXpOS is not intended to be used as a practical operating system. It is designed with the
     following intentions:
-    <ol>
-    <li>To have a multi-tasking OS specification that can be comprehended by a junior undergraduate
+    
+    - To have a multi-tasking OS specification that can be comprehended by a junior undergraduate
     student in computer science who is undergoing a first course in Operating System such that
     he/she will be able to implement the OS in two or three months. This educational package comes
     with enough guidance and support tools as well as documentation to allow the student to achieve
-    this goal without the supervision of a specialist teacher.</li>
-    <li>The student will write the complete code for the OS from scratch. He/She will not be building
+    this goal without the supervision of a specialist teacher.
+    - The student will write the complete code for the OS from scratch. He/She will not be building
     the OS on top of a given code base. The only programming support provided will be a compiler
-    for a programming language (called SPL) in which the OS kernel will be written. </li>
-    </ol>
-    </p>
+    for a programming language (called SPL) in which the OS kernel will be written.
 
 
 ??? question "2. Who will benefit by implementing eXpOS?"
@@ -59,83 +58,79 @@ hide:
 
 
 ??? question "5. Who must not be spending time on eXpOS?"
-    <p>People who want to learn about operating systems, but who belong to the following category are not
-    advised to proceed with eXpOS:</p>
-    <ol>
-    <li>You are a confident programmer comfortable with reading and understanding professionally
+    People who want to learn about operating systems, but who belong to the following category are not
+    advised to proceed with eXpOS:
+    
+    - You are a confident programmer comfortable with reading and understanding professionally
     written code – like the source code of linux. In this case, more sophisticated packages like <a
     href="http://minix3.org/">Minix</a> allow you to do real hard stuff. However, this is not for
-    novices. </li>
-    <li>You are not an expert; you want to try out the things listed in FAQ 2, but you do not want to
+    novices.
+    - You are not an expert; you want to try out the things listed in FAQ 2, but you do not want to
     do dirty work at a low level. (Although you can avoid assembly language programming in the eXpOS
     project, you still will have to get into quite a bit of “low level” architectural details). We
     suggest you to look for alternatives like <a href="https://en.wikipedia.org/wiki/Not_Another_Completely_Heuristic_Operating_System"
-    target="_blank">NACHOS</a>. </li>
-    </ol>
-
+    target="_blank">NACHOS</a>.
 
 ??? question "6. Can eXpOS be actually be used in a real application?"
     Please see FAQ 2.
 
 
 ??? question "7. What are the important OS concepts I miss out when working with eXpOS?"
-    <p>What you learn is very little compared to what is needed to become an OS expert. So, listing out
-    everything is impossible. But here are some important misses: </p>
-    <ol>
-    <li>The XSM machine allows you to store a character string in a memory word. No real machine
+    What you learn is very little compared to what is needed to become an OS expert. So, listing out
+    everything is impossible. But here are some important misses: 
+    
+    - The XSM machine allows you to store a character string in a memory word. No real machine
     architecture permits you to do such stuff. This is made possible just because XSM is a software
     simulated. However, XSM makes your data manipulation job much simpler without getting bogged down
     by details of data formatting. It is in principle possible to implement eXpOS on “more real”
     machines like <a href="http://en.wikipedia.org/wiki/MIPS_instruction_set" target="_blank">MIPS</a>.
-    However, this would involve considerably more time and effort. </li>
-    <li>The project involves very little work involving input-ouput, device interfacing, security or
+    However, this would involve considerably more time and effort.
+    - The project involves very little work involving input-ouput, device interfacing, security or
     networking. Moreover the file system and multi-user support are very primitive. The methods
     studied won't scale up when there is <a href="https://en.wikipedia.org/wiki/Computer_multitasking#Preemptive_multitasking"
-    target="_blank"> pre-emptive multitasking </a>. </li>
-    </ol>
+    target="_blank"> pre-emptive multitasking </a>.
 
 
 ??? question "8. What are the system requirements for working on the eXpOS package?"
-    <p>We expect you to have a Linux/Unix Machine with Lex/Flex and Yacc/Bison software packages
+    We expect you to have a Linux/Unix Machine with Lex/Flex and Yacc/Bison software packages
     installed. (For Flex/Bison installation on your Linux system, see <a href="http://en.kioskea.net/faq/30635-how-to-install-flex-and-bison-under-ubuntu"
     target="_blank">link</a>). Once you have these, you can download the eXpOS package by following
-    instructions at <a href="./support_tools-files/setting-up.html" target="_blank"> Setting Up</a>.</p>
+    instructions at <a href="./support_tools-files/setting-up.html" target="_blank"> Setting Up</a>.
 
 
 ??? question "9. What are the contents of the eXpOS package?"
-    <p>The eXpOS package available <a href="./support_tools-files/setting-up.html" target="_blank">here</a>
-    comes with the following: </p>
-    <ol>
-    <li>A simulator for the <a href="arch_spec.html" target="_blank">Experimental String Machine (XSM)</a>
+    The eXpOS package available <a href="./support_tools-files/setting-up.html" target="_blank">here</a>
+    comes with the following:
+    
+    - A simulator for the <a href="arch_spec.html" target="_blank">Experimental String Machine (XSM)</a>
     on which you implement eXpOS. The machine consists of a CPU, Memory and a disk and a small
-    Input-Ouput subsystem.</li>
-    <li>A compiler (into the XSM machine) for the <a href="support_tools-files/spl.html" target="_blank">System
+    Input-Ouput subsystem.
+    - A compiler (into the XSM machine) for the <a href="support_tools-files/spl.html" target="_blank">System
     Programmer's Language (SPL)</a> using which you will be writing all your code for implementing
     eXpOS. SPL is a simple programming language which essentially is an extended assembler for the
-    XSM machine, specifically designed for the eXpOS package.</li>
-    <li>A compiler (into the XSM machine) for the <a href="support_tools-files/expl.html" target="_blank">Experimental
+    XSM machine, specifically designed for the eXpOS package.
+    - A compiler (into the XSM machine) for the <a href="support_tools-files/expl.html" target="_blank">Experimental
     String Language (ExpL)</a>. This language is used for writing application programs that can run
     on top of eXpOS. You will be using this language for writing some of the user level programs of
     the OS including the shell. Test programs that are used to test your OS will also be written in
-    ExpL.</li>
-    <li>An interface tool called <a href="support_tools-files/xfs-interface.html" target="_blank">XFS-interface</a>
+    ExpL.
+    - An interface tool called <a href="support_tools-files/xfs-interface.html" target="_blank">XFS-interface</a>
     that allows you to transfer data files and executable programs from your Unix/Linux system into
-    the hard disk of the XSM machine.</li>
-    <li>You also download the source code of all the above tools and their formal specification
-    documents, the sample test programs testing your OS, some help etc. </li>
-    </ol>
-
+    the hard disk of the XSM machine.
+    - You also download the source code of all the above tools and their formal specification
+    documents, the sample test programs testing your OS, some help etc.
 
 ??? question "10. I have downloaded the eXpOS package. How can I get started with the work?"
-    <p>The best way is to follow the eXpOS roadmap. It is a journey taken one simple step at a time. You
+    The best way is to follow the eXpOS roadmap. It is a journey taken one simple step at a time. You
     will be provided with links to learn the concepts on a “learn when needed” way. Just go ahead
-    following this <a href="Roadmap.html" target="_blank">link</a>.</p>
+    following this <a href="Roadmap.html" target="_blank">link</a>.
 
 
 ??? question "11. What differenciates eXpOS from other educational packages like NACHOS?"
-    <p>It is difficult to answer this question for all similar packages available elsewhere, but here is
-    a comparison with NACHOS. </p>
-    <p>NACHOS learning system asks you to implement OS software that allows application programs in the
+    It is difficult to answer this question for all similar packages available elsewhere, but here is
+    a comparison with NACHOS. 
+
+    NACHOS learning system asks you to implement OS software that allows application programs in the
     noff executable format, running on a the software simulation of a MIPS machine, to invoke system
     calls. However, the OS code you write really doesn't run on the MIPS machine! Your code is actually
     C code running on your Linux/Unix machine. When an application program invokes an OS system call,
@@ -144,25 +139,29 @@ hide:
     the calling application program invoking the system call. Since the MIPS machine is simulated, your
     code has access to its memory, registers etc. Thus you can implement the system call, put return
     values in appropriate memory locations on the simulated MIPS machine and transfer control back to
-    the calling program. </p>
-    <p>In eXpOS, the OS and the application programs run in the same machine as is the case in real
+    the calling program.
+
+    In eXpOS, the OS and the application programs run in the same machine as is the case in real
     systems. The compromise made in achieving this goal was to make the machine “unreal” and the OS
-    simple enough so that additional complexity is manageable for a short term project. </p>
+    simple enough so that additional complexity is manageable for a short term project.
 
 
 ??? question "12. What is the difference between eXpOS and XOS?"
-    <p><a href="http://xosnitc.github.io/" target="_blank">XOS</a> is an earlier version of this project.
-    XOS did not support blocking system calls.</p>
-    <p> This means that a process will never do a context switch while it is running in the kernel mode.
+    <a href="http://xosnitc.github.io/" target="_blank">XOS</a> is an earlier version of this project.
+    XOS did not support blocking system calls.
+
+    This means that a process will never do a context switch while it is running in the kernel mode.
     However eXpOS, system calls may block in the kernel mode and other processes could be scheduled.
-    The version of XSM provided with eXpOS has the necessary hardware support for doing this.</p>
-    <p> The addition of this single feature makes the eXpOS substantially more complex than XOS. This is
+    The version of XSM provided with eXpOS has the necessary hardware support for doing this.
+    
+    The addition of this single feature makes the eXpOS substantially more complex than XOS. This is
     because a blocked process might have made partial updates to some OS data structures before
     blocking and a newly scheduled process, while executing in the kernel mode, must be careful not to
-    modify these data structures and leave the OS in an inconsistent state. </p>
-    <p> Apart from the above feature, eXpOS adds support for semaphores, shared memory, file locking etc.
+    modify these data structures and leave the OS in an inconsistent state.
+    
+    Apart from the above feature, eXpOS adds support for semaphores, shared memory, file locking etc.
     There is also limited multi-user support. However, the additional complexity introduced by these
-    features is minor. </p>
+    features is minor.
 
 
 ??? question "13. How do I write OS code and load the OS in the eXpOS system?"
