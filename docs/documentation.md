@@ -1,8 +1,6 @@
 ---
 original_url: https://exposnitc.github.io/documentation.html
 ---
-Add contents of [Documentation](https://exposnitc.github.io/documentation.html){target=_blank}.
-
 
 ### ARCHITECTURE
 eXpOS is basically built upon the XSM architecture. Architecture includes the specifications for the machine organisation, paging and interrupt handling and also provides the machine level instruction set.
