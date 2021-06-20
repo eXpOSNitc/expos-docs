@@ -9,7 +9,7 @@ The Virtual Machine model defines the view of the machine to user mode programs.
 
 ### Virtual Machine Organisation
 
-The XSM virtual machine model defines the machine model provided by XSM to a program running in <b>user mode</b>. This model comprises of a restricted subset of the machine registers, a restricted instruction set and a restricted memory address space (called the <b>virtual/logical address space</b>). 
+The XSM virtual machine model defines the machine model provided by XSM to a program running in **user mode**. This model comprises of a restricted subset of the machine registers, a restricted instruction set and a restricted memory address space (called the **virtual/logical address space**).
 
 
 #### Registers
