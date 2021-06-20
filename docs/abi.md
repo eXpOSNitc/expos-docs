@@ -23,7 +23,7 @@ The eXpOS ABI defines the following:
 ###  XSM User Level Instruction Set
 XSM Instruction set describes the target language in which a compiler must generate an executable file. Instructions are classified into privileged and unprivileged instructions. Since application programs run in the user mode, they can make use of only unprivileged instructions.
 
-You can read more about the XSM user level instruction set [here](virtual_machine_spec.html).
+You can read more about the XSM user level instruction set [here](./virtual-machine-spec.md).
 
 ### Virtual Address Space Model
 
@@ -42,11 +42,11 @@ The (virtual) address space of any eXpOS process is logically divided into four 
 
 **Stack** is the space reserved for the runtime stack of the process. Parameters and local variables associated with functions in a program are allocated in the stack. In the XSM architecture, the stack grows upwards and the maximum stack size is X\_SSIZE. Global variables are normally allocated in the stack as the executable file format does not support a separate [Data region](http://en.wikipedia.org/wiki/Data_segment). The eXpOS implementation for the XSM architecture discussed here sets X\_SIZE to 1024 words.Thus the stack will occupy the region between memory address 4096 and 5119 in the address space of the process.
 
-A description of the user level address space provided by XSM is given [here](virtual_machine_spec.html).
+A description of the user level address space provided by XSM is given [here](./virtual-machine-spec.md).
 
 ### XEXE Executable File Format
 
-Executable files in eXpOS must be in the [XEXE format](../os_spec-files/eXpFS.html#xexe) as eXpOS executes only files of such format.
+Executable files in eXpOS must be in the [XEXE format](./os-spec/expfs.md) as eXpOS executes only files of such format.
 
 An XEXE executable file in eXpOS consists of two parts:
 
@@ -93,10 +93,10 @@ In summary, the eXpOS loader maps an executable file into its virtual address ac
 
 ### Low Level System Call Interface
 
-The **Low level system call interface** describes the conventions to be followed by application programs that invoke [eXpOS system calls](os_spec-files/systemcallinterface.html) on the XSM architecture. The interface describes the software interrupt instruction (trap) corresponding to each system call and the calling conventions for passing arguments and extracting return values of the system call through the application program's stack. This part is architecture dependent.
+The **Low level system call interface** describes the conventions to be followed by application programs that invoke [eXpOS system calls](./os-spec/systemcallinterface.md) on the XSM architecture. The interface describes the software interrupt instruction (trap) corresponding to each system call and the calling conventions for passing arguments and extracting return values of the system call through the application program's stack. This part is architecture dependent.
 
 !!! note
-    If a high level language like [ExpL](silcnitc.github.io) is used for writing application programs, then the application programs will be using the [high level library interface](os_spec-files/dynamicmemoryroutines.html) for invoking system calls. The ExpL compiler is responsible for generating assembly language code to translate the call to a corresponding library call using the low level library interface. The ExpL library which is pre-loaded into the system memory during eXpOS boot up contains assembly language code that redirects the library call to the corresponding eXpOS system call using the low level system call interface described here. If you write assembly language application programs as user programs, then you can use the low level system call interface directly bye-passing the library.
+    If a high level language like [ExpL](silcnitc.github.io) is used for writing application programs, then the application programs will be using the [high level library interface](./os-spec/dynamicmemoryroutines.md) for invoking system calls. The ExpL compiler is responsible for generating assembly language code to translate the call to a corresponding library call using the low level library interface. The ExpL library which is pre-loaded into the system memory during eXpOS boot up contains assembly language code that redirects the library call to the corresponding eXpOS system call using the low level system call interface described here. If you write assembly language application programs as user programs, then you can use the low level system call interface directly bye-passing the library.
 
 #### System Calls
 For an application program, there are two stages in executing a system call:
@@ -148,7 +148,7 @@ The machine code to the left pops the values from the stack. The system call num
 
 Associated with each system call, there is a system call number and interrupt routine number. The system call number is used to identify a system call. The interrupt routine number denotes the number of the interrupt routine which handles the system call. An interrupt routine may handle more than one system call.
 
-**Mapping of system calls to interrupt numbers and corresponding system call interface specification with details of arguments and return values of system calls are given in the [eXpOS Low Level System Call Interface](./os_design-files/Sw_interface.html) Documentation.**
+**Mapping of system calls to interrupt numbers and corresponding system call interface specification with details of arguments and return values of system calls are given in the [eXpOS Low Level System Call Interface](./os-os-design/sw-interface.md) Documentation.**
 
 
 ### Low Level Runtime Library Interface
@@ -161,7 +161,7 @@ The library provides a **uniform interface** through which an application progra
 
 The library routine is linked to **virtual address 0** of the address space of a process by the OS loader and requires four arguments (function code and three arguments to the system call / memory management routine) to be passed through the stack. The routine invokes the corresponding low level system call / memory management routine and returns to the user program the return value of the system call / memory management routine through the stack. The figure to the side shows the contents of the stack immediately before a call to this library routine.
 
-The invocation details for the system calls and the dynamic memory management routines using the library interface can be seen in the [**eXpOS High Level Library Interface**](../os_spec-files/dynamicmemoryroutines.html) documentation.
+The invocation details for the system calls and the dynamic memory management routines using the library interface can be seen in the [**eXpOS High Level Library Interface**](./os-spec/dynamicmemoryroutines.md) documentation.
 
 #### Invoking a library module
 <pre><code>
@@ -189,4 +189,4 @@ POP Rj           // Pop and discard the function code
 The machine code to the left pops the values from the stack. The function code and arguments were inputs to the library module and hence they may be discarded now. The return value which is stored in the stack by the system call is fetched and used by the user program by popping out to some register.
 
 !!! note 
-    If application programs are written in a high level language like ExpL, the [exposcall()](https://exposnitc.github.io/os_spec-files/dynamicmemoryroutines.html) function will be used to make system calls/invoke dynamic memory routines. The programmer does not have to worry about the library interface specified here because the ExpL compiler will automatically generate assembly code that translate the high level call to a low level call to the library using the above interface and retrieve return values from the call. eXpOS pre-loads the library into the memory at boot time. The library re-directs system call requests to the OS through the low level system call interface. Dynamic memory mangement functions are implemented as part of the library itself.
+    If application programs are written in a high level language like ExpL, the [exposcall()](./os-spec/dynamicmemoryroutines.md) function will be used to make system calls/invoke dynamic memory routines. The programmer does not have to worry about the library interface specified here because the ExpL compiler will automatically generate assembly code that translate the high level call to a low level call to the library using the above interface and retrieve return values from the call. eXpOS pre-loads the library into the memory at boot time. The library re-directs system call requests to the OS through the low level system call interface. Dynamic memory mangement functions are implemented as part of the library itself.
