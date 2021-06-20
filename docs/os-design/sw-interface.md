@@ -34,7 +34,7 @@ The system call interface is presented below.
 <td rowspan="2">1</td>
 <td rowspan="2">4</td>
 <td rowspan="2">File Name (String)</td>
-<td rowspan="2">Permission (Integer) <font color="red"> *</font>
+<td rowspan="2">Permission (Integer) <span style="color:red"> *</span>
 </td>
 <td rowspan="2">-</td>
 <td>0 - Success / File alredy exists
@@ -379,7 +379,7 @@ The system call interface is presented below.
 </tr>
 
 <tr>
-<td style="color:red">Test4 <font color="red">**</font></td>
+<td style="color:red">Test4 <span style="color:red">**</span></td>
 <td>100</td>
 <td>19</td>
 <td>-</td>
@@ -389,7 +389,7 @@ The system call interface is presented below.
 </tr>
 
 <tr>
-<td style="color:red">Test5 <font color="red">**</font></td>
+<td style="color:red">Test5 <span style="color:red">**</span></td>
 <td>101</td>
 <td>19</td>
 <td>-</td>
@@ -399,7 +399,7 @@ The system call interface is presented below.
 </tr>
 
 <tr>
-<td style="color:red">Test6 <font color="red">**</font></td>
+<td style="color:red">Test6 <span style="color:red">**</span></td>
 <td>102</td>
 <td>19</td>
 <td>-</td>
@@ -409,7 +409,7 @@ The system call interface is presented below.
 </tr>
 
 <tr>
-<td style="color:red">Test7 <font color="red">**</font></td>
+<td style="color:red">Test7 <span style="color:red">**</span></td>
 <td>103</td>
 <td>19</td>
 <td>-</td>

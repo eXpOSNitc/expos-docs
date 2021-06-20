@@ -40,7 +40,7 @@ Loop through the <a href="../os_design-files/mem_ds.html#buffer_table">Buffer Ta
 	If the buffer is dirty
 		Commit changes to the disk by calling the <b>disk_store()</b> function in the <a href="../os_modules/Module_4.html">Device Manager</a> module.
 
-Commit the inode table, root file, <font color="red">user table</font> and disk free list to the disk by calling the 
+Commit the inode table, root file, <span style="color:red">user table</span> and disk free list to the disk by calling the 
 <b>disk_store()</b> function in the <a href="../os_modules/Module_4.html">Device Manager</a> Module.
 
 Halt the system.

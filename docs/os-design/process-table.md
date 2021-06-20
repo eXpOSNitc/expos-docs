@@ -16,7 +16,7 @@ Each entry in the Process Table has a constant size, defined by the PT\_ENTRY\_S
 <td >0</td>
 <td >1</td>
 <td >2</td>
-<td ><font color="red">3</font></td>
+<td ><span style="color:red">3</span></td>
 <td >4</td>
 <td >6</td>                                                                
 <td >7</td>
@@ -34,7 +34,7 @@ Each entry in the Process Table has a constant size, defined by the PT\_ENTRY\_S
 <td >TICK</td>
 <td >PID</td>
 <td >PPID</td>
-<td ><font color="red">USERID</font></td>
+<td ><span style="color:red">USERID</span></td>
 <td >STATE</td>
 <td >SWAP FLAG</td>                                                                
 <td >INODE INDEX</td>

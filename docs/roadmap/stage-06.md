@@ -39,7 +39,7 @@ In the previous stages, you wrote and executed system programs in privileged (ke
 In this stage, you will write a user program in assembly code and execute it in unprivileged
 (user) mode.
 
-The first user program which is executed is called the INIT program<font color="red">*</font>.
+The first user program which is executed is called the INIT program <span style="color:red">*</span>.
 
 The eXpOS design stipulates that the INIT program must be stored in blocks 7 and 8 of the XSM
 disk. See<a href="os_implementation.html" target="_blank">Disk Organisation</a>.

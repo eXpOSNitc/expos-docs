@@ -24,8 +24,8 @@ The entry of an Inode table has the following format:
 <td>FILE TYPE</td>
 <td>FILE NAME</td>
 <td>FILE SIZE</td>
-<td><font color="red">USER ID</font></td>
-<td><font color="red">PERMISSION</font></td>
+<td><span style="color:red">USER ID</span></td>
+<td><span style="color:red">PERMISSION</span></td>
 <td>Unused (3 words)</td>
 <td>DATA BLOCK 1</td>
 <td>DATA BLOCK 2</td>
@@ -35,16 +35,16 @@ The entry of an Inode table has the following format:
 </tr>
 </tbody></table>
 
-- <b>FILE TYPE </b> (1 word) - specifies the type of the given file (<a href="../support_tools-files/constants.html">DATA</a>, <a href="../support_tools-files/constants.html">EXEC</a> or <a href="../support_tools-files/constants.html">ROOT</a>). More information about file types is given <a href="../os_spec-files/eXpFS.html" target="_blank">here</a>. 
-- <b>FILE NAME</b> (1 word) - Name of the file 
-- <b>FILE SIZE</b> (1 word) - Size of the file. Maximum size for File = MAX_FILE_SIZE = 2048 words 
-- <b><font color="red">USER ID</b> (1 word) - User Id of the owner of the file.</font> 
-- <b><font color="red">PERMISSION</b> (1 word) - Permission of the file; it can be <a href="../support_tools-files/constants.html">OPEN_ACCESS</a> or <a href="../support_tools-files/constants.html">EXCLUSIVE</a>.</font> 
-- <b>Unused</b> (3 words)                   
-- <b>DATA BLOCK 1 to 4</b> (4 words) - each DATA BLOCK column stores the block number of a data block of the file. If a file does not use a particular DATA BLOCK , it is set to -1.
-- <b>Unused</b> (4 words) 
+- **FILE TYPE** (1 word) - specifies the type of the given file ([DATA](../support_tools-files/constants.html), [EXEC](../support_tools-files/constants.html) or [ROOT](../support_tools-files/constants.html)). More information about file types is given [here](../os_spec-files/eXpFS.html).
+- **FILE NAME** (1 word) - Name of the file
+- **FILE SIZE** (1 word) - Size of the file. Maximum size for File = MAX\_FILE\_SIZE = 2048 words 
+- <span style="color:red">**USER ID** (1 word) - User Id of the owner of the file.</span>
+- <span style="color:red">**PERMISSION** (1 word) - Permission of the file; it can be [OPEN\_ACCESS](../support_tools-files/constants.html) or [EXCLUSIVE](../support_tools-files/constants.html).</span>
+- **Unused** (3 words)
+- **DATA BLOCK 1 to 4** (4 words) - each DATA BLOCK column stores the block number of a data block of the file. If a file does not use a particular DATA BLOCK , it is set to -1.
+- **Unused** (4 words)
     
-</ul>  
+  
 
 An unused entry is indicated by -1 in the FILE NAME field.
 
@@ -93,8 +93,8 @@ The entry of Root file has the following format:
 <td>FILE NAME</td>
 <td>FILE SIZE</td>
 <td>FILE TYPE</td>
-<td><font color="red">USER NAME</font></td>
-<td><font color="red">PERMISSION</font></td>
+<td><span style="color:red">USER NAME</span></td>
+<td><span style="color:red">PERMISSION</span></td>
 <td>Unused</td>
 </tr>
 </tbody></table>
