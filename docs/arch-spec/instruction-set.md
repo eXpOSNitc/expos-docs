@@ -14,7 +14,7 @@ Every instruction in XSM is 2 words long. The instructions provided by the XSM a
 
 ## Unprivileged Instructions
 
-XSM provides a set of unprivileged instructions, which are the only instructions available when the machine is executing in the user mode. The machine can execute unprivileged instructions in kernel mode also, however, the instruction semantics will be different as explained in [Paging hardware](paging_hardware.html). The unprivileged instructions are _Data Transfer Instructions_, _Arithmetic Instructions_, _Logical Instructions_, _Stack Instructions_, _Sub-routine instructions_, _Debug instructions_ and _Software interrupts_. Registers available in user mode are R0-R19, SP, BP and IP.
+XSM provides a set of unprivileged instructions, which are the only instructions available when the machine is executing in the user mode. The machine can execute unprivileged instructions in kernel mode also, however, the instruction semantics will be different as explained in [Paging hardware](./paging-hardware.md). The unprivileged instructions are _Data Transfer Instructions_, _Arithmetic Instructions_, _Logical Instructions_, _Stack Instructions_, _Sub-routine instructions_, _Debug instructions_ and _Software interrupts_. Registers available in user mode are R0-R19, SP, BP and IP.
 
 ### Data Transfer Instructions
 
@@ -42,7 +42,7 @@ _Semantics_ : Copy contents of the memory location LOC to the register Rj.
 For all the above instructions, Ri/Rj may be any register **except IP**.
 
 !!! note
-    Only registers R0-R19, SP and BP shall be used in code that executes in unpreviliged mode. An [exception](interrupts_exception_handling.html#exceptions) (illegal instruction) will be generated otherwise.
+    Only registers R0-R19, SP and BP shall be used in code that executes in unpreviliged mode. An [exception](./interrupts-exception-handling.md#exceptions) (illegal instruction) will be generated otherwise.
 
 ### Arithmetic Instructions
 
@@ -64,7 +64,7 @@ _Semantics_ : Increments/Decrements the value of register Ri by 1.
 For all the above instructions, Ri/Rj may be any register **except IP**.
 
 !!! note
-	Only registers R0-R19, SP and BP shall be used in code that executes in unpreviliged mode. An [exception](interrupts_exception_handling.html#exceptions) (illegal instruction) will be generated otherwise.
+	Only registers R0-R19, SP and BP shall be used in code that executes in unpreviliged mode. An [exception](./interrupts-exception-handling.md#exceptions) (illegal instruction) will be generated otherwise.
 
 ### [Logical Instructions]
 
@@ -79,7 +79,7 @@ _Semantics_ : Stores 1 in Ri if the value stored in Ri is less than/greater than
 For all the above instructions, Ri/Rj may be any register **except IP**.
 
 !!! note
-	Only registers R0-R19, SP and BP shall be used in code that executes in unpreviliged mode. An [exception](interrupts_exception_handling.html#exceptions) (illegal instruction) will be generated otherwise.
+	Only registers R0-R19, SP and BP shall be used in code that executes in unpreviliged mode. An [exception](./interrupts-exception-handling.md#exceptions) (illegal instruction) will be generated otherwise.
 
 ### [Branching Instructions]
 
@@ -101,7 +101,7 @@ _Semantics_ : Unconditional jump to target\_address.
 For all the above instructions, Ri/Rj may be any register **except IP**.
 
 !!! note
-	Only registers R0-R19, SP and BP shall be used in code that executes in unpreviliged mode. An [exception](interrupts_exception_handling.html#exceptions) (illegal instruction) will be generated otherwise.
+	Only registers R0-R19, SP and BP shall be used in code that executes in unpreviliged mode. An [exception](./interrupts-exception-handling.md#exceptions) (illegal instruction) will be generated otherwise.
 
 ### [Stack Instructions]
 
@@ -119,7 +119,7 @@ _Semantics_ : Copy contents of the location pointed to by SP into Ri and decreme
 For all the above instructions, Ri/Rj may be any register **except IP**.
 
 !!! note
-	Only registers R0-R19, SP and BP shall be used in code that executes in unpreviliged mode. An [exception](interrupts_exception_handling.html#exceptions) (illegal instruction) will be generated otherwise.
+	Only registers R0-R19, SP and BP shall be used in code that executes in unpreviliged mode. An [exception](./interrupts-exception-handling.md#exceptions) (illegal instruction) will be generated otherwise.
 
 ### [Subroutine Instructions]
 
@@ -133,7 +133,7 @@ _Semantics_ : Increments SP by 1, transfers IP + 2 to location pointed to by SP 
 For the CALL instruction, Ri/Rj may be any register **except IP**.
     
 !!! note
-	Only registers R0-R19, SP and BP shall be used in code that executes in unpreviliged mode. An [exception](interrupts_exception_handling.html#exceptions) (illegal instruction) will be generated otherwise.
+	Only registers R0-R19, SP and BP shall be used in code that executes in unpreviliged mode. An [exception](./interrupts-exception-handling.md#exceptions) (illegal instruction) will be generated otherwise.
     
   
 #### 2\. **RET**  
@@ -152,7 +152,7 @@ _Semantics_ : The machine when run in debug mode invokes the debugger when this 
 
 _Syntax_ : INT n  
 
-_Semantics_ : Generates an interrupt to the kernel with n (4 to 18) as a parameter. This involves a **change of mode from user to kernel mode**. It also disables the interrupts. The Stack Pointer is first incremented, the physical address of SP is calculated and the (virtual) address of the next instruction after the current value of IP is stored into that location (See [Address Translation](paging_hardware.html)). After this, the execution mode is switched to Kernel mode. **Note that, INT can be invoked only from the User Mode.** The IP value must contain a virtual address and hence, the value pushed into stack is a virtual address and not a physical address. Finally, the IP value is set according to the value of n as specified [here](machine_organisation.html).  
+_Semantics_ : Generates an interrupt to the kernel with n (4 to 18) as a parameter. This involves a **change of mode from user to kernel mode**. It also disables the interrupts. The Stack Pointer is first incremented, the physical address of SP is calculated and the (virtual) address of the next instruction after the current value of IP is stored into that location (See [Address Translation](./paging-hardware.md)). After this, the execution mode is switched to Kernel mode. **Note that, INT can be invoked only from the User Mode.** The IP value must contain a virtual address and hence, the value pushed into stack is a virtual address and not a physical address. Finally, the IP value is set according to the value of n as specified [here](./machine-organisation.md).  
     
 
 ### [NOP Instruction]
@@ -167,7 +167,7 @@ _Semantics_ : Instruction that does nothing.
 
 ## Privileged Instructions
 
-Privileged instructions can be executed only in the kernel mode (both priviliged instructions and unpriviliged instructions can be executed in the kernel mode). It should be noted that all the addresses in the kernel mode should be **physical addresses**, whereas the user mode uses **logical addresses**, with address translation done using the [Paging hardware](paging_hardware.html). Privileged Instructions are:
+Privileged instructions can be executed only in the kernel mode (both priviliged instructions and unpriviliged instructions can be executed in the kernel mode). It should be noted that all the addresses in the kernel mode should be **physical addresses**, whereas the user mode uses **logical addresses**, with address translation done using the [Paging hardware](./paging-hardware.md). Privileged Instructions are:
 
   
 
@@ -181,13 +181,13 @@ _Semantics_ : This instruction loads the disk block specified by blocknum to the
 
 _Syntax_ : LOAD pagenum blocknum
 
-_Semantics_ : This instruction initiates the transfer of the disk block specified by blocknum to the memory page specified by pagenum, using the disk controller. Blocknum and pagenum should be numbers or registers containing numbers. The machine proceeds to execute the next instruction without waiting for the completion of the block transfer. The disk controller raises the [disk interrupt](interrupts_exception_handling.html) when the transfer is completed.
+_Semantics_ : This instruction initiates the transfer of the disk block specified by blocknum to the memory page specified by pagenum, using the disk controller. Blocknum and pagenum should be numbers or registers containing numbers. The machine proceeds to execute the next instruction without waiting for the completion of the block transfer. The disk controller raises the [disk interrupt](./interrupts-exception-handling.md) when the transfer is completed.
 
 ### [STORE]
 
 _Syntax_ : STORE pagenum blocknum
 
-_Semantics_ : This instruction initiates the transfer of the memory page specified by pagenum to the disk block specified by blocknum, using the disk controller. Blocknum and pagenum should be numbers or registers containing numbers. The machine proceeds to execute the next instruction without waiting for the completion of the block transfer. The disk controller raises the [disk interrupt](interrupts_exception_handling.html) when the transfer is completed.
+_Semantics_ : This instruction initiates the transfer of the memory page specified by pagenum to the disk block specified by blocknum, using the disk controller. Blocknum and pagenum should be numbers or registers containing numbers. The machine proceeds to execute the next instruction without waiting for the completion of the block transfer. The disk controller raises the [disk interrupt](./interrupts-exception-handling.md) when the transfer is completed.
 
 ### [ENCRYPT]
 
@@ -221,7 +221,7 @@ _Semantics_ : Transfers the contents of register Rj to port Pi.
 
 _Syntax_ : IN  
 
-_Semantics_ : IN initiates reading a word from the standard console. The machine proceeds to the execution of the next instruction without waiting for the console read to complete. When a word is read from the console, the console controller stores the word to the port P0 (which is reserved for the console input) and raises the [console interrupt](interrupts_exception_handling.html).
+_Semantics_ : IN initiates reading a word from the standard console. The machine proceeds to the execution of the next instruction without waiting for the console read to complete. When a word is read from the console, the console controller stores the word to the port P0 (which is reserved for the console input) and raises the [console interrupt](./interrupts-exception-handling.md).
 
 ### [INI]
 
@@ -241,7 +241,7 @@ _Semantics_ : Transfers the contents of P1 to the standard output immediately.
 
 _Syntax_ : IRET
 
-_Semantics_ : This instruction is used to return control to a user mode program from an interrupt service routine/exception handler. This involves a change of mode from kernel to user mode. With the execution of the IRET instruction, interrupts are enabled. The address of the next instruction to be executed by the user program is popped from the stack and set to the IP Register, following which the Stack Pointer is decremented. Since the IP value must contain a virtual address while executing in User Mode, the value obtained from stack is treated as a virtual address and not a physical address (See [Address Translation](paging_hardware.html)). Note that the machine switches to user mode just before the execution of the IRET instruction. Thus the address pointed to by SP is treated as a virtual address and the machine translates this address into physical address using the [page translation scheme](paging_hardware.html), before popping the IP value.
+_Semantics_ : This instruction is used to return control to a user mode program from an interrupt service routine/exception handler. This involves a change of mode from kernel to user mode. With the execution of the IRET instruction, interrupts are enabled. The address of the next instruction to be executed by the user program is popped from the stack and set to the IP Register, following which the Stack Pointer is decremented. Since the IP value must contain a virtual address while executing in User Mode, the value obtained from stack is treated as a virtual address and not a physical address (See [Address Translation](./paging-hardware.md)). Note that the machine switches to user mode just before the execution of the IRET instruction. Thus the address pointed to by SP is treated as a virtual address and the machine translates this address into physical address using the [page translation scheme](./paging-hardware.md), before popping the IP value.
 
 ### [HALT]
 
@@ -255,7 +255,7 @@ _Semantics_ : This instruction causes the machine to halt immediately.
 ##  <span style="color:red">NEXSM Additional Privileged Instructions</span>
 
 !!! warning "Important Note"
-    These instructions are available only on [NEXSM](nexsm.html) (a two-core extension of XSM) machine. Additional Privileged Instructions in NEXSM are:
+    These instructions are available only on [NEXSM](./nexsm.md) (a two-core extension of XSM) machine. Additional Privileged Instructions in NEXSM are:
   
 
 ### TSL
