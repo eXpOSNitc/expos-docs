@@ -33,8 +33,7 @@ data, stack, heap etc.
 </figure>
 
 ### Interrupts
-
-<p>Software Interrupts (traps) are the mechanisms by which user mode programs can transfer control to the code that runs in the kernel mode. Software interrupt service routines typically contain the OS code for various system calls. Upon return from a software interrupt, execution resumes from the next instruction in the user mode program. A total of 15 software interrupts are available to a user mode program (Interrupt 4 - Interrupt 18).</p>
+Software Interrupts (traps) are the mechanisms by which user mode programs can transfer control to the code that runs in the kernel mode. Software interrupt service routines typically contain the OS code for various system calls. Upon return from a software interrupt, execution resumes from the next instruction in the user mode program. A total of 15 software interrupts are available to a user mode program (Interrupt 4 - Interrupt 18).
 
 ### Instruction Set
 Every instruction in XSM is two words long.  The unprivileged instructions are categorized into :

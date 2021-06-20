@@ -97,18 +97,7 @@ return value in the user stack.
 
 ##### Getpid and Getppid System Calls
 
-<p>
-<i>
-Getpid
-</i>
-and
-<i>
-Getppid
-</i>
-system calls returns the PID of the current process and the
-PID of the parent process of the current process respectively to the user program. Implement
-both these system calls in interrupt routine 11.
-</p>
+_Getpid_ and _Getppid_ system calls returns the PID of the current process and the PID of the parent process of the current process respectively to the user program. Implement both these system calls in interrupt routine 11.
 
 !!! note 
     The system calls implemented above are final and will not change later.
@@ -118,15 +107,7 @@ both these system calls in interrupt routine 11.
 
 #### Modifications to Exit Process Function (function number = 3, <a href="os_modules/Module_1.html" target="_blank">Process Manager Module</a>)
 
-Exit Process function is modified so that it wakes up all the processes waiting for the
-current process. Similarly, the children of the process are set as orphan processes by
-changing PPID field of child processes to -1. But when the Exit Process function is invoked
-from <i>Exec</i> system call, the process is actually not terminating as the new program is
-being overlayed in the same address space and is executed with the same PID.
-when Exit Process is invoked from <i>Exec</i> system call, it should not wake up the
-processes waiting for the current process and also should not set the children as orphan
-processes. Check the MODE FLAG in the process table of the current process to find out from
-which system call Exit Process function is invoked.
+Exit Process function is modified so that it wakes up all the processes waiting for the current process. Similarly, the children of the process are set as orphan processes by changing PPID field of child processes to -1. But when the Exit Process function is invoked from _Exec_ system call, the process is actually not terminating as the new program is being overlayed in the same address space and is executed with the same PID. when Exit Process is invoked from _Exec_ system call, it should not wake up the processes waiting for the current process and also should not set the children as orphan processes. Check the MODE FLAG in the process table of the current process to find out from which system call Exit Process function is invoked.
 
 If MODE FLAG field in the <a href="os_design-files/process_table.html" target="_blank">
 process table</a> has system call number not equal to 9 (<i>Exec</i>)
@@ -141,16 +122,9 @@ is PID of current process, then invalidate PPID field to -1.
 
 #### Shutdown system call
 
-To ensure graceful termination of the system we will write <i>Shutdown</i> system call with
-just a HALT instruction. <i>Shutdown</i> system call is implemented in interrupt routine 15.
-Create an xsm file with just the HALT instruction and load this file as interrupt routine 15.
-From this stage onwards, we will use a new version of Shell as our init program. This Shell
-version will invoke <i>Shutdown</i> system call to halt the system.
+To ensure graceful termination of the system we will write _Shutdown_ system call with just a HALT instruction. _Shutdown_ system call is implemented in interrupt routine 15. Create an xsm file with just the HALT instruction and load this file as interrupt routine 15. From this stage onwards, we will use a new version of Shell as our init program. This Shell version will invoke _Shutdown_ system call to halt the system.
 
-In later stages, when a file system is added to the OS, the file system data will be loaded
-to the memory and modified, while the OS is running. The <i>Shutdown</i> system call will be
-re-written so that it commits the changes to the file system data to the disk before the
-machine halts.
+In later stages, when a file system is added to the OS, the file system data will be loaded to the memory and modified, while the OS is running. The _Shutdown_ system call will be re-written so that it commits the changes to the file system data to the disk before the machine halts.
 
 #### Modifications to boot module
 Load interrupt routine 11 and interrupt routine 15 from disk to memory. See disk and memory

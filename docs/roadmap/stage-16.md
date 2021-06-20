@@ -78,9 +78,9 @@ transfer data present in the input buffer field of the process table into the wo
 (passed as an argument).
 
 <!--
-<p> When the data finally arrives, <b>the console interrupt handler must transfer the data (in port P0) into the input buffer of the process</b> in the <a href="os_design-files/process_table.html" target="_blank">process table</a>. Then the handler wakes up process waiting for the terminal.</p>
-
-<p>  Finally, the read system call, after waking up from the WAIT_TERMINAL state, returns the input data in the buffer and passes this data to the user program that invoked the system call.  </p> -->
+When the data finally arrives, <b>the console interrupt handler must transfer the data (in port P0) into the input buffer of the process</b> in the <a href="os_design-files/process_table.html" target="_blank">process table</a>. Then the handler wakes up process waiting for the terminal.
+Finally, the read system call, after waking up from the WAIT_TERMINAL state, returns the input data in the buffer and passes this data to the user program that invoked the system call. 
+-->
 Read about <a href="Tutorials/xsm_interrupts_tutorial.html" target="_blank"> XSM interrupts </a>
 before proceeding further.
 

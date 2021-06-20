@@ -60,11 +60,10 @@ Release Inode takes an inode index and PID of a process as arguments. Release In
 Implement Release Inode function using the detailed algorithm given in the resource manager module link above.
 
 <!--
-<li><b>Release Block (function number = 4, <a href="os_modules/Module_2.html" target="_blank">Memory manager module</a> )</b></li>
-<p>There is one subtility involved in deleting a file. If any of the disk blocks of the deleted file is in the buffer cache, and if the buffer page is marked dirty, the OS will write back the buffer page into the disk block when another disk block needs to be brought into the same buffer page.
-However, such write back is unnecessary if the file is deleted (and can even be catastrophic- why?). Hence, Delete system call must clear the dirty
-bit (in the buffer table) of all the buffered disk blocks of the file.
- </p>-->
+**Release Block (function number = 4, [Memory manager module](os_modules/Module_2.html) )**
+
+There is one subtility involved in deleting a file. If any of the disk blocks of the deleted file is in the buffer cache, and if the buffer page is marked dirty, the OS will write back the buffer page into the disk block when another disk block needs to be brought into the same buffer page. However, such write back is unnecessary if the file is deleted (and can even be catastrophic- why?). Hence, Delete system call must clear the dirty bit (in the buffer table) of all the buffered disk blocks of the file. 
+-->
 
 !!! note
     The implementation of **_Create_** , **_Delete_** , **Acquire Inode** and **Release Inode** are final.

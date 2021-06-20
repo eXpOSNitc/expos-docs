@@ -113,12 +113,12 @@ writing the OS bootstrap loader and storing it in block 0 in Stage 3 of the eXpO
 
 ### Privileged mode of execution
 
-<p>The privileged mode of execution is easy to comprehend.   All instructions in the XSM
+The privileged mode of execution is easy to comprehend.   All instructions in the XSM
 machine instruction set described <a href="../arch_spec-files/instruction_set.html" target="_blank">here</a> 
 will execute in the most natural way in the privileged mode of execution.
 Most of the instructions like data transfer instructions, arithmetic and logic instructions, and control flow 
 instructions (JMP etc.) are straightforward to understand from
-the specification and not described here.    </p>
+the specification and not described here.
 
 Instead, we will focus here on the execution semantics of the following four
 (slightly non-trivial) instructions when executed in privileged mode – PUSH, POP, CALL and RET.
@@ -138,9 +138,9 @@ MOV SP, 1000   //  SP register is loaded with value 1000.
 PUSH R0    //  SP is set to 1001 and contents of R0 is copied to memory address 1001.
 ```
 
-<p>The POP instruction is a reverse operation to PUSH.
+The POP instruction is a reverse operation to PUSH.
 The contents of the memory address pointed to by SP will be retrieved to a register specified,
-and SP is decremented. </p>
+and SP is decremented.
 
 The CALL instruction results in the following:
 
