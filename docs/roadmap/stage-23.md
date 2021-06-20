@@ -6,7 +6,7 @@ title: 'Stage 23 : File Creation and Deletion (6 Hours)'
     - Familiarize with eXpOS file system and implemtation.
     - Add support for file creation and deletion to the OS by implementing Create and Delete system calls
 
-!!! note "Pre-requisite Reading"
+!!! abstract "Pre-requisite Reading"
     - It is **absolutely necessary** to read and understand **[eXpOS FILE SYSTEM and Implementation Tutorial](Tutorials/filesystem_implementation.html)** documentation.
     - Description of data structures- [Inode Table](os_design-files/disk_ds.html#inode_table) , [Root file](os_design-files/disk_ds.html#root_file) , [File(inode) status table](os_design-files/mem_ds.html#file_lock_status_table) and [buffer table](os_design-files/mem_ds.html#buffer_table) .
 

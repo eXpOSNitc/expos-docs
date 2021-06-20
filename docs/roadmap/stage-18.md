@@ -6,7 +6,7 @@ title: 'Stage 18 : Disk Interrupt Handler (6 Hours)'
     - Familiarize with disk interrupt handling in XSM.
     - Modify the Exec system call to handle disk interrupt.
 
-!!! note "Pre-requisite Reading"
+!!! abstract "Pre-requisite Reading"
     - Read and understand the <a href="Tutorials/xsm_interrupts_tutorial.html#disk_and_console_interrupts" target="_blank">XSM tutorial on Interrupts and Exception handling </a> before proceeding further.
     - Revise the console and disk interrupt part.
 

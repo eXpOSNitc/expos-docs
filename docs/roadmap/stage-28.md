@@ -5,7 +5,7 @@ title: 'Stage 28 : Multi-Core Extension (12 Hours)'
     -   Modifying eXpOS kernel to exploit parallelism in a two core machine.
     -   Understanding processor synchronization in multi-core systems.
     
-!!! note "Pre-requisite Reading"
+!!! abstract "Pre-requisite Reading"
     -   Read and understand [NEXSM](arch_spec-files/nexsm.html) (two core extension of XSM) specification.
     -   Read and understand design documentation for [eXpOS on NEXSM](os_design-files/nexpos.html)
     

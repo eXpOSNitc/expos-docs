@@ -7,7 +7,7 @@ title: 'Stage 19 : Exception Handler (6 Hours)'
     - Implementation of Exception handler.
     - Modify the exec system call to load code pages of a process on [demand](https://en.wikipedia.org/wiki/Demand_paging).
 
-!!! note "Pre-requisite Reading"
+!!! abstract "Pre-requisite Reading"
     It is absolutely necessary to have clear understanding about [Exception handling in XSM](https://exposnitc.github.io/Tutorials/xsm_interrupts_tutorial.html#exception_handling_in_XSM) before proceeding further.
 
 

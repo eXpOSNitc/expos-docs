@@ -6,7 +6,7 @@ title: 'Stage 3 : Bootstrap Loader (2 Hours)'
        - Use the XSM Instruction set to write a small *OS startup* code.
        - Load your *OS startup code* into the *boot block* of the disk and get this code executed on bootstrap.
 
-!!! note "Pre-requisite Reading"
+!!! abstract "Pre-requisite Reading"
        - Have a quick look at <a href="arch_spec-files/machine_organisation.html" target="_blank"> XSM Machine Organisation </a>. (Do not spend more than 15 minutes).
        - Have a quick look at <a href="arch_spec-files/instruction_set.html" target="_blank">XSM Instruction set</a>. (Do not spend more than 15 minutes).
        - It is absolutely necessary to read the <a href="Tutorials/xsm-instruction-cycle.html" target="_blank"><b>XSM privileged mode execution tutorial</b></a> before proceeding further.

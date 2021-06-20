@@ -7,7 +7,7 @@ title: 'Stage 22 :
     - Understanding how semaphores help to solve the critical section problem.
     - Add support for semaphores to eXpOS.
 
-!!! note "Pre-requisite Reading"
+!!! abstract "Pre-requisite Reading"
     Read and understand [Resource Sharing](https://exposnitc.github.io/os_spec-files/expos_abstractions.html#resource_sharing) and [Access Control](https://exposnitc.github.io/os_spec-files/synchronization.html#access_control) documentations of eXpOS before proceeding further.
 
 

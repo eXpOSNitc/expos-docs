@@ -6,7 +6,7 @@ title: 'Stage 10 : Console output (4 Hours)'
     - Familiarise with the [low level system call interface](abi.html) in eXpOS.
     - Familiarise with the console output mechanism in eXpOS.
 
-!!! note "Pre-requisite Reading"
+!!! abstract "Pre-requisite Reading"
     Read and understand the <a href="os_design-files/stack_smcall.html" target="_blank"> Kernel Stack Management during system calls </a> before proceeding further.
 
 

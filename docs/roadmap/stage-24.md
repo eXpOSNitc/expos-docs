@@ -6,7 +6,7 @@ title: 'Stage 24 : File Read (12 Hours)'
     - Understanding buffer cache.
     - Implementation of *Open* , *Close* and *Read* system calls.
     
-!!! note "Pre-requisite Reading"
+!!! abstract "Pre-requisite Reading"
     Description of data structures - [File(inode) status table](os_design-files/mem_ds.html#file_lock_status_table) , [Buffer table](os_design-files/mem_ds.html#buffer_table) , [Open file table](os_design-files/mem_ds.html#file_table) and [per-process resource table](os_design-files/process_table.html#per_process_table).
     
 In this stage, we will understand the mechanism of opening and closing a file with the help of *Open* and *Close* system calls. We will also understand how contents of a file can be read by using *Read* system call. *Fork* system call and **Free User Area Page** function of process manager module are also modified in this stage.

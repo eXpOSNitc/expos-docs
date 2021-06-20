@@ -6,7 +6,7 @@ title: 'Stage 17 : Program Loader (6 Hours)'
     - Familiarize with Process manager and Memory Manager modules.
     - Enable the OS to load and execute application programs from the disk (exec system call).
 
-!!! note "Pre-requisite Reading"
+!!! abstract "Pre-requisite Reading"
     - Before proceeding futher review the XEXE file format and the address space model of a process from the eXpOS <a href="abi.html" target="_blank">ABI documentation</a>.
     - Make sure to be thorough with the <a href="support_tools-files/spl.html" target="_blank">SPL module calling conventions.</a>
 

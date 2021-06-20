@@ -7,7 +7,7 @@ title: 'Stage 16 : Console Input (6 Hours)'
     - Implementation of console input using the read system call.
     - Introduction to input buffer.
 
-!!! note "Pre-requisite Reading"
+!!! abstract "Pre-requisite Reading"
     Read and understand the <a href="Tutorials/xsm_interrupts_tutorial.html#disk_and_console_interrupts" target="_blank">
     XSM tutorial on Interrupts and Exception handling</a> before proceeding further. (Read only the console and disk interrupt part.)
 

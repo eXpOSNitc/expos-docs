@@ -7,7 +7,7 @@ title: 'Stage 27 :
     -   Understand the disk swap-out and swap-in mechanisms.
     -   Implement the pager module that supports Swap in and Swap out functions.
     
-!!! note "Pre-requisite Reading"
+!!! abstract "Pre-requisite Reading"
     Revisit the description of data structures- [Process table](os_design-files/process_table.html) , [Page table](os_design-files/process_table.html#per_page_table) , [System status table](os_design-files/mem_ds.html#ss_table) , [Disk Map table](os_design-files/process_table.html#disk_map_table) .
     
 

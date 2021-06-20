@@ -5,7 +5,7 @@ title: 'Stage 20 : Process Creation and Termination (12 Hours)'
     - Understanding the process creation mechanism in eXpOS.
     - Implementation of fork and exit system calls.
 
-!!! note "Pre-requisite Reading"
+!!! abstract "Pre-requisite Reading"
     Read and understand [eXpOS process abstraction](os_spec-files/expos_abstractions.html) and [eXpOS process model](os_spec-files/processmodel.html) documentation before proceeding further.
 
 In this stage, you will learn how to create a new process using the fork system call and how

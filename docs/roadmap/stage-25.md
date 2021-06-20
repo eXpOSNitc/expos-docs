@@ -7,7 +7,7 @@ title: 'Stage 25 : File Write (12 Hours)'
     - Implementation of *Write* and *Seek* system calls.
     - Modify *Shutdown* system call so that file writes are committed to the disk properly.
     
-!!! note "Pre-requisite Reading"
+!!! abstract "Pre-requisite Reading"
     - Description of disk data structures - [Inode table](os_design-files/disk_ds.html#inode_table) and [disk free list](os_design-files/disk_ds.html#disk_free_list).
     - Description of memory data structures - [Buffer table](os_design-files/mem_ds.html#buffer_table) , [Open file table](os_design-files/mem_ds.html#file_table) and [per-process resource table](os_design-files/process_table.html#per_process_table) .
     

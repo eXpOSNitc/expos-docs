@@ -5,7 +5,7 @@ title: 'Stage 21 : Process Synchronization (4 Hours)'
     - Familiarize with process synchronization in eXpOS
     - Implementation of Wait and Signal system calls
 
-!!! note "Pre-requisite Reading"
+!!! abstract "Pre-requisite Reading"
     Read and understand [Access control and synchronization](/os_spec-files/expos_abstractions.html) and [Process synchronization](/os_spec-files/synchronization.html#process_synchronization) documentations before proceeding further.
 
 In this stage, we will add support for process synchronization using
