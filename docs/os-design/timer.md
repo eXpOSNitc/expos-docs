@@ -1,208 +1,73 @@
 ---
 title: 'Timer Interrupt Handler'
 original_url: 'http://eXpOSNitc.github.io/os_design-files/timer.html'
+hide: 
+    - navigation
+    - toc
 ---
 
-
-
-
-
-
-
-Timer Interrupt Handler
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-
-
-
-
-Timer Interrupt Handler
------------------------
-
-
-  
-
-  
-
-*Description:* The hardware requirement specification for eXpOS assumes that the machine is equipped
- with a timer device that sends periodic hardware interrupts. 
- The timer interrupt handler internally invokes the eXpOS  [scheduler module](../os_modules/Module_5.html) . 
+The hardware requirement specification for eXpOS assumes that the machine is equipped
+with a timer device that sends periodic hardware interrupts. 
+The timer interrupt handler internally invokes the eXpOS  [scheduler module](../os_modules/Module_5.html) . 
  
+<figure>
+    <img src="http://exposnitc.github.io/img/roadmap/timer_interrupt.png">
+    <figcaption>Control flow diagram for *Timer interrupt handler*</figcaption>
+</figure>
 
 
-  
+### Algorithm:
 
-
-![](../img/roadmap/timer_interrupt.png)
-  
-
-Control flow diagram for *Timer interrupt handler*
-
-  
-  
-
-#### Algorithm:
-
-
-
-```
-
-Switch to the Kernel Stack. 	/* See [kernel stack management during system calls](stack_smcall.html) */
-Save the value of SP to the USER SP field in the [Process Table](process_table.html) entry of the process.
+<pre><code>
+Switch to the Kernel Stack. 	/* See <a href="stack_smcall.html">kernel stack management during system calls</a> */
+Save the value of SP to the USER SP field in the <a href="process_table.html">Process Table</a> entry of the process.
 Set the value of SP to the beginning of User Area Page.
 
-Backup the register context of the current process using the [BACKUP](../arch_spec-files/instruction_set.html) instruction.
+Backup the register context of the current process using the <a href="../arch_spec-files/instruction_set.html">BACKUP</a> instruction.
 
 
-[/* This code is relevant only when the Pager Module is implemented in Stage 27 */](#collapse1)
-
-**If** swapping is initiated, /* check [System Status Table](../os_design-files/mem_ds.html#ss_table) */
+<details class="code-accordion"><summary>/* This code is relevant only when the Pager Module is implemented in Stage 27 */</summary>
+<b>If</b> swapping is initiated, /* check <a href="../os_design-files/mem_ds.html#ss_table">System Status Table</a> */
 {
- /* Call Swap In/Out, if necessary */
+    /* Call Swap In/Out, if necessary */
 
- **if** the current process is the Swapper Daemon and Paging Status is [SWAP\_OUT](../support_tools-files/constants.html),
- Call the **swap\_out()** function in the [Pager Module](../os_modules/Module_6.html).
+    <b>if</b> the current process is the Swapper Daemon and Paging Status is <a href="../support_tools-files/constants.html">SWAP_OUT</a>,
+        Call the <b>swap_out()</b> function in the <a href="../os_modules/Module_6.html">Pager Module</a>.
 
- **else if** the current process is the Swapper Daemon and Paging Status is [SWAP\_IN](../support_tools-files/constants.html), 
- Call the **swap\_in()** function in the [Pager Module](../os_modules/Module_6.html).
+    <b>else if</b> the current process is the Swapper Daemon and Paging Status is <a href="../support_tools-files/constants.html">SWAP_IN</a>, 
+        Call the <b>swap_in()</b> function in the <a href="../os_modules/Module_6.html">Pager Module</a>.
 
- **else if** the current process is Idle, 
- /* Swapping is ongoing, but the daemon is blocked for some disk operation and idle is being run now */
- /* Skip to the end to perform context switch. */
- 
+    <b>else if</b> the current process is Idle,                          
+        /* Swapping is ongoing, but the daemon is blocked for some disk operation and idle is being run now */
+        /* Skip to the end to perform context switch. */
+    
 }
 
-**else** /* Swapping is not on now. Check whether it must be initiated */
+<b>else</b>           /* Swapping is not on now.  Check whether it must be initiated */
 {
- **if** (MEM\_FREE\_COUNT < [MEM\_LOW](../support_tools-files/constants.html)) /* Check the [System Status Table](../os_design-files/mem_ds.html#ss_table) */
- /* Swap Out to be invoked during next Timer Interrupt */
- Set the Paging Status in System Status Table to [SWAP\_OUT](../support_tools-files/constants.html).
+    <b>if</b> (MEM_FREE_COUNT < <a href="../support_tools-files/constants.html">MEM_LOW</a>)	 	/* Check the <a href="../os_design-files/mem_ds.html#ss_table">System Status Table</a> */
+        /* Swap Out to be invoked during next Timer Interrupt */
+        Set the Paging Status in System Status Table to <a href="../support_tools-files/constants.html">SWAP_OUT</a>.
 
- **else if** (there are swapped out processes) /* Check SWAPPED\_COUNT in [System Status Table](../os_design-files/mem_ds.html#ss_table) */
- **if** (Tick of any Swapped Out process > [MAX\_TICK](../support_tools-files/constants.html) or MEM\_FREE\_COUNT > [MEM\_HIGH](../support_tools-files/constants.html))
- /* Swap In to be invoked during next Timer Interrupt */
- Set the Paging Status in System Status Table to [SWAP\_IN](../support_tools-files/constants.html).
+    <b>else if</b> (there are swapped out processes)            /* Check SWAPPED_COUNT in <a href="../os_design-files/mem_ds.html#ss_table">System Status Table</a> */
+        <b>if</b> (Tick of any Swapped Out process > <a href="../support_tools-files/constants.html">MAX_TICK</a> or MEM_FREE_COUNT > <a href="../support_tools-files/constants.html">MEM_HIGH</a>)
+            /* Swap In to be invoked during next Timer Interrupt */
+            Set the Paging Status in System Status Table to <a href="../support_tools-files/constants.html">SWAP_IN</a>.
 
 }
 /* End of Stage 27 code for Swap In/Out management */
+</details>
     
 Change the state of the current process in its Process Table entry from RUNNING to READY.
 
 Loop through the process table entires and increment the TICK field of each process.
 
-Invoke the [context switch module](../os_modules/Module_5.html) .
+Invoke the <a href="../os_modules/Module_5.html" target="_blank">context switch module </a>.
 
-Restore the register context of the process using [RESTORE](../arch_spec-files/instruction_set.html) instruction.
+Restore the register context of the process using <a href="../arch_spec-files/instruction_set.html">RESTORE</a> instruction.
 
 Set SP as the user SP saved in the Process Table entry of the new process.
-Set the MODE\_FLAG in the [process table](process_table.html) entry to 0.
+Set the MODE_FLAG in the <a href="process_table.html">process table</a> entry to 0.
              
 ireturn.
-
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</code></pre>
