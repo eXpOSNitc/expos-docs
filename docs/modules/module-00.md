@@ -29,7 +29,7 @@ _**Description**_: Acquire the buffer corresponding to buffer number given as in
 <code>
 while ( Buffer is locked ){   /* Check the Locking PID field in the <a href="/os_design-files/mem_ds.html#buffer_table" target="_blank">Buffer Status Table</a> */
     Set state of the process as ( WAIT_BUFFER , Buffer Number );
-    Call the <b>switch_context()</b> function from the <a href="Module_5.html">Scheduler Module</a>.
+    Call the <b>switch_context()</b> function from the <a href="./module-05/">Scheduler Module</a>.
 }
 
 Lock the Buffer by setting the PID of the current process in the Locking PID field
@@ -39,7 +39,7 @@ return;
 </code>
 </pre>
 
-Called by BufRead and BufWrite functions in the [File Manager](Module_3.html).
+Called by BufRead and BufWrite functions in the [File Manager](./module-03.md).
 
 ### Release Buffer
 
@@ -58,7 +58,7 @@ loop through the process table{
 return 0;
 </code></pre>
 
-Called by BufRead and BufWrite functions in the [File Manager](Module_3.html).
+Called by BufRead and BufWrite functions in the [File Manager](./module-03.md).
 
 ### Acquire Disk
 
@@ -67,7 +67,7 @@ _**Description**_ : Locks the disk device. Assumes that a valid PID is given as 
 <pre><code>
 while ( disk is locked ){  /* Check the <i>Status</i> field in the <a href="../os_design-files/mem_ds.html#ds_table" target="_blank">Disk Status Table</a>. */
     Set state of the process as ( WAIT_DISK , - );
-    Call the <b>switch_context()</b> function from the <a href="Module_5.html">Scheduler Module</a>.
+    Call the <b>switch_context()</b> function from the <a href="./module-05/">Scheduler Module</a>.
 }
 
 Lock the disk by setting PID and the status field in the <a href="../os_design-files/mem_ds.html#ds_table" target="_blank">Disk Status Table.</a>
@@ -75,7 +75,7 @@ Lock the disk by setting PID and the status field in the <a href="../os_design-f
 return;
 </code></pre>
 
-Called by BufRead and BufWrite functions in the [File Manager](Module_3.html) and the exception handler for swap-in.
+Called by BufRead and BufWrite functions in the [File Manager](./module-03.md) and the exception handler for swap-in.
 
 ### Acquire Inode
 
@@ -84,7 +84,7 @@ _**Description**_ : Locks the Inode entry corresponding to the inodeindex given 
 <pre><code>
 while ( inode is locked ){   /* Check the Lock field in the <a href="../os_design-files/mem_ds.html#file_lock_status_table" target="_blank">File Status Table</a>. */
     Set state of the process as ( WAIT_FILE , Inode Index );
-    Call the <b>switch_context()</b> function from the <a href="Module_5.html">Scheduler Module</a>.
+    Call the <b>switch_context()</b> function from the <a href="./module-05/">Scheduler Module</a>.
 } 
 
 If inode becomes invalid, return -1. /* File was deleted by the time the inode was acquired */
@@ -158,14 +158,14 @@ _**Description**_ : Locks the Terminal device. Assumes a valid PID is given as i
 <pre><code>
 while ( Terminal device is locked ){    /* Check the Status field in the <a href="../os_design-files/mem_ds.html#ts_table" target="_blank">Terminal Status Table</a> */
     Set state of the process as ( WAIT_TERMINAL , - );
-    Call the <b>switch_context()</b> function from the <a href="Module_5.html">Scheduler Module</a>.
+    Call the <b>switch_context()</b> function from the <a href="./module-05/">Scheduler Module</a>.
 }
     
 Lock the Terminal device by setting the Status and PID fields in the <a href="../os_design-files/mem_ds.html#ts_table" target="_blank">Terminal Status Table</a>.
 
 return;
 </code></pre>
-Called by the Terminal Read and Terimnal Write functions of the [Device Manager Module](Module_4.html).
+Called by the Terminal Read and Terimnal Write functions of the [Device Manager Module](./module-04.md).
 
 ### Release Terminal
 
@@ -186,4 +186,4 @@ If PID given as input is not equal to the LOCKING PID in the <a href="../os_desi
  
 </code></pre>
 
-Called by the Terimnal Write function in the [Device Manager Module](Module_4.html).
+Called by the Terimnal Write function in the [Device Manager Module](./module-04.md).
