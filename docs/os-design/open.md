@@ -51,7 +51,7 @@ The [root file](disk_ds.html#root_file) can be opened for Reading by specifying 
  	<a data-toggle="collapse"   href="#collapse5b">Find a free Per-Process Resource Table entry.</a> <div id="collapse5b" class="panel-collapse collapse">
                 Find the PID of the current process from the <a href="./mem_ds.html#ss_table" target="_blank">System Status Table</a>.
                 Find the User Area page number from the <a href="process_table.html" target="_blank">Process Table </a>entry.
-                The  <a href="../os_design-files/process_table.html#per_process_table" target="_blank">Per-Process Resource Table</a> is located at the  <a href="../support_tools-files/constants.html" target="_blank">RESOURCE_TABLE_OFFSET</a> from the base of the <a href="./process_table.html#user_area" target="_blank"> User Area Page </a>.              
+                The  <a href="../os_design-files/process_table.html#per_process_table" target="_blank">Per-Process Resource Table</a> is located at the  <a href="../support-tools/constants/" target="_blank">RESOURCE_TABLE_OFFSET</a> from the base of the <a href="./process_table.html#user_area" target="_blank"> User Area Page </a>.              
 		Find a free <a href="process_table.html#per_process_table" target="_blank">Resource Table</a> entry.&nbsp;&nbsp;
 		If there is no free entry, return -3.  </div>
  
@@ -60,7 +60,7 @@ The [root file](disk_ds.html#root_file) can be opened for Reading by specifying 
 	If Open fails, return the error code.
 
  	<a data-toggle="collapse"   href="#collapse6">Set the Per-Process Resource Table entry</a>             <div id="collapse6" class="panel-collapse collapse">
-		Set the Resource Identifier field to <a href="../support_tools-files/constants.html" target="_blank">FILE </a>. 
+		Set the Resource Identifier field to <a href="../support-tools/constants/" target="_blank">FILE </a>. 
 		Set the Open File Table index field to the free Open File Table entry found.	     </div>
 
 	Set the MODE_FLAG in the <a href="process_table.html" target="_blank">process table</a> entry to 0.

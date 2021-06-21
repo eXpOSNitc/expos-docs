@@ -118,7 +118,7 @@ Find a free entry in the <a href="../os_design-files/mem_ds.html#file_table">Ope
 If there are no free entries, <b>release_inode()</b> and return -2.  /* Reached maximum number of open files in the system. */
 
 <b>If</b> the file name is "root" <b>then</b> 
-	Set the INODE INDEX field in the open file table entry to <a href="../support_tools-files/constants.html">INODE_ROOT</a>. 
+	Set the INODE INDEX field in the open file table entry to <a href="../support-tools/constants/">INODE_ROOT</a>. 
 <b>else</b>
 	In the <a href="../os_design-files/mem_ds.html#file_lock_status_table">File Status Table</a>, if the File Open Count is -1, set it to 1. Otherwise, increment the File Open Count.
 	Set the INODE INDEX field in the open file table entry to the inode table index of the file. 

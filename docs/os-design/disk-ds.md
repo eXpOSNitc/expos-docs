@@ -160,4 +160,4 @@ The password field for kernel is empty because kernel is a non - loginable user.
     There must be some mechanism to initialize the root password. In the XSM Machine, if you run the <a href="../support_tools-files/xfs-interface.html">xfs-interface</a> FDISK, the default password of root is set to "root" (without quotes).  When FDISK is run, the encryped password field of the user root is initialized in the user table.  The value corresponds to that obtained by running the ENCRYPT function on the string "root".  
 
 !!! note
-    Memory copy of the User Table is present in page 60 of the memory (see <a href="../os_implementation.html">Memory Organisation</a>), and the SPL constant <a href="../support_tools-files/constants.html">USER_TABLE</a> points to the starting address of data structure.
+    Memory copy of the User Table is present in page 60 of the memory (see <a href="../os_implementation.html">Memory Organisation</a>), and the SPL constant <a href="../support-tools/constants/">USER_TABLE</a> points to the starting address of data structure.

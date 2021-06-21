@@ -68,7 +68,7 @@ Called by the Free page table and Free UArea Page functions.
 Returns the block number of a free disk block. Returns -1 if disk is full.
 
 <pre><code>
-loop through entries in the <a href="../os_design-files/disk_ds.html#disk_free_list">Disk Free List</a> from <a href="../support_tools-files/constants.html">DISK_FREE_AREA</a> to <a href="../support_tools-files/constants.html">DISK_SWAP_AREA</a> - 1{ 	/* User Block, not preallocated to the OS or swap area */
+loop through entries in the <a href="../os_design-files/disk_ds.html#disk_free_list">Disk Free List</a> from <a href="../support-tools/constants/">DISK_FREE_AREA</a> to <a href="../support-tools/constants/">DISK_SWAP_AREA</a> - 1{ 	/* User Block, not preallocated to the OS or swap area */
     if ( a free entry is found ){
             Set the Disk Free List entry as 1;
             Return the corresponding block number;
@@ -110,7 +110,7 @@ Return the memory page number to which the code block has been loaded.
 Returns the block number of a free disk block in the swap area.
 
 <pre><code>
-loop through entries in the <a href="../os_design-files/disk_ds.html#disk_free_list">Disk Free List</a> from <a href="../support_tools-files/constants.html">DISK_SWAP_AREA</a> to <a href="../support_tools-files/constants.html">DISK_SIZE</a> - 1{ 	/* swap area */
+loop through entries in the <a href="../os_design-files/disk_ds.html#disk_free_list">Disk Free List</a> from <a href="../support-tools/constants/">DISK_SWAP_AREA</a> to <a href="../support-tools/constants/">DISK_SIZE</a> - 1{ 	/* swap area */
     if ( a free entry is found ){
             Set the Disk Free List entry as 1;
             Return the corresponding block number;
