@@ -32,39 +32,22 @@ Then, every time the machine completes executing ten instructions in unprivilege
   handler.  The vector table entry for timer interrupt is located at physical address 493 in page 0
   (ROM) of XSM and the  value 2048 is preset in this location.  Hence, the IP register gets value 2048.
   The machine then switches to to privileged mode and address translation is disabled.
-  Hence, next instruction will be fetched from physical address 2048. (See Boot ROM and Boot block section in <a href="../arch_spec-files/machine_organisation.html" target="_blank"> XSM Machine Organisation </a> documentation)
+  Hence, next instruction will be fetched from physical address 2048. (See Boot ROM and Boot block section in 
+  [XSM Machine Organisation](../arch-spec/machine-organization.md) documentation)
 
 
 !!! note "* Note"
-    If the value in the SP register after incrementing SP is an invalid address (i.e., not in the range 0 to PTLR*512-1)
-    then the machine generates an <b>illegal memory access exception</b> (see section below on exception handling).  The machine will re-execute steps (1) and (2) immedietly after retrun to unprivileged mode, before executing any other instruction in unprivileged mode. 
+    If the value in the SP register after incrementing SP is an invalid address (i.e., not in the range 0 to PTLR\*512-1) then the machine generates an **illegal memory access exception** (see section below on exception handling). The machine will re-execute steps (1) and (2) immedietly after retrun to unprivileged mode, before executing any other instruction in unprivileged mode.
 
-Note that the action is similar to the INT instruction except that the application does not invoke the timer handler using the INT instruction.  In fact, the application does not have any control over the process.
-<b>Interrupts are disabled when machine runs in the privileged mode so that there are no race conditions.</b>
-After returning from the timer interrupt handler, the next entry into the handler occurs only after the machine
-executes another ten instructions in user mode.
+Note that the action is similar to the INT instruction except that the application does not invoke the timer handler using the INT instruction. In fact, the application does not have any control over the process. **Interrupts are disabled when machine runs in the privileged mode so that there are no race conditions.** After returning from the timer interrupt handler, the next entry into the handler occurs only after the machine executes another ten instructions in user mode.
 
-The timer device can be used to ensure that privileged code gets control of the machine at regular
-intervals of time.  This is necessary to ensure that an application once started is not allowed to run
-"forever."  In a time-sharing environment, <b>the timer handler invokes the scheduler of
-the OS to do a context switch</b> to a different process when one process has completed its time quantum.
+The timer device can be used to ensure that privileged code gets control of the machine at regular intervals of time. This is necessary to ensure that an application once started is not allowed to run "forever." In a time-sharing environment, **the timer handler invokes the scheduler of the OS to do a context switch** to a different process when one process has completed its time quantum.
 
 !!! note "Important Note"
-    In real machines, timer, disk and console are devices that are external to the CPU.
-    (This is why the <a href="http://exposnitc.github.io/arch_spec-files/machine_organisation.html" target="_blank"> XSM machine model </a> draws them outside the machine's CPU).
-    Such devices are generally attached to <a href="https://simple.wikipedia.org/wiki/Device_controller" target="_blank"> programmable device-controllers </a> in the computer system's <a href="https://en.wikipedia.org/wiki/Motherboard" target="_blank"> mother-board </a> containing the CPU.
-    These devices are typically either I/O mapped (via ports) or
-    <a href="https://en.wikipedia.org/wiki/Memory-mapped_I/O" target="_blank"> memory mapped </a>
-    and the exact configuration is determined by the hardware
-    manufacturer. The hardware manufacturer supplies a <a href="https://en.wikipedia.org/wiki/Device_driver" target="_blank">device driver software </a> for each of these device controller. The device driver software is typically loaded into memory
-    along with the OS kernel during machine bootstrap. Thus, the device drivers run as part of the kernel.
-    Each device driver contains a set of functions that can be invoked from the OS kernel.  These
-    device driver functions in turn contain code that issues commands to the
-    respective device controller. Finally, the device controller contains the
-    software and hardware necessary to make the device physically behave in the required way
-    based on the commands received.
+    In real machines, timer, disk and console are devices that are external to the CPU. (This is why the [XSM machine model](../arch-spec/machine-organisation.md) draws them outside the machine's CPU). Such devices are generally attached to [programmable device-controllers](https://simple.wikipedia.org/wiki/Device_controller) in the computer system's [mother-board](https://en.wikipedia.org/wiki/Motherboard) containing the CPU. These devices are typically either I/O mapped (via ports) or [memory mapped](https://en.wikipedia.org/wiki/Memory-mapped_I/O) and the exact configuration is determined by the hardware manufacturer. The hardware manufacturer supplies a [device driver software](https://en.wikipedia.org/wiki/Device_driver) for each of these device controller. The device driver software is typically loaded into memory along with the OS kernel during machine bootstrap. Thus, the device drivers run as part of the kernel. Each device driver contains a set of functions that can be invoked from the OS kernel. These device driver functions in turn contain code that issues commands to the respective device controller. Finally, the device controller contains the software and hardware necessary to make the device physically behave in the required way based on the commands received.
 
-    <img src="https://exposnitc.github.io/img/os-design/xsm_machine_model.jpg">
+    ![](https://exposnitc.github.io/img/os-design/xsm_machine_model.jpg)
+
     Thus, in a real systems, the OS loads into the memory
     the timer device's driver during bootstrap.
     (Here, the driver is assumed to have been pre-loaded into the disk.  However modern systems also permit drivers to be loaded at run time without re-booting the OS)
@@ -94,7 +77,7 @@ After the execution of each instruction in unprivileged mode, the machine checks
 disk/console/timer interrupt.  If so, the machine does the following actions:
 
 1.  **\***Push the IP value into the top of the stack.
-2.  Set IP to value stored in the interrupt vector table entry for the timer interrupt handler. The vector table entry for timer interrupt is located at physical address 493 in page 0 (ROM) of XSM and the value 2048 is preset in this location. Hence, the IP register gets value 1. The machine then switches to to privileged mode and address translation is disabled. Hence, next instruction will be fetched from physical address 2048. (See Boot ROM and Boot block section in [XSM Machine Organisation](../arch_spec-files/machine_organisation.html) documentation)
+2.  Set IP to value stored in the interrupt vector table entry for the timer interrupt handler. The vector table entry for timer interrupt is located at physical address 493 in page 0 (ROM) of XSM and the value 2048 is preset in this location. Hence, the IP register gets value 1. The machine then switches to to privileged mode and address translation is disabled. Hence, next instruction will be fetched from physical address 2048. (See Boot ROM and Boot block section in [XSM Machine Organisation](../arch-spec/machine-organisation.md) documentation)
 
 !!! note
     If the value in the SP register after incrementing SP is an invalid address (i.e., not in the range 0 to PTLR\*512-1) then the machine generates an **illegal memory access exception** (see section below on exception handling). The machine will re-execute steps (1) and (2) immedietly after retrun to unprivileged mode, before executing any other instruction in unprivileged mode.
@@ -105,8 +88,7 @@ As noted previously, the OS must load the disk interrupt handler into the two pa
  6 (address 3072), and console interrupt handler into the two pages starting at memory page 8 (address 4096).
  This is normally done during OS start-up.-->
 
-<b>The XSM machine enables interrupts only when the machine is executing in unprivileged mode.</b>(If a previously initiated load/store/IN operation is completed while XSM is running in privileged mode,
-the machine waits for next transition to unprivileged mode before processing the interrupt.)</p>
+**The XSM machine enables interrupts only when the machine is executing in unprivileged mode.**(If a previously initiated load/store/IN operation is completed while XSM is running in privileged mode, the machine waits for next transition to unprivileged mode before processing the interrupt.)
 
 ### Exception handling in XSM 
 
@@ -120,10 +102,10 @@ While an application is running in unprivileged mode on the XSM machine, if any 
 the XSM machine raises an exception.
 
 
-a) **Illegal Memory Access:** Occurs when any address generated by the application lies outside its logical address space. This also occurs when the process tries to write into pages whose [Write access bit](../arch_spec-files/paging_hardware.html) is not set in the page table. Recall that the logical page number generated for a valid instruction should be between 0 and the value of (512 \* PTLR) - 1.  
+a) **Illegal Memory Access:** Occurs when any address generated by the application lies outside its logical address space. This also occurs when the process tries to write into pages whose [Write access bit](../arch-spec/paging-hardware.md) is not set in the page table. Recall that the logical page number generated for a valid instruction should be between 0 and the value of (512 \* PTLR) - 1.  
 b) **Illegal instructions:** Occurs when an application tries to execute an instruction not belonging to the instruction set or when an operand/data in an instruction is not legal. (Example: MOV 4 R0, MOV IP, 4)  
 c) **Arithmetic exception:** Occurs when there is a division/modulus by zero. (Example: DIV R0, 0)  
-In all the above cases, the typical action is for the exception handler code is to pass control to other privileged mode OS routines to terminate the application and schedule other applications. d) **Page fault:** This is the most significant exception handling function that must be understood clearly. A page fault occurs if an instruction contains an address whose logical page number is within the range 0 to PTLR-1 and the [valid bit](../arch_spec-files/paging_hardware.html) in the corresponding page table entry is set to to 0.
+In all the above cases, the typical action is for the exception handler code is to pass control to other privileged mode OS routines to terminate the application and schedule other applications. d) **Page fault:** This is the most significant exception handling function that must be understood clearly. A page fault occurs if an instruction contains an address whose logical page number is within the range 0 to PTLR-1 and the [valid bit](../arch-spec/paging-hardware.md) in the corresponding page table entry is set to to 0.
 
 Page fault exception can occur either during instruction fetch or operand fetch. Suppose during execution of an application, the value of IP reaches value – say 3000. The next fetch will try to translate the logical address 3000 to physical address using the page table. The logical page number corresponding to address 3000 is 3000 DIV 512 = 5. The machine must look up the page table entry corresponding to logical page 5. If the valid bit for this entry is set to 0, the page reference is invalid. In this case, the machine will raise an exception.
 
@@ -152,6 +134,6 @@ c) **EC** (Exception Cause): The EC register will indicate the cause of the exce
   
 (iv) Arithmetic exception: The value stored in the EC register for this exception is 3.  
   
-d) **EMA** (Exception memory address): _The value of this register is relevant only in the case of illegal memory access._ The illegal memory which was tried to be accessed is stored in the register. Either the address referred to is outside the range 0 - 512\*(PTLR-1) or a write is attempted to a page which is [read-only](../arch_spec-files/paging_hardware.html).  
+d) **EMA** (Exception memory address): _The value of this register is relevant only in the case of illegal memory access._ The illegal memory which was tried to be accessed is stored in the register. Either the address referred to is outside the range 0 - 512\*(PTLR-1) or a write is attempted to a page which is [read-only](../arch-spec/paging-hardware.md).  
   
-**The [XSM interrupt/exception handling documentation](../arch_spec-files/interrupts_exception_handling.html) gives a more detailed technical description of the actions performed by the machine when interrupts or exceptions occur. You may have a quick look at the documentation now, but refer to relevant sections of the documentation only as and when required.**
+**The [XSM interrupt/exception handling documentation](../arch-spec/interrupts-exception-handling.md) gives a more detailed technical description of the actions performed by the machine when interrupts or exceptions occur. You may have a quick look at the documentation now, but refer to relevant sections of the documentation only as and when required.**

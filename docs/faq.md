@@ -7,8 +7,8 @@ hide:
 ---
 
 ??? question "1. What is eXpOS? What is its purpose?"
-    eXpOS stands for eXperimental Operating System. The <a href="os_spec.html" target="_blank">eXpOS
-    specification</a> describes a very simple multi-user multi-tasking operating system.
+    eXpOS stands for eXperimental Operating System. The [eXpOS
+    specification](./os-spec/index.md) describes a very simple multi-user multi-tasking operating system.
 
     eXpOS is not intended to be used as a practical operating system. It is designed with the
     following intentions:
@@ -61,15 +61,8 @@ hide:
     People who want to learn about operating systems, but who belong to the following category are not
     advised to proceed with eXpOS:
     
-    - You are a confident programmer comfortable with reading and understanding professionally
-    written code – like the source code of linux. In this case, more sophisticated packages like <a
-    href="http://minix3.org/">Minix</a> allow you to do real hard stuff. However, this is not for
-    novices.
-    - You are not an expert; you want to try out the things listed in FAQ 2, but you do not want to
-    do dirty work at a low level. (Although you can avoid assembly language programming in the eXpOS
-    project, you still will have to get into quite a bit of “low level” architectural details). We
-    suggest you to look for alternatives like <a href="https://en.wikipedia.org/wiki/Not_Another_Completely_Heuristic_Operating_System"
-    target="_blank">NACHOS</a>.
+    - You are a confident programmer comfortable with reading and understanding professionally written code – like the source code of linux. In this case, more sophisticated packages like [Minix](http://minix3.org/) allow you to do real hard stuff. However, this is not for novices.
+    - You are not an expert; you want to try out the things listed in FAQ 2, but you do not want to do dirty work at a low level. (Although you can avoid assembly language programming in the eXpOS project, you still will have to get into quite a bit of “low level” architectural details). We suggest you to look for alternatives like [NACHOS](https://en.wikipedia.org/wiki/Not_Another_Completely_Heuristic_Operating_System).
 
 ??? question "6. Can eXpOS be actually be used in a real application?"
     Please see FAQ 2.
@@ -79,42 +72,31 @@ hide:
     What you learn is very little compared to what is needed to become an OS expert. So, listing out
     everything is impossible. But here are some important misses: 
     
-    - The XSM machine allows you to store a character string in a memory word. No real machine
-    architecture permits you to do such stuff. This is made possible just because XSM is a software
-    simulated. However, XSM makes your data manipulation job much simpler without getting bogged down
-    by details of data formatting. It is in principle possible to implement eXpOS on “more real”
-    machines like <a href="http://en.wikipedia.org/wiki/MIPS_instruction_set" target="_blank">MIPS</a>.
-    However, this would involve considerably more time and effort.
-    - The project involves very little work involving input-ouput, device interfacing, security or
-    networking. Moreover the file system and multi-user support are very primitive. The methods
-    studied won't scale up when there is <a href="https://en.wikipedia.org/wiki/Computer_multitasking#Preemptive_multitasking"
-    target="_blank"> pre-emptive multitasking </a>.
+    - The XSM machine allows you to store a character string in a memory word. No real machine architecture permits you to do such stuff. This is made possible just because XSM is a software simulated. However, XSM makes your data manipulation job much simpler without getting bogged down by details of data formatting. It is in principle possible to implement eXpOS on “more real” machines like [MIPS](http://en.wikipedia.org/wiki/MIPS_instruction_set). However, this would involve considerably more time and effort.
+    - The project involves very little work involving input-ouput, device interfacing, security or networking. Moreover the file system and multi-user support are very primitive. The methods studied won't scale up when there is [pre-emptive multitasking](https://en.wikipedia.org/wiki/Computer_multitasking#Preemptive_multitasking) .
 
 
 ??? question "8. What are the system requirements for working on the eXpOS package?"
-    We expect you to have a Linux/Unix Machine with Lex/Flex and Yacc/Bison software packages
-    installed. (For Flex/Bison installation on your Linux system, see <a href="http://en.kioskea.net/faq/30635-how-to-install-flex-and-bison-under-ubuntu"
-    target="_blank">link</a>). Once you have these, you can download the eXpOS package by following
-    instructions at <a href="./support_tools-files/setting-up.html" target="_blank"> Setting Up</a>.
+    We expect you to have a Linux/Unix Machine with Lex/Flex and Yacc/Bison software packages installed. (For Flex/Bison installation on your Linux system, see [link](http://en.kioskea.net/faq/30635-how-to-install-flex-and-bison-under-ubuntu)). Once you have these, you can download the eXpOS package by following instructions at [Setting Up](./support_tools-files/setting-up.html).
 
 
 ??? question "9. What are the contents of the eXpOS package?"
-    The eXpOS package available <a href="./support_tools-files/setting-up.html" target="_blank">here</a>
+    The eXpOS package available [here](./support-tools/setting-up.md)
     comes with the following:
     
-    - A simulator for the <a href="arch_spec.html" target="_blank">Experimental String Machine (XSM)</a>
+    - A simulator for the [Experimental String Machine (XSM)](./arch-spec/index.md)
     on which you implement eXpOS. The machine consists of a CPU, Memory and a disk and a small
     Input-Ouput subsystem.
-    - A compiler (into the XSM machine) for the <a href="support_tools-files/spl.html" target="_blank">System
-    Programmer's Language (SPL)</a> using which you will be writing all your code for implementing
+    - A compiler (into the XSM machine) for the [System Programmer's Language (SPL)](./support-tools/spl.md)  
+    using which you will be writing all your code for implementing
     eXpOS. SPL is a simple programming language which essentially is an extended assembler for the
     XSM machine, specifically designed for the eXpOS package.
-    - A compiler (into the XSM machine) for the <a href="support_tools-files/expl.html" target="_blank">Experimental
-    String Language (ExpL)</a>. This language is used for writing application programs that can run
+    - A compiler (into the XSM machine) for the [Experimental String Language (ExpL)](./support-tools/expl.md).  
+    This language is used for writing application programs that can run
     on top of eXpOS. You will be using this language for writing some of the user level programs of
     the OS including the shell. Test programs that are used to test your OS will also be written in
     ExpL.
-    - An interface tool called <a href="support_tools-files/xfs-interface.html" target="_blank">XFS-interface</a>
+    - An interface tool called [XFS-interface](./support-tools/xfs-interface.md).
     that allows you to transfer data files and executable programs from your Unix/Linux system into
     the hard disk of the XSM machine.
     - You also download the source code of all the above tools and their formal specification
@@ -123,7 +105,7 @@ hide:
 ??? question "10. I have downloaded the eXpOS package. How can I get started with the work?"
     The best way is to follow the eXpOS roadmap. It is a journey taken one simple step at a time. You
     will be provided with links to learn the concepts on a “learn when needed” way. Just go ahead
-    following this <a href="Roadmap.html" target="_blank">link</a>.
+    following this [link](./roadmap/index.md).
 
 
 ??? question "11. What differenciates eXpOS from other educational packages like NACHOS?"
@@ -147,8 +129,7 @@ hide:
 
 
 ??? question "12. What is the difference between eXpOS and XOS?"
-    <a href="http://xosnitc.github.io/" target="_blank">XOS</a> is an earlier version of this project.
-    XOS did not support blocking system calls.
+    [XOS](http://xosnitc.github.io/) is an earlier version of this project. XOS did not support blocking system calls.
 
     This means that a process will never do a context switch while it is running in the kernel mode.
     However eXpOS, system calls may block in the kernel mode and other processes could be scheduled.
@@ -175,7 +156,7 @@ hide:
 ??? question "14. How do I write application programs that run on eXpOS?"
     Application programs must be compiled in the Linux/Unix environment outside and pre-loaded into
     the XSM machine's disk. The ExpL language allows applications to be written and compiled into the
-    eXpOS executable format called the <a href="abi.html#xexe" target="_blank"> XEXE </a> format.
+    eXpOS executable format called the [XEXE](./abi.md) format.
 
 
 ??? question "15. What is meant by user mode and kernel mode?"
@@ -231,10 +212,6 @@ hide:
 
 
 ??? question "20. I am a teacher and wants to use eXpOS for laboratory instruction. How should I proceed?"
-    You are welcome use eXpOS. You may also fork the project on GitHub and customize the project to
-    your own needs subject to the <a href="http://creativecommons.org/licenses/by-nc/4.0/">Creative
-    Commons</a> license conditions.
-    Pro Tip: Suppose your institution has the name ABC University, to host your project on GitHub as
-    exposabc.github.io, create a GitHub account by the name eXpOSABC, fork this project, rename your
-    repository to exposabc.github.io, and host your website using <a href="https://pages.github.com/">GitHub
-    Pages</a>
+    You are welcome use eXpOS. You may also fork the project on GitHub and customize the project to your own needs subject to the [Creative Commons](http://creativecommons.org/licenses/by-nc/4.0/) license conditions.
+
+    Pro Tip: Suppose your institution has the name ABC University, to host your project on GitHub as exposabc.github.io, create a GitHub account by the name eXpOSABC, fork this project, rename your repository to exposabc.github.io, and host your website using [GitHub Pages](https://pages.github.com/)
