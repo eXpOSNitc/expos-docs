@@ -29,16 +29,16 @@ hide:
     implementing eXpOS will help you to get a feel of some of the core ideas involved in implementing a
     multi-tasking operating system on a single processor. You will learn how to:
     
-    - Initally load the operating system from secondary storage to memory – <b>Bootstrapping</b>.
-    - Manage several processess in memory simultaneously – <b>Process Management</b>. 
-    - Handle allocation and de-allocation of memory to processes – <b>Memory Management</b> (includes
+    - Initally load the operating system from secondary storage to memory – **Bootstrapping**.
+    - Manage several processess in memory simultaneously – **Process Management**. 
+    - Handle allocation and de-allocation of memory to processes – **Memory Management** (includes
     virtual memory management).
-    - Manage organization of data and program files in secondary storage – <b>File Management</b>.
-    - Implement a mechanism to allow multiple processes to share files/memory – <b>Resource Sharing</b>.
+    - Manage organization of data and program files in secondary storage – **File Management**.
+    - Implement a mechanism to allow multiple processes to share files/memory – **Resource Sharing**.
     - Realize primitives that help application programs to avoid inconsistency when resources are
-    shared by several processes executing concurrently – <b>Process Sychronization</b>.
-    - Handling multiple users with different privileges over resources shared among them – <b>Multi-user
-    Capability.</b>
+    shared by several processes executing concurrently – **Process Sychronization**.
+    - Handling multiple users with different privileges over resources shared among them – **Multi-user
+    Capability.**
     
     The experiment is akin to guiding a third year aerospace engineering student to build a small
     unmanned flight in two months. (The flight will not be usable outside the laboratory!)
