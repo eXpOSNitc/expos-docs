@@ -12,8 +12,8 @@ copyright: >-
 
 extra_css:
   - assets/css/extra.css
-repo_url: https://github.com/eXpOSNitc/eXpOSNitc.github.io
-repo_name: eXpOSNitc/eXpOSNitc.github.io
+# repo_url: https://github.com/eXpOSNitc/eXpOSNitc.github.io
+# repo_name: eXpOSNitc/eXpOSNitc.github.io
 # Configuration
 theme:
   name: material
