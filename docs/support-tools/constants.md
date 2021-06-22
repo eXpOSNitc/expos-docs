@@ -39,7 +39,7 @@ hide:
 
 <span style="color: red">*</span>(System Call Name, System Call Number)
 
-#### SPL constants for the [System Call Numbers](https://exposnitc.github.io/os_design-files/Sw_interface.html)
+#### SPL constants for the [System Call Numbers](../os-design/sw-interface.md)
 
 |Name|System Call Number|Comments|
 |--- |--- |--- |
@@ -110,7 +110,7 @@ hide:
 |SWAP_OUT|1|Pager Module Function #1|
 |SWAP_IN|2|Pager Module Function #2|
 
-#### SPL constants for indicating the starting addresses of Kernel Data Structures in Memory (See [Memory Organisation](https://exposnitc.github.io/os_implementation.html))
+#### SPL constants for indicating the starting addresses of Kernel Data Structures in Memory (See [Memory Organisation](../os-implementation.md))
 
 |Name|Default Value|Comments|
 |--- |--- |--- |
@@ -132,7 +132,7 @@ hide:
 |BUFFER|36352|Starting address of Buffer Cache|
 |BUFFER_BASE|71|Starting page number of Buffer Cache|
 
-#### SPL constants for related to User Programs loaded by the Kernel to Memory (See [Memory Organisation](https://exposnitc.github.io/os_implementation.html))
+#### SPL constants for related to User Programs loaded by the Kernel to Memory (See [Memory Organisation](../os-implementation.md))
 
 |Name|Default Value|Comments|
 |--- |--- |--- |
@@ -146,7 +146,7 @@ hide:
 |SWAPPER_DAEMON|15|PID of the Swapper Daemon|
 
 
-#### SPL constants for indicating the [Process States](https://exposnitc.github.io/os_design-files/state_diag.html)
+#### SPL constants for indicating the [Process States](../os-design/state-diag.md)
 
 |Name|Default Value|Comments|
 |--- |--- |--- |
@@ -190,7 +190,7 @@ hide:
 |MEM_HIGH|12|Memory is high enough such that a process can be swapped in|
 |MAX_TICK|1000|Indicates the threshold after which a swapped out process must be swapped back in|
 
-#### SPL constants related to eXpFS Disk (See [Disk Origanisation](https://exposnitc.github.io/os_implementation.html))
+#### SPL constants related to eXpFS Disk (See [Disk Origanisation](../os-implementation.md))
 
 |Name|Default Value|Comments|
 |--- |--- |--- |
@@ -228,7 +228,7 @@ hide:
 |ZERO|0|Zero|
 |ONE|1|One|
 
-#### <span style="color:red">Constants for [NEXSM](https://exposnitc.github.io/arch_spec-files/nexsm.html)</span>
+#### <span style="color:red">Constants for [NEXSM](../arch-spec/nexsm.md)</span>
 
 |Name|Default Value|Comments|
 |--- |--- |--- |

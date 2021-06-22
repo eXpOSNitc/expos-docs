@@ -72,7 +72,7 @@ implemented in the interrupt routine 11. Each system call has a different system
 - Implement system calls according to the system call number extracted from above step. Steps to implement each system call are explained below.
 - Change back to the user stack and return to the user mode.
 
-The system call numbers for Getpid, Getppid, Wait and Signal are 11, 12, 13 and 14 respectively. From ExpL program, these system calls are invoked using [exposcall function](https://exposnitc.github.io/os_spec-files/dynamicmemoryroutines.html).
+The system call numbers for Getpid, Getppid, Wait and Signal are 11, 12, 13 and 14 respectively. From ExpL program, these system calls are invoked using [exposcall function](../os-spec/dynamicmemoryroutines.md).
 
 ##### Wait System Call
 

@@ -9,7 +9,7 @@ eXpOS assumes that the disk is a sequence of blocks, where each block can store 
 
 The eXpFS logical file system provides a file abstraction that allows application programs to think of each data (or executable) file stored in the disk as a continuous stream of data (or machine instructions) without having to worry about the details of disk block allocation. Thus eXpFS hides the details of physical storage from application programs. eXpOS provides a sequence of file system calls through which application programs can create/read/write data files. These system calls are OS routines that does the translation of the user request into physical disk block operations.
 
-In addition to the eXpOS system call interface, the eXpFS specification also requires that there is an external interface through which executable and data files can be loaded into the file system externally. The details of the external interface are implementation specific. The external interface for eXpOS implementation on the XSM machine is described in [XFS Interface](https://exposnitc.github.io/support_tools-files/xfs-interface.html).
+In addition to the eXpOS system call interface, the eXpFS specification also requires that there is an external interface through which executable and data files can be loaded into the file system externally. The details of the external interface are implementation specific. The external interface for eXpOS implementation on the XSM machine is described in [XFS Interface](../support-tools/xfs-interface.md).
 
 In this section we discuss the abstract logical view provided by eXpFS to the eXpOS application programmer.
 
