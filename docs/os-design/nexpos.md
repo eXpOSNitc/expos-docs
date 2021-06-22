@@ -308,5 +308,5 @@ Acquire****Lock() {
   
 
 
-A detailed description of the changes required to the eXpOS kernel are outlined in the Stage 28 page of the [Roadmap](../roadmap/stage_28.md).
+A detailed description of the changes required to the eXpOS kernel are outlined in the Stage 28 page of the [Roadmap](../roadmap/stage-28.md).
  

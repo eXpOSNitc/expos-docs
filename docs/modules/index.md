@@ -1,6 +1,6 @@
 ---
 title: "Kernel Module Interface"
-original_url: https://exposnitc.github.io/os_modules/Module_Design.html
+original_url: https://exposnitc.github.io/os_modules/module-Design.html
 
 ---
 
@@ -12,7 +12,7 @@ A module may implement several functions. Each function within a module is ident
 
 The kernel modules and the functions present in each module are described below.
 
-### [Module_0 : Resource Manager](module_00.md)
+### [module-0 : Resource Manager](module-00.md)
 
 |Function Number|Function Name|Arguments|
 |--- |--- |--- |
@@ -29,7 +29,7 @@ The kernel modules and the functions present in each module are described below.
 *Release function for the disk is implimented in the disk interrupt handler.
 
 
-### [Module_1 : Process Manager](module_01.md)
+### [module-1 : Process Manager](module-01.md)
 
 |Function Number|Function Name|Arguments|
 |--- |--- |--- |
@@ -39,7 +39,7 @@ The kernel modules and the functions present in each module are described below.
 |4|Free Page Table|PID|
 |5|Kill All|PID|
 
-### [Module_2 : Memory Manager](module_02.md)
+### [module-2 : Memory Manager](module-02.md)
 |Function Number|Function Name|Arguments|
 |--- |--- |--- |
 |1|Get Free Page|NIL|
@@ -50,7 +50,7 @@ The kernel modules and the functions present in each module are described below.
 |6|Get Swap Block|NIL|
 
 
-### [Module_3 : File Manager](module_03.md)
+### [module-3 : File Manager](module-03.md)
 |Function Number|Function Name|Arguments|
 |--- |--- |--- |
 |1|Buffered Write|Disk Block Number, Offset, Word|
@@ -59,7 +59,7 @@ The kernel modules and the functions present in each module are described below.
 |4|Close|File Table Index|
 
 
-### [Module_4 : Device Manager](module_04.md)
+### [module-4 : Device Manager](module-04.md)
 |Function Number|Function Name|Arguments|
 |--- |--- |--- |
 |1|Disk Store|PID, Page Number, Block Number|
@@ -68,18 +68,18 @@ The kernel modules and the functions present in each module are described below.
 |4|Terminal Read|PID, Address|
 
 
-### [Module_5 : Context Switch Module (Scheduler Module)](module_05.md)
+### [module-5 : Context Switch Module (Scheduler Module)](module-05.md)
 |Function Number|Function Name|Arguments|
 |--- |--- |--- |
 |-|Switch Context|Nil|
 
-### [Module_6 : Pager Module](module_06.md)
+### [module-6 : Pager Module](module-06.md)
 |Function Number|Function Name|Arguments|
 |--- |--- |--- |
 |1|Swap Out|Nil|
 |2|Swap In|Nil|
 
-### [Module_7 : Boot Module](module_07.md)
+### [module-7 : Boot Module](module-07.md)
 |Function Number|Function Name|Arguments|
 |--- |--- |--- |
 |-|-|Nil|

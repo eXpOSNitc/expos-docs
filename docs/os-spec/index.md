@@ -26,7 +26,7 @@ This document contains the following sections:
 
 ### [:link: Overview](./overview.md)
 
-### [:link: eXpOS Abstractions](./expos_abstractions.md)
+### [:link: eXpOS Abstractions](./expos-abstractions.md)
 
 ### [:link: The Logical File System : eXpFS](./expfs.md)
 
@@ -44,4 +44,4 @@ This document contains the following sections:
 #### [:link: High Level Library Interface](./dynamicmemoryroutines.md)
 
 
-### [:link: eXpOS Shell specification](./shell_spec.md)
+### [:link: eXpOS Shell specification](./shell-spec.md)

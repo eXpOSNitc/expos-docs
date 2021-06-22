@@ -32,7 +32,7 @@ required and store the return value into the appropriate place in the user stack
 The system call module must also change the stack to its own (kernel) stack upon entry and switch back to the user stack at the time
 of return.
 
-Please note that the description below does not apply to the [stack management during context switch](./timer_stack_management.md) which is discussed elsewhere.
+Please note that the description below does not apply to the [stack management during context switch](./timer-stack-management.md) which is discussed elsewhere.
 
 
 ####  **1. Actions done by the user process before executing an INT instruction**

@@ -152,7 +152,7 @@ _Semantics_ : The machine when run in debug mode invokes the debugger when this 
 
 _Syntax_ : INT n  
 
-_Semantics_ : Generates an interrupt to the kernel with n (4 to 18) as a parameter. This involves a **change of mode from user to kernel mode**. It also disables the interrupts. The Stack Pointer is first incremented, the physical address of SP is calculated and the (virtual) address of the next instruction after the current value of IP is stored into that location (See [Address Translation](./paging-hardware.md)). After this, the execution mode is switched to Kernel mode. **Note that, INT can be invoked only from the User Mode.** The IP value must contain a virtual address and hence, the value pushed into stack is a virtual address and not a physical address. Finally, the IP value is set according to the value of n as specified [here](./machine-organisation.md).  
+_Semantics_ : Generates an interrupt to the kernel with n (4 to 18) as a parameter. This involves a **change of mode from user to kernel mode**. It also disables the interrupts. The Stack Pointer is first incremented, the physical address of SP is calculated and the (virtual) address of the next instruction after the current value of IP is stored into that location (See [Address Translation](./paging-hardware.md)). After this, the execution mode is switched to Kernel mode. **Note that, INT can be invoked only from the User Mode.** The IP value must contain a virtual address and hence, the value pushed into stack is a virtual address and not a physical address. Finally, the IP value is set according to the value of n as specified [here](./machine-organization.md).  
     
 
 ### [NOP Instruction]

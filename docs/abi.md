@@ -148,7 +148,7 @@ The machine code to the left pops the values from the stack. The system call num
 
 Associated with each system call, there is a system call number and interrupt routine number. The system call number is used to identify a system call. The interrupt routine number denotes the number of the interrupt routine which handles the system call. An interrupt routine may handle more than one system call.
 
-**Mapping of system calls to interrupt numbers and corresponding system call interface specification with details of arguments and return values of system calls are given in the [eXpOS Low Level System Call Interface](./os-os-design/sw-interface.md) Documentation.**
+**Mapping of system calls to interrupt numbers and corresponding system call interface specification with details of arguments and return values of system calls are given in the [eXpOS Low Level System Call Interface](./os-design/sw-interface.md) Documentation.**
 
 
 ### Low Level Runtime Library Interface

@@ -13,7 +13,7 @@ eXpOS is basically built upon the XSM architecture. Architecture includes the sp
 ### OPERATING SYSTEM
 eXpOS is a tiny multiprogramming operating system. It has a very simple specification that allows a junior undergraduate computer science student to implement it in a few months.
 
-#### [Specification](./os-os-spec/index.md)
+#### [Specification](./os-spec/index.md)
 #### [Design](./os-design/index.md)
 #### [Implementation](./os-implementation.md)
 

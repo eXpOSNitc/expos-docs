@@ -60,7 +60,7 @@ If the setting up of the system is done correctly the following directories will
     This directory contains an interface ([XFS Interface](./xfs-interface.md) or eXperimental File System Interface) through which files from your UNIX machine can be loaded into the File System of XSM. The interface can format the disk, dump the disk data structures, load/remove files, list files, transfer data and executable files between eXpFS filesystem and the host (UNIX) file system and copy specified blocks of the XFS disk to a UNIX file.
   
 -   **$HOME/myexpos/xsm**  
-    This directory contains the machine simulator ([XSM](./xsm-xsm-simulator.md) or eXperimental String Machine).
+    This directory contains the machine simulator ([XSM](./xsm-simulator.md) or eXperimental String Machine).
   
 -   **$HOME/myexpos/test**  
     This directory contains the test scripts for [eXpOS](../os-spec/index.md)
@@ -132,4 +132,4 @@ If the setting up of the system is done correctly the following directories will
     This directory contains the machine simulator ([NEXSM](./xsm-simulator.md) or NExt eXperimental String Machine).
   
 -   **$HOME/mynexpos/test**  
-    This directory contains the test scripts for [eXpOS](../os_spec/index.md).
+    This directory contains the test scripts for [eXpOS](../os-spec/index.md).

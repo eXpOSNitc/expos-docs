@@ -99,7 +99,7 @@ Algorithms specified in this document can fall into any of the five categories -
 </div>
 
 
-## [:link: Process State Transition Diagram in eXpOS](./state_diag.md)
+## [:link: Process State Transition Diagram in eXpOS](./state-diag.md)
 ## [:link: eXpOS Design for NEXSM (Two Core) Machine](./nexpos.md)
-### [:link: Access Lock Table](./mem_ds.md)
-### [:link: Access Control Module](../modules/module_08.md)
+### [:link: Access Lock Table](./mem-ds.md)
+### [:link: Access Control Module](../modules/module-08.md)

@@ -16,8 +16,8 @@ The basic data storage components of the machine are **registers**, **memory** a
 
 This document contains the following sections:
 
-#### [Machine Organization](machine_organisation.md)
-#### [Interrupts and Exception Handling](interrupts_exception_handling.md)
-#### [Instruction Set](instruction_set.md)
-#### [Paging Hardware and Address Translation](paging_hardware.md)
+#### [Machine Organization](machine-organization.md)
+#### [Interrupts and Exception Handling](interrupts-exception-handling.md)
+#### [Instruction Set](instruction-set.md)
+#### [Paging Hardware and Address Translation](paging-hardware.md)
 #### [NEXSM (Two Core) Architecture Specification](nexsm.md)
