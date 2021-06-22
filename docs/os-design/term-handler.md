@@ -16,21 +16,21 @@ The data structures modified are [Terminal Status Table](mem-ds.md#ts_table) and
 ### Algorithm
 
 <pre><code>
-Switch to the Kernel Stack. 	/* See <a href="stack_smcall.html">kernel stack management during system calls</a> */
-Save the value of SP to the USER SP field in the <a href="process_table.html">Process Table</a> entry of the process.
+Switch to the Kernel Stack. 	/* See <a href="../../os-design/stack-smcall/">kernel stack management during system calls</a> */
+Save the value of SP to the USER SP field in the <a href="../../os-design/process-table/">Process Table</a> entry of the process.
 Set the value of SP to the beginning of User Area Page.
 
-Backup the register context of the current process using the <a href="../arch_spec-files/instruction_set.html">BACKUP</a> instruction.
+Backup the register context of the current process using the <a href="../../arch-spec/instruction-set/">BACKUP</a> instruction.
 
-Set the status field in <a href="mem_ds.html#ts_table" target="_blank">Terminal Status Table</a> to 0 to indicate that the terminal is free.
+Set the status field in <a href="../../os-design/mem-ds/#ts_table" target="_blank">Terminal Status Table</a> to 0 to indicate that the terminal is free.
 
-Using the PID field of the Terminal Status Table, locate the <a href="process_table.html" target="_blank">Process Table</a> entry of the process that read the data.
+Using the PID field of the Terminal Status Table, locate the <a href="../../os-design/process-table/" target="_blank">Process Table</a> entry of the process that read the data.
 
 Copy the word read from the standard input to the <b>Input Buffer</b> field in the Process Table entry.
 
-Release lock on the terminal by calling <b>release_terminal()</b> function in the <a href="../os_modules/Module_0.html">Resource Manager</a> Module.
+Release lock on the terminal by calling <b>release_terminal()</b> function in the <a href="../../modules/module-00/">Resource Manager</a> Module.
 
-Restore the register context of the process using <a href="../arch_spec-files/instruction_set.html">RESTORE</a> instruction.
+Restore the register context of the process using <a href="../../arch-spec/instruction-set/">RESTORE</a> instruction.
 
 Restore SP to the value stored in USER_SP field of the process table entry of the process.
 

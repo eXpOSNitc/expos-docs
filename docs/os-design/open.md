@@ -41,21 +41,21 @@ The [root file](disk-ds.md#root_file) can be opened for Reading by specifying th
 ### Algorithm
 
 <pre><code>
-	Set the MODE_FLAG in the <a href="process_table.html" target="_blank">process table</a> entry to 2, 
+	Set the MODE_FLAG in the <a href="../../os-design/process-table/" target="_blank">process table</a> entry to 2, 
 	indicating that the process is in the open system call.
 
-	//Switch to Kernel Stack - See <a href="stack_smcall.html" target="_blank">Kernel Stack Management during System Calls</a>. 
-	Save the value of SP to the USER SP field in the <a href="process_table.html" target="_blank">Process Table</a> entry of the process.
+	//Switch to Kernel Stack - See <a href="../../os-design/stack-smcall/" target="_blank">Kernel Stack Management during System Calls</a>. 
+	Save the value of SP to the USER SP field in the <a href="../../os-design/process-table/" target="_blank">Process Table</a> entry of the process.
 	Set the value of SP to the beginning of User Area Page.
 
  	<details class="code-accordion"><summary>Find a free Per-Process Resource Table entry.</summary>
-                Find the PID of the current process from the <a href="./mem_ds.html#ss_table" target="_blank">System Status Table</a>.
-                Find the User Area page number from the <a href="process_table.html" target="_blank">Process Table </a>entry.
-                The  <a href="../os_design-files/process_table.html#per_process_table" target="_blank">Per-Process Resource Table</a> is located at the  <a href="../support-tools/constants/" target="_blank">RESOURCE_TABLE_OFFSET</a> from the base of the <a href="./process_table.html#user_area" target="_blank"> User Area Page </a>.              
-		Find a free <a href="process_table.html#per_process_table" target="_blank">Resource Table</a> entry.&nbsp;&nbsp;
+                Find the PID of the current process from the <a href="../../os-design/mem-ds/#ss_table" target="_blank">System Status Table</a>.
+                Find the User Area page number from the <a href="../../os-design/process-table/" target="_blank">Process Table </a>entry.
+                The  <a href="../../os-design/process-table/#per_process_table" target="_blank">Per-Process Resource Table</a> is located at the  <a href="../support-tools/constants/" target="_blank">RESOURCE_TABLE_OFFSET</a> from the base of the <a href="../../os-design/process-table/#user_area" target="_blank"> User Area Page </a>.              
+		Find a free <a href="../../os-design/process-table/#per_process_table" target="_blank">Resource Table</a> entry.&nbsp;&nbsp;
 		If there is no free entry, return -3.  </details>
  
-	Call the <b>open()</b> function from the <a href="../os_modules/Module_3.html" target="_blank">File Manager module</a> to get the <a href="../os_design-files/mem_ds.html#file_table" target="_blank">Open File table</a> entry.
+	Call the <b>open()</b> function from the <a href="../../modules/module-03/" target="_blank">File Manager module</a> to get the <a href="../../os-design/mem-ds/#file_table" target="_blank">Open File table</a> entry.
 		
 	If Open fails, return the error code.
 
@@ -63,11 +63,11 @@ The [root file](disk-ds.md#root_file) can be opened for Reading by specifying th
 		Set the Resource Identifier field to <a href="../support-tools/constants/" target="_blank">FILE </a>. 
 		Set the Open File Table index field to the free Open File Table entry found.	     </details>
 
-	Set the MODE_FLAG in the <a href="process_table.html" target="_blank">process table</a> entry to 0.
+	Set the MODE_FLAG in the <a href="../../os-design/process-table/" target="_blank">process table</a> entry to 0.
 
 	Restore SP to User SP.
 
-	Return the index of the <a href="process_table.html#per_process_table" target="_blank">Per-Process Resource Table</a> entry. &nbsp;&nbsp;/* success */
+	Return the index of the <a href="../../os-design/process-table/#per_process_table" target="_blank">Per-Process Resource Table</a> entry. &nbsp;&nbsp;/* success */
 	/* The index of this entry is the File Descriptor of the file. */
 
 </code></pre> 

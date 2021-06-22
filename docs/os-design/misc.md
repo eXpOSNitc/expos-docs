@@ -12,7 +12,7 @@ OS Startup Code is loaded from disk to memory by the ROM Code on machine startup
 #### Algorithm
 
 <pre><code>
-  Load IDLE process and boot module from disk to memory. See <a href="../os_implementation.html" target="_blank">disk/memory organization</a>.
+  Load IDLE process and boot module from disk to memory. See <a href="../../os-implementation/" target="_blank">disk/memory organization</a>.
   Set SP to (user area page number of idle) * 512 + 1 and invoke module 7. //running the boot module in the context of idle.
 
   // after returning from the boot module
@@ -22,15 +22,15 @@ OS Startup Code is loaded from disk to memory by the ROM Code on machine startup
 
   <details class="code-accordion"><summary>Initialize the Page table for IDLE process (PID = 0)</summary>
         Initialize the Page table base register (PTBR) to <a href="../support-tools/constants/" target="_blank">PAGE_TABLE_BASE</a> and PTLR to 10.
-        Set the <a href="../os_design-files/process_table.html#per_page_table" target="_blank">page table</a> entries for library and heap to -1. Set auxiliary information for these pages to "0000". 
+        Set the <a href="../../os-design/process-table/#per_page_table" target="_blank">page table</a> entries for library and heap to -1. Set auxiliary information for these pages to "0000". 
         // idle doesn't invoke any library function.   
-        Set the first code page entry to 69 (See <a href="../os_implementation.html" target="_blank">memory organization</a>). Set auxiliary information for valid code pages to "0100". 
+        Set the first code page entry to 69 (See <a href="../../os-implementation/" target="_blank">memory organization</a>). Set auxiliary information for valid code pages to "0100". 
         Set remaining code page entries to -1 and auxiliary information to "0000".
         Set the first stack page entry to 70 and auxiliary information for this page to "0110".
         Set second stack page entry to -1 and auxiliary information to "0000".
    </details>
   <details class="code-accordion"><summary>Initialize the process table for IDLE process.</summary>
-        Initialize the fields of <a href="../os_design-files/process_table.html" target="_blank">process table</a> as -  TICK, PID and USERID as 0, STATE as RUNNING,
+        Initialize the fields of <a href="../../os-design/process-table/" target="_blank">process table</a> as -  TICK, PID and USERID as 0, STATE as RUNNING,
         USER AREA PAGE NUMBER as 76 (allocated from free user space), KPTR to 0, UPTR to 4096 (starting of first user stack page),
         PTBR to PAGE_TABLE_BASE and PTLR as 10.
    </details>
@@ -42,15 +42,15 @@ OS Startup Code is loaded from disk to memory by the ROM Code on machine startup
   <details class="code-accordion"><summary>Initialize the Page table for Swapper Daemon (PID = 15)</summary>
         /* Swapper Daemon is identical to Idle and shares the code for Idle */
         Initialize the Page table base register (PTBR) to <a href="../support-tools/constants/" target="_blank">PAGE_TABLE_BASE</a> + 20*15 and PTLR to 10.
-        Set the <a href="../os_design-files/process_table.html#per_page_table" target="_blank">page table</a> entries for library and heap to -1. Set auxiliary information for these pages to "0000". 
+        Set the <a href="../../os-design/process-table/#per_page_table" target="_blank">page table</a> entries for library and heap to -1. Set auxiliary information for these pages to "0000". 
         // swapper doesn't invoke any library function.   
-        Set the first code page entry to that of Idle (See <a href="../os_implementation.html" target="_blank">memory organization</a>). Set auxiliary information for valid code pages to "0100". 
+        Set the first code page entry to that of Idle (See <a href="../../os-implementation/" target="_blank">memory organization</a>). Set auxiliary information for valid code pages to "0100". 
         Set remaining code page entries to -1 and auxiliary information to "0000".
         Set the first stack page entry to 81 and auxiliary information for this page to "0110".
         Set second stack page entry to -1 and auxiliary information to "0000".
   </details>
   <details class="code-accordion"><summary>Initialize the process table for Swapper Daemon.</summary>
-        Initialize the fields of <a href="../os_design-files/process_table.html" target="_blank">process table</a> as -  TICK, USERID as 0, PID as 15, STATE as CREATED,
+        Initialize the fields of <a href="../../os-design/process-table/" target="_blank">process table</a> as -  TICK, USERID as 0, PID as 15, STATE as CREATED,
         USER AREA PAGE NUMBER as 82 (allocated from free user space), KPTR to 0, UPTR to 4096 (starting of first user stack page),
         PTBR to PAGE_TABLE_BASE + 20*15 and PTLR as 10.
   </details>  
@@ -62,15 +62,15 @@ OS Startup Code is loaded from disk to memory by the ROM Code on machine startup
   <details class="code-accordion"><summary>Initialize the Page table for IDLE2 (PID = 14)</summary>
         /* IDLE2 is identical to Idle and shares the code for Idle */
         Initialize the Page table base register (PTBR) to <a href="../support-tools/constants/" target="_blank">PAGE_TABLE_BASE</a> + 20*14 and PTLR to 10.
-        Set the <a href="../os_design-files/process_table.html#per_page_table" target="_blank">page table</a> entries for library and heap to -1. Set auxiliary information for these pages to "0000". 
+        Set the <a href="../../os-design/process-table/#per_page_table" target="_blank">page table</a> entries for library and heap to -1. Set auxiliary information for these pages to "0000". 
         // swapper doesn't invoke any library function.   
-        Set the first code page entry to that of Idle (See <a href="../os_implementation.html" target="_blank">memory organization</a>). Set auxiliary information for valid code pages to "0100". 
+        Set the first code page entry to that of Idle (See <a href="../../os-implementation/" target="_blank">memory organization</a>). Set auxiliary information for valid code pages to "0100". 
         Set remaining code page entries to -1 and auxiliary information to "0000".
         Set the first stack page entry to 83 and auxiliary information for this page to "0110".
         Set second stack page entry to -1 and auxiliary information to "0000".
    </details>
   <details class="code-accordion"><summary>Initialize the process table for IDLE2.</summary>
-        Initialize the fields of <a href="../os_design-files/process_table.html" target="_blank">process table</a> as -  TICK, USERID as 0, PID as 14, STATE as RUNNING,
+        Initialize the fields of <a href="../../os-design/process-table/" target="_blank">process table</a> as -  TICK, USERID as 0, PID as 14, STATE as RUNNING,
         USER AREA PAGE NUMBER as 84 (allocated from free user space), KPTR to 0, UPTR to 4096 (starting of first user stack page),
         PTBR to PAGE_TABLE_BASE + 20*14 and PTLR as 10.
    </details>  

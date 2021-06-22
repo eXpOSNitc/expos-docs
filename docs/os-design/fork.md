@@ -44,15 +44,15 @@ The mode flag in the [Process Table](process-table.md) has to be set to Kernel m
 ### Algorithm
 
 <pre><code>
-Set the MODE_FLAG in the <a href="process_table.html">process table</a> entry to 8, 
+Set the MODE_FLAG in the <a href="../../os-design/process-table/">process table</a> entry to 8, 
 indicating that the process is in the fork system call.
 
-//Switch to Kernel Stack - See <a href="stack_smcall.html">Kernel Stack Management during System Calls</a>. 
-Save the value of SP to the USER SP field in the <a href="process_table.html">Process Table</a> entry of the process.
+//Switch to Kernel Stack - See <a href="../../os-design/stack-smcall/">Kernel Stack Management during System Calls</a>. 
+Save the value of SP to the USER SP field in the <a href="../../os-design/process-table/">Process Table</a> entry of the process.
 Set the value of SP to the beginning of User Area Page.
 
 //Allocate memory and set the Process Table
-Find a free Process Table entry by invoking the <b>get_pcb_entry()</b> function in <a href="../os_modules/Module_1.html">Process Manager</a> module. 
+Find a free Process Table entry by invoking the <b>get_pcb_entry()</b> function in <a href="../../modules/module-01/">Process Manager</a> module. 
 If no free entry is found, return -1.
 
 /* The parent and the child must share the heap.  Hence, if 
@@ -61,10 +61,10 @@ If heap pages are not allocated for the parent process,
 then allocate 2 heap pages for the parent using the <b>get_free_page()</b> function in Memory Manager module
 and set the page table entries for the heap pages of the parent.
 
-Invoke the <b>get_free_page()</b> function in <a href="../os_modules/Module_2.html">Memory Manager</a> module to obtain 3 
+Invoke the <b>get_free_page()</b> function in <a href="../../modules/module-02/">Memory Manager</a> module to obtain 3 
 memory pages: 2 for user stack and 1 for User Area Page of the child process.
 
-Copy the parent's <a href="process_table.html" target="_blank">Process Table Entry</a> except TICK, PID, PPID, USER AREA PAGE NUMBER, 
+Copy the parent's <a href="../../os-design/process-table/" target="_blank">Process Table Entry</a> except TICK, PID, PPID, USER AREA PAGE NUMBER, 
 KERNEL STACK POINTER, INPUT BUFFER, PTBR and PTLR to the child. 
 
 Set the PPID field of child process to the current PID. Also set User Area Page Number 
@@ -74,9 +74,9 @@ to the new UA Page, MODE, TICK and Kernel Stack Pointer to 0.
 
 /* PID, PTBR, PTLR fields of the child's process table is initilized by the get_pcb_entry function.*/ 
 
-Copy the <a href="process_table.html#per_process_table">per-process resource table</a> and <a href="process_table.html#disk_map_table">per-process disk map table</a>.
-For every open file of the parent, increment the Open Instance Count in the <a href="mem_ds.html#file_table" target="_blank">Open File Table</a>.
-For every semaphore acquired by the parent, increment Process Count in the <a href="mem_ds.html#sem_table" target="_blank">Semaphore Table</a>.
+Copy the <a href="../../os-design/process-table/#per_process_table">per-process resource table</a> and <a href="../../os-design/process-table/#disk_map_table">per-process disk map table</a>.
+For every open file of the parent, increment the Open Instance Count in the <a href="../../os-design/mem-ds/#file_table" target="_blank">Open File Table</a>.
+For every semaphore acquired by the parent, increment Process Count in the <a href="../../os-design/mem-ds/#sem_table" target="_blank">Semaphore Table</a>.
 /* The child shares open files and acquired semaphores with the parent */
 
 //Set Page Tables
@@ -97,7 +97,7 @@ The PID of the child process is set as the return value for the parent process
 
 Set state of child process to (CREATED, _ ).
 
-Set the MODE_FLAG in the <a href="process_table.html">process table</a> entry of the parent process to 0.
+Set the MODE_FLAG in the <a href="../../os-design/process-table/">process table</a> entry of the parent process to 0.
 
 Restore SP to User SP and return to the parent process.
 

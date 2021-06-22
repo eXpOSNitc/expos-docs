@@ -41,35 +41,35 @@ If a positive offset goes beyond the size of the file, the seek position will be
 ### Algorithm
 
 <pre><code>
-Set the MODE_FLAG in the <a href="process_table.html">process table</a> entry to 6, 
+Set the MODE_FLAG in the <a href="../../os-design/process-table/">process table</a> entry to 6, 
 indicating that the process is in the seek system call.
 
-//Switch to Kernel Stack - See <a href="stack_smcall.html">Kernel Stack Management during System Calls</a>. 
-Save the value of SP to the USER SP field in the <a href="process_table.html">Process Table</a> entry of the process.
+//Switch to Kernel Stack - See <a href="../../os-design/stack-smcall/">Kernel Stack Management during System Calls</a>. 
+Save the value of SP to the USER SP field in the <a href="../../os-design/process-table/">Process Table</a> entry of the process.
 Set the value of SP to the beginning of User Area Page.
 
 If file descriptor is invalid, return -1.    /* File descriptor value must lie within the range from 0 to 7 (both included). */
 
 <details class="code-accordion"><summary>Locate the Per-Process Resource Table of the current process.</summary>
-                 Find the PID of the current process from the <a href="./mem_ds.html#ss_table" target="_blank">System Status Table</a>.
-                 Find the User Area page number from the <a href="process_table.html#per_process_table" target="_blank">Process Table </a>entry.
-                 The  <a href="../os_design-files/process_table.html#per_process_table">Per-Process Resource Table</a> is located at the  <a href="constants.html" target="_blank">RESOURCE_TABLE_OFFSET</a> from the base of the <a href="./process_table.html#user_area" target="_blank"> User Area Page </a>.
+                 Find the PID of the current process from the <a href="../../os-design/mem-ds/#ss_table" target="_blank">System Status Table</a>.
+                 Find the User Area page number from the <a href="../../os-design/process-table/#per_process_table" target="_blank">Process Table </a>entry.
+                 The  <a href="../../os-design/process-table/#per_process_table">Per-Process Resource Table</a> is located at the  <a href="constants.html" target="_blank">RESOURCE_TABLE_OFFSET</a> from the base of the <a href="../../os-design/process-table/#user_area" target="_blank"> User Area Page </a>.
 </details>
 
 <b>If</b> entry in the Per Process Resource Table corresponding to the file descriptor is invalid, return -1.   
 /* No file is open with this file descriptor. */
 
-Get the index of the <a href="mem_ds.html#file_table" target="_blank">Open File Table</a> entry from the Per Process Resource Table entry.
+Get the index of the <a href="../../os-design/mem-ds/#file_table" target="_blank">Open File Table</a> entry from the Per Process Resource Table entry.
 
-Get the index of the <a href="./disk_ds.html#inode_table" target="_blank">Inode Table</a> entry from the Open File Table entry.
+Get the index of the <a href="../../os-design/disk-ds/#inode_table" target="_blank">Inode Table</a> entry from the Open File Table entry.
 
-Call the <b>acquire_inode()</b> function in the <a href="../os_modules/Module_0.html">Resource Manager</a> module.   /* Lock the inode */
+Call the <b>acquire_inode()</b> function in the <a href="../../modules/module-00/">Resource Manager</a> module.   /* Lock the inode */
 If the locking fails, return -1. 
 
 Get the current Lseek position from the Open File Table entry. 
 
 <details class="code-accordion"><summary>Check the validity of the given offset </summary>
-1. Get the file size of the file from the <a href="disk_ds.html#inode_table" target="_blank">Inode Table</a> (Use 480 if inode index is "INODE_ROOT").
+1. Get the file size of the file from the <a href="../../os-design/disk-ds/#inode_table" target="_blank">Inode Table</a> (Use 480 if inode index is "INODE_ROOT").
 2. <b>If</b> (lseek + the given offset) is less than 0, <b>release_inode()</b> and return -2.
 </details>
 
@@ -80,9 +80,9 @@ Get the current Lseek position from the Open File Table entry.
 <b>else</b>
 	Change the lseek value in the Per-Process Resource Table entry to lseek+offset.
 
-Call the <b>release_inode()</b> function in the <a href="../os_modules/Module_0.html">Resource Manager</a> module.   /* Free the inode */
+Call the <b>release_inode()</b> function in the <a href="../../modules/module-00/">Resource Manager</a> module.   /* Free the inode */
 
-Set the MODE_FLAG in the <a href="process_table.html">process table</a> entry of the parent process to 0.
+Set the MODE_FLAG in the <a href="../../os-design/process-table/">process table</a> entry of the parent process to 0.
 Switch back to the user stack by resoting USER SP from the process table.
 
 Return with 0.   /* success */

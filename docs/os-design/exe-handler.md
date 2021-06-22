@@ -37,36 +37,36 @@ The MODE FLAG must be set upon entering the system call and reset before returni
 ### Algorithm
 
 <pre><code>
-Set the MODE_FLAG in the <a href="process_table.html">process table</a> entry to -1 indicate that the process is in the execption handler.
+Set the MODE_FLAG in the <a href="../../os-design/process-table/">process table</a> entry to -1 indicate that the process is in the execption handler.
 
-Switch to the Kernel Stack. 	/* See <a href="stack_smcall.html">kernel stack management during system calls</a> */
-Save the value of SP to the USER SP field in the <a href="process_table.html">Process Table</a> entry of the process.
+Switch to the Kernel Stack. 	/* See <a href="../../os-design/stack-smcall/">kernel stack management during system calls</a> */
+Save the value of SP to the USER SP field in the <a href="../../os-design/process-table/">Process Table</a> entry of the process.
 Set the value of SP to the beginning of User Area Page.
 
-Backup the register context of the current process using the <a href="../arch_spec-files/instruction_set.html">BACKUP</a> instruction and push EIP onto the kernel stack.
+Backup the register context of the current process using the <a href="../../arch-spec/instruction-set/">BACKUP</a> instruction and push EIP onto the kernel stack.
 
-<b>If</b> (the exception is not caused by a page fault or user stack is full)  /* Check the <a href="../Tutorials/xsm_interrupts_tutorial.html">Exception Cause registers</a> */
+<b>If</b> (the exception is not caused by a page fault or user stack is full)  /* Check the <a href="../../tutorials/xsm-interrupts-tutorial/">Exception Cause registers</a> */
 		 Display the cause of the exception.
-	     Terminate the process using <b>exit_process()</b> module function in the <a href="../os_modules/Module_1.html">Process Manager</a> module.
-	     Invoke the scheduler by calling the <b>switch_context()</b> function in the <a href="../os_modules/Module_5.html">Scheduler Module</a>.
+	     Terminate the process using <b>exit_process()</b> module function in the <a href="../../modules/module-01/">Process Manager</a> module.
+	     Invoke the scheduler by calling the <b>switch_context()</b> function in the <a href="../../modules/module-05/">Scheduler Module</a>.
 
 /* Exception is due to page fault */
 Using the Exception registers, find the page number of the page causing the exception.
 
 If (page corresponds to a code page)
-	Get the disk block number to load from the <a href="process_table.html#disk_map_table">Disk Map Table</a> entry of the process.
-	Load the page to memory by calling the <b>get_code_page()</b> function in the <a href="../os_modules/Module_2.html">Memory Manager</a> Module.
-	In the <a href="process_table.html#per_page_table">page table</a> entry, set the Page Number field to the page number returned by get_code_page()
-	Set the <a href="process_table.html#per_page_table">referenced and valid bits</a> to 1. Also set the <a href="process_table.html#per_page_table">write bit</a> to 0.
+	Get the disk block number to load from the <a href="../../os-design/process-table/#disk_map_table">Disk Map Table</a> entry of the process.
+	Load the page to memory by calling the <b>get_code_page()</b> function in the <a href="../../modules/module-02/">Memory Manager</a> Module.
+	In the <a href="../../os-design/process-table/#per_page_table">page table</a> entry, set the Page Number field to the page number returned by get_code_page()
+	Set the <a href="../../os-design/process-table/#per_page_table">referenced and valid bits</a> to 1. Also set the <a href="../../os-design/process-table/#per_page_table">write bit</a> to 0.
 	/* Code pages are not writable */
   
 else if (page corresponds to a heap page)
-	Allocate 2 new memory pages by calling the <b>get_free_page()</b> function in the <a href="../os_modules/Module_2.html">Memory Manager</a> module.
+	Allocate 2 new memory pages by calling the <b>get_free_page()</b> function in the <a href="../../modules/module-02/">Memory Manager</a> module.
 	In the page table entry, set the Page Number field to the pages allocated above
 	and auxiliary information to referenced and valid. Also set the write bit to 1.
 	/* Heap is writable */
 
-Pop EIP from the kernel stack and restore the register context of the process using <a href="../arch_spec-files/instruction_set.html">RESTORE</a> instruction.
+Pop EIP from the kernel stack and restore the register context of the process using <a href="../../arch-spec/instruction-set/">RESTORE</a> instruction.
 
 Reset the MODE_FLAG back to 0.
 Restore SP to the USER SP stored in the process table.

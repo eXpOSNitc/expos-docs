@@ -30,43 +30,43 @@ The Delete operation takes as input a filename and deletes it. It returns with a
 #### Algorithm
 
 <pre><code>
-Set the MODE_FLAG in the <a href="process_table.html">process table</a> entry to 4, 
+Set the MODE_FLAG in the <a href="../../os-design/process-table/">process table</a> entry to 4, 
 indicating that the process is in the delete system call.
 
-//Switch to Kernel Stack - See <a href="stack_smcall.html">Kernel Stack Management during System Calls</a>. 
-Save the value of SP to the USER SP field in the <a href="process_table.html">Process Table</a> entry of the process.
+//Switch to Kernel Stack - See <a href="../../os-design/stack-smcall/">Kernel Stack Management during System Calls</a>. 
+Save the value of SP to the USER SP field in the <a href="../../os-design/process-table/">Process Table</a> entry of the process.
 Set the value of SP to the beginning of User Area Page.
 
-Find the index of the file in the <a href="disk_ds.html#inode_table" target="_blank">Inode Table</a>.
+Find the index of the file in the <a href="../../os-design/disk-ds/#inode_table" target="_blank">Inode Table</a>.
 		
-If file is not present in the <a href="disk_ds.html#inode_table" target="_blank">Inode Table</a>, return 0. 
+If file is not present in the <a href="../../os-design/disk-ds/#inode_table" target="_blank">Inode Table</a>, return 0. 
 
 If the file is not a DATA file, return -1.
 
-<b>If</b> the <a href="../os_spec-files/multiuser.html">exclusive permission</a> is set
+<b>If</b> the <a href="../../os-spec/multiuser/">exclusive permission</a> is set
 	<b>if</b> the current user is not root and the current user does not own the file
 		return -1. 
 
-Acquire a lock on the file by calling the <b>acquire_inode()</b> function in the <a href="../os_modules/Module_0.html">Resource Manager</a> module.
+Acquire a lock on the file by calling the <b>acquire_inode()</b> function in the <a href="../../modules/module-00/">Resource Manager</a> module.
 
-Check if the the file open count is -1 in the <a href="./mem_ds.html#file_lock_status_table" target="_blank"> File Status Table </a>. If not, release the lock and return -2.    
+Check if the the file open count is -1 in the <a href="../../os-design/mem-ds/#file_lock_status_table" target="_blank"> File Status Table </a>. If not, release the lock and return -2.    
 /* File is open, cannot be deleted */
 
-<b>For</b> each disk block allocated to the file, <b>do</b> { 	/* Check <a href="disk_ds.html#inode_table" target="_blank">Inode Table</a> */
+<b>For</b> each disk block allocated to the file, <b>do</b> { 	/* Check <a href="../../os-design/disk-ds/#inode_table" target="_blank">Inode Table</a> */
 	If the disk block is loaded into a buffer, and the DIRTY BIT is set, reset the dirty bit. 
-	/* Check the <a href="../os_design-files/mem_ds.html#buffer_table">Buffer Table</a> */ 
+	/* Check the <a href="../../os-design/mem-ds/#buffer_table">Buffer Table</a> */ 
 
-	Call the <b>release_block()</b> function in the <a href="../os_modules/Module_2.html">Memory Manager</a> module to free the disk block.        
+	Call the <b>release_block()</b> function in the <a href="../../modules/module-02/">Memory Manager</a> module to free the disk block.        
 }
 
 Invalidate (set to -1) the Inode Table of the file.
 
-Update the <a href="disk_ds.html#root_file" target="_blank">Root file</a> by invalidating the entry for the file.
+Update the <a href="../../os-design/disk-ds/#root_file" target="_blank">Root file</a> by invalidating the entry for the file.
 
-Release the lock on the file by calling the <b>release_inode()</b> function in the <a href="../os_modules/Module_0.html">Resource Manager</a> module.
+Release the lock on the file by calling the <b>release_inode()</b> function in the <a href="../../modules/module-00/">Resource Manager</a> module.
 
 Switch back to the user stack by reseting USER SP from the process table.
-Set the MODE_FLAG in the <a href="process_table.html">process table</a> entry of the parent process to 0.
+Set the MODE_FLAG in the <a href="../../os-design/process-table/">process table</a> entry of the parent process to 0.
 
 Return from system call with 0.    /* indicating success */
 

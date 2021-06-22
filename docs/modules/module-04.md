@@ -23,15 +23,15 @@ Handles Terminal I/O and Disk operations (Load and Store).
 
 <pre><code>
 Acquire the lock on the disk device by calling the Acquire_Disk() function
-in the <a href="Module_0.html">Resource Manager</a> module;
+in the <a href="../../modules/module-00/">Resource Manager</a> module;
 
-Set the LOAD/STORE BIT, PAGE NUMBER and BLOCK NUMBER in the <a href="../os_design-files/mem_ds.html#ds_table">Disk Status Table</a>.
+Set the LOAD/STORE BIT, PAGE NUMBER and BLOCK NUMBER in the <a href="../../os-design/mem-ds/#ds_table">Disk Status Table</a>.
 
 Use the store statement to store the memory page to disk;
 
 Set the state as (WAIT_DISK, - );
 
-Call the <b>switch_context()</b> function from the <a href="Module_5.html">Scheduler Module</a>.
+Call the <b>switch_context()</b> function from the <a href="../../modules/module-05/">Scheduler Module</a>.
 
 return;
 </code></pre>
@@ -48,15 +48,15 @@ Called by Shutdown, Buffer Read and Buffer Write.
 
 <pre><code>
 Acquire the lock on the disk device by calling the Acquire_Disk() function
-in the <a href="Module_0.html">Resource Manager</a> module;
+in the <a href="../../modules/module-00/">Resource Manager</a> module;
 
-Reset the LOAD/STORE BIT, set PAGE NUMBER and BLOCK NUMBER in the <a href="../os_design-files/mem_ds.html#ds_table">Disk Status Table</a>.
+Reset the LOAD/STORE BIT, set PAGE NUMBER and BLOCK NUMBER in the <a href="../../os-design/mem-ds/#ds_table">Disk Status Table</a>.
 
 Use the load statement to load the disk block to memory;
 
 Set the state as (WAIT_DISK, - );
 
-Call the <b>switch_context()</b> function from the <a href="Module_5.html">Scheduler Module</a>.
+Call the <b>switch_context()</b> function from the <a href="../../modules/module-05/">Scheduler Module</a>.
 
 return;
 </code></pre>
@@ -76,13 +76,13 @@ Note: The bootstrap code must use *loadi* statement and not this function.
 
 <pre><code>
     Acquire the lock on the terminal device by calling the Acquire_Terminal() function
-    in the <a href="Module_0.html">Resource Manager</a> module;
+    in the <a href="../../modules/module-00/">Resource Manager</a> module;
     
     Use the print statement to print the contents of the word
     to the terminal;
 
     Release the lock on the terminal device by calling the Release_Terminal() function
-    in the <a href="Module_0.html">Resource Manager</a> module;
+    in the <a href="../../modules/module-00/">Resource Manager</a> module;
   
     return;
 </code></pre>
@@ -99,15 +99,15 @@ Called by the Write system call.
 
 <pre><code>
 Acquire the lock on the disk device by calling the Acquire_Terminal() function
-in the <a href="Module_0.html">Resource Manager</a> module;
+in the <a href="../../modules/module-00/">Resource Manager</a> module;
 
 Use the read statement to read the word from the terminal;
 
 Set the state as (WAIT_TERMINAL, - );
 
-Call the <b>switch_context()</b> function from the <a href="Module_5.html">Scheduler Module</a>.
+Call the <b>switch_context()</b> function from the <a href="../../modules/module-05/">Scheduler Module</a>.
 
-Copy the word from the <b>Input Buffer</b> of the <a href="../os_design-files/process_table.html">Process Table</a> of the process corresponding to PID
+Copy the word from the <b>Input Buffer</b> of the <a href="../../os-design/process-table/">Process Table</a> of the process corresponding to PID
 to the memory address provided.
 
 return;
