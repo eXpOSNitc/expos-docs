@@ -16,7 +16,7 @@ to terminate a process using the exit system call.
 
 The Fork system call spawns a new process. The new process and the process which invoked fork
 have a child-parent relationship. The child process will be allocated a different PID and a new
-<a href="abi.html#collapse2" target="_blank">address space</a>. Hence, the child process will have a different process
+[address space](../abi.md#collapse2). Hence, the child process will have a different process
 table and page table. However, the child and the parent will share the code and heap regions of
 the address space. The child will be allocated two new stack pages and a new user area page.
 
@@ -25,8 +25,7 @@ The process table of the child is initialized with the same values of the parent
 the values of TICK, PID, PPID, USER AREA PAGE NUMBER, KERNEL STACK POINTER, INPUT BUFFER, MODE
 FLAG, PTBR and PTLR.The contents of the stack of the parent are
 copied into the new stack pages allocated for the child.
-The contents of the per process resource table in the <a href="os_design-files/process_table.html#user_area" target="_blank">
-user area page</a> of the parent process is copied to the child process.
+The contents of the per process resource table in the [user area page](../os-design/process-table.md#user_area) of the parent process is copied to the child process.
 However, the contents of the parent's kernel stack are not copied
 to the child, and the kernel stack of the child is set to empty (that is, KPTR field in the
 process table entry of the child is set to 0.)
@@ -43,27 +42,24 @@ return value of fork to the child process is zero.
 We have already noted that the child process shares the heap and code pages with the parent
 process, whereas new memory pages are allocated for user stack of the child. The contents of
 the parent's user stack pages are copied to the user stack of the child process.
-<b>ExpL compiler allocates local variables, global variables and arrays of primitive data types (int,
+**ExpL compiler allocates local variables, global variables and arrays of primitive data types (int,
 string) of a process in the stack. Since the parent and child processes have different memory
 pages for the user stack, they resume after fork with separate private copies of these
-variables, with the same values.</b> Since the stack page is not shared between the parent
+variables, with the same values.** Since the stack page is not shared between the parent
 and the child, subsequent modifications to these variables by either parent or the child will
 not be visible to the other.
 
-The <a href="os_spec-files/dynamicmemoryroutines.html#filesystemcalls" target="_blank">
-<i>Alloc()</i></a>function of eXpOS library allocates memory from the heap region of a process. Hence memory
+The [Alloc()](../os-spec/dynamicmemoryroutines.md#filesystemcalls)function of eXpOS library allocates memory from the heap region of a process. Hence memory
 allocated by <i>Alloc()</i> to store objects referenced by variables of user defined types in
 an ExpL program will be allocated in the heap. As heap pages are shared by the parent and the
-child, both processes share the memory allocated using <i>Alloc()</i>. Thus,<b>if the parent
-had allocated memory using the <i>Alloc()</i> function and attached it to a variable of some
-user defined type before <i>fork</i>, the copies of the variables in both the parent and the
-child store the address of the same shared memory.</b>
-
-
-<b>Since the Parent and child processes can concurrently access/modify the heap pages, they
-need support from the OS to synchronize access to the shared heap memory.</b>eXpOS provides
-support for such synchronization through systems calls for <b>semaphores</b> and
-<b>signal handling</b>. These will be discussed in later stages. Even though, code and library pages
+child, both processes share the memory allocated using <i>Alloc()</i>. Thus,**if the parent
+had allocated memory using the Alloc() function and attached it to a variable of some
+user defined type before fork, the copies of the variables in both the parent and the
+child store the address of the same shared memory.**
+**Since the Parent and child processes can concurrently access/modify the heap pages, they
+need support from the OS to synchronize access to the shared heap memory.**eXpOS provides
+support for such synchronization through systems calls for **semaphores** and
+**signal handling**. These will be discussed in later stages. Even though, code and library pages
 are shared among parent and child processes, synchronization is not required for these pages as
 their access is read only.
 
@@ -79,67 +75,62 @@ their access is read only.
     that the parent is allocated its heap pages and these pages are shared with the child.
 
 <figure>
-    <img src="http://exposnitc.github.io/img/roadmap/fork.png"/>
-    <figcaption>Control flow for <i>Fork</i>system call</figcaption>
+<img src="http://exposnitc.github.io/img/roadmap/fork.png"/>
+<figcaption>Control flow for <i>Fork</i>system call</figcaption>
 </figure>
 
 
 High level ExpL programs can invoke <i>fork</i> system call using the library interface
-function <a href="os_spec-files/dynamicmemoryroutines.html" target="_blank">exposcall</a>. Fork
+function [exposcall](../os-spec/dynamicmemoryroutines.md). Fork
 has system call number 8 and it is implemented in the interrupt routine 8. Fork does not take
 any arguments. Follow the description below to implement the fork system call.
 
-**Read the description of various entries of <a href="os_design-files/process_table.html" target="_blank">
-process table</a>before proceeding further.**
+**Read the description of various entries of [process table](../os-design/process-table.md)before proceeding further.**
 
-- The first action to perform in the fork system call is to set the MODE FLAG to the system call number and switch to the kernel stack. To get a new PID for the child process, invoke the <b>Get Pcb Entry</b>function from the <a href="os_modules/Module_1.html" target="_blank">
-process manager module</a>. Get Pcb Entry returns the index of the new process table allocated for the child. This index is saved as the PID of the child. As there are only 16 process tables present in the memory, maximum 16 processes can run simultaneously. If a free process table is not available, Get Pcb Entry returns -1. In such case, store -1 as the return value in the stack, reset the MODE FLAG (to 0), switch to user stack and return to the user mode from the fork system call. When PID is available, proceed with the fork system call.
+- The first action to perform in the fork system call is to set the MODE FLAG to the system call number and switch to the kernel stack. To get a new PID for the child process, invoke the **Get Pcb Entry**function from the [process manager module](../modules/module-01.md). Get Pcb Entry returns the index of the new process table allocated for the child. This index is saved as the PID of the child. As there are only 16 process tables present in the memory, maximum 16 processes can run simultaneously. If a free process table is not available, Get Pcb Entry returns -1. In such case, store -1 as the return value in the stack, reset the MODE FLAG (to 0), switch to user stack and return to the user mode from the fork system call. When PID is available, proceed with the fork system call.
 
-- If the heap pages are not allocated for the parent process, allocate heap pages by invoking the <b>Get Free Page</b> function of the memory manager module and set the page table entries for the heap pages of the parent process to the pages acquired. - The child process requires new memory pages for stack (two) and user area page (one). To allocate a memory page, invoke the <b>Get Free Page</b>function of the <a href="os_modules/Module_2.html" target="_blank">memory manager module</a>.
+- If the heap pages are not allocated for the parent process, allocate heap pages by invoking the **Get Free Page** function of the memory manager module and set the page table entries for the heap pages of the parent process to the pages acquired. - The child process requires new memory pages for stack (two) and user area page (one). To allocate a memory page, invoke the **Get Free Page**function of the [memory manager module](../modules/module-02.md).
 
-- The next step in the fork system call is initialization of the <a href="os_design-files/process_table.html" target="_blank">
-process table</a> for the child process. Copy the USERID field from the process table of the parent to the child process, as
+- The next step in the fork system call is initialization of the [process table](../os-design/process-table.md) for the child process. Copy the USERID field from the process table of the parent to the child process, as
 the user (currently logged in) will be same for both child and parent. (We will discuss USERID later when we add multi-user support to eXpOS.) Similarly, copy the SWAP FLAG and the USER AREA SWAP STATUS fields. (These fields will be discussed later, when we discuss swapping
 out processes from memory to the disk.) INODE INDEX for the child and the parent processes will be same, as both of them run the same program. UPTR field should also be copied from the parent process. As mentioned earlier, content of the user stack is same for both of them, so
 when both of the processes resume execution in user mode, the value of SP must be the same.
 
 - Set the MODE FLAG, KPTR and TICK fields of the child process to 0. MODE FLAG, KPTR are set to zero as the child process starts its execution from the user mode. The TICK field keep track of how long a process has been running in memory and should
 be initialized to 0, when a process is created. (The TICK field will be used later to decide which process must be swapped out of memory when memory is short. The strategy will be to swap out that process which had been in memory for the longest time). PID of the parent is
-stored in the PPID field of the process table of the child. <a href="os_design-files/process_table.html#state" target="_blank">STATE</a>of the child process is set to <a href="support_tools-files/constants.html" target="_blank">CREATED</a>. Store the new memory page number obtained for user area page in the USER AREA PAGE NUMBER field in the process table of the child proces. PID, PTBR and PTLR fields of the child process are already initialized in the <a href="os_modules/Module_1.html" target="_blank">Get Pcb Entry</a>function. It is not required to initialize
-<a href="os_design-files/process_table.html#state" target="_blank">INPUT BUFFER</a>.
+stored in the PPID field of the process table of the child. [STATE](../os-design/process-table.md#state)of the child process is set to [CREATED](../support-tools/constants.md). Store the new memory page number obtained for user area page in the USER AREA PAGE NUMBER field in the process table of the child proces. PID, PTBR and PTLR fields of the child process are already initialized in the [Get Pcb Entry](../modules/module-01.md)function. It is not required to initialize
+[INPUT BUFFER](../os-design/process-table.md#state).
 
-- The <a href="os_design-files/process_table.html#per_process_table" target="_blank">per-process resource table</a> has details about the open instances of the files and the semaphores currently acquired by the process. Child process shares the files and the semaphores opened by the parent process. Hence we need to copy the entries of the per-process resource table of the parent to the child. We will discuss files and semaphores in later stages. (There is a little bit more book keeping work associated with files and semaphores. Since we have not added files or semaphores so far to the OS, we will skip this work for the time being and complete the pending tasks in later stages).
+- The [per-process resource table](../os-design/process-table.md#per_process_table) has details about the open instances of the files and the semaphores currently acquired by the process. Child process shares the files and the semaphores opened by the parent process. Hence we need to copy the entries of the per-process resource table of the parent to the child. We will discuss files and semaphores in later stages. (There is a little bit more book keeping work associated with files and semaphores. Since we have not added files or semaphores so far to the OS, we will skip this work for the time being and complete the pending tasks in later stages).
 
-- Copy the <a href="os_design-files/process_table.html#disk_map_table" target="_blank">per-process disk map table</a> of the parent to the child. This will ensure that the disk block numbers of the code pages of the parent process are copied to the child.Further, if the parent has swapped out heap pages, those will be shared by the child. (This will be explained in detail in a later stage). The eXpOS design guarentees that the stack pages and the user area page of a process will not be swapped at the time when it invokes the fork system call. Hence the disk map table entries of the parent process corresponding to the stack and user area pages will be invalid, and these entries of the child too must be set to invalid.
+- Copy the [per-process disk map table](../os-design/process-table.md#disk_map_table) of the parent to the child. This will ensure that the disk block numbers of the code pages of the parent process are copied to the child.Further, if the parent has swapped out heap pages, those will be shared by the child. (This will be explained in detail in a later stage). The eXpOS design guarentees that the stack pages and the user area page of a process will not be swapped at the time when it invokes the fork system call. Hence the disk map table entries of the parent process corresponding to the stack and user area pages will be invalid, and these entries of the child too must be set to invalid.
 
-- Initialize the <a href="os_design-files/process_table.html#per_page_table" target="_blank"> page table</a>of the child process. As heap, code and library pages are shared by the parent process and the child process, copy these entries (page number and auxiliary information) form the page table of the parent to the child. For each page shared, increment the corresponding share count in the <a href="os_design-files/mem_ds.html#mem_free_list" target="_blank">memory free list </a>(why do we do need to do this?). Initialize the stack page entries in the page table with the new memory page numbers obtained earlier. Note that the auxiliary information for the stack pages is same for both parent and child (why?). Copy content of the user stack pages of the parent to the user stack pages of the child word by word.
+- Initialize the [page table](../os-design/process-table.md#per_page_table)of the child process. As heap, code and library pages are shared by the parent process and the child process, copy these entries (page number and auxiliary information) form the page table of the parent to the child. For each page shared, increment the corresponding share count in the [memory free list](../os-design/mem-ds.md#mem_free_list)(why do we do need to do this?). Initialize the stack page entries in the page table with the new memory page numbers obtained earlier. Note that the auxiliary information for the stack pages is same for both parent and child (why?). Copy content of the user stack pages of the parent to the user stack pages of the child word by word.
 
 - Store the value in the BP register on top of the kernel stack of child process. This value will be used to initialize the BP register of the child process by the scheduler when the child is scheduled for the first time.
 <!--The processes (child) created by <i>Fork</i>starts the execution from the instruction following call to <i>Fork</i>. So, the child process needs BP value at that point of execution. Hence, BP (BP value of parent) is stored so that when the child starts it execution for the first time, it pops the value from stack and uses it. Note that even the kernel stack has a value present, the KPTR in the process table is still set to 0.-->
 
 - Set up return values in the user stacks of the parent and the child processes. Store the PID of the child process as return value to the parent and 0 as the return values to the child. Reset the MODE FLAG of the parent process. Switch to the user stack of the parent process and return to the user mode.
 
-The complete version of the algorithm for the fork system call is provided <a href="os_design-files/fork.html" target="_blank">
-here</a>.
+The complete version of the algorithm for the fork system call is provided [here](../os-design/fork.md).
 
-#### Get Pcb Entry (function number = 1, <a href="os_modules/Module_1.html" target="_blank">Process Manager Module</a>)
+#### Get Pcb Entry (function number = 1, [Process Manager Module](../modules/module-01.md))
 
 The Get Pcb Entry function in the process manager, finds out a free process table entry and
 returns the index of it to the caller. If no process table entry is free, it returns -1. A free
-process table entry (<a href="os_design-files/process_table.html#state" target="_blank">STATE</a>field is set to
-<a href="support_tools-files/constants.html">TERMINATED</a>) can be found out by looping through all process 
-table entries. Initialize the PID to the index of the free entry. Set the STATE to <a href="support_tools-files/constants.html">
-ALLOCATED</a>. Initialize PTBR to the starting address of the page table for that process (obtained
+process table entry ([STATE](../os-design/process-table.md#state)field is set to
+[TERMINATED](../support-tools/constants.md)) can be found out by looping through all process 
+table entries. Initialize the PID to the index of the free entry. Set the STATE to [ALLOCATED](../support-tools/constants.md). Initialize PTBR to the starting address of the page table for that process (obtained
 using index) and PTLR to 10. Return the index to the caller.
 
 !!! note 
     The implementation of above **Get Pcb Entry** module function is final version.
 
-#### Modifications to <a href="os_modules/Module_5.html" target="_blank">Scheduler module</a>
+#### Modifications to [Scheduler module](../modules/module-05.md)
 
 The context-switch (scheduler) module is modified in this stage. The BP register of the child
 has to be initiazed by the scheduler for the first time as child is in created state. Refer to
-the detailed schedular algorithm <a href="os_modules/Module_5.html" target="_blank">here</a>.
+the detailed schedular algorithm [here](../modules/module-05.md).
 
 - When the process is in created state, add folllowing steps before switching to user stack.
 - Store the value in the first word of the kernel stack to the BP register.
@@ -157,22 +148,21 @@ entries are invalidated. There may be other processes waiting for this process t
 Exit system call must wake up these processes. (Currently, processes do not wait, we will see
 this in the next stage.) <i>Exit</i>has to close the files and release the semaphores acquired
 by the process. Per-process resource table has to be invalidated. Finally,<i>Exit</i>has to set 
-the state of the process to TERMINATED. These tasks are done by invoking the <b> ExitProcess</b>
-function of the <a href="os_modules/Module_1.html">process manager module</a>.
+the state of the process to TERMINATED. These tasks are done by invoking the ** ExitProcess**
+function of the [process manager module](../modules/module-01.md).
 
 <figure>
 <img src="http://exposnitc.github.io/img/roadmap/exit.png"/>
 <figcaption>Control flow for<i>Exit</i>system call</figcaption>
 </figure>
-
 <i>Exit</i>system call has a system call number 10 and is implemented in the interrupt
 routine 10. Follow the description given below to implement the exit system call.
 
 - Exit system call first sets the MODE FLAG to the system call number and switches to the kernal stack.
-- It then invokes the <b>Exit Process</b> function present in the process manager module. Finally, Exit system call invokes the scheduler to schedule other processes.
+- It then invokes the **Exit Process** function present in the process manager module. Finally, Exit system call invokes the scheduler to schedule other processes.
 
 !!! note 
-    With above changes implementation of exit system call is complete. The algorithm for exit system call is given <a href="os_design-files/exit.html" target="_blank">here</a>.
+    With above changes implementation of exit system call is complete. The algorithm for exit system call is given [here](../os-design/exit.md).
 
 #### Modifications to the Boot module
 Load interrupt routine 8 from disk to memory.
@@ -189,8 +179,7 @@ Compile and load interrupt routine 8, interrupt routine 10, module 2, module 5 i
     the page has read only access. So the process can not modify the content of the page.
     For every process, write bit is set to 0 for library and code pages while initializing
     page table. When a process tries to write to a page for which write bit is 0, XSM
-    machine raises <a href="Tutorials/xsm_interrupts_tutorial.html#exception_handling_in_XSM" target="_blank">
-    illegal memory access </a>exception. Refer about auxiliary information <a href="os_design-files/process_table.html#per_page_table" target="_blank">here</a>.
+    machine raises [illegal memory access](../tutorials/xsm-interrupts-tutorial.md#exception_handling_in_XSM)exception. Refer about auxiliary information [here](../os-design/process-table.md#per_page_table).
 
 ??? question "Q2. Where does ExpL allocate memory for variables of user defined data type?"
     Variables of user defined data type are allocated memory in stack, same as any variable of primitive data type. Every variable in ExpL is allocated one word memory in stack. Variable of primitive data type saves actual data in the word that is allocated to it, but variables of user defined data type stores the starting address of the object. Alloc() library function allocates memory for an object in heap and returns the starting address. This return address is stored in the stack for corresponding variable.
@@ -217,7 +206,7 @@ Compile and load interrupt routine 8, interrupt routine 10, module 2, module 5 i
     the parent and the child has separate pointers to the head of the shared linked list. Now, the
     child prints the 1st, 3rd, 5th, 7th... etc. entries of the list whereas the parent prints the
     2nd, 4th, 6th, 8th....etc. entries of the list. Eventually all numbers will be printed, but in
-    some arbitrary order (why?). The program is given <a href="test_prog.html#ll_fork" target="_blank">here</a>. Try to read and understand the program before running it. Run the program as the INIT program. In the next stages, we will see
+    some arbitrary order (why?). The program is given [here](../test-programs/index.md#ll_fork). Try to read and understand the program before running it. Run the program as the INIT program. In the next stages, we will see
     how to use the sychronization primitives of the OS to modify the above program so that the
     numbers are printed out in sequential order.
     

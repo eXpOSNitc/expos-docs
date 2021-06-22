@@ -7,7 +7,7 @@ original_url: https://exposnitc.github.io/Roadmap.html
 
 Multiprogramming refers to running more than one process simultaneously.
 In this stage, you will implement an initial version of the 
-<a href="https://en.wikipedia.org/wiki/Round-robin_scheduling" target="_blank">Round Robin scheduler</a>
+[Round Robin scheduler](https://en.wikipedia.org/wiki/Round-robin_scheduling)
 used in eXpOS. You will hand create another user process (apart from idle and init) and schedule its execution using the timer interrupt.
 
 1) Write an ExpL program to print the odd numbers from 1-100. Load this odd program as init.
@@ -16,11 +16,10 @@ load --init <path to odd.xsm>;
 ```
 Using the `--exec` option of XFS interface, you can load an executable program into the XFS
 disk. XFS interface will load the executable into the disk and create
-<a href="os_design-files/disk_ds.html#inode_table" target="_blank">Inode table</a>
-entry for the file. XFS interface will also create a <a href="os_design-files/disk_ds.html#root_file" target="_blank">
-root entry</a> for the loaded file. From the Inode Table Entry, 
+[Inode table](../os-design/disk-ds.md#inode_table)
+entry for the file. XFS interface will also create a [root entry](../os-design/disk-ds.md#root_file) for the loaded file. From the Inode Table Entry, 
 you will be able to find out the disk blocks where the contents of the file are loaded by XFS
-interface. Recall that these were discussed in detail in Stage 2 : <a href="#collapse2" target="_blank">Understanding the File System</a>)
+interface. Recall that these were discussed in detail in Stage 2 : [Understanding the File System](index.md#collapse2))
 
 2) Write an ExpL program to print the even numbers from 1-100. Load this even program as an
 executable.
@@ -28,15 +27,15 @@ executable.
 load --exec <path to even.xsm>;
 ```
 Dump the
-<a href="os_design-files/disk_ds.html#inode_table" target="_blank">inode table</a>using
+[inode table](../os-design/disk-ds.md#inode_table)using
 <i>dump --inodeusertable</i> command in xfs-interface. Check the disk address of code blocks of even.xsm.
 
 #### Modifications to the boot module code
 
 1) Load the code pages of the even program from disk to memory.
 
-2) Set the <a href="os_design-files/process_table.html">Process Table</a> entry and
-<a href="os_design-files/process_table.html#per_page_table">PageTable</a>
+2) Set the [Process Table](../os-design/process-table.md) entry and
+[PageTable](../os-design/process-table.md#per_page_table)
 entries for setting up a process for the even program. You should set up the PTBR, PTLR, UPTR, KPTR, 
 User Area Page Number etc. and also initialize the process state as CREATED in the process
 table entry for the even process. Set the PID field in the process table entry to 2.
@@ -50,9 +49,8 @@ process or reserved for the operating system.*
 (Interrupt Service Routine).
 <!--Such stand alone subroutines are implemented as <a href="os_modules/Module_Design.html" target="_blank"> kernel modules </a> in eXpOS.-->
 The eXpOS design stipulates that the scheduler is implemented as MODULE_5, and loaded in
-<a href="os_implementation.html" target="_blank"> disk blocks </a> 63 and 64 of the
-XFS disk. The boot module must load this module from disk to <a href="os_implementation.html" target="_blank">
-memory pages</a> 50 and 51. (We will take up the implementation of the module soon below).
+[disk blocks](../os-implementation.md) 63 and 64 of the
+XFS disk. The boot module must load this module from disk to [memory pages](../os-implementation.md) 50 and 51. (We will take up the implementation of the module soon below).
 ```
 loadi(50,63);
 loadi(51,64);
@@ -78,8 +76,8 @@ the time of the call.
 
 The scheduler first saves the values of the registers SP, PTBR and PTLR to the process table
 entry of the current process. Next, it must decide which process to run next. This is done using the
-<a href="https://en.wikipedia.org/wiki/Round-robin_scheduling" target="_blank">Round Robin Scheduling
-algorithm</a>. Having decided on the new process, the scheduler loads new values into SP,
+[Round Robin Scheduling
+algorithm](https://en.wikipedia.org/wiki/Round-robin_scheduling). Having decided on the new process, the scheduler loads new values into SP,
 PTBR and PTLR registers from the process table entry of the new process. It also updates the system status table to
 store PID of new process. If the state of the new process is READY, then the scheduler
 changes the state to RUNNING. Now, the scheduler returns using the return instruction.
@@ -134,12 +132,10 @@ run in the user mode).
 3. PTBR, PTLR, User Area Page Number and KPTR fields in the process table entry has been set
 up.
 
-**It is absolutely necessary to be clear about <a href="os_design-files/stack_module.html" target="_blank">
-Kernel Stack Management during Module calls </a> and <a href="os_design-files/timer_stack_management.html" target="_blank">
-Kernel Stack Management during Context Switch</a> before proceeding further.**
+**It is absolutely necessary to be clear about [Kernel Stack Management during Module calls](../os-design/stack-module.md) and [Kernel Stack Management during Context Switch](../os-design/timer-stack-management.md) before proceeding further.**
 
 Modify the timer interrupt routine as explained above using the algorithm given
-<a href="os_design-files/timer.html" target="_blank">here</a>.
+[here](../os-design/timer.md).
 (Ignore the part relating to the swapping operation as it will be dealt in a later stage.)
 
 #### Context Switch Module (Scheduler Module)
@@ -152,9 +148,9 @@ scheduling. Also update the System status table.
 
 Write an SPL program for the scheduler module (module 5) as given below:
 
-1. Obtain the PID of the current process from the <a href="os_design-files/mem_ds.html#ss_table" target="_blank"> System Status Table</a>.
+1. Obtain the PID of the current process from the [System Status Table](../os-design/mem-ds.md#ss_table).
 2. Push the BP of the current process on top of the kernel stack. (See the box below)
-3. Obtain the <a href="os_design-files/process_table.html">Process Table</a> entry corresponding to the current PID.
+3. Obtain the [Process Table](../os-design/process-table.md) entry corresponding to the current PID.
 4. Save SP % 512 in the kernel stack pointer field, also PTBR and PTLR into the corresponding fields in the Process Table entry.
 5. Iterate through the Process Table entries, starting from the succeeding entry of the current process to find a process in READY or CREATED state.
 6. If no such process can be found, select the idle process as the new process to be scheduled. Save PID of new process to be scheduled as newPID.
@@ -172,7 +168,7 @@ process.
 13. Return using return statement.
 
 !!! note 
-    In later stages you will modify the scheduler module to the final form given <a href="os_modules/Module_5.html" target="_blank"> here</a>.
+    In later stages you will modify the scheduler module to the final form given [here](../modules/module-05.md).
 
 !!! note ""
     In the present stage, the scheduler module is called only from the time interrupt handler.
@@ -181,14 +177,14 @@ process.
     user register context (including the value of the BP register) of the current process. What
     then is the need for the scheduler to push the BP register?
 
-    The reason is that, in later stages, the scheduler may be called from <a href="os_design.html"><b>kernel modules</b></a>
+    The reason is that, in later stages, the scheduler may be called from [kernel modules](../os-design/index.md)
     other than the timer interrupt routine. Such calls typically happen when an application invokes a
-    <a href="os_design.html"><b>system call</b></a>and the system call routine invokes a kernel module which in turn 
+    [system call](../os-design/index.md)and the system call routine invokes a kernel module which in turn 
     invokes the scheduler. Whenever this is the case, the OS kernel expects that the application saves all the 
-    user mode registers <b>except the BP register</b> before making the system call.
+    user mode registers **except the BP register** before making the system call.
 
     For instance, if the application is written in ExpL and compiled using the ExpL compiler
-    given to you, the compiler saves all the user registers<b>except BP</b>
+    given to you, the compiler saves all the user registers**except BP**
     before making the system call. The ExpL compiler expects that the OS will save the value of the BP register
     before scheduling another application process. This explains why the scheduler needs to save
     the BP register before a context switch.
@@ -206,7 +202,7 @@ the system.
 
 Write INT 10 program in SPL following below steps :
 
-1. Change the state of the invoking process to <a href="support_tools-files/constants.html">TERMINATED</a>.
+1. Change the state of the invoking process to [TERMINATED](../support-tools/constants.md).
 2. Find out whether all processes except idle are terminated. In that case, halt the system.Otherwise invoke the scheduler
 
 There will be no return to this process as the scheduler will never schedule this process again.

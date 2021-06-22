@@ -12,14 +12,13 @@ original_url: https://exposnitc.github.io/Roadmap.html
     disk by examining the INODE table and root file.
 
 !!! abstract "Pre-requisite Reading"
-    - Quickly go through the <a href="os_spec-files/eXpFS.html" target="_blank">Filesystem
-    (eXpFS) Specification</a> and <a href="./support_tools-files/xfs-interface.html"
-    target="_blank">XFS-Interface Specification</a> (interface between the UNIX
+    - Quickly go through the [Filesystem
+    (eXpFS) Specification](../os-spec/expfs.md) and [XFS-Interface Specification](../support-tools/xfs-interface.md) (interface between the UNIX
     System and eXpFS). Do not spent more than 30 minutes!
 
 
 The eXpOS package that you had downloaded in the previous stage consists mainly of a machine
-simulator. The machine is called the <b>eXperimental String Machine (XSM)</b> and consists of a
+simulator. The machine is called the **eXperimental String Machine (XSM)** and consists of a
 processor, memory and disk. Some support tools that help you to program the machine are also
 provided.
 
@@ -30,7 +29,7 @@ your code into the machine. The support tools provided along with the package ar
 designed to help you with this task.
 
 The package comes with three major support tools - two compilers and a disk interface tool
-called <a href="support_tools-files/xfs-interface.html" target="_blank">XFS-Interface</a>. The
+called [XFS-Interface](../support-tools/xfs-interface.md). The
 compilers allow you to write high level code and translate it into the XSM machine code. We
 will look at them in later stages. The XFS-Inteface tool helps you to transfer files between
 your Linux/Unix system and the XSM machines disk.
@@ -40,7 +39,7 @@ XSM machine's disk contains 512 blocks, each capable of storing
 to be followed so that one can figure out where in the disk
 are the blocks of a file located.
 
-XSM disk is formatted to what is known as the<a href="os_spec-files/eXpFS.html" target="_blank">eXpFS file system format</a>. 
+XSM disk is formatted to what is known as the[eXpFS file system format](../os-spec/expfs.md). 
 The format specifies how data as well as
 meta-data for each file stored in the disk must be organized. The XFS interface tool allows you
 to load data files (and executable files as well) from your Linux/Unix system into the XSM disk
@@ -48,24 +47,24 @@ in accordance with the eXpFS format.
 
 The eXpFS format specifies that each data/executable file can span across at most four data
 blocks, and that the index to these blocks along with the name and the size of the file must be
-stored in a pre-define area of the disk called the <a href="os_design-files/disk_ds.html" target="_blank">Inode table</a>.
+stored in a pre-define area of the disk called the [Inode table](../os-design/disk-ds.md).
 (The inode table is stored in disk blocks 3 and 4).
 There are also other pre-defined areas of the disk that stores
-meta data about the disk (see description of the <a href="os_design-files/disk_ds.html#root_file" target="_blank">root file</a>
-and the <a href="os_design-files/disk_ds.html#disk_free_list" target="_blank">disk free list</a>
+meta data about the disk (see description of the [root file](../os-design/disk-ds.md#root_file)
+and the [disk free list](../os-design/disk-ds.md#disk_free_list)
 for more details). When you use XFS interface to load a file from your Linux/Unix system to the XSM disk, the
 interface tool will correctly fill all the required meta data information as stipulated by the eXpFS format.
 
 
-The <a href="os_spec-files/eXpFS.html" target="_blank"><b>eXperimental Filesystem (eXpFS)</b></a> is a simulated filesystem.
-A UNIX file named "disk.xfs" simulates the <a href="./arch_spec-files/machine_organisation.html"target="_blank"><b>hard disk</b></a>
-of the XSM machine. Building eXpOS begins with understanding the underlying filesystem (eXpFS) and its interface <a href="./support_tools-files/xfs-interface.html"target="_blank">(xfs-interface)</a> to the host (UNIX) environment. 
+The [eXperimental Filesystem (eXpFS)](../os-spec/expfs.md) is a simulated filesystem.
+A UNIX file named "disk.xfs" simulates the [hard disk](../arch-spec/machine-organization.md)
+of the XSM machine. Building eXpOS begins with understanding the underlying filesystem (eXpFS) and its interface [(xfs-interface)](../support-tools/xfs-interface.md) to the host (UNIX) environment. 
 The xfs-interface is used for transferring files between your linux system and the xsm disk.
 
 <figure>
-    <img src="/assets/img/xfs-interface.png" />
-    <figcaption style="text-align:center">Schematic interface between linux system and XSM disk</figurecaption>
-</figure>
+<img src="/assets/img/xfs-interface.png"/>
+<figcaption style="text-align:center">Schematic interface between linux system and XSM disk
+</figcaption></figure>
 
 *In this stage, you will create a text file and load it to the XFS disk using xfs-interface.*
 
@@ -76,12 +75,11 @@ cd $HOME/myexpos/xfs-interface
 ```
 This will take you to the xfs-interface prompt.
 
-Start by formatting the disk to the eXpOS file system format in the XFS interface using <b>fdisk</b>
+Start by formatting the disk to the eXpOS file system format in the XFS interface using **fdisk**
 command.
 
-The *fdisk<* command converts the raw disk into the filesystem format recognised by the
-eXpOS operating system. It initialises the disk data structures such as <a href="/os_design-files/disk_ds.html"
-target="_blank">disk free list, inode table, user table and root file </a>.
+The *fdisk&lt;* command converts the raw disk into the filesystem format recognised by the
+eXpOS operating system. It initialises the disk data structures such as [disk free list, inode table, user table and root file](../os-design/disk-ds.md).
 
 Type the following commands in the xfs-interface prompt.
 
@@ -90,18 +88,17 @@ Type the following commands in the xfs-interface prompt.
 # exit
 ```
 
-You will be back in the UNIX shell and a file named <b>disk.xfs</b> is created in the
-location <b>$HOME/myexpos/xfs-interface/</b>. This UNIX file simulates the hard disk of the
-XSM machine. The disk is formatted to eXperimental File System (eXpFS) (see <a href="os_spec-files/eXpFS.html"
-target="_blank"> eXpFS Specification</a>). <br />
+You will be back in the UNIX shell and a file named **disk.xfs** is created in the
+location **$HOME/myexpos/xfs-interface/**. This UNIX file simulates the hard disk of the
+XSM machine. The disk is formatted to eXperimental File System (eXpFS) (see [eXpFS Specification](../os-spec/expfs.md)). <br/>
 The XSM machine's disk is a sequence of 512 blocks, each block capable of holding
-512 words (see <a href="os_implementation.html" target="_blank">Disk Organization</a>). The
+512 words (see [Disk Organization](../os-implementation.md)). The
 second block of the formatted disk contains a disk free list which is explained below.
 
-The <a href="os_design-files/disk_ds.html#disk_free_list" target="_blank">Disk Free List</a>
+The [Disk Free List](../os-design/disk-ds.md#disk_free_list)
 in XFS is a data structure which keeps track of used and unused blocks in the disk. An unused
 block is indicated by 0 and a used block is indicated by 1. Check the contents of the Disk
-Free List after formatting the disk. Use the <b>df</b> command to view the Disk Free List
+Free List after formatting the disk. Use the **df** command to view the Disk Free List
 (stored in disk block number 2). The output will be as follows:
 
 ```
@@ -138,8 +135,8 @@ Total No of Blocks = 512
 ```
 
 The first 69 blocks (blocks 0 to 68) are reserved for stroing various OS data structures and
-routines as well as Idle code, INIT program, etc (see <a href="os_implementation.html" target="_blank">Disk
-Organization)</a>. Hence the Disk Free List entries for these are marked as 1 (used) and
+routines as well as Idle code, INIT program, etc (see [Disk
+Organization)](../os-implementation.md). Hence the Disk Free List entries for these are marked as 1 (used) and
 the remaining entries for blocks 69 to 511 are 0 (unused).
 
 Create a file in your UNIX machine with sample data. A sample data file is given below:
@@ -176,34 +173,32 @@ structures :
     A disk block will be allocated for the file (as <tt>sample.dat</tt> contains less than
     512 words) and corresponding to this allocated block (here block 69 - this is because the
     1<sup>st</sup> free block is allocated by the allocator), an entry will be marked as 1
-    (used) in the <a href="os_design-files/disk_ds.html#disk_free_list" target="_blank">Disk
-    Free List</a>.
+    (used) in the [Disk
+    Free List](os_design-files/disk_ds.html#disk_free_list).
 </li>
 <li>
-    An entry in the <a href="os_design-files/disk_ds.html#inode_table" target="_blank"> Inode
-    Table</a> will be created for this file. Inode Table contains information such as the
+    An entry in the [Inode
+    Table](os_design-files/disk_ds.html#inode_table) will be created for this file. Inode Table contains information such as the
     file type, file name, file size, userid, permission and the block numbers of the data
-    blocks of the file. The <a href="os_spec-files/multiuser.html" target="_blank">owner</a>
+    blocks of the file. The [owner](../os-spec/multiuser.md)
     of data files loaded through <i>xfs-interface</i> is the <i>root</i>. Userid is the index
-    of the user entry in the <a href="os_design-files/disk_ds.html#user_table">User Table</a>.
+    of the user entry in the [User Table](../os-design/disk-ds.md#user_table).
     The userid of <i>root</i> is 1 and hence the userid field in the <i>inode table</i> is
-    set to 1 for all data files loaded through the <i>xfs interface</i>. The <a href="os_spec-files/multiuser.html"
-    target="_blank">permission</a> is set to open(1). Note that any file in eXpFS file
+    set to 1 for all data files loaded through the <i>xfs interface</i>. The [permission](../os-spec/multiuser.md) is set to open(1). Note that any file in eXpFS file
     system is permitted to have a maximum of four data blocks.
 </li>
 <li>
-    An entry for this file will be made in the <a href="os_design-files/disk_ds.html#root_file"
-    target="_blank">Root File</a> also.
+    An entry for this file will be made in the [Root File](../os-design/disk-ds.md#root_file) also.
 </li>
 </ol>
-<br>
-Before proceeding further you must be clear about <a href="os_spec-files/eXpFS.html" target="_blank"><b>eXpFS
-    (eXperimental File System)</b></a>. In the following steps we will see the above
+<br/>
+Before proceeding further you must be clear about [eXpFS
+    (eXperimental File System)](../os-spec/expfs.md). In the following steps we will see the above
 mentioned updations.
-</li>
 
 
-Find out the block numbers of the Data Blocks corresponding to the loaded file. Use the <b>copy</b>
+
+Find out the block numbers of the Data Blocks corresponding to the loaded file. Use the **copy**
 command to copy the <i>Inode Table</i>(Inode Table is stored in disk blocks 3 and 4) to a
 UNIX file (say `$HOME/myexpos/inode_table.txt`).
 
@@ -214,7 +209,7 @@ UNIX file (say `$HOME/myexpos/inode_table.txt`).
 
 !!! note 
     The Inode table occupies only the first 960 words (60 entries, each of size 16 words)
-    in the disk blocks 3 and 4. <a href="./os_design-files/disk_ds.html#user_table" target="_blank">User table </a>
+    in the disk blocks 3 and 4. [User table](../os-design/disk-ds.md#user_table)
     occupies the next 32 words (16 entries, each of size 2 words) and the last 32 words are reserved for future use.
     (You will learn about User Table later on).
 
@@ -262,8 +257,7 @@ sample.dat
 ```
 
 !!! note 
-    Instead of using the `copy` command you can use <a href="./support_tools-files/xfs-interface.html#dump"
-    target="_blank">`dump`</a> command provided by the XFS interface to directly copy
+    Instead of using the `copy` command you can use [`dump`](../support-tools/xfs-interface.md#dump) command provided by the XFS interface to directly copy
     the disk data structures (inode table, root file) to the UNIX machine as shown below.
 
 ```
@@ -314,20 +308,18 @@ peppermint wind
 ```
 
 </li>
-
 <li>
-xfs-interface provides the <a href="./support_tools-files/xfs-interface.html#export"
-target="_blank">export</a> command to export files from the XSM machine to the UNIX machine
+xfs-interface provides the [export](../support-tools/xfs-interface.md#export) command to export files from the XSM machine to the UNIX machine
 in a single step. Export the file <tt>sample.dat</tt> to the UNIX file <tt>$HOME/myexpos/data.txt</tt>
 using <i>xfs-inteface</i> as shown below and verify that the contents are same as sample.dat.
-<br><br>
+<br/><br/>
 <div>
 ```
 # export sample.dat $HOME/myexpos/data.txt
 ```
 </div>
 </li>
-</ol>
+
 
 
 ??? question "Q1. When a file is created entries are made in the Inode table as well as the Root file. What is the need for this duplication?"

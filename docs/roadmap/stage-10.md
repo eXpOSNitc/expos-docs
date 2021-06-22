@@ -8,7 +8,7 @@ original_url: https://exposnitc.github.io/Roadmap.html
     - Familiarise with the console output mechanism in eXpOS.
 
 !!! abstract "Pre-requisite Reading"
-    Read and understand the <a href="os_design-files/stack_smcall.html" target="_blank"> Kernel Stack Management during system calls </a> before proceeding further.
+    Read and understand the [Kernel Stack Management during system calls](../os-design/stack-smcall.md) before proceeding further.
 
 
 In Stage 7, we wrote a user program and used the BRKP instruction to view the result in debug
@@ -24,7 +24,7 @@ call routines for various services like writing to a file/console, forking a pro
 written inside some software interrupt handler. For example, the write system call of eXpOS is coded inside
 the INT 7 handler.An interrupt handler may contain code for several system calls.
 (For example, in the eXpOS implementation on XSM, the routines for create and delete system
-calls are coded inside the INT 4 handler - find details <a href="os_design-files/Sw_interface.html" target="_blank">here</a>). 
+calls are coded inside the INT 4 handler - find details [here](../os-design/sw-interface.md)). 
 
 To identify the correct routine, the OS assigns a unique systemcall number to each system call routine. To invoke a system call from a program, the program must pass the system call number (along with other arguments to the system call) and invoke the corresponding
 software interrupt using the INT instruction. The arguments and the system call number are passed through the user
@@ -54,7 +54,7 @@ A user program must execute the following steps to invoke the system call:
 
 2) Push the system call number and arguments to the stack. For the Write system call, the system call number is 5. Argument 1 is the file descriptor which is -2 for the terminal. Argument 2 is the word which has to be written to the terminal. Here the word we are going to 
 write is present in R1. By convention, all system calls have 3 arguments. As we do not have a third argument in this case, push any register, say R0 on to the stack. (In this case the last argument will be ignored by the system call handler.) Refer to the low level system call
-interface for write <a href="os_design-files/Sw_interface.html" target="_blank"> here</a>.
+interface for write [here](../os-design/sw-interface.md).
 
 3) Push any register, say R0 to allocate space for the return value.
 
@@ -131,8 +131,8 @@ INT 10
 Contents of the stack before and after the INT instruction
 
 <div style="display: inline-flex;width: 100%">
-    <img src="https://exposnitc.github.io/img/system_call_stack1.png" width="50%">
-    <img src="https://exposnitc.github.io/img/system_call_stack2.png" width="50%">
+<img src="https://exposnitc.github.io/img/system_call_stack1.png" width="50%"/>
+<img src="https://exposnitc.github.io/img/system_call_stack2.png" width="50%"/>
 </div>
 Now, you will write the system call handler for processing the write request.
 
@@ -145,9 +145,9 @@ stack and writes the word to the terminal using the OUT instruction.
 
 Detailed instructions for doing so are given below
 
-1) Set the MODE FLAG field in the <a href="os_design-files/process_table.html" target="_blank">process table</a>
+1) Set the MODE FLAG field in the [process table](../os-design/process-table.md)
 to the system call number which is 5 for write system call. To get the process table of current process, use the PID obtained from the
-<a href="os_design-files/mem_ds.html#ss_table" target="_blank">system status table</a>.
+[system status table](../os-design/mem-ds.md#ss_table).
 MODE FLAG field in the process table is used to indicate whether the current process is 
 executing in a system call, exception handler or usermode.
 ```
@@ -162,14 +162,14 @@ userSP = SP;
 
 3) Switch the stack from user stack to kernel stack.
 
-- Save the value of SP in the user SP field of <a href="os_design-files/process_table.html" target="_blank"> Process Table </a> entry of the process.
+- Save the value of SP in the user SP field of [Process Table](../os-design/process-table.md) entry of the process.
 - Set the value of SP to beginning of the kernel stack.
 
-Details can be found at <a href="os_design-files/stack_smcall.html" target="_blank">Kernel Stack Management during system calls</a>.
+Details can be found at [Kernel Stack Management during system calls](../os-design/stack-smcall.md).
 
 4) First we have to access argument 1 which is file descriptor to check whether it is valid or
 not. In user mode, logical addresses are translated to physical address by the machine using
-its <a href="arch_spec-files/paging_hardware.html" target="_blank">address translation scheme</a>.
+its [address translation scheme](../arch-spec/paging-hardware.md).
 Since interrupts are executed in the kernel mode, the actual physical address is used to
 access memory locations. Hence to access the file descriptor (argument 1) we must calculate the physical
 address of the memory location where it is stored. According to system call conventions,
@@ -187,8 +187,7 @@ fileDescriptor=[fileDescPhysicalAddr];
 ```
 
 5) Check whether the file descriptor obtained in above step is valid or not. In this stage it
-should be -2 because file descriptor for console is -2. (see details <a href="os_design-files/Sw_interface.html" target="_blank">
-     here </a>.) Write an IF condition to check whether file descriptor is -2 or not.
+should be -2 because file descriptor for console is -2. (see details [here](../os-design/sw-interface.md).) Write an IF condition to check whether file descriptor is -2 or not.
 ```
 if (fileDescriptor != -2)
 then
@@ -264,8 +263,7 @@ loadi(17,30);
 !!! tip "Implementation Tip"
     From this stage onwards, you have to load multiple files using XFS-interface. To make things easier, create a
     batch file containing XFS-interface commands to load the required files and run this batch file
-    using <b>run</b> command. See the usage of <b>run</b> command in <a href="./support_tools-files/xfs-interface.html" target="_blank">
-    XFS-interface documentation</a>
+    using **run** command. See the usage of **run** command in [XFS-interface documentation](../support-tools/xfs-interface.md)
 
 1. Save this file in your UNIX machine as $HOME/myexpos/spl/spl_progs/sample_int7.spl
 2. Compile this program using the SPL compiler.
@@ -274,10 +272,9 @@ loadi(17,30);
 
 !!! note 
     Starting from the next stage, you will be writing user programs using a high level language called ExpL.
-    ExpL allows you to write programs that invoke system calls using the <a href="os_spec-files/dynamicmemoryroutines.html" target="_blank">
-    exposcall() function </a>.
+    ExpL allows you to write programs that invoke system calls using the [exposcall() function](../os-spec/dynamicmemoryroutines.md).
     The ExpL compiler will automatically generate code to translate your high level function call to a call to the
-    <a href="abi.html" target="_blank">eXpOS library</a> and the library contains code to translate the call to an INT invocation as done
+    [eXpOS library](../abi.md) and the library contains code to translate the call to an INT invocation as done
     by you in this stage. The next stage will introduce you to ExpL.
 
 ??? question " Why should we calculate the physical address of `userSP-3` and `userSP-1` seperately instead of calculating one and adding/subtracting the difference from the calculated value?"

@@ -8,7 +8,7 @@ original_url: https://exposnitc.github.io/Roadmap.html
       - Familiarise with timer interrupt handling.
 
 !!! abstract "Pre-requisite Reading"
-      Read and understand the <a href="Tutorials/xsm_interrupts_tutorial.html" target="_blank"> XSM tutorial on Interrupts and Exception handling</a> before proceeding further. (Read only the Timer Interrupt part).
+      Read and understand the [XSM tutorial on Interrupts and Exception handling](../tutorials/xsm-interrupts-tutorial.md) before proceeding further. (Read only the Timer Interrupt part).
 
 **Try to solve the following question that tests your understanding.**
 
@@ -25,9 +25,9 @@ original_url: https://exposnitc.github.io/Roadmap.html
     ```
 
     ??? question "Which physical memory location will contain the physical page number to which return address will be stored by the machine before transferring control to the timer interrupt handler?"
-        29714 (Why?) It is absolutely necessary that you read the <a href="http://exposnitc.github.io/Tutorials/xsm_unprivileged_tutorial.html" target="_blank">XSM unprivileged mode execution tutorial</a>if you are not able to solve this question yourself.
+        29714 (Why?) It is absolutely necessary that you read the [XSM unprivileged mode execution tutorial](../tutorials/xsm-unprivileged-tutorial.md)if you are not able to solve this question yourself.
     ??? question "Suppose further that the memory location 29714 contains value 35. What will be the physical memory address to which the XSM machine will copy the value of the next instruction to be executed?"
-        18313 (Again if you are not able to solve the problem yourself, you must read the <a href="http://exposnitc.github.io/Tutorials/xsm_unprivileged_tutorial.html" target="_blank">XSM unprivileged mode execution tutorial</a>)
+        18313 (Again if you are not able to solve the problem yourself, you must read the [XSM unprivileged mode execution tutorial](../tutorials/xsm-unprivileged-tutorial.md))
     ??? question "What will be the value stored into the location 18313 by the machine?"
         3002 This is the (logical) address of the next instruction to be executed after return from the interrupt handler. Note the each XSM instruction occupies two words in memory and hence the next instruction's address is at 3002 (and not 3001).
     ??? question "What value will the SP and IP registers contain after the execution of the INT instruction?"
@@ -42,7 +42,7 @@ hardware signal that interrupts machine execution. The machine will push the IP 
 next user mode instruction to the stack and pass control to the the timer interrupt handler at
 physical address 2048.
 
-eXpOS design given <a href="os_implementation.html" target="_blank">here</a>
+eXpOS design given [here](../os-implementation.md)
 requires you to load a timer interrupt routine into two pages of memory starting at memory address 2048 (pages
 4 and 5). The routine must be written by you and loaded into disk blocks 17 and 18 so that the
 OS startup code can load this code into memory pages 4 and 5.

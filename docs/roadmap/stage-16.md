@@ -9,23 +9,20 @@ original_url: https://exposnitc.github.io/Roadmap.html
     - Introduction to input buffer.
 
 !!! abstract "Pre-requisite Reading"
-    Read and understand the <a href="Tutorials/xsm_interrupts_tutorial.html#disk_and_console_interrupts" target="_blank">
-    XSM tutorial on Interrupts and Exception handling</a> before proceeding further. (Read only the console and disk interrupt part.)
+    Read and understand the [XSM tutorial on Interrupts and Exception handling](../tutorials/xsm-interrupts-tutorial.md#disk_and_console_interrupts) before proceeding further. (Read only the console and disk interrupt part.)
 
 In this stage, we will introduce you to XSM console interrupt handling. A process must use the
-<a href="arch_spec-files/instruction_set.html">XSM instruction IN</a> to <b>read data from the console into the input </b>
-<a href="arch_spec-files/machine_organisation.html" target="_blank">port P0</a>.
+[XSM instruction IN](../arch-spec/instruction-set.md) to **read data from the console into the input **
+[port P0](../arch-spec/machine-organization.md).
 IN is a privileged instruction and can be executed only inside a system call/module.
-Hence, to read data from the console, a user process invokes the <a href="os_spec-files/systemcallinterface.html" target="_blank">
-read system call </a>. The read system call invokes the Terminal Read function present in <a href="os_modules/Module_4.html" target="_blank">
-Device Manager module</a> (Module 4). The IN instruction will be executed within this Terminal Read function.
+Hence, to read data from the console, a user process invokes the [read system call](../os-spec/systemcallinterface.md). The read system call invokes the Terminal Read function present in [Device Manager module](../modules/module-04.md) (Module 4). The IN instruction will be executed within this Terminal Read function.
 
-The most important fact about the <b> IN instruction is that it will not wait for the data to arrive in P0</b>.
+The most important fact about the ** IN instruction is that it will not wait for the data to arrive in P0**.
 Instead, the XSM machine continues advancing the instruction pointer and executing the next instruction.
 Hence there must be some hardware mechanism provided by XSM to detect arrival of data in P0.
 
 When does data arrive in P0? This happens when some string/number is entered from the key-board and ENTER is pressed. At this time,
-<b>the XSM machine will raise the console interrupt</b>. Thus the console interrupt is the hardware mechanism that helps the OS to
+**the XSM machine will raise the console interrupt**. Thus the console interrupt is the hardware mechanism that helps the OS to
 infer that the execution of the IN instruction is complete.
 
 As noted above, the IN instruction is typically executed from the Terminal Read function.
@@ -36,10 +33,10 @@ execution till data arrives in P0, **a process executing the IN instruction will
 When the console interrupt occurs, the machine interrupts the current process (note that some
 other process would be running) and executes the console interrupt handler. (The interrupt
 mechanism is similar to the timer interrupt. The current value of IP+2 is pushed into the stack
-and control transfers to the interrupt handler - see <a href="Tutorials/xsm_interrupts_tutorial.html#disk_and_console_interrupts" target="_blank"> XSM machine execution tutorial </a> for details).It is the responsiblity of the
-<b>console interrupt handler to transfer the data arrived in port P0 to the process which is waiting for the data</b>.
-This is done by copying the value present in port P0 into the <b>input buffer</b> field of the <a href="os_design-files/process_table.html" target="_blank">process table</a> entry of the process which has requested for the input.
-<b>Console interrupt handler also wakes up the process in WAIT_TERMINAL by setting its state to READY</b>.
+and control transfers to the interrupt handler - see [XSM machine execution tutorial](../tutorials/xsm-interrupts-tutorial.md#disk_and_console_interrupts) for details).It is the responsiblity of the
+**console interrupt handler to transfer the data arrived in port P0 to the process which is waiting for the data**.
+This is done by copying the value present in port P0 into the **input buffer** field of the [process table](../os-design/process-table.md) entry of the process which has requested for the input.
+**Console interrupt handler also wakes up the process in WAIT_TERMINAL by setting its state to READY**.
 (Other processes in WAIT_TERMINAL state are also set to READY by the console interrupt handler.)
 
 
@@ -52,13 +49,12 @@ process.
 User programs can invoke the read system call using the library interface. For a terminal
 read, the file descriptor (-1 for terminal input) is passed as the first argument. The second
 argument is a variable to store number/string from console. Refer to the read system call
-calling convention <a href="os_spec-files/dynamicmemoryroutines.html" target="_blank">
-here</a>.ExpL library converts exposcall to 
-<a href="os_design-files/Sw_interface.html" target="_blank"> low level system call interface</a>
+calling convention [here](../os-spec/dynamicmemoryroutines.md).ExpL library converts exposcall to 
+[low level system call interface](../os-design/sw-interface.md)
 for read system call, to invoke interrupt 6.
 
-The read system call (Interrupt 6) invokes the <b>Terminal Read</b> function present in the
-<a href="os_modules/Module_4.html" target="_blank">Device manager Module</a>.
+The read system call (Interrupt 6) invokes the **Terminal Read** function present in the
+[Device manager Module](../modules/module-04.md).
 Reading from the terminal and storing the number/string (read from console) in the address provided is done by
 the Terminal Read function. Function number for the Terminal Read function, current PID and
 address where the word has to be stored are sent as arguments through registers R1, R2 and R3
@@ -66,12 +62,11 @@ respectively. After coming back from Terminal Read function, it is expected that
 address (passed as argument to read system call) contains the number/string entered in the
 terminal.   
 
-The OS maintains a global data structure called the <a href="os_design-files/mem_ds.html#ts_table">
-terminal status table </a> that stores information about the current state of the terminal. A process
+The OS maintains a global data structure called the [terminal status table](../os-design/mem-ds.md#ts_table) that stores information about the current state of the terminal. A process
 can acquire the terminal by invoking the Acquire Terminal function of the
-<a href="os_modules/Module_0.html"> resource manager module</a>.
-<b>When the Acquire Terminal function assigns the terminal to a process,
-it enters the PID of the process into the PID field of the terminal status table</b>.
+[resource manager module](../modules/module-00.md).
+**When the Acquire Terminal function assigns the terminal to a process,
+it enters the PID of the process into the PID field of the terminal status table**.
 The Terminal Read function must perform the following 1) Acquire the terminal 2) Issue an IN
 instruction (SPL read statement translates to XSM instruction IN) 3) Set its state as
 WAIT_TERMINAL 4) Invoke the scheduler and 5) After console interrupt wakes up this process,
@@ -82,12 +77,12 @@ transfer data present in the input buffer field of the process table into the wo
 When the data finally arrives, <b>the console interrupt handler must transfer the data (in port P0) into the input buffer of the process</b> in the <a href="os_design-files/process_table.html" target="_blank">process table</a>. Then the handler wakes up process waiting for the terminal.
 Finally, the read system call, after waking up from the WAIT_TERMINAL state, returns the input data in the buffer and passes this data to the user program that invoked the system call. 
 -->
-Read about <a href="Tutorials/xsm_interrupts_tutorial.html" target="_blank"> XSM interrupts </a>
+Read about [XSM interrupts](../tutorials/xsm-interrupts-tutorial.md)
 before proceeding further.
 
 <figure style="text-align: center;">
-    <img src="https://exposnitc.github.io/img/roadmap/read.png"/>
-    <figcaption>Control flow for <i>Read</i> system call</figcaption>
+<img src="https://exposnitc.github.io/img/roadmap/read.png"/>
+<figcaption>Control flow for <i>Read</i> system call</figcaption>
 </figure>
 
 #### Implementation of read system call (interrupt 6 routine)
@@ -101,7 +96,7 @@ alias userSP R0;
 userSP=SP;
 ```
 
-3) Store the value of register SP in the UPTR field of the <a href="os_design-files/process_table.html" target="_blank">process table</a>
+3) Store the value of register SP in the UPTR field of the [process table](../os-design/process-table.md)
 entry of the current process.
 
 4) Initialize SP (kernel stack pointer) to (user area page number)*512 -1.
@@ -166,9 +161,9 @@ Following steps are executed after return from the scheduler
 13) Return to the caller.
 
 
-#### Implementation of <a href="os_design-files/term_handler.html" target="_blank">Console Interrupt Handler</a>
+#### Implementation of [Console Interrupt Handler](../os-design/term-handler.md)
 
->  The console interrupt handler is entered while some other process is executing in the user mode. The handler must switch to the kernel stack of that process, do the interrupt handling, restore the user stack of the process that was running and return control back to the process 
+&gt;  The console interrupt handler is entered while some other process is executing in the user mode. The handler must switch to the kernel stack of that process, do the interrupt handling, restore the user stack of the process that was running and return control back to the process 
 
 1) Store the SP value in the UPTR field in the process table entry of the currently running process.
 
@@ -176,7 +171,7 @@ Following steps are executed after return from the scheduler
 
 3) Backup the user context of the currently running process in the kernel stack as done in timer interrupt routine.
 
-4) Get the PID of the process that has aqcuired the terminal from the <a href="os_design-files/mem_ds.html#ts_table" target="_blank">terminal status table</a>, Save this as reqPID.
+4) Get the PID of the process that has aqcuired the terminal from the [terminal status table](../os-design/mem-ds.md#ts_table), Save this as reqPID.
 
 5) Using the reqPID obtained in the above step, get the corresponding process table entry.
 
@@ -216,5 +211,5 @@ Following steps are executed after return from the scheduler
     program and run the machine.
 
 !!! assignment "Assignment 2"
-    Use the <a href="support_tools-files/xsm-simulator.html" target="_blank">XSM debugger</a> to print out the contents of the Terminal Status Table and the input buffer (by dumping process table entry of the process to which read was performed) before and after reading data from the input port to the input buffer of the process, inside the terminal interrupt handler.
+    Use the [XSM debugger](../support-tools/xsm-simulator.md) to print out the contents of the Terminal Status Table and the input buffer (by dumping process table entry of the process to which read was performed) before and after reading data from the input port to the input buffer of the process, inside the terminal interrupt handler.
 

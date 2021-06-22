@@ -29,8 +29,8 @@ The [per-process resource table](../os-design/process-table.md#per_process_table
 
 
 <figure>
-    <img src="https://exposnitc.github.io/img/roadmap/sem.png"/>
-    <figcaption> Control flow for <i>Semaphore </i> system calls</figcaption>
+<img src="https://exposnitc.github.io/img/roadmap/sem.png"/>
+<figcaption> Control flow for <i>Semaphore </i> system calls</figcaption>
 </figure>
 <br/>
 <br/>
@@ -58,13 +58,13 @@ Implement _Semrelease_ system call using the detailed algorithm provided [here](
     <i>Exit</i> system call.
 
 
-#### Acquire Semaphore (function number = 6, <a href="os_modules/Module_0.html" target="_blank"> resource manager module</a>)
+#### Acquire Semaphore (function number = 6, [resource manager module](../modules/module-00.md))
 
 **Acquire Semaphore** function takes PID of the current process as argument. _Acquire Semaphore_ finds a free entry in the semaphore table and sets the PROCESS COUNT to 1 in that entry. Finally, _Acquire Semaphore_ returns the index of that free entry of semaphore table.
 
 Implement _Acquire Semaphore_ function using the detailed algorithm provided in resource manager module link above.
 
-#### Release Semaphore (function number = 7, <a href="os_modules/Module_0.html" target="_blank">resource manager module</a>)
+#### Release Semaphore (function number = 7, [resource manager module](../modules/module-00.md))
 
 **Release Semaphore** function takes a semaphore index (SEMID) and PID of a process as arguments. If the semaphore to be released is locked by current process, then _Release Semaphore_ function unlocks the semaphore and wakes up all the processes waiting for this semaphore. _Release Semaphore_ function finally decrements the PROCESS COUNT of the semaphore in its corresponding semaphore table entry.
 
@@ -80,8 +80,8 @@ The system calls <i>SemLock</i> and <i> SemUnLock</i> are implemented in the int
 - Change back to the user stack and return to the user mode.
 
 ##### SemLock System Call
-<b><i>SemLock</i></b>system call takes a semaphore desciptor (SEMID) as an argument from user program. A process locks the semaphore it is sharing using the <i>SemLock</i> system call. If the requested semaphore is currently locked by some other process, the current
-process blocks its execution by changing its <a href="os_design-files/process_table.html#state" target="_blank">STATE</a>
+**SemLock**system call takes a semaphore desciptor (SEMID) as an argument from user program. A process locks the semaphore it is sharing using the <i>SemLock</i> system call. If the requested semaphore is currently locked by some other process, the current
+process blocks its execution by changing its [STATE](../os-design/process-table.md#state)
 to the tuple (WAIT_SEMAPHORE, semaphore table index of requested semaphore) until the requested 
 semaphore is unlocked. When the semaphore is unlocked, then STATE of the current process is made READY 
 (by the process which has unlocked the semaphore).When the current process is scheduled and the 
@@ -90,17 +90,17 @@ semaphore table entry to the PID of the current process. When the process is sch
 the semaphore is locked by some other process, current process again waits in the busy loop until the requested
 semaphore is unlocked.
 
-Implement <i>SemLock</i> system call using the detailed algorithm provided <a href="os_design-files/semaphore_algos.html#semlock" target="_blank"> here </a>.
+Implement <i>SemLock</i> system call using the detailed algorithm provided [here](../os-design/semaphore-algos.md#semlock).
 
 
 ##### SemUnLock System Call
 
-<b><i>SemUnLock</i></b> system call takes a semaphore desciptor (SEMID) as argument. A
+**SemUnLock** system call takes a semaphore desciptor (SEMID) as argument. A
 process invokes<i>SemUnLock</i> system call to unlock the semaphore.
 <i>SemUnLock</i> invalidates the LOCKING PID field (store -1) in the semaphore table entry for the semaphore.
 All the processes waiting for the semaphore are made READY for execution.
 
-Implement <i>SemUnLock</i> system call using the detailed algorithm provided <a href="os_design-files/semaphore_algos.html#semunlock" target="_blank">here</a>.
+Implement <i>SemUnLock</i> system call using the detailed algorithm provided [here](../os-design/semaphore-algos.md#semunlock).
 
 !!! note
     The implementation of **Semget** , **Semrelease** , **SemLock** , **SemUnLock** system calls and **Acquire Semaphore** , **Release Semaphore** module functions are final.
@@ -112,30 +112,28 @@ In this stage, <i>Fork</i>is modified to update the semaphore table for the sema
 acquired by the parent process. When a process forks, the semaphores acquired by the parent
 process are now shared between parent and child. To reflect this change, PROCESS COUNT field is
 incremented by one in the semaphore table entry for every semphore shared between parent and
-child. Refer algorithm for <a href="os_design-files/fork.html" target="_blank">fork system call</a>.
+child. Refer algorithm for [fork system call](../os-design/fork.md).
 
 - While copying the per-process resource table of parent to the child process do following -
-- If the resource is semaphore (check the Resource Identifier field in the <a href="os_design-files/process_table.html#per_process_table" target="_blank">per-process resource table</a>), then using the sempahore table index, increment the PROCESS COUNT field in the
-<a href="os_design-files/mem_ds.html#sem_table" target="_blank">semaphore table</a>entry.
+- If the resource is semaphore (check the Resource Identifier field in the [per-process resource table](../os-design/process-table.md#per_process_table)), then using the sempahore table index, increment the PROCESS COUNT field in the
+[semaphore table](../os-design/mem-ds.md#sem_table)entry.
 
-#### Modifications to Free User Area Page (function number = 2, <a href="os_modules/Module_1.html" target="_blank">process manager module</a>)
+#### Modifications to Free User Area Page (function number = 2, [process manager module](../modules/module-01.md))
 
-The user area page of every process contains the <a href="os_design-files/process_table.html#per_process_table" target="_blank">
-per-process resource table</a> in the last 16 words. When a process terminates, all the semaphores the process has acquired (and haven't released explicitly) have to be released. This is done in the <i>Free User Area Page</i> function. The<b>ReleaseSemaphore</b>
+The user area page of every process contains the [per-process resource table](../os-design/process-table.md#per_process_table) in the last 16 words. When a process terminates, all the semaphores the process has acquired (and haven't released explicitly) have to be released. This is done in the <i>Free User Area Page</i> function. The**ReleaseSemaphore**
 function of resource manager module is invoked for every valid semaphore in the per-process resource table of the process.
 
 - For each entry in the per-process resource table of the process do following -
-- If the resource is valid and is semaphore (check the Resource Identifier field in the <a href="os_design-files/process_table.html#per_process_table" target="_blank"> per-process resource table </a> ), then invoke<b> Release Semaphore </b> function of
-<a href="os_modules/Module_0.html" target="_blank">resource manager module</a> .
+- If the resource is valid and is semaphore (check the Resource Identifier field in the [per-process resource table](../os-design/process-table.md#per_process_table) ), then invoke** Release Semaphore ** function of
+[resource manager module](../modules/module-00.md) .
 
 
 !!! note 
     **Fork** system call and **Free User Area Page** function will be further modified in later stages for the file resources
 
 #### Modifications to boot module
-- Initialize the <a href="os_design-files/mem_ds.html#sem_table" target="_blank"> semaphore table </a> by setting PROCESS COUNT to 0 and LOCKING PID to -1 for all entries.
-- Load interrupt routine 13 and 14 from the disk to the memory. See <a href="os_implementation.html" target="_blank"> memory organisation
-</a>.
+- Initialize the [semaphore table](../os-design/mem-ds.md#sem_table) by setting PROCESS COUNT to 0 and LOCKING PID to -1 for all entries.
+- Load interrupt routine 13 and 14 from the disk to the memory. See [memory organisation](../os-implementation.md).
 
 #### Making things work
 Compile and load the newly written/modified files to the disk using XFS-interface.

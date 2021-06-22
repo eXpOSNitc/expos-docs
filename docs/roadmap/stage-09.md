@@ -7,7 +7,7 @@ original_url: https://exposnitc.github.io/Roadmap.html
     - Get introduced to setting up process table entry for a user program.
     - Familiarise with the management of kernel stack in hardware interrupt handlers.
 !!! abstract "Pre-requisite Reading"
-     Read and understand the <a href="os_design-files/stack_interrupt.html" target="_blank">Kernel Stack Management during Interrupts</a>before proceeding further.
+     Read and understand the [Kernel Stack Management during Interrupts](../os-design/stack-interrupt.md)before proceeding further.
 
 
 eXpOS requires that when the OS enters an interrupt handler that runs in kernel mode,
@@ -18,7 +18,7 @@ this will be done.
 
 To isolate the kernel from the user stack, the OS kernel must maintain two stacks for
 a program - **a user stack and a kernel stack**. 
-In eXpOS, one page called the <a href="os_design-files/process_table.html#user_area">user area page</a>
+In eXpOS, one page called the [user area page](../os-design/process-table.md#user_area)
 is allocated for each process. A part of the space in this page will be used for the kernel stack
 (some other process information also will be stored in this page).
 
@@ -35,8 +35,7 @@ Once we have two stacks for a user program, we need to design some data structur
 store the SP values of the two stacks. This is because the SP register of the machine can store only
 one value.
 
-eXpOS requires you to maintain a <a href="os_design-files/process_table.html" target="_blank">
-Process Table </a>,where data such as value of the kernel stack pointer, user stack pointer etc. pertaining to
+eXpOS requires you to maintain a [Process Table](../os-design/process-table.md),where data such as value of the kernel stack pointer, user stack pointer etc. pertaining to
 each process is stored.
 
 
@@ -56,10 +55,9 @@ You will also create a process table entry for the program where you will make t
 
 #### Modifications to the OS Startup Code
 
-1) Set the User Area page number in the <a href="os_design-files/process_table.html" target="_blank">
-Process Table</a> entry of the current process. Since the first available free page is 80,
+1) Set the User Area page number in the [Process Table](../os-design/process-table.md) entry of the current process. Since the first available free page is 80,
 the User Area page is allocated at the physical page number 80.
-The <a href="support_tools-files/constants.html" target="_blank">SPL constant</a>PROCESS_TABLE points to 
+The [SPL constant](../support-tools/constants.md)PROCESS_TABLE points to 
 the starting address(28672) of the Process Table.
 ```
 [PROCESS_TABLE + 11] = 80;
@@ -71,26 +69,24 @@ store the PID in the PID field of the process table.
 [PROCESS_TABLE + 1] = 0;
 ```
 
-3) The kernel maintains a data structure called <a href="os_design-files/mem_ds.html#ss_table" target="_blank">
-System Status Table</a> where the PID of the currently executing user process is maintained.
+3) The kernel maintains a data structure called [System Status Table](../os-design/mem-ds.md#ss_table) where the PID of the currently executing user process is maintained.
 This makes it easy to keep track of the current PID whenever the machine enters any kernel
 mode routine. The System Status Table is stored starting from memory address 29560. The second field of
 this table must be set to the PID of the process which is going to be run in user mode.
 
-Set the current PID field in the System Status Table. The <a href="support_tools-files/constants.html" target="_blank">
-SPL constant </a> SYSTEM_STATUS_TABLE points to the starting address of the System Status Table.
+Set the current PID field in the System Status Table. The [SPL constant](../support-tools/constants.md) SYSTEM_STATUS_TABLE points to the starting address of the System Status Table.
 
 ```
 [SYSTEM_STATUS_TABLE + 1] = 0;
 ```
 
-4) The kernel stack pointer for the process need not be set now as <b>all interrupt handlers assume that the kernel stack is empty when the handler is entered from user mode</b>. Thus whenever an interrupt handler is entered from user mode, the kernelstack pointer will be initialized assuming that the stack is empty. (See <a href="os_design-files/stack_interrupt.html" target="_blank"> Kernel Stack Management during hardware interrupts and exceptions </a>).The KPTR value will be used in later stages when kernel modules invoke each other.
+4) The kernel stack pointer for the process need not be set now as **all interrupt handlers assume that the kernel stack is empty when the handler is entered from user mode**. Thus whenever an interrupt handler is entered from user mode, the kernelstack pointer will be initialized assuming that the stack is empty. (See [Kernel Stack Management during hardware interrupts and exceptions](../os-design/stack-interrupt.md)).The KPTR value will be used in later stages when kernel modules invoke each other.
 
 ####   Timer Interrupt
 
 1) Save the current value of User SP into the corresponding Process Table entry.
-Obtain the process id of the currently executing process from <a href="os_design-files/mem_ds.html#ss_table" target="_blank">System Status Table</a>.
-This value can be used to get the <a href="os_design-files/process_table.html" target="_blank">Process Table</a>
+Obtain the process id of the currently executing process from [System Status Table](../os-design/mem-ds.md#ss_table).
+This value can be used to get the [Process Table](../os-design/process-table.md)
 entry of the currently executing process.<br/>
     
 !!! caution "Important Note"
@@ -112,7 +108,7 @@ The initial value of SP must be set to this `address*512 - 1`.
 SP = [PROCESS_TABLE + ([SYSTEM_STATUS_TABLE + 1] * 16) + 11] * 512 - 1;
 ```
 
-3) Save the user context to the kernel stack using the <a href="arch_spec-files/instruction_set.html#backup" target="_blank">Backup</a> instruction.
+3) Save the user context to the kernel stack using the [Backup](../arch-spec/instruction-set.md#backup) instruction.
 
 ```
 backup;

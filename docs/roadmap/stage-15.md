@@ -8,7 +8,7 @@ original_url: https://exposnitc.github.io/Roadmap.html
     - Implement Resource Manager and Device Manager modules for terminal output handling.
 
 Processes in eXpOS require various resources like terminal, disk, inode etc. To manage these
-resources among different processes eXpOS implements a <a href="os_modules/Module_0.html" target="_blank">resource manager module</a>
+resources among different processes eXpOS implements a [resource manager module](../modules/module-00.md)
 (Module 0).
 
 **Before the use of a resource, a process has to first acquire the required resource by invoking the resource manager. A
@@ -27,10 +27,10 @@ The resource manager module handles acquisition and release of system resources.
 must invoke the resource manager to acquire or release any system resource. The resource
 manager implements two functions for each resource - one to acquire the resource and the
 other to release the resource by a process. Details about different functions implemented in
-resource manager module are given <a href="os_modules/Module_0.html" target="_blank">here</a>.
+resource manager module are given [here](../modules/module-00.md).
 
 In this stage, you will learn how the terminal is shared by the processes for writing. The
-OS maintains a data structure called the <a href="os_design-files/mem_ds.html#ts_table" target="_blank">Terminal Status Table</a>. 
+OS maintains a data structure called the [Terminal Status Table](../os-design/mem-ds.md#ts_table). 
 The Terminal Status table contains details ofthe process that has acquired the terminal. (Since there is only one terminal in the system,
 only one process is allowed to acquire the terminal at a time.) A flag named STATUS in the
 terminal status table indicates whether the terminal is available or not. When a process
@@ -42,12 +42,12 @@ the function within the module. In the Resource Manager module,
 **Acquire Terminal and Release Terminal have function numbers 8 and 9 respectively**. 
 When a module function is invoked, the function number (identifying the particular function within the module) is
 stored in register R1 and passed as argument to the module. The other arguments are passed
-through registers R2, R3 etc. See <a href="support_tools-files/spl.html#con" target="_blank">SPL module calling convention</a>.
+through registers R2, R3 etc. See [SPL module calling convention](../support-tools/spl.md#con).
 For both Acquire Terminal and Release Terminal, PID of the currently running process needs to be passed as an argument through the register R2.
 
 Acquire Terminal and Release Terminal are not directly invoked from the write system call.
 Write system call invokes a function called Terminal Write present in
-<a href="os_modules/Module_4.html" target="_blank">device manager module</a>
+[device manager module](../modules/module-04.md)
 (Module 4). Terminal Write function acts as anabstract layer between the write system call and terminal handling functions in resource
 manager module. The function number for Terminal Write is 3 which is stored in register R1.
 The other arguments are PID of the current process and the word to be printed which are
@@ -61,14 +61,13 @@ before invoking the module. The module sets its return value in register R0 befo
 to the caller. The invoker must extract the return value, pop back the saved registers and
 resume execution. SPL provides the facility to push and pop multiple registers in one
 statement using multipush and mutlipop respectively. Refer to the usage of multipush and
-multipop statements in <a href="support_tools-files/spl.html" target="_blank">SPL</a> before
+multipop statements in [SPL](../support-tools/spl.md) before
 proceeding further.
 
 There is one important conceptual point to be explained here relating to resource
 acquisition. The Acquire Terminal function described above waits in a loop, in which it
 repeatedly invokes the scheduler if the terminal is not free.
-**This kind of a waiting loop is called a busy loop or <a href="https://en.wikipedia.org/wiki/Busy_waiting" target="_blank">
-busy wait </a>.**
+**This kind of a waiting loop is called a busy loop or [busy wait](https://en.wikipedia.org/wiki/Busy_waiting).**
 
 *Why can't the process wait just once for a resource and simply proceed to acquire the resource when it is scheduled?*
 In other words, what is the need for a wait in a loop? Pause to think before you read the explanation below.
@@ -102,8 +101,8 @@ stages.
     register context into the stack for proper resumption of execution.
 
 <figure>
-    <img src="https://exposnitc.github.io/img/roadmap/write.png"/>
-    <figcaption>Control flow for <i>Write</i> system call</figcaption>
+<img src="https://exposnitc.github.io/img/roadmap/write.png"/>
+<figcaption>Control flow for <i>Write</i> system call</figcaption>
 </figure>
 
 #### Modifying INT 7 routine
@@ -121,7 +120,7 @@ multipush(R0, R1, R2, R3,...); // number of registers will depend on your code
 2) Store the function number of Terminal Write in register R1, PID of the current process
 in register R2 and word to be printed to the terminal in register R3.
 
-3) Call module 4 using <a href="./support_tools-files/spl.html" target="_blank">call statement</a>.
+3) Call module 4 using [call statement](../support-tools/spl.md).
 
 4) Ignore the value present in R0 as Terminal Write does not have any return value.
 
@@ -152,7 +151,7 @@ Calling Acquire Terminal :-
 SPL as done earlier.
 
 4) Store the function number 8 in register R1 and PID of the current process from the 
-<a href="os_design-files/mem_ds.html#ss_table" target="_blank">System Status table</a>
+[System Status table](../os-design/mem-ds.md#ss_table)
 in register R2 (Can use currentPID, as it already contain current PID value).
 
 5) Call module 0.
@@ -210,7 +209,7 @@ following steps.
 
 1. Load Module 0 from disk pages 53 and 54 to memory pages 40 and 41.
 2. Load Module 4 from disk pages 61 and 62 to memory pages 48 and 49.
-3. Initialize the STATUS field in the <a href="os_design-files/mem_ds.html#ts_table">Terminal Status table</a>as 0. This will indicate that the terminal is free before scheduling the first process.
+3. Initialize the STATUS field in the [Terminal Status table](../os-design/mem-ds.md#ts_table)as 0. This will indicate that the terminal is free before scheduling the first process.
 
 #### Making things work
 1. Compile and load boot module code, module 0, module 4, modified INT 7 routine using XFS-interface.
@@ -222,7 +221,7 @@ following steps.
     one resource - the terminal - now).
 
 !!! info 
-      See <a href="https://en.wikipedia.org/wiki/Deadlock#Necessary_conditions" target="_blank">link</a> for a set of neccessary conditions for deadlock.
+      See [link](https://en.wikipedia.org/wiki/Deadlock#Necessary_conditions) for a set of neccessary conditions for deadlock.
 
 !!! assignment "Assignment 1"
-     Set a <b>breakpoint</b> (see <a href="support_tools-files/spl.html" target="_blank">SPL breakpoint instruction</a>) just before return from the Acquire Terminal and the Release Terminal functions in the Resource Manager module to dump the Terminal Status Table (see <a href="support_tools-files/xsm-simulator.html" target="_blank">XSM debugger</a>for various printing options).
+     Set a **breakpoint** (see [SPL breakpoint instruction](../support-tools/spl.md)) just before return from the Acquire Terminal and the Release Terminal functions in the Resource Manager module to dump the Terminal Status Table (see [XSM debugger](../support-tools/xsm-simulator.md)for various printing options).

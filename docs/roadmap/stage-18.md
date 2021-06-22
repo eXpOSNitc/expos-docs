@@ -8,34 +8,31 @@ original_url: https://exposnitc.github.io/Roadmap.html
     - Modify the Exec system call to handle disk interrupt.
 
 !!! abstract "Pre-requisite Reading"
-    - Read and understand the <a href="Tutorials/xsm_interrupts_tutorial.html#disk_and_console_interrupts" target="_blank">XSM tutorial on Interrupts and Exception handling </a> before proceeding further.
+    - Read and understand the [XSM tutorial on Interrupts and Exception handling](../tutorials/xsm-interrupts-tutorial.md#disk_and_console_interrupts) before proceeding further.
     - Revise the console and disk interrupt part.
 
 In this stage, we will introduce disk interrupt handling in XSM. In the previous stage, we used
-the *loadi* statement to load a disk block into a memory page. When the <a href="support_tools-files/spl.html" target="_blank">
-<i>loadi statement</i></a> (immediate load) is used for loading, the machine will execute the next instruction only after the block transfer is complete by the <a href="arch_spec-files/interrupts_exception_handling.html#disk_interrupt" target="_blank">
-disk controller </a> . A process can use the <b>load statement</b> instead of <i>loadi</i> to load a disk block to a memory page. The
-<a href="support_tools-files/spl.html" target="_blank"><i>load statement</i></a>in SPL translates to <a href="arch_spec-files/instruction_set.html" target="_blank">LOAD instruction in XSM</a>.
+the *loadi* statement to load a disk block into a memory page. When the [loadi statement](../support-tools/spl.md) (immediate load) is used for loading, the machine will execute the next instruction only after the block transfer is complete by the [disk controller](../arch-spec/interrupts-exception-handling.md#disk_interrupt) . A process can use the **load statement** instead of <i>loadi</i> to load a disk block to a memory page. The
+[load statement](../support-tools/spl.md)in SPL translates to [LOAD instruction in XSM](../arch-spec/instruction-set.md).
 
 
 The LOAD instruction takes two arguments, a page number and a block number. The LOAD
 instruction initiates the transfer of data from the specified disk block to the memory page.
-The <b>XSM machine doesn't wait for the block transfer to complete</b>, it continues with the
+The **XSM machine doesn't wait for the block transfer to complete**, it continues with the
 execution of the next instruction. Instead, the XSM machine provides a hardware mechanism to
-detect the completion of data transfer. XSM machine raises the <a href="Tutorials/xsm_interrupts_tutorial.html#disk_and_console_interrupts" target="_blank">disk interrupt</a>when the disk operation is complete.
+detect the completion of data transfer. XSM machine raises the [disk interrupt](../tutorials/xsm-interrupts-tutorial.md#disk_and_console_interrupts)when the disk operation is complete.
 
 !!! note ""
-    In real operating systems, the OS maintains a software module called the disk <a href="https://en.wikipedia.org/wiki/Device_driver" target="_blank">device driver</a>module for handling disk access. This module is responsible for programming the <a href="https://en.wikipedia.org/wiki/Disk_controller" target="_blank">disk controller</a> hardware for handling disk operations. When the OS
-    initiates a disk read/write operation from the context of a process, the device driver module is invoked with appropriate arguments. In our present context, the <a href="os_modules/Module_4.html" target="_blank">device manager module</a> integrates a common "driver software" for all devices of XSM. The load and store instructions actually are high level "macro operations" given to you that abstract away the low level details of the device specific code to program the disk controller hardware. The <i>loadi</i> instruction abstracts disk I/O using the method of <a href="https://en.wikipedia.org/wiki/Polling_(computer_science)" target="_blank">polling</a> whereas the <i>load</i> instruction abstracts <a href="https://en.wikipedia.org/wiki/Asynchronous_I/O" target="_blank">interrupt based</a>disk I/O.
+    In real operating systems, the OS maintains a software module called the disk [device driver](https://en.wikipedia.org/wiki/Device_driver)module for handling disk access. This module is responsible for programming the [disk controller](https://en.wikipedia.org/wiki/Disk_controller) hardware for handling disk operations. When the OS
+    initiates a disk read/write operation from the context of a process, the device driver module is invoked with appropriate arguments. In our present context, the [device manager module](../modules/module-04.md) integrates a common "driver software" for all devices of XSM. The load and store instructions actually are high level "macro operations" given to you that abstract away the low level details of the device specific code to program the disk controller hardware. The <i>loadi</i> instruction abstracts disk I/O using the method of [polling](https://en.wikipedia.org/wiki/Polling_(computer_science)) whereas the <i>load</i> instruction abstracts [interrupt based](https://en.wikipedia.org/wiki/Asynchronous_I/O)disk I/O.
 
-To initiate the disk transfer using the load statement, first the process has to <b>acquire</b>
-the disk. This ensures that no other process uses the disk while the process which has acquired the disk is loading the disk block to the memory page. eXpOS maintains a data structure called <a href="os_design-files/mem_ds.html#ds_table" target="_blank"> Disk Status Table
-</a> to keep track of these disk-memory transfers. The disk status table stores the status of the disk
+To initiate the disk transfer using the load statement, first the process has to **acquire**
+the disk. This ensures that no other process uses the disk while the process which has acquired the disk is loading the disk block to the memory page. eXpOS maintains a data structure called [Disk Status Table](../os-design/mem-ds.md#ds_table) to keep track of these disk-memory transfers. The disk status table stores the status of the disk
 indicating whether the disk is busy or free. The disk status table has a LOAD/STORE bit
 indicating whether the disk operation is a load or store. The table also stores the page number
 and the block number involved in the transfer. To keep track of the process that has currently
 acquired the disk, the PID of the process is also stored in the disk status table. The SPL
-constant <a href="support_tools-files/constants.html" target="_blank">DISK_STATUS_TABLE</a>gives the starting address of the Disk Status Table in the<a href="os_implementation.html" target="_blank">XSM memory</a>.
+constant [DISK_STATUS_TABLE](../support-tools/constants.md)gives the starting address of the Disk Status Table in the[XSM memory](../os-implementation.md).
 
 After the current process has acquired the disk for loading, it initializes the Disk Status
 Table according to the operation to be perfromed (read/write). The process then issues the
@@ -66,25 +63,24 @@ Then returns to the process which was interrupted by disk controller.
     other similar situations.
 
 <figure>
-    <img src="https://exposnitc.github.io/img/roadmap/exec2.png" />
-    <figcaption>Control flow for <i>Exec</i> system call</figcaption>
+<img src="https://exposnitc.github.io/img/roadmap/exec2.png"/>
+<figcaption>Control flow for <i>Exec</i> system call</figcaption>
 </figure>
 
 
-In this stage, <b> you have to modify the exec system call by replacing the <a href="support_tools-files/spl.html" target="_blank">
-loadi statement</a> by a call to the <i> Disk Load </i> function. The <i> Disk Load </i> function (in device manager module), the
-<i>Acquire Disk</i> function (in resource manager module) and the<i>disk interrupt handler</i> must also be implemented in
-this stage.</b>Minor modifications are also required for the boot module.
+In this stage, ** you have to modify the exec system call by replacing the [loadi statement](../support-tools/spl.md) by a call to the  Disk Load  function. The  Disk Load  function (in device manager module), the
+Acquire Disk function (in resource manager module) and thedisk interrupt handler must also be implemented in
+this stage.**Minor modifications are also required for the boot module.
 
-#### 1.Disk Load (function number = 2,<a href="os_modules/Module_4.html" target="_blank">device manager module</a>)
+#### 1.Disk Load (function number = 2,[device manager module](../modules/module-04.md))
 
 The Disk Load function takes the PID of a process, a page number and a block number as input and performs the following tasks :
-1. Acquires the disk by invoking the Acquire Disk function in the <a href="os_modules/Module_0.html" target="_blank">resource manager module</a> (module 0)
-2. Set the <a href="os_design-files/mem_ds.html#ds_table" target="_blank">Disk Status table</a>entries as mentioned in the algorithm (specified in the above link).
-3. Issue the <a href="support_tools-files/spl.html" target="_blank">load statement</a> to initiate a disk block to memory page DMA transfer.
+1. Acquires the disk by invoking the Acquire Disk function in the [resource manager module](../modules/module-00.md) (module 0)
+2. Set the [Disk Status table](../os-design/mem-ds.md#ds_table)entries as mentioned in the algorithm (specified in the above link).
+3. Issue the [load statement](../support-tools/spl.md) to initiate a disk block to memory page DMA transfer.
 4. Set the state of the process (with given PID) to WAIT_DISK and invoke the scheduler.
 
-#### 2.Acquire Disk (function number = 3, <a href="os_modules/Module_0.html" target="_blank"> resource manager module</a>)
+#### 2.Acquire Disk (function number = 3, [resource manager module](../modules/module-00.md))
 
 The Acquire Disk function in the resource manager module takes the PID of a process as an
 argument. The Acquire disk function performs the following tasks :
@@ -100,7 +96,7 @@ respectively.
     Both Disk Load and Acquire Disk module functions implemented above are final versions according to the algorithm given in respective modules.
 
 
-#### 3. Implementation of <a href="os_design-files/disk_interrupt.html" target="_blank">Disk Interrupt handler</a>
+#### 3. Implementation of [Disk Interrupt handler](../os-design/disk-interrupt.md)
 
 When the disk-memory transfer is complete, XSM raises the disk interrupt. The disk interrupt handler then performs the following tasks :
 1. Switch to the kernel stack and back up the register context.
@@ -113,13 +109,12 @@ When the disk-memory transfer is complete, XSM raises the disk interrupt. The di
 
 #### 4. Modification to exec system call (interrupt 9 routine)
 
-Instead of the loadi statement used to load the disk block to the memory page, invoke the <b>Disk Load</b>
-function present in the <a href="os_modules/Module_4.html" target="_blank">device manager module </a>.
+Instead of the loadi statement used to load the disk block to the memory page, invoke the **Disk Load**
+function present in the [device manager module](../modules/module-04.md).
 
 
 We will initialize another data strucutre as well in this stage. This is the
-<a href="os_design-files/process_table.html#per_process_table" target="_blank">
-per-process resource table</a>. (This step can be deferred to later
+[per-process resource table](../os-design/process-table.md#per_process_table). (This step can be deferred to later
 stages, but since the work involved is simple, we will finish it here). The per-process
 resource table stores the information about the files and semaphores which a process is
 currently using. For each process, per-process resource table is stored in the user area
@@ -127,8 +122,7 @@ page of the process. This table has 8 entries with 2 words each, in total it occ
 words.
 <i>We will reserve the last 16 words of the User Area Page to store the per-process
 Resource Table of the process.</i>
-In exec, after reacquiring the <a href="os_design-files/process_table.html#user_area" target="_blank">
-user area page</a> for the new process, per-process resource table should
+In exec, after reacquiring the [user area page](../os-design/process-table.md#user_area) for the new process, per-process resource table should
 be initialized in this user area page. Since the newly created process has not opened any
 files or semaphores, each entry in the per-process table is initialized to -1.
 
@@ -139,7 +133,7 @@ Following modifications are done in boot module :
 
 1. Load the disk interrupt routine from the disk to the memory.
 2. Initialize the STATUS field in the Disk Status Table to 0.
-3. Initialize the <a href="os_design-files/process_table.html#per_process_table" target="_blank">per-process resource table</a> of init process.
+3. Initialize the [per-process resource table](../os-design/process-table.md#per_process_table) of init process.
 
 Compile and load the modified and newly written files into the disk using XFS-interface. Run the Shell version-I with any program to check for errors.
 
@@ -159,4 +153,4 @@ Compile and load the modified and newly written files into the disk using XFS-in
 
 
 !!! assignment "Assignment 1"
-    Use the<a href="support_tools-files/xsm-simulator.html" target="_blank">XSM debugger </a>to print out the contents of the Disk Status Table after entry and before return from the disk interrupt handler.
+    Use the[XSM debugger](../support-tools/xsm-simulator.md)to print out the contents of the Disk Status Table after entry and before return from the disk interrupt handler.

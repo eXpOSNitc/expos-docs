@@ -17,9 +17,8 @@ interrupt routines, other modules or the OS startup code.
 
 As modules execute in kernel mode, the kernel stack of the currently scheduled process is
 used as the caller-stack for module invocation. XSM supports eight modules - `MOD_0` to `MOD_7` -
-which can be invoked using the `CALL MOD_n` / `CALL <MODULE_NAME>` instruction (see
-<a href="support_tools-files/constants.html#interrupts" target="_blank">
-SPL constants</a>).While switching to module, the CALL instruction pushes the IP address of the instruction
+which can be invoked using the `CALL MOD_n` / `CALL <module_name>` instruction (see
+[SPL constants](../support-tools/constants.md#interrupts)).While switching to module, the CALL instruction pushes the IP address of the instruction
 following the `CALL` instruction on the top of the kernel stack and starts execution of the 
 corresponding module. A module returns to the caller using the RET instruction (return statement in SPL) 
 which restores the IP value present on the top of the kernel stack, pushed earlier by the CALL
@@ -28,25 +27,25 @@ return to the caller. The `IRET` instruction (ireturn statement) changes mode fr
 user as it assumes that SP contains a logical address. The RET instruction (return
 statement) on the other hand just returns to the caller in kernel mode, using the IP value
 pointed by SP. Read about kernel stack management during kernel module calls
-<a href="os_design-files/stack_module.html" target="_blank">here</a>.
+[here](../os-design/stack-module.md).
 
 
 A module in eXpOS may implement several functions, each for a particular task ( eg-
-<a href="os_modules/Module_0.html" target="_blank">resource manager module</a>
+[resource manager module](../modules/module-00.md)
 -module 0).Some modules may perform a single task (eg- scheduler, boot module). For a module with
 several functions, each function is given a function number to distinguish them within the
 module. This function number should be passed as argument in the register R1 along with
 other arguments in R2, R3 etc. Register R0 is reserved for return value. See
-<a href="support_tools-files/spl.html" target="_blank">SPL module calling conventions</a>
+[SPL module calling conventions](../support-tools/spl.md)
 for details.For details about the OS functions implemented in various eXpOS modules, see
-<a href="os_modules/Module_Design.html" target="_blank">here</a>.
+[here](../modules/index.md).
 
 
-According to the <a href="os_implementation" target="_blank"> memory organization </a> of eXpOS,
+According to the [memory organization](../os-implementation.md) of eXpOS,
 the OS startup code is provided with only one memory page (page numer 1). However,
 the code for OS startup may exceed one page due to initialization of several OS data
 structures. So we design a module for the purpose of OS initialization. This module will be
-called the <b> Boot module</b>(module 7). The Boot module is invoked from the OS startup
+called the **Boot module**(module 7). The Boot module is invoked from the OS startup
 code. The OS startup code hand-creates the idle process, initializes the SP register to the
 kernel stack of the idle process, loads module 7 in memory and then invokes the boot module
 (using the stack of the IDLE process). Upon return from the boot module, the OS startup
@@ -69,8 +68,8 @@ skip over this matter.
 #### Modifications to OS startup code
 
 1) Load module 7 from disk blocks 67 and 68 to memory pages 54 and 55 respectively, also
-load idle process from the <a href="os_implementation.html#accordion" target="_blank">disk</a>to the corresponding
-<a href="os_implementation.html#accordion">memory pages</a>.
+load idle process from the [disk](../os-implementation.md#accordion)to the corresponding
+[memory pages](../os-implementation.md#accordion).
     
 2) Set SP to (user area page number) * 512 -1. The user area page number for the idle
 process is 82 (as decided in the previous stage). This sets up a stack for calling the
@@ -89,12 +88,12 @@ PAGE_TABLE_BASE will point to the start of the page table of the idle process - 
 out why.) Initialize PTLR (all user process in eXpOS must have PTLR=10).
 
 5) Initialize PID, UPTR, KPTR, PTBR, PTLR and user area page number fields in the
-<a href="os_design-files/process_table.html" target="_blank">Process Table</a>
+[Process Table](../os-design/process-table.md)
 entry for the idle process as was done in the previous stage.
 
 6) As the idle process is scheduled first, initialize the STATE field in the process table
 entry of the idle process as RUNNING and current PID field in the
-<a href="os_design-files/mem_ds.html#ss_table" target="_blank">System Status Table</a>
+[System Status Table](../os-design/mem-ds.md#ss_table)
 to 0 (PID of the idle process).
 
 7) Transfer the entry point value from the header of the idle process to the top of the

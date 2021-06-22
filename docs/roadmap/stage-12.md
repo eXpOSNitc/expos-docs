@@ -13,7 +13,7 @@ For this, you need to modify the timer interrupt
 handler to switch between the two processes.
 
 We will use the the same init process as in stage 11. A second process called
-an <a href="os_spec-files/processmodel.html" target="_blank"><b>idle process</b></a>
+an [idle process](../os-spec/processmodel.md)
 will also be set up in memory for execution during OS startup.The idle process simply 
 contains an infinite loop.
 
@@ -27,7 +27,7 @@ scheduler will be taken up in later stages.
 Idle is a user program which is loaded for execution during OS bootstrap.
 Before OS bootstrap, it must be stored in the disk blocks 11 and 12.
 The OS bootstrap loader must load this program to memory pages 69 and 70 (See
-<a href="os_implementation.html" target="_blank">eXpOS Disk and Memory layout</a>
+[eXpOS Disk and Memory layout](../os-implementation.md)
 for details). The Page Table and Process Table for the idle process must be set up by the bootstrap loader.
 The PID of the idle process is fixed to be 0.
 
@@ -64,15 +64,14 @@ load --idle <...path to idle...>
 
 #### Modifications to OS Startup Code
 
-The eXpOS assigns each process a unique process ID (PID). The <a href="os_spec-files/processmodel.html" target="_blank">
-eXpOS design</a> stipulates that the PID of idle process is 0.
+The eXpOS assigns each process a unique process ID (PID). The [eXpOS design](../os-spec/processmodel.md) stipulates that the PID of idle process is 0.
 
 INIT program is assigned PID 1. Our implementation plan in this road map is to store the
 process table entry for the process with ID=0 in the 16 words starting at memory address 
 PROCESS_TABLE, the process table entry for process with PID=1 in 16 words starting at memory 
 address PROCESS_TABLE+16 and so on. Similarly, the page table for the process with PID=0 will be
 stored in 20 words starting at address PAGE_TABLE_BASE, page table for PID=1 will start at
-PAGE_TABLE_BASE+20 and so on. The <a href="os_implementation.html" target="_blank">memory layout design </a>
+PAGE_TABLE_BASE+20 and so on. The [memory layout design](../os-implementation.md)
 permits space for process/page table entries for a maximum of 16 processes.Thus, the OS can run at
 most 16 processes concurrently.
 
@@ -127,17 +126,16 @@ PTBR=PAGE_TABLE_BASE;  //as PID of idle process is 0
 3) We will run the INIT process of stage 11 (to print all numbers below 50) concurrently.
 Set the Page Table entries for init as done in previous stages with PTBR as PAGE_TABLE_BASE+20.
 
-4) As noted earlier, <a href="os_design-files/process_table.html" target="_blank"> Process Table </a> entries for idle
+4) As noted earlier, [Process Table](../os-design/process-table.md) entries for idle
 starts from address PROCESS_TABLE and init from PROCESS_TABLE + 16. Set the PID field in the Process Table entry 
 to 0 for idle and 1 for init.
 
-5) The process being currently scheduled is said to be in <a href="support_tools-files/constants.html" target="_blank">
-RUNNING </a> state.The bootstrap loader will schedule the init process first.Thus, in the OS startup code, set the STATE field in process table entry of the idle process to <a href="support_tools-files/constants.html" target="_blank">CREATED</a> and INIT process to <a href="support_tools-files/constants.html" target="_blank">RUNNING</a>.
+5) The process being currently scheduled is said to be in [RUNNING](../support-tools/constants.md) state.The bootstrap loader will schedule the init process first.Thus, in the OS startup code, set the STATE field in process table entry of the idle process to [CREATED](../support-tools/constants.md) and INIT process to [RUNNING](../support-tools/constants.md).
 The CREATED state indicates that the process had never been scheduled for execution
 previously. The need for a separate CREATED state will be explained later.
 Subsequent "re-scheduling" will be done by the timer interrupt handler. According to process
 table, STATE field occupies 2 words. In case of RUNNING and CREATED states, second word is
-not required. See <a href="os_design-files/process_table.html#state" target="_blank">process states</a>.
+not required. See [process states](../os-design/process-table.md#state).
 
 6) We will allocate the next free page, 82 as the User Area Page for the idle process. Set the User Area Page number
 field in the Process Table entry of idle to 82.
@@ -183,14 +181,13 @@ process, as outlined below:
 
 13) Set the Entry point address for INIT process in the beginning of Stack page of INIT. Also set the SP register accordingly.
 
-14) Set the current PID field in <a href="os_design-files/mem_ds.html#ss_table">system status table</a> to 1, as PID for INIT is 1.
+14) Set the current PID field in [system status table](../os-design/mem-ds.md#ss_table) to 1, as PID for INIT is 1.
 
 15) Transfer control to INIT using ireturn instruction.
 
 
 !!! note 
-    You must be clear with <a href="Tutorials/xsm_unprivileged_tutorial.html" target="_blank">
-    XSM unprivileged mode execution</a> to understand the description that follows.
+    You must be clear with [XSM unprivileged mode execution](../tutorials/xsm-unprivileged-tutorial.md) to understand the description that follows.
 
 
 #### Modifications to timer interrupt handler
@@ -207,11 +204,10 @@ loaded to the registers and then control of execution can be transferred to the 
 Detailed intructions for scheduling are given below.
 
 1) Switch from the user stack to kernel stack of the currently executing process and save the
-register context using the <a href="arch_spec-files/instruction_set.html#backup"><b>backup</b></a>
+register context using the [backup](../arch-spec/instruction-set.md#backup)
 instruction as done in stage 9.
 
-2) Obtain the PID of currently executing process from <a href="os_design-files/mem_ds.html#ss_table" target="_blank">
-System Status Table</a>.
+2) Obtain the PID of currently executing process from [System Status Table](../os-design/mem-ds.md#ss_table).
 ```
 alias currentPID R0;
 currentPID = [SYSTEM_STATUS_TABLE+1];
@@ -316,7 +312,6 @@ in RUNNING state before.
     to address space of IDLE for the Write function call to work.)
 
 !!! assignment "Assignment 2"
-    Set two <b>breakpoints</b> (see <a href="support_tools-files/spl.html" target="_blank"> SPL breakpoint instruction
-    </a>) in the timer interrupt routine, the first one immediately upon entering the timer routine and the second one just before return from the timer routine.  Dump the process table entry and page table entries of current process (see
-    <a href="support_tools-files/xsm-simulator.html" target="_blank"> XSM debugger </a> for various printing options).
+    Set two **breakpoints** (see [SPL breakpoint instruction](../support-tools/spl.md)) in the timer interrupt routine, the first one immediately upon entering the timer routine and the second one just before return from the timer routine.  Dump the process table entry and page table entries of current process (see
+    [XSM debugger](../support-tools/xsm-simulator.md) for various printing options).
  

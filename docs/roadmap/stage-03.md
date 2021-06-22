@@ -8,23 +8,21 @@ original_url: https://exposnitc.github.io/Roadmap.html
        - Load your *OS startup code* into the *boot block* of the disk and get this code executed on bootstrap.
 
 !!! abstract "Pre-requisite Reading"
-       - Have a quick look at <a href="arch_spec-files/machine_organisation.html" target="_blank"> XSM Machine Organisation </a>. (Do not spend more than 15 minutes).
-       - Have a quick look at <a href="arch_spec-files/instruction_set.html" target="_blank">XSM Instruction set</a>. (Do not spend more than 15 minutes).
-       - It is absolutely necessary to read the <a href="Tutorials/xsm-instruction-cycle.html" target="_blank"><b>XSM privileged mode execution tutorial</b></a> before proceeding further.
+       - Have a quick look at [XSM Machine Organisation](../arch-spec/machine-organization.md). (Do not spend more than 15 minutes).
+       - Have a quick look at [XSM Instruction set](../arch-spec/instruction-set.md). (Do not spend more than 15 minutes).
+       - It is absolutely necessary to read the [XSM privileged mode execution tutorial](../tutorials/xsm-instruction-cycle.md) before proceeding further.
 
 
-When the XSM machine is started up, the <a href="arch_spec-files/machine_organisation.html#Boot ROM" target="_blank">
-ROM Code </a>, which resides in page 0 of the memory, is executed. It is hard-coded into the machine. 
+When the XSM machine is started up, the [ROM Code](../arch-spec/machine-organization.md#Boot ROM), which resides in page 0 of the memory, is executed. It is hard-coded into the machine. 
 That is, the ROM code at physical address 0 (to 511) is "already there" when machine starts up.
 The ROM code is called the "Boot ROM" in OS literature. Boot ROM code does the following operations :
 
 1. Loads block 0 of the disk to page 1 of the memory (physical address 512).
-2. After loading the block to memory, it sets the value of the register <a href="arch_spec-files/machine_organisation.html" target="_blank">
-IP</a>(Instruction Pointer) to 512 so that the next instruction is fetched from location 512 (page 1 in memory starts from location 512).
+2. After loading the block to memory, it sets the value of the register [IP](../arch-spec/machine-organization.md)(Instruction Pointer) to 512 so that the next instruction is fetched from location 512 (page 1 in memory starts from location 512).
 
 
 In this stage, you will write a small assembly program to print "HELLO_WORLD" using XSM Instruction set 
-and load it into block 0 of the disk using XFS-Interface as the <b>OS Startup Code</b>.
+and load it into block 0 of the disk using XFS-Interface as the **OS Startup Code**.
 As described above, this OS Startup Code is loaded from disk block 0 to memory page 1 by the ROM Code 
 on machine startup and is then executed.
 
@@ -73,7 +71,7 @@ Machine is halting.
 
 ??? question "If the OS Startup Code is loaded to some other page other than Page 1, will XSM work fine?"
        No. This is because after the execution of the ROM Code, IP points to *512* which is the 1<sup>st</sup>
-       instruction of Page 1. So if the OS Startup Code is not loaded to Page 1, it results in an <a href="./arch_spec-files/interrupts_exception_handling.html" target="_blank">exception</a> and leads to system crash.
+       instruction of Page 1. So if the OS Startup Code is not loaded to Page 1, it results in an [exception](../arch-spec/interrupts-exception-handling.md) and leads to system crash.
 
 !!! assignment "Assignment 1"
        Write an assembly program to print numbers from 1 to 20 and run it as the OS Startup code.

@@ -41,20 +41,19 @@ In the above example suppose process B had finished using the shared resource an
 will wait for process B to issue another signal. Hence if process B does not issue another
 signal, then process A will resume execution only after process B terminates. The issue here is
 that, although the OS acts on the occurance of a signal immediately, it never records the
-occurance of the signal for the future.<b>In other words, Signals are memoryless.</b>
+occurance of the signal for the future.**In other words, Signals are memoryless.**
 
 A more advanced synchronization primitive that has a state variable associated with it - namely the
-<a href="https://en.wikipedia.org/wiki/Semaphore_(programming)" target="_blank">semaphore</a> - will be 
+[semaphore](https://en.wikipedia.org/wiki/Semaphore_(programming)) - will be 
 added to the OS in the next stage.
 
 When a process issues the<i>Exit</i>system call, all processes waiting for it must be awakened. We will modify the
-<b>Exit Process</b> function in the <a href="os_modules/Module_1.html" target="_blank">process manager module</a> 
+**Exit Process** function in the [process manager module](../modules/module-01.md) 
 to wake up all processes waiting for the terminating process. However, there is one special case to handle here. The Exit Process
 function is invoked by the<i> Exec</i> system call as well. In this case, the process waiting
 for the current process must not be woken up (why?). The implementation details will be explained below.
 
-Finally, when a process Exits, all its child processes become <a href="https://en.wikipedia.org/wiki/Orphan_process" target="_blank">
-orphan processes </a> and their PPID field is set to -1 in the module function <b>Exit Process</b>. Here too, if Exit
+Finally, when a process Exits, all its child processes become [orphan processes](https://en.wikipedia.org/wiki/Orphan_process) and their PPID field is set to -1 in the module function **Exit Process**. Here too, if Exit
 Process in invoked from the <i>Exec</i> system call, the children must not become orphans.
 
 #### Shell Program
@@ -78,9 +77,9 @@ The system call numbers for Getpid, Getppid, Wait and Signal are 11, 12, 13 and 
 
 <i>Wait</i> system call takes PID of a process (for which the given process will wait) as an argument.
 
-- Change the MODE FLAG in the <a href="os_design-files/process_table.html" target="_blank"> process table</a>to the system call number.
-- Extract the PID from the user stack. Check the valid conditions for argument. A process should not wait for itself or a TERMINATED process. The argument PID should be in valid range (what is the <a href="os_design-files/process_table.html" target="_blank">valid range?). If any of the above conditons are not satisfying, return to the user mode with `-1` stored as return value indicating failure. At any point of return to user, remember to reset the MODE FLAG and change the stack to user stack.
-- If all valid conditions are satisfied then proceed as follows. Change the state of the current process from RUNNING to the tuple <a href="os_design-files/process_table.html#state" target="_blank">(WAIT_PROCESS, argument PID)</a>in the process table. Note that the STATE field in the process table is a tuple (allocated 2 words).
+- Change the MODE FLAG in the [process table](../os-design/process-table.md)to the system call number.
+- Extract the PID from the user stack. Check the valid conditions for argument. A process should not wait for itself or a TERMINATED process. The argument PID should be in valid range (what is the [valid range](../os-design/process-table.md)?). If any of the above conditons are not satisfying, return to the user mode with `-1` stored as return value indicating failure. At any point of return to user, remember to reset the MODE FLAG and change the stack to user stack.
+- If all valid conditions are satisfied then proceed as follows. Change the state of the current process from RUNNING to the tuple [(WAIT_PROCESS, argument PID)](../os-design/process-table.md) in the process table. Note that the STATE field in the process table is a tuple (allocated 2 words).
 - Invoke the scheduler to schedule other processes.
 > The following step is executed only when the scheduler runs this process again, which in turn happens only when the state of the process becomes READY again.
 - Reset the MODE FLAG in the process table of the current process.
@@ -89,7 +88,7 @@ Store 0 in the user stack as return value and return to the calling program.
 
 ##### Signal System Call
 
-<i>Signal</i> system call does not have any arguments.
+_Signal_ system call does not have any arguments.
 
 - Set the MODE FLAG in the process table to the signal system call number.
 - Loop through all process table entries, if there is a process with STATE as tuple (WAIT_PROCESS, current process PID) then change the STATE field to READY.
@@ -102,16 +101,16 @@ _Getpid_ and _Getppid_ system calls returns the PID of the current process and t
 
 !!! note 
     The system calls implemented above are final and will not change later.
-    See algorithms for <a href="os_design-files/synchronization_algos.html" target="_blank">
-    Wait/Signal </a> and<a href="os_design-files/proc_misc.html" target="_blank">
-    Getpid/Getppid </a>
+    See algorithms for 
+    Wait/Signal  and
+    Getpid/Getppid 
 
-#### Modifications to Exit Process Function (function number = 3, <a href="os_modules/Module_1.html" target="_blank">Process Manager Module</a>)
+#### Modifications to Exit Process Function (function number = 3, Process Manager Module)
 
 Exit Process function is modified so that it wakes up all the processes waiting for the current process. Similarly, the children of the process are set as orphan processes by changing PPID field of child processes to -1. But when the Exit Process function is invoked from _Exec_ system call, the process is actually not terminating as the new program is being overlayed in the same address space and is executed with the same PID. when Exit Process is invoked from _Exec_ system call, it should not wake up the processes waiting for the current process and also should not set the children as orphan processes. Check the MODE FLAG in the process table of the current process to find out from which system call Exit Process function is invoked.
 
-If MODE FLAG field in the <a href="os_design-files/process_table.html" target="_blank">
-process table</a> has system call number not equal to 9 (<i>Exec</i>)
+If MODE FLAG field in the 
+[process table](../os-design/process-table.md) has system call number not equal to 9 (Exec)
 implement below steps.
 
 - Loop through the process table of all processes and change the state to READY for the
@@ -129,7 +128,7 @@ In later stages, when a file system is added to the OS, the file system data wil
 
 #### Modifications to boot module
 Load interrupt routine 11 and interrupt routine 15 from disk to memory. See disk and memory
-organization <a href="os_implementation.html" target="_blank">here</a>.
+organization [here](../os-implementation.md).
 
 #### Making things work
 Compile and load the newly written/modified files to the disk using XFS-interface.

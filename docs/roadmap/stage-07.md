@@ -7,7 +7,7 @@ original_url: https://exposnitc.github.io/Roadmap.html
       - Familiarise with the Application Binary Interface(ABI) of eXpOS.
       -  Modify the INIT program to comply with the eXpOS ABI.
 !!! info " Pre-requisite Reading"
-      Read and Understand the eXpOS <b>Virtual Address Space Model</b> and <b> XEXE Executable File Format </b> from <a href="abi.html#xexe" target="_blank"> eXpOS ABI Documentation</a> before proceeding further.
+      Read and Understand the eXpOS **Virtual Address Space Model** and ** XEXE Executable File Format ** from [eXpOS ABI Documentation](../abi.md#xexe) before proceeding further.
 
 
 In this stage we will rewrite the user program and OS startup code of Stage 6 in compliance with expos ABI.
@@ -51,7 +51,6 @@ corresponding addresses are added for reference.
 2074<b>  INT 10</b>
 </code></pre>
 
-
 ####   Modifications to OS Startup Code
 1) Load Library Code from disk to memory
 ```
@@ -61,9 +60,9 @@ loadi(64,14);
 
 The eXpOS ABI stipulates that the code for a shared library must be loaded to disk blocks 13
 and 14 of the disk. During OS startup, the OS is supposed to load this code into memory pages
-63 and 64. This <b>library code must be attached to logical page 0 and logical page 1 of each process</b>.
+63 and 64. This **library code must be attached to logical page 0 and logical page 1 of each process**.
 Thus, this code will be shared by every application program running on the operating system and is called the
-<b>common shared library</b> or simply the library.
+**common shared library** or simply the library.
 
 The library provides a common code interface for all system calls. This means, to invoke a
 system call, the application can call the corresponding library function and the library will
@@ -71,12 +70,10 @@ in turn invoke the system call and return values back to the application. The li
 implements some functions like dynamic memory allocation and de-allocation from the heap
 area.
 
-<b>
-The dynamic memory allocation functions of the library manage the heap memory of the
+**The dynamic memory allocation functions of the library manage the heap memory of the
 application program. The ABI stipulates that each application must be provided 2 pages of
 memory for the heap. These two pages must be attached to logical pages 2 and 3 of the
-application.
-</b>
+application.**
 
 
 Note here that the library code is not part of the application's XEXE executable file. The
@@ -103,7 +100,7 @@ iv. Two physical pages must be allocated for the application's heap and attached
  
 2) Modify the Page table entries according to ABI.
 
-The <a href="support_tools-files/constants.html" target="_blank">SPL constant</a>PAGE_TABLE_BASE holds
+The [SPL constant](../support-tools/constants.md)PAGE_TABLE_BASE holds
 the value 29696. A total of 16 page tables can be stored starting from this address.
 Each page table will be 20 entries. For each user process, one page table will be allocated.
 
@@ -117,9 +114,9 @@ the stack at logical pages 8 and 9.
 The following code sets page table entries for logical page 4 and 5(for code area), logical
 page 8 and 9(for user stack), logical pages 2 and 3(for heap) and logical pages 0 and 1(for
 library). Since pages 0 to 75 are reserved for the use of the OS kernel, the first four free pages
-(76,77,78 and 79) will be allocated for stack and heap area. See <a href="os_implementation.html" target="_blank">Memory Organisation.</a>
+(76,77,78 and 79) will be allocated for stack and heap area. See [Memory Organisation.](../os-implementation.md)
 Note that the code and library pages must be kept read only where as stack and heap must be
-read-write.(see <a href="arch_spec-files/paging_hardware.html" target="_blank"> page table</a>settings for details).
+read-write.(see [page table](../arch-spec/paging-hardware.md)settings for details).
 
 ```
 //Library

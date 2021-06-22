@@ -8,19 +8,19 @@ original_url: https://exposnitc.github.io/Roadmap.html
     - Enable the OS to load and execute application programs from the disk (exec system call).
 
 !!! abstract "Pre-requisite Reading"
-    - Before proceeding futher review the XEXE file format and the address space model of a process from the eXpOS <a href="abi.html" target="_blank">ABI documentation</a>.
-    - Make sure to be thorough with the <a href="support_tools-files/spl.html" target="_blank">SPL module calling conventions.</a>
+    - Before proceeding futher review the XEXE file format and the address space model of a process from the eXpOS [ABI documentation](../abi.md).
+    - Make sure to be thorough with the [SPL module calling conventions.](../support-tools/spl.md)
 
 In this stage, you will be working on the implementation of the exec system call. Exec is the
 "program loader" of eXpOS. Exec takes as input a filename. It first checks whether the file is
-a valid eXpOS executable stored in the XSM disk, adhering to the <a href="abi.html#xexe" target="_blank">XEXE format</a>.
+a valid eXpOS executable stored in the XSM disk, adhering to the [XEXE format](../abi.md#xexe).
 If so, Exec destroys the invoking process, loads the executable file from the
 disk, and sets up the program for execution as a process. A successful exec operation results
 in the termination of the invoking process and hence never returns to it.
 
 Name of the executable file is the only input to the exec system call. This file should be
 present in the disk before starting the machine. The inode index of this file can be obtained
-by going through the memory copy of the <a href="os_design-files/disk_ds.html" target="_blank">inode table </a>.
+by going through the memory copy of the [inode table](../os-design/disk-ds.md).
 
 !!! note
     From here onwards whenever the inode table is
@@ -32,54 +32,52 @@ two user stack pages, code pages occupied by the process and the user area page.
 invalidates the entries of the page table of the invoking process. Note that the newly
 scheduled process will have the same PID as that of the invoking process. Hence the same
 process table entry and page table of the invoking process will be used by the newly loaded
-process. Exec calls the <b>Exit Process</b> function in the <a href="os_modules/Module_1.html" target="_blank">
-process manager module</a>(module 1) to deallocate the pages and to terminate the current process.
+process. Exec calls the **Exit Process** function in the [process manager module](../modules/module-01.md)(module 1) to deallocate the pages and to terminate the current process.
 
 As mentioned earlier, Exit Process function releases the user area page of the current
 process. Since Exec system call runs in kernel mode and needs a kernel stack for its own
 execution, after coming back from Exit process function, exec reclaims the same user area page
 for the new process. Further, exec acquires two heap, two stack and the required number of code
 pages (number of disk blocks in the inode entry of the file in the inode table) for the new
-process. New pages will be acquired by invoking the <b>Get Free Page</b> function present in
-the <a href="os_modules/Module_2.html" target="_blank">memory manager module</a>(module 2).
+process. New pages will be acquired by invoking the **Get Free Page** function present in
+the [memory manager module](../modules/module-02.md)(module 2).
 Page table is updated according to the new pages acquired. Code blocks for the new process are
 loaded from the disk to the memory pages obtained. For loading blocks into the memory pages, we
-use immediate load (<a href="support_tools-files/spl.html" target="_blank">loadi statement</a>
+use immediate load ([loadi statement](../support-tools/spl.md)
 in SPL). Finally, exec initializes the IP value of new process on top of its user stack and
 initiates execution of the newly loaded process in the user mode.
 
-eXpOS maintains a data structure called <a href="os_design-files/mem_ds.html#mem_free_list" target="_blank">
-memory free list </a> in page 57 of the <a href="os_implementation.html" target="">memory</a>.
+eXpOS maintains a data structure called [memory free list](../os-design/mem-ds.md#mem_free_list) in page 57 of the [memory](../os-implementation.md).
 Each Page can be shared by zero or more processes. There are 128 entries in the memory free list corresponding
 to each page of memory. For each page, the corresponding entry in the list stores the number of processes sharing the page. 
-The constant <a href="support_tools-files/constants.html" target="_blank">MEMORY_FREE_LIST</a> gives the
+The constant [MEMORY_FREE_LIST](../support-tools/constants.md) gives the
 starting address of the memory free list. 
 
 Now we will understand the working of the module functions that exec uses during its
 execution. Before proceeding further have a careful look of the diagram to understand the
 overall working of the exec system call.
 
-#### 1. Exit Process (function number = 3,<a href="os_modules/Module_1.html" target="_blank">process manager module</a>)
+#### 1. Exit Process (function number = 3,[process manager module](../modules/module-01.md))
 
-The first function invoked in the exec system call is the <b>Exit Process</b>function.
+The first function invoked in the exec system call is the **Exit Process**function.
 Exit Process function takes PID of a process as an argument (In this stage, PID of the current
 process is passed). Exit process deallocates all the pages of the invoked process. It
 deallocates the pages present in the page table by invoking another function called
-<b>Free Page Table</b> present in the same module. Further, The Exit Process deallocates the user area page by invoking
-<b>Free User Area Page</b> in the same module. The state of the process (corresponding to the given PID) is set to TERMINATED.
+**Free Page Table** present in the same module. Further, The Exit Process deallocates the user area page by invoking
+**Free User Area Page** in the same module. The state of the process (corresponding to the given PID) is set to TERMINATED.
 This is not the final Exit process function. There will be minor modifications to this function in the later stages.
 
-#### 2. Free Page Table (function number = 4, <a href="os_modules/Module_1.html" target="_blank">process manager module</a>)
+#### 2. Free Page Table (function number = 4, [process manager module](../modules/module-01.md))
 
 The Free Page Table function takes PID of a process as an argument (In this stage, PID of
 the current process is passed). In the function Free Page Table , for every valid entry in
 the page table of the process, the corresponding page is freed by invoking the
-<b>Release Page</b> function present in the <a href="os_modules/Module_2.html" target="_blank">memory manager module</a>.
+**Release Page** function present in the [memory manager module](../modules/module-02.md).
 Since the library pages are shared by all the processes, do not invoke the Release Page function for the library pages.
 Free Page Table function invalidates all the page table entries of the process with given PID. The part of the
 Free Page Table function involving updates to the Disk Map Table will be taken care in subsequent stages.
 
-#### 3. Free User Area Page (function number = 2,<a href="os_modules/Module_1.html" target="_blank">process manager module</a>)
+#### 3. Free User Area Page (function number = 2,[process manager module](../modules/module-01.md))
 
 The function **Free User Area Page** takes PID of a process (In this stage, PID of the
 current process is passed) as an argument. The user area page number of the process is
@@ -94,12 +92,12 @@ is non blocking and hence the page will never be allocated to another process be
 transfers back to the caller. (Free User Area Page function also releases the resourses like
 files and semaphores acquired by the process. We will look into it in later stages.)
 
-#### 4. Release Page (function number = 2,<a href="os_modules/Module_2.html" target="_blank">memory manager module</a>)
+#### 4. Release Page (function number = 2,[memory manager module](../modules/module-02.md))
 
 The Release Page function takes the page number to be released as an argument. The Release
 Page function decrements the value in the memory free list corresponding to the page number
 given as an argument. Note that we don't tamper with the content of the page as the page may
-be shared by other processes. The <a href="os_design-files/mem_ds.html#ss_table" target="_blank">system status table</a>
+be shared by other processes. The [system status table](../os-design/mem-ds.md#ss_table)
 keeps track of number of free memory pages available to use in the
 MEM_FREE_COUNT field. When the memory free list entry of the page becomes zero, no process is
 currently using the page. In this case, increment the value of MEM_FREE_COUNT in the system
@@ -111,7 +109,7 @@ to WAIT_MEM state and this check is superfluous. However, in later stages, the O
 processes to WAIT_MEM state when memory is temporarily unavailable, and hence when memory is
 released by some process, the waiting processes have to be set to READY state.
 
-#### 5. Get Free Page (function number = 1,<a href="os_modules/Module_2.html" target="_blank">memory manager module</a>)
+#### 5. Get Free Page (function number = 1,[memory manager module](../modules/module-02.md))
 
 To acquire the pages for the new process, exec calls the module function Get Free Page. The
 function returns the page number of the page allocated. Fundamentally, Get Free page searches
@@ -129,28 +127,28 @@ page is available for use. Upon waking up, the Get Free Page function allocates 
 memory page and updates the WAIT_MEM_COUNT and MEM_FREE_COUNT in the system status table.
 
 <figure>
-    <img src="https://exposnitc.github.io/img/roadmap/exec1.png" />
-    <figcaption>Control flow for <i>Exec</i> system call</figcaption>
+<img src="https://exposnitc.github.io/img/roadmap/exec1.png"/>
+<figcaption>Control flow for <i>Exec</i> system call</figcaption>
 </figure>
 
 #### Implementation of Exec system call
 
-<a href="os_design-files/Sw_interface.html">Exec</a> has system call number as 9 and it is implemented in interrupt routine 9. Follow steps below to implement interrupt routine 9.
+[Exec](../os-design/sw-interface.md) has system call number as 9 and it is implemented in interrupt routine 9. Follow steps below to implement interrupt routine 9.
 
-1. Save user stack value for later use, set up the kernel stack.(see <a href="os_design-files/stack_smcall.html" target="_blank">kernel stack management during system calls</a>.)
-2. Set the MODE FLAG in the <a href="os_design-files/process_table.html" target="_blank">process table</a> to system call number of exec.
+1. Save user stack value for later use, set up the kernel stack.(see [kernel stack management during system calls](../os-design/stack-smcall.md).)
+2. Set the MODE FLAG in the [process table](../os-design/process-table.md) to system call number of exec.
 3. Get the argument (name of the file) from user stack.
-4. Search the memory copy of the <a href="os_design-files/disk_ds.html#inode_table" target="_blank">inode table</a> for the file, If the file is not present or file is not in XEXE format return to user mode with return value -1 indicating failure (after setting up MODE FLAG and the user stack).
+4. Search the memory copy of the [inode table](../os-design/disk-ds.md#inode_table) for the file, If the file is not present or file is not in XEXE format return to user mode with return value -1 indicating failure (after setting up MODE FLAG and the user stack).
 5. If the file is present, save the inode index of the file into a register for future use.
-6. Call the <b>Exit Process</b> function in <a href="os_modules/Module_1.html" target="_blank"> process manager module </a> to deallocate the resources and pages of the current process.
-7. Get the user area page number from the process table of the current process. This page has been deallocated by the Exit Process function. Reclaim the same page by incrementing the memory free list entry of user area page and decrementing the MEM_FREE_COUNT field in the <a href="os_design-files/mem_ds.html#ss_table" target="_blank">system status table</a>. (same user area page is reclaimed - why?)
+6. Call the **Exit Process** function in [process manager module](../modules/module-01.md) to deallocate the resources and pages of the current process.
+7. Get the user area page number from the process table of the current process. This page has been deallocated by the Exit Process function. Reclaim the same page by incrementing the memory free list entry of user area page and decrementing the MEM_FREE_COUNT field in the [system status table](../os-design/mem-ds.md#ss_table). (same user area page is reclaimed - why?)
 8. Set the SP to the start of the user area page to intialize the kernel stack of the new process.
 9. New process uses the PID of the terminated process. Update the STATE field to RUNNING and store inode index obtained above in the inode index field in the process table.
 10. Allocate new pages and set the page table entries for the new process.
     1. Set the library page entries in the page table. (must be set to read only-why? Note that library page need not be allocated.)
-    2. Invoke the <b>Get Free Page</b> function to allocate 2 stack and 2 heap pages. Also validate the corresponding entries in page table.
-    3. Find out the number of blocks occupied by the file from <a href="os_design-files/disk_ds.html#inode_table" target="_blank"> inode table </a>. Allocate same number of code pages by invoking the <b>GetFree Page</b> function and update the page table entries.
-11. Load the code blocks from the disk to the memory pages using <a href="support_tools-files/spl.html" target="_blank">loadi statement</a>.(We will change this step in the next stage.)
+    2. Invoke the **Get Free Page** function to allocate 2 stack and 2 heap pages. Also validate the corresponding entries in page table.
+    3. Find out the number of blocks occupied by the file from [inode table](../os-design/disk-ds.md#inode_table). Allocate same number of code pages by invoking the **GetFree Page** function and update the page table entries.
+11. Load the code blocks from the disk to the memory pages using [loadi statement](../support-tools/spl.md).(We will change this step in the next stage.)
 12. Store the entry point IP (present in the header of first code page) value on top of the user stack.
 13. Change SP to user stack, change the MODE FLAG back to user mode and return to user mode.
 
@@ -161,21 +159,21 @@ memory page and updates the WAIT_MEM_COUNT and MEM_FREE_COUNT in the system stat
     sufficient for the purposes of this stage. These functions may require modifications in later
     stages. The required modifications will be explained at appropriate points in the roadmap.
 
-#### Implementation of <a href="os_modules/Module_1.html" target="_blank">Process Manager Module</a> (Module 1)
+#### Implementation of [Process Manager Module](../modules/module-01.md) (Module 1)
 
 1. According to the function number value present in R1, implement different functions in module 1.
-2. If the function number corresponds to <b>Free User Area Page</b>, follow steps below
-   1. Obtain the user area page number from the <a href="os_design-files/process_table.html" target="_blank">process table</a>entry corresponding to the PID given as an argument.
-   2. Free the user area page by invoking the <b>Release Page</b> function.
+2. If the function number corresponds to **Free User Area Page**, follow steps below
+   1. Obtain the user area page number from the [process table](../os-design/process-table.md)entry corresponding to the PID given as an argument.
+   2. Free the user area page by invoking the **Release Page** function.
    3. Return to the caller.
-3. If the function number corresponds to <b>Exit Process</b>, follow steps below
+3. If the function number corresponds to **Exit Process**, follow steps below
    1. Extract PID of the invoking process from the corresponding register.
-   2. Invoke the <b>Free Page Table</b> function with same PID to deallocate the page table entries. 
-   3. Invoke the <b>Free user Area Page</b> function with the same PID to free the user area page.
+   2. Invoke the **Free Page Table** function with same PID to deallocate the page table entries. 
+   3. Invoke the **Free user Area Page** function with the same PID to free the user area page.
    4. Set the state of the process as TERMINATED and return to the caller.
-4. If the function number corresponds to <b>Free Page Table</b>, follow steps below
+4. If the function number corresponds to **Free Page Table**, follow steps below
    1. Invalidate the page table entries for the library pages by setting page number as -1 and auxiliary data as "0000" for each entry.
-   2. For each valid entry in the page table, release the page by invoking the <b>Release Page</b> function and invalidate the entry.
+   2. For each valid entry in the page table, release the page by invoking the **Release Page** function and invalidate the entry.
    3. Return to the Caller.
 
 !!! note
@@ -184,14 +182,14 @@ memory page and updates the WAIT_MEM_COUNT and MEM_FREE_COUNT in the system stat
     stages.
 
 
-#### Implementation of <a href="os_modules/Module_2.html" target="_blank">Memory Manager Module</a> (Module 2)
+#### Implementation of [Memory Manager Module](../modules/module-02.md) (Module 2)
 
 1. According to the function number value present in R1, implement different functions in module 2.
-2. If the function number corresponds to <b>Get Free Page</b>, follow steps below
+2. If the function number corresponds to **Get Free Page**, follow steps below
    1. Increment WAIT_MEM_COUNT field in the system status table. //Do not increment the WAIT_MEM_COUNT in busy loop (an important step )
    2. While memory is full (MEM_FREE_COUNT will be 0), do following.
       1. Set the state of the invoked process as WAIT_MEM.
-      2. Schedule other process by invoking the <a href="os_modules/Module_5.html" target="_blank">context switch module</a>. // blocking the process
+      2. Schedule other process by invoking the [context switch module](../modules/module-05.md). // blocking the process
    3. Decrement the WAIT_MEM_COUNT field and MEM_FREE_COUNT field in the system status table. **Note the sequence - increment WAIT_MEM_COUNT, waiting for the memory, decrement WAIT_MEM_COUNT.**
    4. Find a free page using memory free list and set the corresponding entry as 1. Make sure to store the obtained free page number in R0 as return value.
    5. Return to the caller.
@@ -204,11 +202,11 @@ memory page and updates the WAIT_MEM_COUNT and MEM_FREE_COUNT in the system stat
 !!! note 
     The Get Free Page and Release Page functions
     implemented above are final versions according to the algorithm given in
-    <a href="os_modules/Module_2.html" target="_blank">memory manager module</a>.
+    [memory manager module](../modules/module-02.md).
 
 #### Modifications to the Boot Module.
 
-1. Load interrupt routine 9, module 1, module 2 and inode table from the disk to the memory. Refer to disk and memory organization <a href="os_implementation.html" target="_blank">here</a>.
+1. Load interrupt routine 9, module 1, module 2 and inode table from the disk to the memory. Refer to disk and memory organization [here](../os-implementation.md).
 2. Initialize the memory free list with value 1 for pages used and 0 for free pages.
 3. Initialize the fields WAIT_MEM_COUNT to 0 and MEM_FREE_COUNT to number of free pages in the system status table.
 
@@ -244,8 +242,7 @@ memory page and updates the WAIT_MEM_COUNT and MEM_FREE_COUNT in the system stat
     between several processes. Similarly, the library pages are shared by all processes. If
     a process is allowed to write into a code/library page, the shared program/library will
     get modified and will alter the execution behaviour of other processes, which violates
-    the basic <a href="https://en.wikipedia.org/wiki/Virtual_address_space" target="_blank">
-    virtual address space</a>model offered by the OS.
+    the basic [virtual address space](https://en.wikipedia.org/wiki/Virtual_address_space)model offered by the OS.
 
 
 !!! assignment "Assignment 1 : Shell version-1"
@@ -255,8 +252,7 @@ memory page and updates the WAIT_MEM_COUNT and MEM_FREE_COUNT in the system stat
     the shell.
 
 !!! assignment "Assignment 2"
-    </b>Use the <a href="support_tools-files/xsm-simulator.html" target="_blank"> XSM debugger</a> to print out the contents of the System Status Table and the Memory Free List after Get Free Page and Release Page functions, inside the Memory Manager module.
+    Use the [XSM debugger](../support-tools/xsm-simulator.md) to print out the contents of the System Status Table and the Memory Free List after Get Free Page and Release Page functions, inside the Memory Manager module.
 
 <!--<b style="color:#26A65B">Assignment 2: </b> Run the program of the previous assignment, after adding  <i>breakpoints</i> immediately after GetFreePage() function and ReleasePage() function of the memory manager module and print out in debug mode the contents of the memory free list and the system status table entries.  <i>p</i> and <i>pt</i> options of xsm debugger.  Add another <i>breakpoint</i> just before return from the timer interrupt handler to print out the same contents.  
 <br>-->
-

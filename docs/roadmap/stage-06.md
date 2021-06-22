@@ -8,13 +8,11 @@ original_url: https://exposnitc.github.io/Roadmap.html
     - Run an init program in user mode from the OS startup code.
 
 !!! info "Pre-requisite Reading"
-    - It is absolutely necessary to read and understand the tutorial on <a href="Tutorials/xsm_unprivileged_tutorial.html" target="_blank">
-          XSM Unprivileged Mode Execution</a> before proceeding further.
-    -  Have a quick look at the XSM specification documentation on <a href="virtual_machine_spec.html" target="_blank">Virtual Machine Model
-         </a> and <a href="arch_spec-files/paging_hardware.html" target="_blank">Address Translation Mechanism</a>.
+    - It is absolutely necessary to read and understand the tutorial on [XSM Unprivileged Mode Execution](../tutorials/xsm-unprivileged-tutorial.md) before proceeding further.
+    -  Have a quick look at the XSM specification documentation on [Virtual Machine Model](../virtual-machine-spec.md) and [Address Translation Mechanism](../arch-spec/paging-hardware.md).
 
 Before proceeding further, try to solve the following question that test your understanding of 
-<a href="Tutorials/xsm_unprivileged_tutorial.html" target="_blank">XSM Unprivileged Mode Execution</a>
+[XSM Unprivileged Mode Execution](../tutorials/xsm-unprivileged-tutorial.md)
 
 !!! question "Q1: Suppose the machine is executing in unprivileged mode."
     Assume that the following are some of the register values:
@@ -43,7 +41,7 @@ In this stage, you will write a user program in assembly code and execute it in 
 The first user program which is executed is called the INIT program <span style="color:red">*</span>.
 
 The eXpOS design stipulates that the INIT program must be stored in blocks 7 and 8 of the XSM
-disk. See<a href="os_implementation.html" target="_blank">Disk Organisation</a>.
+disk. See[Disk Organisation](../os-implementation.md).
 
 In this stage, first you will write a user program in assembly language and load it into the
 disk as the INIT program using XFS-Interface.
@@ -115,8 +113,7 @@ Since the XFS-Interface does not recognise comments or labels, the XSM code
 -->
 
 While executing in the user mode, the machine uses logical addressing scheme. The machine
-translates logical addresses to physical addresses using the <a href="arch_spec-files/paging_hardware.html" target="_blank">
-address translation mechanism</a>.
+translates logical addresses to physical addresses using the [address translation mechanism](../arch-spec/paging-hardware.md).
 
 In this stage, we will use a simple logical memory model where the first two logical pages
 are alloted for code (address 0 - 1023) and the third logical page is alloted for the stack
@@ -211,7 +208,7 @@ transfer control to the init program using the IRET instruction.
 
 1) Load the INIT program from the disk to the memory. In the memory, init program is stored in pages 65-66.
 The blocks 7-8 from disk is to be loaded to the memory pages 65-66 by the OS startup Code.
-(See <a href="os_implementation.html" target="_blank">Memory Organization and Disk Organization</a>).
+(See [Memory Organization and Disk Organization](../os-implementation.md)).
 ```
 loadi(65,7);
 loadi(66,8);
@@ -233,7 +230,7 @@ transfer is completed. XSM will execute the next instruction after the transfer 
 complete. (In later stages you will use the load instruction that can help to speed up
 execution).
 
-2) <a href="os_design-files/process_table.html#per_page_table" target="_blank">Page Table</a>
+2) [Page Table](../os-design/process-table.md#per_page_table)
 for INIT must be set up for address translation scheme to work correctly.
 This is because INIT is a user process and all addresses generated are logical.
 Machine translates these logical addresses to physical addresses by looking up the page table
@@ -241,11 +238,11 @@ for INIT.
 
 The PTBR or Page Table Base Register stores the starting address of the page table of a
 process.We must set PTBR to the starting address of the page table of INIT. The
-<a href="os_implementation.html" target="_blank">eXpOS memory organization </a>
+[eXpOS memory organization](../os-implementation.md)
 stipulates that the page tables are stored from memory address 29696.
 Here since we are running the first user program, we will use the first few entries of this
 memory region for setting up the page table for the INIT process. The
-<a href="support_tools-files/constants.html" target="_blank">SPL constant</a>
+[SPL constant](../support-tools/constants.md)
 PAGE_TABLE_BASE holds the value 29696.
 
 You need two pages for storing the INIT program code (loaded from disk blocks 7 and 8)
@@ -257,9 +254,9 @@ PTLR = 3;
 ```
 
 3) In the page table of INIT, set page numbers 65 and 66 for code and 76 for stack.
-(Pages 67 - 75 are reserved. See <a href="os_implementation.html" target="_blank">Memory Organisation</a>.)
+(Pages 67 - 75 are reserved. See [Memory Organisation](../os-implementation.md).)
 Thus, the first word of each entry must be set to the corresponding physical page number (65
-,66 and 76).Set the second word (<a href="arch_spec-files/paging_hardware.html#aux_info" target="_blank">Auxiliary information</a>) for pages 65 and 66 to "0100" and page 76 to "0110". This sets the code pages "read only" and stack "read/write". (why?)
+,66 and 76).Set the second word ([Auxiliary information](../arch-spec/paging-hardware.md#aux_info)) for pages 65 and 66 to "0100" and page 76 to "0110". This sets the code pages "read only" and stack "read/write". (why?)
 
 ```
 [PTBR+0] = 65;

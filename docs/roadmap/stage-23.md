@@ -28,8 +28,8 @@ Inode table and root file stores details of every eXpOS file stored in the disk.
 
 #### Interrupt routine 4
 <figure>
-    <img src="http://exposnitc.github.io/img/roadmap/create_delete.png"/>
-    <figcaption>Control flow for <i>Create </i>and<i>Delete </i>system calls</figcaption>
+<img src="http://exposnitc.github.io/img/roadmap/create_delete.png"/>
+<figcaption>Control flow for <i>Create </i>and<i>Delete </i>system calls</figcaption>
 </figure>
 
 The system calls _Create_ and _Delete_ are implemented in the interrupt routine 4. _Create_ and _Delete_ have system call numbers 1 and 4 respectively. From ExpL programs, these system calls are called using [exposcall function](../os-spec/dynamicmemoryroutines.md) .
@@ -49,13 +49,13 @@ There is one subtility involved in deleting a file. If any of the disk blocks of
 
 Implement _Delete_ system call using the detailed algorithm provided [here](../os-design/delete.md) .
 
-#### Acquire Inode (function number = 4, <a href="os_modules/Module_0.html" target="_blank">resource manager module </a>)
+#### Acquire Inode (function number = 4, [resource manager module](../modules/module-00.md))
 
 Acquire Inode takes an inode index and PID of a process as arguments. To lock the inode (file), **Acquire Inode** first waits in a busy loop by changing state to (WAIT\_FILE, inode index) until the file becomes free. After the inode becomes free and current process resumes execution, acquire inode checks whether the file is deleted from the system. (This check is necessary because, some other process may delete the file while the current process was waiting for the inode to be free.) **Acquire Inode** then locks the inode by setting LOCKING PID field in the [file status table](../os-design/mem-ds.md#file_lock_status_table) to the given PID.
 
 Implement Acquire Inode function using the detailed algorithm given in the resource manager module link above.
 
-#### Release Inode (function number = 5, <a href="os_modules/Module_0.html" target="_blank"> resource manager module </a>)
+#### Release Inode (function number = 5, [resource manager module](../modules/module-00.md))
 Release Inode takes an inode index and PID of a process as arguments. Release Inode frees the inode (file) by invalidating the LOCKING PID field in the [file status table](../os-design/mem-ds.md#file_lock_status_table) . The function then wakes up the processes waiting for the file with given inode index by changing state of those processes to READY.
 
 Implement Release Inode function using the detailed algorithm given in the resource manager module link above.
@@ -74,8 +74,8 @@ There is one subtility involved in deleting a file. If any of the disk blocks of
 _Create_ and _Delete_ system calls update the memory copies of Inode table, disk free list and root file. The changed data structures are not committed into the disk by these system calls. The disk update for these data structures are done during system shutdown.
 
 <figure>
-    <img src="http://exposnitc.github.io/img/roadmap/Initial_shutdown.png"/>
-    <figcaption>Control flow for <i>Shutdown</i>system call</figcaption>
+<img src="http://exposnitc.github.io/img/roadmap/Initial_shutdown.png"/>
+<figcaption>Control flow for <i>Shutdown</i>system call</figcaption>
 </figure>
 
 Interrupt routine 15 written in stage 21 contains just HALT instruction. In this stage, _Shutdown_ system call is implemented in the interrupt routine 15. _Shutdown_ system call has system call number 21 and it does not have any arguments.
@@ -89,7 +89,7 @@ Interrupt routine 15 written in stage 21 contains just HALT instruction. In this
     The implementation of the _Shutdown_ system call is not final. Implementation will change in later stages.
 
 
-#### Disk Store (function number = 1, <a href="os_modules/Module_4.html" target="_blank"> Device manager module </a>)
+#### Disk Store (function number = 1, [Device manager module](../modules/module-04.md))
 
 Disk Store function takes PID of a process, a page number and a block number as arguments. To store data into the disk, Disk Store first needs to lock the disk by invoking the **Acquire Disk** function of the [resource manager module](../modules/module-00.md) . After locking the disk, Disk Store updates the [disk status table](../os-design/mem-ds.md#ds_table) . Finally, Disk Store initiates the store operation for given page number and block number and waits in WAIT\_DISK state until the store operation is complete. When store operation is completed, system raises the disk interrupt which makes this process READY again.
 

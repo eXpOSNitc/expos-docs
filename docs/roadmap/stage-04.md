@@ -7,7 +7,7 @@ original_url: https://exposnitc.github.io/Roadmap.html
     Use the SPL language to write a small <i>OS startup code</i> and generate target using the SPL compiler.
 
 !!! info "Pre-requisite Reading"
-    Quickly go through <a href="support_tools-files/spl.html" target="_blank">SPL specification</a>. (Do not spend more than 15 minutes).
+    Quickly go through [SPL specification](../support-tools/spl.md). (Do not spend more than 15 minutes).
 
 SPL (Systems Programming Language) allows high level programs to be written for the XSM
 machine (eliminating the need to write all the code in assembly language). SPL is not a full
@@ -18,7 +18,7 @@ package before loading for execution on the XSM simulator. You will be writing t
 using the SPL language.
 
 In this stage you will write a program in SPL and compile it using the
-<a href="support_tools-files/spl.html" target="_blank">SPL</a>compiler.
+[SPL](../support-tools/spl.md)compiler.
 After compilation, the target machine code is generated. We will then load this compiled code 
 to block 0 of the disk as the OS startup code, using the XFS-Interface, and get it executed by 
 the machine as in the previous stage.
@@ -39,7 +39,7 @@ endwhile;
 ```
 
 SPL doesn't support variables. Instead you can directly use XSM registers for storing program
-data. For convenience, you can <a href="support_tools-files/spl.html" target="_blank"> alias</a>
+data. For convenience, you can [alias](../support-tools/spl.md)
 the registers with appropriate identifiers to imitate the behaviour of variables. In the
 above program register R0 is aliased to the identifier `counter`.
 
