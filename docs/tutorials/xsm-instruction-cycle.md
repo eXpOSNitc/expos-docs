@@ -7,13 +7,13 @@ This tutorial will help you to understand the architectural features of the XSM 
 necessary to for implementing the eXpOS operating system. These features will be used by
 the eXpOS kernel. 
 
-The CPU of the [XSM machine](../arch-spec/machine-organisation.md) contains 20 general-purpose registers R0-R19, each of which can store an integer or a string. (see [XSM specification](../arch_spec/index.md)). Along with these are the registers stack pointer (SP), base pointer (BP) and instruction pointer (IP). There are other special purpose registers: PTBR, PTLR, EIP, EC, EPN, EMA and four ports P0, P1, P2, P3. We will discuss the roles of these soon.
+The CPU of the [XSM machine](../arch-spec/machine-organization.md) contains 20 general-purpose registers R0-R19, each of which can store an integer or a string. (see [XSM specification](../arch-spec/index.md)). Along with these are the registers stack pointer (SP), base pointer (BP) and instruction pointer (IP). There are other special purpose registers: PTBR, PTLR, EIP, EC, EPN, EMA and four ports P0, P1, P2, P3. We will discuss the roles of these soon.
 
 **The machine's memory consists of 65536 memory words. Each word can store an integer or a string. The memory is divided into pages of 512 words each.** Thus memory addresses 0 to 511 belong to page 0, 512-1023 belong to page 1 and so on. The last (page 127) contain memory addresses 65024 to 65535. **The memory is word addressable.** This means that XSM provides instructions that allows you to access any memory word. For instance, the instruction "MOV R0, \[1345\]" transfers the contents of memory location 1345 to register R0.
 
 **The machine also has a disk having 512 blocks. Each disk block can store 512 words.** Thus the total storage capacity is 512 x 512 = 262144 words. However, **the disk is block addressable and not word addressable.** XSM provides just three instructions to manipulate the disk – LOAD, LOADI and STORE. These instructions can be used to transfer a disk block to a memory page or back. Suppose we want to access the 10th word of block 12, then the only way to do so is to first transfer the 12th block to some memory page and then access the corresponding memory address.
 
-Apart from disk and memory, the machine also has three **devices – an I/O Console, a timer and disk controller.** We will discuss them later. The organisation of the XSM machine is given [here](../arch-spec/machine-organisation.md)
+Apart from disk and memory, the machine also has three **devices – an I/O Console, a timer and disk controller.** We will discuss them later. The organisation of the XSM machine is given [here](../arch-spec/machine-organization.md)
 
 The machine can operate in two fundamental modes of execution – **privileged and unprivileged**. When the machine gets powered on, it begins execution in the privileged mode. We will discuss unprivileged mode later and assume privileged mode execution in the following.
 

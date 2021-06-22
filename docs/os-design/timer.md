@@ -31,10 +31,10 @@ Backup the register context of the current process using the <a href="../../arch
 {
     /* Call Swap In/Out, if necessary */
 
-    <b>if</b> the current process is the Swapper Daemon and Paging Status is <a href="../support-tools/constants/">SWAP_OUT</a>,
+    <b>if</b> the current process is the Swapper Daemon and Paging Status is <a href="../../support-tools/constants/">SWAP_OUT</a>,
         Call the <b>swap_out()</b> function in the <a href="../../modules/module-06/">Pager Module</a>.
 
-    <b>else if</b> the current process is the Swapper Daemon and Paging Status is <a href="../support-tools/constants/">SWAP_IN</a>, 
+    <b>else if</b> the current process is the Swapper Daemon and Paging Status is <a href="../../support-tools/constants/">SWAP_IN</a>, 
         Call the <b>swap_in()</b> function in the <a href="../../modules/module-06/">Pager Module</a>.
 
     <b>else if</b> the current process is Idle,                          
@@ -45,14 +45,14 @@ Backup the register context of the current process using the <a href="../../arch
 
 <b>else</b>           /* Swapping is not on now.  Check whether it must be initiated */
 {
-    <b>if</b> (MEM_FREE_COUNT < <a href="../support-tools/constants/">MEM_LOW</a>)	 	/* Check the <a href="../../os-design/mem-ds/#ss_table">System Status Table</a> */
+    <b>if</b> (MEM_FREE_COUNT < <a href="../../support-tools/constants/">MEM_LOW</a>)	 	/* Check the <a href="../../os-design/mem-ds/#ss_table">System Status Table</a> */
         /* Swap Out to be invoked during next Timer Interrupt */
-        Set the Paging Status in System Status Table to <a href="../support-tools/constants/">SWAP_OUT</a>.
+        Set the Paging Status in System Status Table to <a href="../../support-tools/constants/">SWAP_OUT</a>.
 
     <b>else if</b> (there are swapped out processes)            /* Check SWAPPED_COUNT in <a href="../../os-design/mem-ds/#ss_table">System Status Table</a> */
-        <b>if</b> (Tick of any Swapped Out process > <a href="../support-tools/constants/">MAX_TICK</a> or MEM_FREE_COUNT > <a href="../support-tools/constants/">MEM_HIGH</a>)
+        <b>if</b> (Tick of any Swapped Out process > <a href="../../support-tools/constants/">MAX_TICK</a> or MEM_FREE_COUNT > <a href="../../support-tools/constants/">MEM_HIGH</a>)
             /* Swap In to be invoked during next Timer Interrupt */
-            Set the Paging Status in System Status Table to <a href="../support-tools/constants/">SWAP_IN</a>.
+            Set the Paging Status in System Status Table to <a href="../../support-tools/constants/">SWAP_IN</a>.
 
 }
 /* End of Stage 27 code for Swap In/Out management */

@@ -75,8 +75,8 @@ Set the MODE_FLAG in the <a href="../../os-design/process-table/">process table<
 
 Wake up all processes waiting for the current process.
     Traverse through the <a href="../../os-design/process-table/" target="_blank">Process Table</a>
-	    <b>If</b> the process is in state (<a href="constants.html" target="_blank">WAIT_PROCESS</a>, Pid) where Pid matches with the PID of the current process.
-          	Change the status to (<a href="constants.html" target="_blank">READY</a>, _ ).
+	    <b>If</b> the process is in state (<a href="../../support-tools/constants/" target="_blank">WAIT_PROCESS</a>, Pid) where Pid matches with the PID of the current process.
+          	Change the status to (<a href="../../support-tools/constants/" target="_blank">READY</a>, _ ).
 
 Reset the MODE_FLAG in the <a href="../../os-design/process-table/">process table</a> entry to 0.
 

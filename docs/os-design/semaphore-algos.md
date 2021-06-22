@@ -141,7 +141,7 @@ Set the MODE_FLAG in the <a href="../../os-design/process-table/" target="_blank
 /* The descriptor is invalid if not in the range 0 - 7, or if the resource identifier field of the table entry is not 1 */
              
 <b>while</b> the semaphore is locked by a process other than the current process <b>do</b>    /* Check the Locking PID field in the <a href="../../os-design/mem-ds/#sem_table" target="_blank">Semaphore table</a> */
-              Change the <a href="../../os-design/process-table/#state" target="_blank">state</a> of the current process to (<a href="constants.html" target="_blank">WAIT_SEMAPHORE</a>, Semaphore table index of the locked semaphore).
+              Change the <a href="../../os-design/process-table/#state" target="_blank">state</a> of the current process to (<a href="../../support-tools/constants/" target="_blank">WAIT_SEMAPHORE</a>, Semaphore table index of the locked semaphore).
               Invoke the <b>switch_context()</b> function in the <a href="../../modules/module-05/">Scheduler Module</a>.
 <b>endwhile</b>
 
@@ -200,7 +200,7 @@ Set the MODE_FLAG in the <a href="../../os-design/process-table/" target="_blank
               Set the Locking PID to -1.   /* Unlock the semaphore. */
 
               Loop through the process table and change the <a href="../../os-design/process-table/#state">state</a> to (READY, _ ) for all the processes 
-	      in the state (<a href="constants.html" target="_blank">WAIT_SEMAPHORE</a>, Semaphore table index of the locked semaphore). 
+	      in the state (<a href="../../support-tools/constants/" target="_blank">WAIT_SEMAPHORE</a>, Semaphore table index of the locked semaphore). 
 
 Reset the MODE_FLAG in the <a href="../../os-design/process-table/" target="_blank">Process Table</a> to 0 and switch back to the user stack. 
 

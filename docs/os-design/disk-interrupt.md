@@ -24,8 +24,8 @@ Backup the register context of the current process using the <a href="../../arch
 In the Disk Status Table, set the STATUS field to 0, indicating that the disk is no longer busy.
 
 Wake up all processes waiting for the disk.
-    1. Search the <a href="../../os-design/process-table/" target="_blank">Process table</a> for processes in (<a href="constants.html" target="_blank">WAIT_DISK</a>, _ ) state.
-    2. Change the state of the processes to (<a href="constants.html" target="_blank">READY</a>, _ ).
+    1. Search the <a href="../../os-design/process-table/" target="_blank">Process table</a> for processes in (<a href="../../support-tools/constants/" target="_blank">WAIT_DISK</a>, _ ) state.
+    2. Change the state of the processes to (<a href="../../support-tools/constants/" target="_blank">READY</a>, _ ).
 
 Restore the register context of the process using <a href="../../arch-spec/instruction-set/">RESTORE</a> instruction.
 
