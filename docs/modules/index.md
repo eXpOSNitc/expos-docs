@@ -1,6 +1,6 @@
 ---
 title: "Kernel Module Interface"
-original_url: https://exposnitc.github.io/os_modules/module-Design.html
+original_url: https://exposnitc.github.io/os_modules/Module_Design.html
 
 ---
 
