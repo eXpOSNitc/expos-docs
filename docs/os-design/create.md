@@ -33,7 +33,7 @@ If the file is present in the system, return 0.   /* Check the <a href="../../os
 Find the index of a free entry in the Inode Table. 
 If no free entry found, return -1.   /* Maximum number of files reached */
              
-In the Inode Table entry found above, set FILE NAME to the given file name, FILE SIZE to 0 and FILE TYPE to <a href="constants.html" target="_blank">DATA</a>.
+In the Inode Table entry found above, set FILE NAME to the given file name, FILE SIZE to 0 and FILE TYPE to <a href="../../support-tools/constants/" target="_blank">DATA</a>.
 In the Inode Table entry, set the block numbers to -1.  /* No disk blocks are allocated to the file */
 
 Set the USER ID to the USERID of the process /* See the <a href="../../os-design/process-table/">process table</a> for user id */

@@ -56,10 +56,10 @@ If file descriptor is invalid, return -1.    /* File descriptor value should be 
 <details class="code-accordion"><summary>Locate the Per-Process Resource Table of the current process.</summary>
                  Find the PID of the current process from the <a href="../../os-design/mem-ds/#ss_table" target="_blank">System Status Table</a>.
                  Find the User Area page number from the <a href="../../os-design/process-table/#per_process_table" target="_blank">Process Table</a> entry.
-                 The  <a href="../../os-design/process-table/#per_process_table">Per-Process Resource Table</a> is located at the  <a href="constants.html" target="_blank">RESOURCE_TABLE_OFFSET</a> from the base of the <a href="../../os-design/process-table/#user_area" target="_blank"> User Area Page </a>.
+                 The  <a href="../../os-design/process-table/#per_process_table">Per-Process Resource Table</a> is located at the  <a href="../../support-tools/constants/" target="_blank">RESOURCE_TABLE_OFFSET</a> from the base of the <a href="../../os-design/process-table/#user_area" target="_blank"> User Area Page </a>.
 </details>
 
-If the Resource identifier field of the <a href="../../os-design/process-table/#per_process_table" target="_blank">Per Process Resource Table</a> entry is invalid or does not indicate a <a href="constants.html" target="_blank">FILE</a>, return -1.   
+If the Resource identifier field of the <a href="../../os-design/process-table/#per_process_table" target="_blank">Per Process Resource Table</a> entry is invalid or does not indicate a <a href="../../support-tools/constants/" target="_blank">FILE</a>, return -1.   
 /* No file is open with this file descriptor. */
 
 Get the index of the <a href="../../os-design/mem-ds/#file_table" target="_blank">Open File Table</a> entry from the Per Process Resource Table entry.
@@ -74,7 +74,7 @@ If acquiring the inode fails, return -1.
 
 Get the Lseek position from the Open File Table entry.
 
-<b>If</b> lseek position is same as the <a href="support_tools-files/constants.html">MAX_FILE_SIZE</a>, <b>release_inode()</b> and return -2.  /* Maximum file size of 2048 reached*/
+<b>If</b> lseek position is same as the <a href="../../support-tools/constants/">MAX_FILE_SIZE</a>, <b>release_inode()</b> and return -2.  /* Maximum file size of 2048 reached*/
 
 <details class="code-accordion"><summary>If the Lseek position is a multiple of 512 and the same as File size in the inode table /* New block to be allocated */</summary>	
               Get a free disk block by calling the <b>get_free_block()</b> function in the <a href="../../modules/module-02/">Memory Manager</a> module.

@@ -21,7 +21,7 @@ OS Startup Code is loaded from disk to memory by the ROM Code on machine startup
   /* Initialize the IDLE process.*/
 
   <details class="code-accordion"><summary>Initialize the Page table for IDLE process (PID = 0)</summary>
-        Initialize the Page table base register (PTBR) to <a href="../support-tools/constants/" target="_blank">PAGE_TABLE_BASE</a> and PTLR to 10.
+        Initialize the Page table base register (PTBR) to <a href="../../support-tools/constants/" target="_blank">PAGE_TABLE_BASE</a> and PTLR to 10.
         Set the <a href="../../os-design/process-table/#per_page_table" target="_blank">page table</a> entries for library and heap to -1. Set auxiliary information for these pages to "0000". 
         // idle doesn't invoke any library function.   
         Set the first code page entry to 69 (See <a href="../../os-implementation/" target="_blank">memory organization</a>). Set auxiliary information for valid code pages to "0100". 
@@ -41,7 +41,7 @@ OS Startup Code is loaded from disk to memory by the ROM Code on machine startup
 
   <details class="code-accordion"><summary>Initialize the Page table for Swapper Daemon (PID = 15)</summary>
         /* Swapper Daemon is identical to Idle and shares the code for Idle */
-        Initialize the Page table base register (PTBR) to <a href="../support-tools/constants/" target="_blank">PAGE_TABLE_BASE</a> + 20*15 and PTLR to 10.
+        Initialize the Page table base register (PTBR) to <a href="../../support-tools/constants/" target="_blank">PAGE_TABLE_BASE</a> + 20*15 and PTLR to 10.
         Set the <a href="../../os-design/process-table/#per_page_table" target="_blank">page table</a> entries for library and heap to -1. Set auxiliary information for these pages to "0000". 
         // swapper doesn't invoke any library function.   
         Set the first code page entry to that of Idle (See <a href="../../os-implementation/" target="_blank">memory organization</a>). Set auxiliary information for valid code pages to "0100". 
@@ -61,7 +61,7 @@ OS Startup Code is loaded from disk to memory by the ROM Code on machine startup
 
   <details class="code-accordion"><summary>Initialize the Page table for IDLE2 (PID = 14)</summary>
         /* IDLE2 is identical to Idle and shares the code for Idle */
-        Initialize the Page table base register (PTBR) to <a href="../support-tools/constants/" target="_blank">PAGE_TABLE_BASE</a> + 20*14 and PTLR to 10.
+        Initialize the Page table base register (PTBR) to <a href="../../support-tools/constants/" target="_blank">PAGE_TABLE_BASE</a> + 20*14 and PTLR to 10.
         Set the <a href="../../os-design/process-table/#per_page_table" target="_blank">page table</a> entries for library and heap to -1. Set auxiliary information for these pages to "0000". 
         // swapper doesn't invoke any library function.   
         Set the first code page entry to that of Idle (See <a href="../../os-implementation/" target="_blank">memory organization</a>). Set auxiliary information for valid code pages to "0100". 
@@ -76,7 +76,7 @@ OS Startup Code is loaded from disk to memory by the ROM Code on machine startup
    </details>  
 
   
-  Set the Page table base register (PTBR) to <a href="../support-tools/constants/" target="_blank">PAGE_TABLE_BASE</a> and PTLR to 10.
+  Set the Page table base register (PTBR) to <a href="../../support-tools/constants/" target="_blank">PAGE_TABLE_BASE</a> and PTLR to 10.
 
   Schedule IDLE process for excecution. (Return to user mode.)
 
@@ -181,7 +181,7 @@ Store the IP value (from the header of the IDLE whose code is shared by Swapper)
 
 Set SP to 8*512
 
-Set the Page table base register (PTBR) to <a href="../support-tools/constants/">PAGE\_TABLE\_BASE</a> + 14*20 and PTLR to 10.
+Set the Page table base register (PTBR) to <a href="../../support-tools/constants/">PAGE\_TABLE\_BASE</a> + 14*20 and PTLR to 10.
 
 Schedule IDLE2 process for excecution. (Return to user mode)
 </code></pre>

@@ -51,9 +51,9 @@ Set the value of SP to the beginning of User Area Page.
 	<details class="code-accordion"><summary>Locate the Per-Process Resource Table of the current process.</summary>
                 Find the PID of the current process from the <a href="../../os-design/mem-ds/#ss_table" target="_blank">System Status Table</a>.
                 Find the User Area page number from the <a href="../../os-design/process-table/#per_process_table" target="_blank">Process Table</a> entry.
-                The  <a href="../../os-design/process-table/#per_process_table">Per-Process Resource Table</a> is located at the  <a href="constants.html" target="_blank">RESOURCE_TABLE_OFFSET</a> from the base of the <a href="../../os-design/process-table/#user_area" target="_blank"> User Area Page </a>.
+                The  <a href="../../os-design/process-table/#per_process_table">Per-Process Resource Table</a> is located at the  <a href="../../support-tools/constants/" target="_blank">RESOURCE_TABLE_OFFSET</a> from the base of the <a href="../../os-design/process-table/#user_area" target="_blank"> User Area Page </a>.
 	</details>
-	If the Resource identifier field of the <a href="../../os-design/process-table/#per_process_table" target="_blank">Per Process Resource Table</a> entry is invalid or does not indicate a <a href="constants.html" target="_blank">FILE</a>, return -1.  
+	If the Resource identifier field of the <a href="../../os-design/process-table/#per_process_table" target="_blank">Per Process Resource Table</a> entry is invalid or does not indicate a <a href="../../support-tools/constants/" target="_blank">FILE</a>, return -1.  
 	/* No file is open with this file descriptor. */
 
 	Get the index of the <a href="../../os-design/mem-ds/#file_table" target="_blank">Open File Table</a> entry from the Per Process Resource Table entry.
@@ -71,7 +71,7 @@ Set the value of SP to the beginning of User Area Page.
                   If the lseek value is equal to the root file size(480), <b>release_inode()</b> return -2. 
 
                   Read from the word at lseek position in memory copy of <a href="../../os-design/disk-ds/#root_file">root file</a> to the translated memory address. 
-		  		  /* Use SPL Constant <a href="../support_tools-files/constants.html ">ROOT_FILE</a> */
+		  		  /* Use SPL Constant <a href="../../support-tools/constants/ ">ROOT_FILE</a> */
 
                   Increment the Lseek position in the Open File Table.        
 	<b> else </b>
