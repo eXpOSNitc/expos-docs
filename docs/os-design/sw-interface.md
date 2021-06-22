@@ -420,7 +420,7 @@ The system call interface is presented below.
 </tbody>
 </table>
 
-<span style="color:red">*</span>If the file is created with permission set to <a href="../support-tools/constants/">EXCLUSIVE</a>, then write and delete system calls will fail when executed by any user other than the owner or the root (see <a href="../os_spec-files/multiuser.html" target="_blank">here</a>).
+<span style="color:red">*</span>If the file is created with permission set to [EXCLUSIVE](../support-tools/constants.md), then write and delete system calls will fail when executed by any user other than the owner or the root (see [here](../support-tools/constants.md)).
 
 
-<span style="color:red">**</span> These System Calls are available only on eXpOS running on <a href="../arch_spec-files/nexsm.html" target="_blank">NEXSM</a> (a two-core extension of XSM) machine.
+<span style="color:red">**</span> These System Calls are available only on eXpOS running on [NEXSM](../arch-spec/nexsm.md) (a two-core extension of XSM) machine.
