@@ -1,6 +1,6 @@
 ---
 title: 'Module 1: Process Manager'
-original_url: '/home/anandu/code/eXpOSNitc.github.io/os_modules/Module_1.html'
+original_url: 'http://eXpOSNitc.github.io/os_modules/Module_1.html'
 ---
 
 This module contains functions that manage the different aspects related to processes.
