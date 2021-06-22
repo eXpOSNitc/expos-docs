@@ -21,19 +21,19 @@ This module handles allocation and deallocation of memory pages. The memory free
 Returns the page number of a free page.
 
 <pre><code>
-Increment WAIT_MEM_COUNT field in the <a href="../os_design-files/mem_ds.html#ss_table">System Status Table</a>
+Increment WAIT_MEM_COUNT field in the <a href="../../os-design/mem-ds/#ss_table">System Status Table</a>
 
 while ( memory is full ){   /* Check the MEM_FREE_COUNT in the System Status Table */
 
         Set state of the process as ( WAIT_MEM , ____);
-        Call the <b>switch_context()</b> function from the <a href="Module_5.html">Scheduler Module</a>.
+        Call the <b>switch_context()</b> function from the <a href="../../modules/module-05/">Scheduler Module</a>.
 }
 
 // There is a free page available for use.
 Decrement the WAIT_MEM_COUNT field and decrement the MEM_FREE_COUNT field in the System Status Table.
 
-loop through entries in the <a href="../os_design-files/mem_ds.html#mem_free_list">Memory Free List</a>{
-/* Available pages for user processes are from 76- 127. See <a href="../os_implementation.html">Memory Organisation</a>. */
+loop through entries in the <a href="../../os-design/mem-ds/#mem_free_list">Memory Free List</a>{
+/* Available pages for user processes are from 76- 127. See <a href="../../os-implementation/">Memory Organisation</a>. */
     if ( a free entry is found ){
             Set the Memory Free List entry as 1;
             Return the corresponding page number;
@@ -47,9 +47,9 @@ Called by fork and exec system calls. Also called by exception handler on page f
 Decrements the entry corresponding to page in memory free list.
 
 <pre><code>
-Decrement the entry corresponding to the page in the <a href="../os_design-files/mem_ds.html#mem_free_list">Memory Free List</a>;
+Decrement the entry corresponding to the page in the <a href="../../os-design/mem-ds/#mem_free_list">Memory Free List</a>;
 
-<b>If</b> Mem Free List entry becomes 0, increment the MEM_FREE_COUNT field in the <a href="../os_design-files/mem_ds.html#ss_table">System Status Table</a>
+<b>If</b> Mem Free List entry becomes 0, increment the MEM_FREE_COUNT field in the <a href="../../os-design/mem-ds/#ss_table">System Status Table</a>
 
 loop through the process table{ 
     if (the process state is ( WAIT_MEM , _ ) ){
@@ -68,7 +68,7 @@ Called by the Free page table and Free UArea Page functions.
 Returns the block number of a free disk block. Returns -1 if disk is full.
 
 <pre><code>
-loop through entries in the <a href="../os_design-files/disk_ds.html#disk_free_list">Disk Free List</a> from <a href="../../support-tools/constants/">DISK_FREE_AREA</a> to <a href="../../support-tools/constants/">DISK_SWAP_AREA</a> - 1{ 	/* User Block, not preallocated to the OS or swap area */
+loop through entries in the <a href="../../os-design/disk-ds/#disk_free_list">Disk Free List</a> from <a href="../../support-tools/constants/">DISK_FREE_AREA</a> to <a href="../../support-tools/constants/">DISK_SWAP_AREA</a> - 1{ 	/* User Block, not preallocated to the OS or swap area */
     if ( a free entry is found ){
             Set the Disk Free List entry as 1;
             Return the corresponding block number;
@@ -90,19 +90,19 @@ Decrements the entry corresponding to the disk block in the disk free list.
 Loads a single code page to memory given the block number of the page in the disk. It takes the block number and PID as an argument.
 
 <pre><code>
-/* If the required code page is already loaded by some other process, we simply increment the share count in the <a href="../os_design-files/mem_ds.html#mem_free_list">Mem Free List</a> */
+/* If the required code page is already loaded by some other process, we simply increment the share count in the <a href="../../os-design/mem-ds/#mem_free_list">Mem Free List</a> */
 
-Loop though code page entries in the <a href="../os_design-files/process_table.html#disk_map_table">disk map table</a> of all processes
+Loop though code page entries in the <a href="../../os-design/process-table/#disk_map_table">disk map table</a> of all processes
     If (the block number in the Disk Map Table entry matches the 
-    block to be loaded, and it's corresponding <a href="../os_design-files/process_table.html#per_page_table">page table</a> entry is set to VALID) {
-        <b>increment the share count</b> of the page in the <a href="../os_design-files/mem_ds.html#mem_free_list">Mem Free List</a>.
+    block to be loaded, and it's corresponding <a href="../../os-design/process-table/#per_page_table">page table</a> entry is set to VALID) {
+        <b>increment the share count</b> of the page in the <a href="../../os-design/mem-ds/#mem_free_list">Mem Free List</a>.
         return the physical page number
     }
 
 /* The code page is not in memory, and has to be loaded from disk */
 
 Get a free memory page by calling the <b>get_free_page()</b> function.
-Load the disk block into memory page by calling the <b>disk_load()</b> function in the <a href="Module_4.html">Device Manager</a> Module.
+Load the disk block into memory page by calling the <b>disk_load()</b> function in the <a href="../../modules/module-04/">Device Manager</a> Module.
 Return the memory page number to which the code block has been loaded.
 </code></pre>
 
@@ -110,7 +110,7 @@ Return the memory page number to which the code block has been loaded.
 Returns the block number of a free disk block in the swap area.
 
 <pre><code>
-loop through entries in the <a href="../os_design-files/disk_ds.html#disk_free_list">Disk Free List</a> from <a href="../../support-tools/constants/">DISK_SWAP_AREA</a> to <a href="../../support-tools/constants/">DISK_SIZE</a> - 1{ 	/* swap area */
+loop through entries in the <a href="../../os-design/disk-ds/#disk_free_list">Disk Free List</a> from <a href="../../support-tools/constants/">DISK_SWAP_AREA</a> to <a href="../../support-tools/constants/">DISK_SIZE</a> - 1{ 	/* swap area */
     if ( a free entry is found ){
             Set the Disk Free List entry as 1;
             Return the corresponding block number;

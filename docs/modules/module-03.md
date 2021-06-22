@@ -8,12 +8,12 @@ This module contains the functions that manages files.
 !!! warning "Important Note"
     All functions in this module expect that the inode is locked before they are called.
 
-|Function Number|FunctionName|Arguments|Return Value|
-|--- |--- |--- |--- |
-|BUFFERED_WRITE = 1|Buffered Write|Disk Block Number, Offset, Word|NIL|
-|BUFFERED_READ = 2|Buffered Read|Disk Block Number, Offset, Memory Address|NIL|
-|OPEN = 3|Open|File Name|File Table Index, -1 or -2|
-|CLOSE = 4|Close|File Table Index|NIL|
+| Function Number    | FunctionName   | Arguments                                 | Return Value               |
+| ------------------ | -------------- | ----------------------------------------- | -------------------------- |
+| BUFFERED_WRITE = 1 | Buffered Write | Disk Block Number, Offset, Word           | NIL                        |
+| BUFFERED_READ = 2  | Buffered Read  | Disk Block Number, Offset, Memory Address | NIL                        |
+| OPEN = 3           | Open           | File Name                                 | File Table Index, -1 or -2 |
+| CLOSE = 4          | Close          | File Table Index                          | NIL                        |
 
 ![](https://exposnitc.github.io//img/os-modules/FileManager.png)
 
@@ -28,18 +28,18 @@ Identify the buffer ;
 good enough for our purposes. More efficient schemes are used in real systems */
 
 Acquire the buffer by calling the Acquire_Buffer() function	
-in the <a href="Module_0.html">Resource Manager module</a>;
+in the <a href="../../modules/module-00/">Resource Manager module</a>;
 
-if (the buffer contains a different disk block){  			/* check block number in <a href="../os_design-files/mem_ds.html#buffer_table">Buffer Table</a>. */
+if (the buffer contains a different disk block){  			/* check block number in <a href="../../os-design/mem-ds/#buffer_table">Buffer Table</a>. */
     
     if (the buffer contents are dirty){					/* check DIRTY BIT of buffer table */
             Write back the contents of the buffer
             to the disk by invoking disk_store() 
-            function in the <a href="Module_4.html">device manager module</a>;
+            function in the <a href="../../modules/module-04/">device manager module</a>;
     }
     
     Load the required disk block into the buffer by invoking
-    the disk_load() function in the <a href="Module_4.html">device manager module</a>;
+    the disk_load() function in the <a href="../../modules/module-04/">device manager module</a>;
 
     Set the new Disk block number in the Buffer table entry;
 }
@@ -68,14 +68,14 @@ Identify the buffer ;
 good enough for our purposes. More efficient schemes are used in real systems */
 
 Acquire the buffer by calling the Acquire_Buffer() function
-in the <a href="Module_0.html">Resource Manager module</a>;
+in the <a href="../../modules/module-00/">Resource Manager module</a>;
 
-if (the buffer contains a different disk block){  			/* check block number in <a href="../os_design-files/mem_ds.html#buffer_table">Buffer Table</a>. */
+if (the buffer contains a different disk block){  			/* check block number in <a href="../../os-design/mem-ds/#buffer_table">Buffer Table</a>. */
     
     if (the buffer contents are dirty){					/* check DIRTY BIT of buffer table */
             Write back the contents of the buffer
             to the disk by invoking disk_store() 
-            function in the <a href="Module_4.html">device manager module</a>;
+            function in the <a href="../../modules/module-04/">device manager module</a>;
             
             Mark the buffer as clean in the 
             corresponding buffer table entry;
@@ -103,29 +103,29 @@ Called by the Read system call.
 Locates the file in the inode table and makes an entry in the Open File Table. Returns the Open File Table index or an error code if file does not exist or the table is full. On a successfull open, the file status table entry of the file is incremented.
 
 !!! note
-     This function must not be called unless a the calling process has a free entry available in the <a href="../os_design-files/process_table.html#per_process_table">per-process resource table</a> to store the open file table index returned by this function.
+     This function must not be called unless a the calling process has a free entry available in the <a href="../../os-design/process-table/#per_process_table">per-process resource table</a> to store the open file table index returned by this function.
 
 <pre><code>
 
-Find the index of the <a href="../os_design-files/disk_ds.html#inode_table">Inode Table</a> entry of the file. If the entry is not found, return -1.
+Find the index of the <a href="../../os-design/disk-ds/#inode_table">Inode Table</a> entry of the file. If the entry is not found, return -1.
 
-Call the <b>acquire_inode()</b> function in the <a href="../os_modules/Module_0.html">Resource Manager</a> module.&nbsp;&nbsp; /* Lock the inode */
+Call the <b>acquire_inode()</b> function in the <a href="../../modules/module-00/">Resource Manager</a> module.&nbsp;&nbsp; /* Lock the inode */
 If the locking fails, return -1. 
 
 If the file is of type EXEC, <b>release_inode()</b> and return -1. 	/* Only data files can be opened */
 
-Find a free entry in the <a href="../os_design-files/mem_ds.html#file_table">Open File Table</a>.
+Find a free entry in the <a href="../../os-design/mem-ds/#file_table">Open File Table</a>.
 If there are no free entries, <b>release_inode()</b> and return -2.  /* Reached maximum number of open files in the system. */
 
 <b>If</b> the file name is "root" <b>then</b> 
-	Set the INODE INDEX field in the open file table entry to <a href="../support-tools/constants/">INODE_ROOT</a>. 
+	Set the INODE INDEX field in the open file table entry to <a href="../../support-tools/constants/">INODE_ROOT</a>. 
 <b>else</b>
-	In the <a href="../os_design-files/mem_ds.html#file_lock_status_table">File Status Table</a>, if the File Open Count is -1, set it to 1. Otherwise, increment the File Open Count.
+	In the <a href="../../os-design/mem-ds/#file_lock_status_table">File Status Table</a>, if the File Open Count is -1, set it to 1. Otherwise, increment the File Open Count.
 	Set the INODE INDEX field in the open file table entry to the inode table index of the file. 
 
 Set the OPEN INSTANCE COUNT to 1 and LSEEK to 0 in the open file table entry.
 
-Call the <b>release_inode()</b> function in the <a href="../os_modules/Module_0.html">Resource Manager</a> module.&nbsp;&nbsp; /* Free the inode */
+Call the <b>release_inode()</b> function in the <a href="../../modules/module-00/">Resource Manager</a> module.&nbsp;&nbsp; /* Free the inode */
 
 return the Open File Table Index.
 </code></pre>
@@ -145,13 +145,13 @@ Closes the open instance of a file. Assumes a valid Open File Table index is giv
 
 <pre><code>
 
-Find the index of the <a href="../os_design-files/disk_ds.html#inode_table">Inode Table</a> entry of the file from the Open File Table.
+Find the index of the <a href="../../os-design/disk-ds/#inode_table">Inode Table</a> entry of the file from the Open File Table.
 
-In the <a href="../os_design-files/mem_ds.html#file_table">Open File Table Entry</a>, decrement the Open Instance Count.
+In the <a href="../../os-design/mem-ds/#file_table">Open File Table Entry</a>, decrement the Open Instance Count.
 
 If the Open Instance Count becomes 0
 	Invalidate the entry by setting all fields to -1.
-	If the file is not the "root", decrement the File Open Count in the <a href="../os_design-files/mem_ds.html#file_lock_status_table">File (Inode) Status Table</a>.
+	If the file is not the "root", decrement the File Open Count in the <a href="../../os-design/mem-ds/#file_lock_status_table">File (Inode) Status Table</a>.
 	If the File Open Count in File Status Table becomes 0, set it to -1.
 	/* Check the INODE_INDEX field in the Open File Table entry */
 

@@ -20,12 +20,12 @@ This module contains functions that manage the different aspects related to proc
 Returns a Free PCB index. Returns -1 if PCB is full.  
 
 <pre><code>
-loop through the <a href="../os_design-files/process_table.html">Process Table</a>{
+loop through the <a href="../../os-design/process-table/">Process Table</a>{
         if ( process table entry is free )
             Set the PID to index of the entry
             Set the STATE to (ALLOCATED, - )
-    Set PTBR to PAGE_TABLE_BASE + 20*index 	/* See <a href="../os_implementation.html#collapse2">Memory Organisation</a> */
-    Set PTLR to 10. 						/* <a href="../abi.html">Address space</a> of processes in eXpOS has 10 pages */
+    Set PTBR to PAGE_TABLE_BASE + 20*index 	/* See <a href="../../os-implementation/#collapse2">Memory Organisation</a> */
+    Set PTLR to 10. 						/* <a href="../../abi/">Address space</a> of processes in eXpOS has 10 pages */
     return index;
 }
 
@@ -44,22 +44,22 @@ Frees all the resources in the Resource Table inside the User Area page. Also fr
 <pre><code>
 /* If the user are page is swapped out, it has to be swapped back first. */
 
-Get the User Area Page number from the <a href="../os_design-files/process_table.html">process table</a> entry
+Get the User Area Page number from the <a href="../../os-design/process-table/">process table</a> entry
 corresponding to the PID;
 
-loop through the <a href="../os_design-files/process_table.html#per_process_table">Resource Table</a>{
+loop through the <a href="../../os-design/process-table/#per_process_table">Resource Table</a>{
         if ( the resource table entry is valid )
         if (the resource is a file)
                 Close the corresponding file by calling the Close() function in the 
-        <a href="Module_3.html">File Manager</a> Module.
+        <a href="../../modules/module-03/">File Manager</a> Module.
         if (the resource is a semaphore)
                 Release the semaphore by calling the Release Semaphore() function in the 
-        <a href="Module_0.html">Resource Manager</a> Module.
+        <a href="../../modules/module-00/">Resource Manager</a> Module.
         Invalidate the resource table entry.
 }
 
 Free the User Area page by calling the release_page()
-function in the <a href="Module_2.html">Memory Manager</a> module;
+function in the <a href="../../modules/module-02/">Memory Manager</a> module;
     
 return;	
 </code></pre>
@@ -89,7 +89,7 @@ Terminate the process whose PID is provided.
 <pre><code>
 <b>if</b> (the current process is not in the exec system call)	// check MODE_FLAG
 {
-    <b>loop</b> though the <a href="../os_design-files/process_table.html">process table</a> entries
+    <b>loop</b> though the <a href="../../os-design/process-table/">process table</a> entries
 {
         /* Wake up all processes waiting for the current process */
         <b>if</b>( process is waitng for the current process ) 		/* indicated by the STATE = (WAIT_PROCESS, PID ) */
@@ -100,7 +100,7 @@ Terminate the process whose PID is provided.
     }
 }
 
-Free the <a href="../os_design-files/process_table.html#per_page_table">Page Table</a> entry corresponding to the process by
+Free the <a href="../../os-design/process-table/#per_page_table">Page Table</a> entry corresponding to the process by
 invoking the Free_Page_Table() function; 
 
 Free the User Area Page corresponding to the process by calling
@@ -125,20 +125,20 @@ Called by exec system call, exit system call, exception handler, shutdown and lo
 Free the page table entry and the used pages. The Disk Map table entries are also freed.  
 
 <pre><code>
-Invalidate the <a href="../os_design-files/process_table.html#per_page_table">page table</a> entries corresponding to the shared library pages;
+Invalidate the <a href="../../os-design/process-table/#per_page_table">page table</a> entries corresponding to the shared library pages;
 
-loop through the other <a href="../os_design-files/process_table.html">page table</a> entries{
+loop through the other <a href="../../os-design/process-table/">page table</a> entries{
         if ( the entry is valid ){
             free the corresponding page by 
             invoking the release_page() function 
-            in the <a href="./Module_2.html">Memory Manager module</a>;
+            in the <a href="../../modules/module-02/">Memory Manager module</a>;
         }
         Invalidate the page table entry;
 }
 
-Loop through the <a href="../os_design-files/process_table.html">Disk Map Table</a> entries of the process  
+Loop through the <a href="../../os-design/process-table/">Disk Map Table</a> entries of the process  
     if (the entry is valid and is stack or heap)
-    call release_block() function in the <a href="Module_2.html">Memory Manager</a> Module.
+    call release_block() function in the <a href="../../modules/module-02/">Memory Manager</a> Module.
     set the entry to -1.
 return;
 </code></pre>
@@ -150,8 +150,8 @@ Kills all the processes except the current process, idle and init/login*.
 
 <pre><code>
 /* Lock all files to ensure that no processes are in the middle of a file operation */
-<b>For</b> each valid entry in the <a href="../os_design-files/disk_ds.html#inode_table">Inode table</a>	
-	Acquire lock on the file by calling the <b>acquire_inode()</b> function in the <a href="Module_0.html">Resource Manager</a> module.
+<b>For</b> each valid entry in the <a href="../../os-design/disk-ds/#inode_table">Inode table</a>	
+	Acquire lock on the file by calling the <b>acquire_inode()</b> function in the <a href="../../modules/module-00/">Resource Manager</a> module.
 
 <b>For</b> each pid from 2 to MAX_PROC_NUM - 1 	/* PID 0 is idle and 1 is init */
 {
@@ -159,7 +159,7 @@ Kills all the processes except the current process, idle and init/login*.
     <b>If</b> pid == PID of Swapper Daemon         /* Swapper Daemon must not be TERMINATED */
           continue;
     <b>If</b> pid != pid of the current process AND state of the process in the process table entry is not TERMINATED
-	  Call <b>exit_process()</b> function from the <a href="Module_1.html">Process Manager</a> Module.
+	  Call <b>exit_process()</b> function from the <a href="../../modules/module-01/">Process Manager</a> Module.
 }
 
 <b>For</b> each valid entry in the Inode table
