@@ -7,13 +7,13 @@ This tutorial will help you to understand the architectural features of the XSM 
 necessary to for implementing the eXpOS operating system. These features will be used by
 the eXpOS kernel. 
 
-The CPU of the [XSM machine](../arch_spec-files/machine_organisation.html) contains 20 general-purpose registers R0-R19, each of which can store an integer or a string. (see [XSM specification](../arch_spec.html)). Along with these are the registers stack pointer (SP), base pointer (BP) and instruction pointer (IP). There are other special purpose registers: PTBR, PTLR, EIP, EC, EPN, EMA and four ports P0, P1, P2, P3. We will discuss the roles of these soon.
+The CPU of the [XSM machine](../arch-spec/machine-organisation.md) contains 20 general-purpose registers R0-R19, each of which can store an integer or a string. (see [XSM specification](../arch_spec/index.md)). Along with these are the registers stack pointer (SP), base pointer (BP) and instruction pointer (IP). There are other special purpose registers: PTBR, PTLR, EIP, EC, EPN, EMA and four ports P0, P1, P2, P3. We will discuss the roles of these soon.
 
 **The machine's memory consists of 65536 memory words. Each word can store an integer or a string. The memory is divided into pages of 512 words each.** Thus memory addresses 0 to 511 belong to page 0, 512-1023 belong to page 1 and so on. The last (page 127) contain memory addresses 65024 to 65535. **The memory is word addressable.** This means that XSM provides instructions that allows you to access any memory word. For instance, the instruction "MOV R0, \[1345\]" transfers the contents of memory location 1345 to register R0.
 
 **The machine also has a disk having 512 blocks. Each disk block can store 512 words.** Thus the total storage capacity is 512 x 512 = 262144 words. However, **the disk is block addressable and not word addressable.** XSM provides just three instructions to manipulate the disk – LOAD, LOADI and STORE. These instructions can be used to transfer a disk block to a memory page or back. Suppose we want to access the 10th word of block 12, then the only way to do so is to first transfer the 12th block to some memory page and then access the corresponding memory address.
 
-Apart from disk and memory, the machine also has three **devices – an I/O Console, a timer and disk controller.** We will discuss them later. The organisation of the XSM machine is given [here](../arch_spec-files/machine_organisation.html)
+Apart from disk and memory, the machine also has three **devices – an I/O Console, a timer and disk controller.** We will discuss them later. The organisation of the XSM machine is given [here](../arch-spec/machine-organisation.md)
 
 The machine can operate in two fundamental modes of execution – **privileged and unprivileged**. When the machine gets powered on, it begins execution in the privileged mode. We will discuss unprivileged mode later and assume privileged mode execution in the following.
 
@@ -35,7 +35,7 @@ in privileged mode.
 1. Transfer the contents of two memory locations starting at the address stored in IP register
 to the CPU.  The XSM machine treats the contents read like a machine instruction.  This action
 is called the instruction fetch cycle.
-2. The next step is the execute cycle where the instruction fetched in Step 1 is executed by the machine. What happens here depends on the instruction. (See [XSM instruction set](../arch_spec-files/instruction_set.html).) For example, if the instruction fetched is "MOV R0, \[1256\]", the execute cycle action will result in the contents of memory location 1256 being transferred to register R0. If the instruction fetched is "JMP 1110", the value of the IP register will be set to 1110.
+2. The next step is the execute cycle where the instruction fetched in Step 1 is executed by the machine. What happens here depends on the instruction. (See [XSM instruction set](../arch-spec/instruction-set.md).) For example, if the instruction fetched is "MOV R0, \[1256\]", the execute cycle action will result in the contents of memory location 1256 being transferred to register R0. If the instruction fetched is "JMP 1110", the value of the IP register will be set to 1110.
 3. The final step is to set the instruction pointer to the next instruction to be executed.
 Since each XSM instruction is two words, IP will normally be incremented by 2.   There are
 exceptions to this rule.  For instance in the case of "JMP 1110", IP is set to 1110 and hence
@@ -88,7 +88,7 @@ writing the OS bootstrap loader and storing it in block 0 in Stage 3 of the eXpO
 
 ### Privileged mode of execution
 
-The privileged mode of execution is easy to comprehend. All instructions in the XSM machine instruction set described [here](../arch_spec-files/instruction_set.html) will execute in the most natural way in the privileged mode of execution. Most of the instructions like data transfer instructions, arithmetic and logic instructions, and control flow instructions (JMP etc.) are straightforward to understand from the specification and not described here.
+The privileged mode of execution is easy to comprehend. All instructions in the XSM machine instruction set described [here](../arch-spec/instruction-set.md) will execute in the most natural way in the privileged mode of execution. Most of the instructions like data transfer instructions, arithmetic and logic instructions, and control flow instructions (JMP etc.) are straightforward to understand from the specification and not described here.
 
 Instead, we will focus here on the execution semantics of the following four
 (slightly non-trivial) instructions when executed in privileged mode – PUSH, POP, CALL and RET.
@@ -136,7 +136,7 @@ unprivileged mode.   After an instruction fetch, if the XSM encounters the IRET
 instruction, the following actions take place:
 
 1.  Enable paging and change from privileged mode to unprivileged mode
-2.  Execute the RET instruction in the unprivileged mode. (The execution semantics now is different, and you must read [XSM unpriviliged mode execution](xsm_unprivileged_tutorial.html) to understand how RET works in unprivileged mode).
+2.  Execute the RET instruction in the unprivileged mode. (The execution semantics now is different, and you must read [XSM unpriviliged mode execution](./xsm-unprivileged-tutorial.md) to understand how RET works in unprivileged mode).
 
 
 After the IRET instruction, the machine continues fetch-execute cycle, but in the
