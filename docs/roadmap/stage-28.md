@@ -1,5 +1,6 @@
 ---
 title: 'Stage 28 : Multi-Core Extension (12 Hours)'
+original_url: https://exposnitc.github.io/Roadmap.html
 ---
 !!! note "Learning Objectives"
     -   Modifying eXpOS kernel to exploit parallelism in a two core machine.

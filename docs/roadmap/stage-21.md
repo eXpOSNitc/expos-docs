@@ -1,5 +1,6 @@
 ---
 title: 'Stage 21 : Process Synchronization (4 Hours)'
+original_url: https://exposnitc.github.io/Roadmap.html
 ---
 !!! note "Learning Objectives"
     - Familiarize with process synchronization in eXpOS

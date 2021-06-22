@@ -1,5 +1,6 @@
 ---
 title: 'Stage 15 : Resource Manager Module (4 Hours)'
+original_url: https://exposnitc.github.io/Roadmap.html
 ---
 
 !!! info "Learning Objectives"

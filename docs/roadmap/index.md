@@ -1,5 +1,6 @@
 ---
 title: Roadmap
+original_url: https://exposnitc.github.io/Roadmap.html
 hide:
   - navigation
   - toc
@@ -29,24 +30,24 @@ It is very important that you proceed with the roadmap on a regular schedule and
 !!!note "Intermediate Stages"
     In these stages, you will come across more advanced hardware features like, disk interrupt handling and exception handling. You will be implementing some basic kernel subsystems that will be used throughout the project. You will modularize your kernel into functional subsystems for resource management, memory management, device management, etc. You will implement a primitive user interface (Shell) and the final version of the OS loader (Exec system call). The amount of implementation details given in the road map will gradually diminish and many details will be left to be worked out by you. You wil need 3-4 weeks to complete these stages.
 
-[:octicons-link-external-16: Stage 13 : Boot Module (4 Hours)](./stage-13/){.stage-link}
-[:octicons-link-external-16: Stage 14 : Round robin scheduler (4 Hours)](./stage-14/){.stage-link}
-[:octicons-link-external-16: Stage 15 : Resource Manager Module (4 Hours)](./stage-15/){.stage-link}
-[:octicons-link-external-16: Stage 16 : Console Input (6 Hours)](./stage-16/#){.stage-link}
-[:octicons-link-external-16: Stage 17 : Program Loader (6 Hours)](./stage-17/){.stage-link}
-[:octicons-link-external-16: Stage 18 : Disk Interrupt Handler (6 Hours)](./stage-18/){.stage-link}
-[:octicons-link-external-16: Stage 19 : Exception Handler (6 Hours)](./stage-19/){.stage-link}
+[:octicons-link-external-16: Stage 13 : Boot Module (4 Hours)](./stage-13.md){.stage-link}
+[:octicons-link-external-16: Stage 14 : Round robin scheduler (4 Hours)](./stage-14.md){.stage-link}
+[:octicons-link-external-16: Stage 15 : Resource Manager Module (4 Hours)](./stage-15.md){.stage-link}
+[:octicons-link-external-16: Stage 16 : Console Input (6 Hours)](./stage-16.md){.stage-link}
+[:octicons-link-external-16: Stage 17 : Program Loader (6 Hours)](./stage-17.md){.stage-link}
+[:octicons-link-external-16: Stage 18 : Disk Interrupt Handler (6 Hours)](./stage-18.md){.stage-link}
+[:octicons-link-external-16: Stage 19 : Exception Handler (6 Hours)](./stage-19.md){.stage-link}
 
 
 !!!note "Final Stages"
     Stage 20-Stage 27 are the final stages of the project where you will implement all the system calls stipulated in the ABI documentation. Typically 5-6 weeks will be needed to complete these stages. At the end of the twentieth stage, basic system calls for process creation and termination – Fork, Exec and Exit will be completed. The next two stages take up system calls implementing signals and semaphores. The next three stages address the implementation of the file system. The subsequent stages add multi-user support and virtual memory support. (An advanced stage (Stage 28) describing how the OS can be ported to a two-core extension of the XSM machine has been added subsequently.)
 
-[:octicons-link-external-16: Stage 20 : Process Creation and Termination (12 Hours)](./stage-20/){.stage-link}
-[:octicons-link-external-16: Stage 21 : Process Synchronization (4 Hours)](./stage-21/){.stage-link}
-[:octicons-link-external-16: Stage 22 : Semaphores (4 Hours)](./stage-22/){.stage-link}
-[:octicons-link-external-16: Stage 23 : File Creation and Deletion (6 Hours)](./stage-23/){.stage-link}
-[:octicons-link-external-16: Stage 24 : File Read (12 Hours)](./stage-24/){.stage-link}
-[:octicons-link-external-16: Stage 25 : File Write (12 Hours)](./stage-25/){.stage-link}
-[:octicons-link-external-16: Stage 26 : User Management (12 Hours)](./stage-26/){.stage-link}
-[:octicons-link-external-16: Stage 27 : Pager Module (18 Hours)](./stage-27/){.stage-link}
-[:octicons-link-external-16: Stage 28 : Multi-Core Extension (12 Hours)](./stage-28/){.stage-link}
+[:octicons-link-external-16: Stage 20 : Process Creation and Termination (12 Hours)](./stage-20.md){.stage-link}
+[:octicons-link-external-16: Stage 21 : Process Synchronization (4 Hours)](./stage-21.md){.stage-link}
+[:octicons-link-external-16: Stage 22 : Semaphores (4 Hours)](./stage-22.md){.stage-link}
+[:octicons-link-external-16: Stage 23 : File Creation and Deletion (6 Hours)](./stage-23.md){.stage-link}
+[:octicons-link-external-16: Stage 24 : File Read (12 Hours)](./stage-24.md){.stage-link}
+[:octicons-link-external-16: Stage 25 : File Write (12 Hours)](./stage-25.md){.stage-link}
+[:octicons-link-external-16: Stage 26 : User Management (12 Hours)](./stage-26.md){.stage-link}
+[:octicons-link-external-16: Stage 27 : Pager Module (18 Hours)](./stage-27.md){.stage-link}
+[:octicons-link-external-16: Stage 28 : Multi-Core Extension (12 Hours)](./stage-28.md){.stage-link}
