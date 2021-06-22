@@ -1,6 +1,6 @@
 ---
 title: 'Unprivileged Mode Tutorial'
-original_url: '/home/anandu/code/eXpOSNitc.github.io/Tutorials/xsm_unprivileged_tutorial.html'
+original_url: 'http://eXpOSNitc.github.io/Tutorials/xsm_unprivileged_tutorial.html'
 ---
 
 XSM Unprivileged Mode Execution

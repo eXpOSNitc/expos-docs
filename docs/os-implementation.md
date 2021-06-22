@@ -70,10 +70,10 @@ The Memory layout of the XSM machine is as follows :
 ### [:link: Kernel Module Interface](./modules/index.md)
 
 ### Kernel Stack Management
-#### [:link: Kernel Stack Management during System Calls](/broken)
-#### [:link: Kernel Stack Management during Hardware interrupts or exceptions](/broken)
-#### [:link: Kernel Stack Management during Module calls](/broken)
-#### [:link: Kernel Stack Management during Context Switch](/broken)
+#### [:link: Kernel Stack Management during System Calls](/broken.md)
+#### [:link: Kernel Stack Management during Hardware interrupts or exceptions](/broken.md)
+#### [:link: Kernel Stack Management during Module calls](/broken.md)
+#### [:link: Kernel Stack Management during Context Switch](/broken.md)
 
 ### [:link: eXpOS Procees management implementation](./tutorials/process_management_implementation.md)
 
