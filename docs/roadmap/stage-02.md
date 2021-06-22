@@ -169,7 +169,7 @@ This will take you to the xfs-interface prompt. Type the following commands.
 This will load the file to the XFS disk and the following updations happen in disk data
 structures :
 
-1) A disk block will be allocated for the file (as <tt>sample.dat</tt> contains less than
+1) A disk block will be allocated for the file (as `sample.dat` contains less than
 512 words) and corresponding to this allocated block (here block 69 - this is because the
 1<sup>st</sup> free block is allocated by the allocator), an entry will be marked as 1
 (used) in the [Disk Free List](os_design-files/disk_ds.html#disk_free_list).
@@ -202,8 +202,8 @@ UNIX file (say `$HOME/myexpos/inode_table.txt`).
     occupies the next 32 words (16 entries, each of size 2 words) and the last 32 words are reserved for future use.
     (You will learn about User Table later on).
 
-Now check the Inode table entry for the file <tt>sample.dat</tt> in the UNIX file <tt>inode_table.txt</tt>
-and find the block numbers of its data blocks. The contents of the file <tt>inode_table.txt</tt>
+Now check the Inode table entry for the file `sample.dat` in the UNIX file `inode_table.txt`
+and find the block numbers of its data blocks. The contents of the file `inode_table.txt`
 will be as follows: 
 
 ```
@@ -256,18 +256,18 @@ sample.dat
 This will write the contents of the inodetable into the file `$HOME/myexpos/xfs-interface/inodeusertable.txt`
 
 Now check the contents of the disk free list and verify that the entry for the 69<sup>th</sup>
-    block is marked as used. This corresponds to the Data Block 1 of <tt>sample.dat</tt>.
+    block is marked as used. This corresponds to the Data Block 1 of `sample.dat`.
 
 
-Copy the data blocks from the XFS disk and display it as a UNIX file <tt>$HOME/myexpos/data.txt</tt>.
+Copy the data blocks from the XFS disk and display it as a UNIX file `$HOME/myexpos/data.txt`.
 
 ```
 # copy 69 69 $HOME/myexpos/data.txt
 ```
 
-You will get back the contents of the file <tt>$HOME/myexpos/sample.dat</tt> in <tt>$HOME/myexpos/data.txt</tt>.
-However in <tt>$HOME/myexpos/data.txt</tt>, each word is displayed in a line because a word
-in XFS is 16 characters long. Sample <tt>data.txt</tt> file is shown below.
+You will get back the contents of the file `$HOME/myexpos/sample.dat` in `$HOME/myexpos/data.txt`.
+However in `$HOME/myexpos/data.txt`, each word is displayed in a line because a word
+in XFS is 16 characters long. Sample `data.txt` file is shown below.
 
 
 ```
@@ -297,7 +297,7 @@ peppermint wind
 
 
 xfs-interface provides the [export](../support-tools/xfs-interface.md#export) command to export files from the XSM machine to the UNIX machine
-in a single step. Export the file <tt>sample.dat</tt> to the UNIX file <tt>$HOME/myexpos/data.txt</tt>
+in a single step. Export the file `sample.dat` to the UNIX file `$HOME/myexpos/data.txt`
 using <i>xfs-inteface</i> as shown below and verify that the contents are same as sample.dat.
 
 
