@@ -29,7 +29,7 @@ You can read more about the XSM user level instruction set [here](./virtual-mach
 
 The (virtual) address space of any eXpOS process is logically divided into four parts namely _Shared Library, Heap, Code and Stack_.  
 
-![](http://exposnitc.github.io/img/process_model.png)
+![](../assets/img/process_model.png)
 
 **Shared library** can be shared by more than one executable file. The maximum size of this memory region is X\_LSIZE.
 
@@ -53,7 +53,7 @@ An XEXE executable file in eXpOS consists of two parts:
 -   1\. Header
 -   2\. Code
 
-![](http://exposnitc.github.io/img/exe_file.jpeg)
+![](../assets/img/exe_file.jpeg)
 
   
 
@@ -61,7 +61,7 @@ The maximum size of the file (including the header) is limited by the constant E
 
 The first eight words of an executable file are reserved for the header which describes the features of file. The structure of the header is :
 
-![](http://exposnitc.github.io/img/header.png)
+![](../assets/img/header.png)
 
 **XMAGIC** is a number indicating the type of executable file. All XEXE files will have magic number 0. For more on Magic Number, click [here](http://en.wikipedia.org/wiki/File_format#Magic_number).
 
@@ -123,11 +123,11 @@ INT number                  // Invoke the corresponding INT instruction.
 A system call invocation using the high level application programmer's interface of a programming language like ExpL compiles to a set of machine instructions (see the instructions to the left). They are the stack operations that must be performed by the user program before the INT instruction is executed.
 
 <!-- IMAGE -->
-![](https://exposnitc.github.io/img/system_call_stack1.png){ align=left width=40% }
+![](../assets/img/system_call_stack1.png){ align=left width=40% }
 The arguments must be pushed into the stack in such a way that the last argument comes on the top. An additional push instruction ('PUSH R0') is inserted to have an empty space in the stack for the return value. The system call implementation must ensure that the return value is stored in this space. The system call number is also pushed to the stack. The interrupt routine needs this value to identify the system call. The figure to the left shows the data stored in process stack just before an INT instruction.
 
 <!-- IMAGE LEFT  -->
-![](https://exposnitc.github.io/img/system_call_stack2.png){ align=right width=40%}
+![](../assets/img/system_call_stack2.png){ align=right width=40%}
 The INT instruction in XSM will push the value of IP + 2 on to the stack. This is the address of the instruction immediately following the INT instruction in the user program. Each instruction is 2 words, hence IP is incremented by 2. Upon execution of the IRET instruction from the system call, execution resumes from this value of IP. The INT instruction changes mode from **User** mode to **Kernel** mode and passes control to the Interrupt Routine corresponding to the system call. The figure to the right shows the contents of the stack immediately after the execution of the INT instruction.
 
 ##### After return from the system call
@@ -157,7 +157,7 @@ The eXpOS library consists of a collection of user level routines provided as pa
 
 The library provides a **uniform interface** through which an application program can invoke system calls and dynamic memory allocation / deallocation routines by providing the function code and the arguments. The interface hides the details of the interrupt service routines corresponding to the **system calls** from the application, thereby making them architecture independent. The library also provides user level routines for **dynamic memory management (allocation and de-allocation)** from the _heap region_ of the application.
 
-![](./img/memory_management.png)  
+![](../assets/img/memory_management.png)  
 
 The library routine is linked to **virtual address 0** of the address space of a process by the OS loader and requires four arguments (function code and three arguments to the system call / memory management routine) to be passed through the stack. The routine invokes the corresponding low level system call / memory management routine and returns to the user program the return value of the system call / memory management routine through the stack. The figure to the side shows the contents of the stack immediately before a call to this library routine.
 
