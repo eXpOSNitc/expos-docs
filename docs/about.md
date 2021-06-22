@@ -23,7 +23,7 @@ These thoughts have translated into the following decisions:
 
 1.  Keep the upward and downward interfaces of the OS kernel idealistically simple – This means:
     1.  The architecture platform on which the OS is implemented is kept simple to understand and program, yet capable of supporting virtual memory, interrupt driven disk/IO, time sharing, exception handling, demand paging etc.
-    2.  The application programming interface ([API](http://exposnitc.github.io/os_spec.html#collapse1)) (and the application binary interface [­(ABI)](http://exposnitc.github.io/abi.html) ) provided by the OS are kept simple and minimal.
+    2.  The application programming interface ([API](http://exposnitc.github.io/os_spec.html)) (and the application binary interface [­(ABI)](http://exposnitc.github.io/abi.html) ) provided by the OS are kept simple and minimal.
 2.  The [OS specification](os_spec.html) has been kept as simple as possible from the viewpoint of the OS programmer. The OS features are minimal, some of them being:
     1.  [co-operative multi-tasking](https://en.wikipedia.org/wiki/Cooperative_multitasking)
     2.  a simple single-directory file system where processes can create, write, read and delete data files
@@ -42,7 +42,7 @@ The eXpOS package simplifies this by providing a hypothetical simple-to-program 
 
 The second interface of the OS is its upward interface – the interface to application programs. This interface, called the application binary interface ( [­ABI](abi.html) ), defines the low level system call interface between the application and the OS, the virtual address space model for an application, the format of executable files etc. The ABI too is kept minimal. It is easy to load executables into the memory. Only small programs are permitted. Parameter passing between applications and the system calls is also extremely simple.
 
-The eXpOS [­ABI](abi.html) is too primitive to support application programs in the C programming language. Hence we provide a separate language (called [ExpL](support_tools-files/expl.html)) using which applications can be created and compiled. The ExpL compiler given to the student supports the eXpOS high level application program interface ([API](os_spec.html#collapse1)). We note here that, implementing an ExpL compiler for the eXpOS ABI on the XSM machine would be an instructive exercise for an undergraduate compiler design laboratory. (See [ExpL compiler project](https://silcnitc.github.io).)
+The eXpOS [­ABI](abi.html) is too primitive to support application programs in the C programming language. Hence we provide a separate language (called [ExpL](support_tools-files/expl.html)) using which applications can be created and compiled. The ExpL compiler given to the student supports the eXpOS high level application program interface ([API](os_spec.html)). We note here that, implementing an ExpL compiler for the eXpOS ABI on the XSM machine would be an instructive exercise for an undergraduate compiler design laboratory. (See [ExpL compiler project](https://silcnitc.github.io).)
 
 We are of the view that insisting the student to work with real systems diverts his/her attention to the details of various “formats, standards and interfaces" which often comes in the way of appreciating the underlying principles of OS design. eXpOS separates concerns by providing minimal interfaces that are just sufficient to achieve the required functionality.
 
