@@ -48,7 +48,7 @@ The system calls Semget and Semrelease are implemented in the interrupt routine 
 Implement _Semget_ system call using the detailed algorithm provided [here](../os-design/semaphore-algos.md#semget) .
 
 ##### Semrelease System Call
-**_Semrelease_ **system call takes semaphore desciptor (SEMID) as argument from user program. _Semrelease_ system call is used to detach a semaphore from the process. _Semrelease_ releases the acquired semaphore and wakes up all the processes waiting for the semaphore by invoking the **Release Semaphore** function of [resource manager module](../modules/module-00.md) . _Semrelease_ also invalidates the <a>per-process resource table</a> entry corresponding to the SEMID given as an argument.
+**_Semrelease_ **system call takes semaphore desciptor (SEMID) as argument from user program. _Semrelease_ system call is used to detach a semaphore from the process. _Semrelease_ releases the acquired semaphore and wakes up all the processes waiting for the semaphore by invoking the **Release Semaphore** function of [resource manager module](../modules/module-00.md) . _Semrelease_ also invalidates the per-process resource table entry corresponding to the SEMID given as an argument.
 
 Implement _Semrelease_ system call using the detailed algorithm provided [here](../os-design/semaphore-algos.md#semrelease).
 

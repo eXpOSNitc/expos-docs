@@ -92,10 +92,6 @@ The file sharing semantics between users in Multiuser extension to eXpOS is desc
 
 ### System Calls
 
-
-
-
-
 The eXpOS system calls are software interrupt routines of the eXpOS kernal which are loaded into the memory when the OS is bootstrapped. These routines define the services provided by the OS to application programs. These services include accessing files and semaphores, creating new processes , sending a signal to another process etc. 
 
 
@@ -105,57 +101,57 @@ Application programs are not permitted to directly access files/semaphores or cr
 eXpOS system calls can be classified as file system calls, process system calls and system calls for access control and synchronization. The following table lists the system calls. A detailed specification can be found [here](systemcallinterface.md).
 
 
-#### <a href="../systemcallinterface/">File system calls</a>
+#### [File system calls](./systemcallinterface.md)
 
-| Name | Description  | 
-| --- | --- |
-| Create | Create an eXpFS file |
-| Delete | Delete an eXpFS file |
-| Open | Open an eXpFS file and return a file handle to the calling process |
-| Close | Close an eXpFS file already opened by the calling process |
-| Read | Read one word from the location pointed to by the file pointer and advance the file pointer to the next word in the file |
-| Write | Write one word from the location pointed to by the file pointer and advance the file pointer to the next word in the file |
-| Seek | Change the position of the file pointer |
-
-
-
-#### <a href="../systemcallinterface/">Process system calls</a>
-
-| Name | Description  | 
-| --- | --- |
-| Fork | Create a child process allocating a new address space.  |
-| Exec | Load and execute an eXpFS executable file into the virtual address space of the present process.  |
-| Exit | Destroy the process invoking the call |
-| Getpid | Get the Process ID of the invoking process |
-| Getppid | Get the process ID of the parent process of the invoking process. |
-
-
-#### <a href="../systemcallinterface/">System calls for access control and synchronization</a>
+| Name   | Description                                                                                                               |
+| ------ | ------------------------------------------------------------------------------------------------------------------------- |
+| Create | Create an eXpFS file                                                                                                      |
+| Delete | Delete an eXpFS file                                                                                                      |
+| Open   | Open an eXpFS file and return a file handle to the calling process                                                        |
+| Close  | Close an eXpFS file already opened by the calling process                                                                 |
+| Read   | Read one word from the location pointed to by the file pointer and advance the file pointer to the next word in the file  |
+| Write  | Write one word from the location pointed to by the file pointer and advance the file pointer to the next word in the file |
+| Seek   | Change the position of the file pointer                                                                                   |
 
 
 
+#### [Process system calls](./systemcallinterface.md)
 
-| Name | Description  | 
-| --- | --- |
-| Signal | Send a signal to a process specified in the call.  |
-| Wait | Suspend execution of the current process until the process specified sends a signal or terminates.  |
-| Semget | Acquire a new semaphore |
-| Semrelease | Release a semaphore already acquired by the process |
-| SemLock | Get exclusive access permission to semaphore specified. (Process blocks till lock is obtained.)  |
-| SemUnLock | Release the lock on a semaphore already acquired |
+| Name    | Description                                                                                      |
+| ------- | ------------------------------------------------------------------------------------------------ |
+| Fork    | Create a child process allocating a new address space.                                           |
+| Exec    | Load and execute an eXpFS executable file into the virtual address space of the present process. |
+| Exit    | Destroy the process invoking the call                                                            |
+| Getpid  | Get the Process ID of the invoking process                                                       |
+| Getppid | Get the process ID of the parent process of the invoking process.                                |
+
+
+#### [System calls for access control and synchronization](./systemcallinterface.md)
 
 
 
 
-#### <a href="../systemcallinterface/"><span style="color:red">System calls for Multiuser extension to eXpOS</span></a>
+| Name       | Description                                                                                        |
+| ---------- | -------------------------------------------------------------------------------------------------- |
+| Signal     | Send a signal to a process specified in the call.                                                  |
+| Wait       | Suspend execution of the current process until the process specified sends a signal or terminates. |
+| Semget     | Acquire a new semaphore                                                                            |
+| Semrelease | Release a semaphore already acquired by the process                                                |
+| SemLock    | Get exclusive access permission to semaphore specified. (Process blocks till lock is obtained.)    |
+| SemUnLock  | Release the lock on a semaphore already acquired                                                   |
 
-| Name | Description  | 
-| --- | --- |
-| Newusr | Creates a new user with the specified user name and password  |
-| Remusr | Removes the user specified by the username  |
-| Setpwd | Sets the password for the corresponding user  |
-| Getuid | Returns the userid of the user with the corresponding username |
+
+
+
+#### <span style="color:red">[System calls for Multiuser extension to eXpOS](./systemcallinterface.md)</span>
+
+| Name     | Description                                                    |
+| -------- | -------------------------------------------------------------- |
+| Newusr   | Creates a new user with the specified user name and password   |
+| Remusr   | Removes the user specified by the username                     |
+| Setpwd   | Sets the password for the corresponding user                   |
+| Getuid   | Returns the userid of the user with the corresponding username |
 | Getuname | Returns the username of the user with the corresponding userid |
-| Login | Logs in a new user  ||
+| Login    | Logs in a new user                                             |
 
 

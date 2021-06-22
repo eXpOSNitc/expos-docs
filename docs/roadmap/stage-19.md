@@ -193,7 +193,7 @@ With these modifications, You have completed the final implementation of Exec sy
 
 #### Modification to the Free Page Table (function number = 4,[process manager module](../modules/module-01.md))
 
-1. Go through the heap and stack entries in the <a>disk map table</a> of the process with given PID. If any valid entries are found, invoke the **Release Block**function in the [memory manager module](../modules/module-02.md).
+1. Go through the heap and stack entries in the disk map table of the process with given PID. If any valid entries are found, invoke the **Release Block**function in the [memory manager module](../modules/module-02.md).
 2. Invalidate all the entries of the disk map table.
 
 

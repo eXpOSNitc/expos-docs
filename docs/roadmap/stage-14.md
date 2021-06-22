@@ -47,7 +47,7 @@ process or reserved for the operating system.*
 
 4) We will implement the scheduler as a seperate module that can be invoked from the timer ISR
 (Interrupt Service Routine).
-<!--Such stand alone subroutines are implemented as <a href="os_modules/Module_Design.html" target="_blank"> kernel modules </a> in eXpOS.-->
+
 The eXpOS design stipulates that the scheduler is implemented as MODULE_5, and loaded in
 [disk blocks](../os-implementation.md) 63 and 64 of the
 XFS disk. The boot module must load this module from disk to [memory pages](../os-implementation.md) 50 and 51. (We will take up the implementation of the module soon below).
@@ -56,7 +56,7 @@ loadi(50,63);
 loadi(51,64);
 ```
 
-5) First 3 process table entries are occupied. Initialize STATE field of all other process
+1) First 3 process table entries are occupied. Initialize STATE field of all other process
 table entries to TERMINATED. This will be useful while finding the next process to schedule
 using round robin scheduling algorithm. Note that when the STATE field in the process table
 entry is marked as TERMINATED, this indicates that the process table entry is free for

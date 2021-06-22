@@ -108,7 +108,7 @@ EXIT
 ```
 <!--
 Since the XFS-Interface does not recognise comments or labels, the XSM code
-(after <a href="http://silcnitc.github.io/label-translation.html">Label Translation</a>) is given below.
+(after [Label Translation](http://silcnitc.github.io/label-translation.html)) is given below.
 <br>
 -->
 
