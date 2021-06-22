@@ -168,34 +168,23 @@ This will take you to the xfs-interface prompt. Type the following commands.
 
 This will load the file to the XFS disk and the following updations happen in disk data
 structures :
-<ol style="list-style-type:lower-roman;margin-left:60px">
-<li>
-    A disk block will be allocated for the file (as <tt>sample.dat</tt> contains less than
-    512 words) and corresponding to this allocated block (here block 69 - this is because the
-    1<sup>st</sup> free block is allocated by the allocator), an entry will be marked as 1
-    (used) in the [Disk
-    Free List](os_design-files/disk_ds.html#disk_free_list).
-</li>
-<li>
-    An entry in the [Inode
-    Table](os_design-files/disk_ds.html#inode_table) will be created for this file. Inode Table contains information such as the
-    file type, file name, file size, userid, permission and the block numbers of the data
-    blocks of the file. The [owner](../os-spec/multiuser.md)
-    of data files loaded through <i>xfs-interface</i> is the <i>root</i>. Userid is the index
-    of the user entry in the [User Table](../os-design/disk-ds.md#user_table).
-    The userid of <i>root</i> is 1 and hence the userid field in the <i>inode table</i> is
-    set to 1 for all data files loaded through the <i>xfs interface</i>. The [permission](../os-spec/multiuser.md) is set to open(1). Note that any file in eXpFS file
-    system is permitted to have a maximum of four data blocks.
-</li>
-<li>
-    An entry for this file will be made in the [Root File](../os-design/disk-ds.md#root_file) also.
-</li>
-</ol>
-<br/>
-Before proceeding further you must be clear about [eXpFS
-    (eXperimental File System)](../os-spec/expfs.md). In the following steps we will see the above
-mentioned updations.
 
+1) A disk block will be allocated for the file (as <tt>sample.dat</tt> contains less than
+512 words) and corresponding to this allocated block (here block 69 - this is because the
+1<sup>st</sup> free block is allocated by the allocator), an entry will be marked as 1
+(used) in the [Disk Free List](os_design-files/disk_ds.html#disk_free_list).
+
+2) An entry in the [InodeTable](os_design-files/disk_ds.html#inode_table) will be created for this file. Inode Table contains information such as the file type, file name, file size, userid, permission and the block numbers of the data
+of data files loaded through <i>xfs-interface</i> is the <i>root</i>. Userid is the index
+of the user entry in the [User Table](../os-design/disk-ds.md#user_table).The userid of <i>root</i> 
+is 1 and hence the userid field in the <i>inode table</i> is set to 1 for all data files loaded 
+through the <i>xfs interface</i>. The [permission](../os-spec/multiuser.md) is set to open(1). 
+Note that any file in eXpFS file system is permitted to have a maximum of four data blocks.
+
+3) An entry for this file will be made in the [Root File](../os-design/disk-ds.md#root_file) also.
+
+
+Before proceeding further you must be clear about [eXpFS (eXperimental File System)](../os-spec/expfs.md). In the following steps we will see the above mentioned updations.
 
 
 Find out the block numbers of the Data Blocks corresponding to the loaded file. Use the **copy**
@@ -270,7 +259,6 @@ Now check the contents of the disk free list and verify that the entry for the 6
     block is marked as used. This corresponds to the Data Block 1 of <tt>sample.dat</tt>.
 
 
-<li>
 Copy the data blocks from the XFS disk and display it as a UNIX file <tt>$HOME/myexpos/data.txt</tt>.
 
 ```
@@ -307,19 +295,15 @@ To cool in the
 peppermint wind
 ```
 
-</li>
-<li>
+
 xfs-interface provides the [export](../support-tools/xfs-interface.md#export) command to export files from the XSM machine to the UNIX machine
 in a single step. Export the file <tt>sample.dat</tt> to the UNIX file <tt>$HOME/myexpos/data.txt</tt>
 using <i>xfs-inteface</i> as shown below and verify that the contents are same as sample.dat.
-<br/><br/>
-<div>
+
+
 ```
 # export sample.dat $HOME/myexpos/data.txt
 ```
-</div>
-</li>
-
 
 
 ??? question "Q1. When a file is created entries are made in the Inode table as well as the Root file. What is the need for this duplication?"
