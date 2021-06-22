@@ -14,18 +14,18 @@ Yields control from the current process and schedules the next process for execu
 #### Switch Context
 
 <pre><code>
-Get the pid of the current process from <a href="../os_design-files/process_table.html">System Status Table</a>;
+Get the pid of the current process from <a href="../../os-design/process-table/">System Status Table</a>;
 
 Push the BP register of the current process to the top of it's kernel stack. 
 /* The ExpL application does not push the Base Pointer register (BP). See <a href="https://silcnitc.github.io/run_data_structures/run-time-stack.html">ExpL calling conventions</a>. 
 Hence it is saved to the stop of the Kernel Stack */
 
 Save the SP%512, PTBR and PTLR to the Kernel SP, PTBR and PTLR fields of the 
-<a href="../os_design-files/process_table.html">Process Table</a> entry of the current process;  
+<a href="../../os-design/process-table/">Process Table</a> entry of the current process;  
 
-<b>if</b> (PAGING_STATUS in the <a href="../os_design-files/mem_ds.html#ss_table">System Status Table</a> is not 0) /* Paging is ongoing */
+<b>if</b> (PAGING_STATUS in the <a href="../../os-design/mem-ds/#ss_table">System Status Table</a> is not 0) /* Paging is ongoing */
     <b>If</b> the paging process is blocked     /* the paging process is executing a disk operation */
-        Choose <a href="../os_design-files/misc.html#idle">Idle Process</a> for scheduling.
+        Choose <a href="../../os-design/misc/#idle">Idle Process</a> for scheduling.
     <b>else</b>
         Choose the Swapper Daemon to be scheduled.
 <b>else</b>
@@ -49,7 +49,7 @@ if (the new Process is in CREATED state){ 		/* The process has just been forked 
 
         Set the state of the new process as (RUNNING, - );
 
-    Set the MODE_FLAG in the <a href="process_table.html">process table</a> entry 0.
+    Set the MODE_FLAG in the <a href="../../os-design/process-table/">process table</a> entry 0.
         Use ireturn statement to transfer control back to user mode;
 }
 

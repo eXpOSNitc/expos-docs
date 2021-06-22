@@ -19,7 +19,7 @@ The page replacement technique used in eXpOS is a modified version of the [Secon
 Scan the Page Tables of all processes (except the idle process) for a page with Valid bit 1 and Reference bit 0.
 
 Pages shared among multiple processes and shared library pages are skipped in the scan 
-    /* shared pages have a number greater than 1 in its <a href="mem_ds.html#mem_free_list">Memory Free List</a> entry */
+    /* shared pages have a number greater than 1 in its <a href="../../os-design/mem-ds/#mem_free_list">Memory Free List</a> entry */
 
 While scanning, the reference bit of any page, with valid bit 1 and reference bit 1, is set to 0. 
 

@@ -18,14 +18,14 @@ Acquires KERN_LOCK which is a common access variable to be set before running an
 <pre><code>
 if (core is SECONDARY_CORE){
     if (PAGING_STATUS or LOGOUT_STATUS is on){
-        // <a href="../os_design-files/nexpos.html" target="_blank">eXpOS design</a>  does not permit a process 
+        // <a href="../../os-design/nexpos/" target="_blank">eXpOS design</a>  does not permit a process 
         // to execute critical code on the secondary core when paging or logout is ongoing.
 
         Set the state of current process to READY
 
         Call the <b>switch_context()</b> function of the Scheduler Module.
         <b>/* Scheduler Module requires appropriate modifications 
-            before running on the <a href="../arch_spec-files/nexsm.html" target="_blank">NEXSM machine</a> */</b>
+            before running on the <a href="../../arch-spec/nexsm/" target="_blank">NEXSM machine</a> */</b>
     }
 }
 

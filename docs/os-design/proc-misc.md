@@ -24,7 +24,7 @@ Returns the process identifier of the invoking process. The system call does not
 #### Algorithm:
 
 <pre><code>
-Find the PID of the current process from the <a href="process_table.html">Process Table</a>.
+Find the PID of the current process from the <a href="../../os-design/process-table/">Process Table</a>.
 
 Return the PID of current process.
 
@@ -50,7 +50,7 @@ Returns to the calling process the value of the process identifier of its parent
 
 <pre><code>
 
-Find the PPID of the current process from the <a href="process_table.html">Process Table</a>.
+Find the PPID of the current process from the <a href="../../os-design/process-table/">Process Table</a>.
 
 Return the PPID.
 
