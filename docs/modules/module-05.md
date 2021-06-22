@@ -7,9 +7,9 @@ hide:
 
 Yields control from the current process and schedules the next process for execution.
 
-|Function Number|Function Name|Arguments|
-|--- |--- |--- |
-| -  | Switch Context | Nil |
+| Function Number | Function Name  | Arguments |
+| --------------- | -------------- | --------- |
+| -               | Switch Context | Nil       |
 
 #### Switch Context
 

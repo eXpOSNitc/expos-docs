@@ -25,11 +25,11 @@ There are three types of eXpFS files - the root, data files and executable files
 ### The eXpFS Root File
 The root file has the name root and contains _meta-data_ about the files stored in the file system. For each file stored in eXpFS, the root file stores three words of information - **file name, file-size and file-type**. (\* In [extended eXpOS](multiuser.md), the root file stores two additional words - **user name** and **permission**.) This triple( \* In [extended eXpOS](multiuser.md), 5-tuple) is called the **root entry** for the file. The first root entry is for the root itself. The order in which the remaining entries appear is not specified and can vary with the implementation. Example: If the file system stores two files - a data file, file.dat, of size 700 words and an executable file, **confirm this** program.xexe, of 1025 words, the root file will contain the following information.
 
-|File name|File size|File type|User name|Permission|
-|--- |--- |--- |--- |--- |
-|root|512|ROOT|kernel|0|
-|file.dat|700|DATA|username|0/1|
-|program.xexe|1025|EXEC|kernel|unused|
+| File name    | File size | File type | User name | Permission |
+| ------------ | --------- | --------- | --------- | ---------- |
+| root         | 512       | ROOT      | kernel    | 0          |
+| file.dat     | 700       | DATA      | username  | 0/1        |
+| program.xexe | 1025      | EXEC      | kernel    | unused     |
 
 
 The operations on the root file are **Open, Close, Read and Seek**. Since the operations on the root file is a subset of the operations on data files, with the same syntax and semantics, these operations are discussed together with other operations on data files.

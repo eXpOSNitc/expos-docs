@@ -5,14 +5,14 @@ original_url: http://exposnitc.github.io/os_modules/Module_2.html
 
 This module handles allocation and deallocation of memory pages. The memory free list entry denotes the number of processes using(sharing) the memory page. Unused pages are therefore indicated by 0 in the corresponding entry in memory free list.
 
-|Function Number|Function Name|Arguments|Return Value|
-|--- |--- |--- |--- |
-|GET_FREE_PAGE = 1|Get Free Page|NIL|Free Page number|
-|RELEASE_PAGE = 2|Release Page|Page Number|NIL|
-|GET_FREE_BLOCK = 3|Get Free Block|NIL|Free Block Number or -1|
-|RELEASE_BLOCK = 4|Release Block|Block Number, PID|NIL|
-|GET_CODE_PAGE = 5|Get Code Page|Block Number|Page Number|
-|GET_SWAP_BLOCK = 6|Get Swap Block|NIL|Block Number|
+| Function Number    | Function Name  | Arguments         | Return Value            |
+| ------------------ | -------------- | ----------------- | ----------------------- |
+| GET_FREE_PAGE = 1  | Get Free Page  | NIL               | Free Page number        |
+| RELEASE_PAGE = 2   | Release Page   | Page Number       | NIL                     |
+| GET_FREE_BLOCK = 3 | Get Free Block | NIL               | Free Block Number or -1 |
+| RELEASE_BLOCK = 4  | Release Block  | Block Number, PID | NIL                     |
+| GET_CODE_PAGE = 5  | Get Code Page  | Block Number      | Page Number             |
+| GET_SWAP_BLOCK = 6 | Get Swap Block | NIL               | Block Number            |
 
 
 ![](http://exposnitc.github.io//img/os-modules/MemoryManager.png)

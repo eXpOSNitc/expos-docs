@@ -5,12 +5,12 @@ original_url: http://exposnitc.github.io/os_modules/Module_8.html
 
 This module contains the functions that manages access locks.
 
-|Function Number|Function Name|Arguments|Return Value|
-|--- |--- |--- |--- |
-|ACQUIRE_KERN_LOCK = 1|Acquire Kernel Lock|NIL|NIL|
-|ACQUIRE_SCHED_LOCK = 2|Acquire Scheduler Lock|NIL|NIL|
-|ACQUIRE_GLOCK = 3|Acquire Glock (Unused)|NIL|NIL|
-|RELEASE_LOCK = 4|Release Lock|LockVarAddress|NIL|
+| Function Number        | Function Name          | Arguments      | Return Value |
+| ---------------------- | ---------------------- | -------------- | ------------ |
+| ACQUIRE_KERN_LOCK = 1  | Acquire Kernel Lock    | NIL            | NIL          |
+| ACQUIRE_SCHED_LOCK = 2 | Acquire Scheduler Lock | NIL            | NIL          |
+| ACQUIRE_GLOCK = 3      | Acquire Glock (Unused) | NIL            | NIL          |
+| RELEASE_LOCK = 4       | Release Lock           | LockVarAddress | NIL          |
 
 ### Acquire Kernel Lock
 Acquires KERN_LOCK which is a common access variable to be set before running any critical kernel code (except the scheduler). Before executing any kernel module/interrupt handler, KERN_LOCK is set (by invoking this function) so that the other core waits till the critical action is completed. After completing the critical kernel code, the ReleaseLock function is used to release KERN_LOCK.

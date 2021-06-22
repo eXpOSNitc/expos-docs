@@ -63,16 +63,16 @@ The physical address is computed by multiplying the physical page number by page
 
 Assume the per-process page table is as shown below:
 
-|Physical Page Number|Auxiliary Information (R,V,W,D)|
-|--- |--- |
-|19|0110|
-|20|0110|
-|-1|0000|
-|-1|0000|
-|57|1111|
-|72|1110|
-|48|1111|
-|-1|0000|
+| Physical Page Number | Auxiliary Information (R,V,W,D) |
+| -------------------- | ------------------------------- |
+| 19                   | 0110                            |
+| 20                   | 0110                            |
+| -1                   | 0000                            |
+| -1                   | 0000                            |
+| 57                   | 1111                            |
+| 72                   | 1110                            |
+| 48                   | 1111                            |
+| -1                   | 0000                            |
 
 
 
