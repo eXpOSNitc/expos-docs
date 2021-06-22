@@ -51,7 +51,7 @@ hide:
     
 ??? quote "22th April 2019"
     
-    NEXSM (a dual-core extension of XSM) is introduced. Stage 28 (Multi-Core Extension) describing how the OS can be ported to a two-core extension of the XSM machine has been added. The documentation for [NEXSM architecture specification](arch_spec-files/nexsm.html) and [eXpOS Design for NEXSM machine](os_design-files/nexpos.html) have been added. The changes in the sub-directories are:-
+    NEXSM (a dual-core extension of XSM) is introduced. Stage 28 (Multi-Core Extension) describing how the OS can be ported to a two-core extension of the XSM machine has been added. The documentation for [NEXSM architecture specification](arch-spec/nexsm.md) and [eXpOS Design for NEXSM machine](os-design/nexpos.md) have been added. The changes in the sub-directories are:-
     
     *   **expl:** Library is modified to include INT 19.
     *   **nespl:** Three new instructions, _start_, _reset_ and _tsl_, have been added.
@@ -84,7 +84,7 @@ hide:
     
 ??? quote "14th October 2018"
     
-    The code for the Stage 22 assignment problem ([Merge Sort](test_prog.html#test_program_14)) has been modified to avoid the stack overflow problem. A new assignment problem has been added to Stage 25 (File Write). The changes in the sub-directories are:-
+    The code for the Stage 22 assignment problem ([Merge Sort](test-programs/index.md#test_program_14)) has been modified to avoid the stack overflow problem. A new assignment problem has been added to Stage 25 (File Write). The changes in the sub-directories are:-
     
     *   **expl:** Fixed a bug which caused an exception when function with more than one argument was called after an exposcall with more than one argument.
     *   **xfs-interface:** Fixed a bug which stored the file size of data files 1 more than the actual value.
@@ -94,7 +94,7 @@ hide:
     
     The _Fork_ system call had a problem - if a process forks, the parent first gets a PCB entry and then calls _Get Free Page_ function to allocate pages for Stack/User Area pages for the child. If the _Get Free Page_ causes the parent process to change the state to WAIT\_MEM, the PCB entry allocated for the child may also be given for another process. The problem has been fixed by modifying the _Get Pcb Entry_ function in _Process Manager_. Two new assignments has been added to Stage 22 (Semaphores). The changes in the sub-directories are:-
     
-    *   **spl:** The constant ALLOCATED has been added to the [SPL pre-defined constants](support_tools-files/constants.html).
+    *   **spl:** The constant ALLOCATED has been added to the [SPL pre-defined constants](support-tools/constants.md).
     
 ??? quote "20th September 2018"
     

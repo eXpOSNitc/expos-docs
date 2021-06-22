@@ -7,7 +7,7 @@ hide:
 ---
 
 ### Arguments
-File Name (String) of the executable file (which must be of [XEXE format](../abi.html#xexe))
+File Name (String) of the executable file (which must be of [XEXE format](../abi.md#xexe))
 
 
 ### Return Value
@@ -20,9 +20,9 @@ File Name (String) of the executable file (which must be of [XEXE format](../abi
 ### Description
 Exec destroys the present process and loads the executable file given as input into a new memory address space. A successful Exec operation results in the extinction of the invoking process and hence never returns to it. All open instances of file and semaphores of the parent process are closed. However, the newly created process will inherit the PID of the calling process.
 
-The data structures that are modified in this system call are [Process Table](process_table.html), [Memory Free List](mem_ds.html#mem_free_list), [Disk Free List](disk_ds.html#disk_free_list), [Open File Table](mem_ds.html#file_table), [Semaphore Table](mem_ds.html#sem_table), [System Status Table](mem_ds.html#ss_table), [Resource Table](process_table.html#per_process_table) and the [Disk Map Table](process_table.html#disk_map_table).
+The data structures that are modified in this system call are [Process Table](process-table.md), [Memory Free List](mem-ds.md#mem_free_list), [Disk Free List](disk-ds.md#disk_free_list), [Open File Table](mem-ds.md#file_table), [Semaphore Table](mem-ds.md#sem_table), [System Status Table](mem-ds.md#ss_table), [Resource Table](process-table.md#per_process_table) and the [Disk Map Table](process-table.md#disk_map_table).
 
-The mode flag in the [Process Table](process_table.html) has to be set to Kernel mode when the process enters the system call and reset before exiting from the system call.
+The mode flag in the [Process Table](process-table.md) has to be set to Kernel mode when the process enters the system call and reset before exiting from the system call.
 
 
   

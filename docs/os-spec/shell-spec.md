@@ -57,6 +57,6 @@ eXpOS specifies that some standard executable programs called (**system utilitie
 -   _Input_ : username
 -   _Semantics_ : Deletes all the data files owned by the user with name _username_. (Typically it is executed from the root user to delete all the files owned by a user before removing the user from the system.)
 
-A sample shell implementation is given [here](../test_prog.html#test_program_7). The details of implementation of system utilities are left to the OS programmer. Since eXpOS ABI does not support command line arguments, these programs may need to ask the user for inputs (like _filename_ in the case of the _cat_ command) using the _Read_ system call.
+A sample shell implementation is given [here](../test-programs/index.md#test_program_7). The details of implementation of system utilities are left to the OS programmer. Since eXpOS ABI does not support command line arguments, these programs may need to ask the user for inputs (like _filename_ in the case of the _cat_ command) using the _Read_ system call.
 
-The eXpOS specification stipulates that shell always executes from the context of the currently logged in user. The shell is spawned by the [login process](../os_design-files/misc.html#login).
+The eXpOS specification stipulates that shell always executes from the context of the currently logged in user. The shell is spawned by the [login process](../os-design/misc.md#login).

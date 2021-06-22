@@ -29,7 +29,7 @@ eXpOS maintains a kernel stack for each application process. Before a context sw
   
    
 
- The Timer ISR saves the user context of the process from which it was entered, into the kernel stack of that process. (see  [Kernel Stack Management during Interrupts](stack_interrupt.html)  for more details). The Timer ISR then calls the scheduler module. The scheduler module determines which process must be run next, and changes the 
+ The Timer ISR saves the user context of the process from which it was entered, into the kernel stack of that process. (see  [Kernel Stack Management during Interrupts](stack-interrupt.md)  for more details). The Timer ISR then calls the scheduler module. The scheduler module determines which process must be run next, and changes the 
  machine's stack to the kernel stack of the new processes. This stack is expected to contain the previously saved context of the 
  new process. The scheduler is reponsible for resuming execution of the new process.
 
@@ -57,7 +57,7 @@ eXpOS maintains a kernel stack for each application process. Before a context sw
 
  In this case, the scheduler modules was invoked from some other kernel code - typically some blocking system call, exception
 handler etc. Here, it is the responsibility of the calling module/handler to save its context (registers in use) in its kernel stack 
-before invoking the scheduler module. Later, when the scheduler returns to this handler/module, the handler/module should restore the context and resume execution. See the  [Kernel Stack management during module calls](stack_module.html) for more details.
+before invoking the scheduler module. Later, when the scheduler returns to this handler/module, the handler/module should restore the context and resume execution. See the  [Kernel Stack management during module calls](stack-module.md) for more details.
 
 
 

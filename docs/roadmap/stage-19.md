@@ -258,4 +258,4 @@ Compile and load the modified and newly written files into the disk using the XF
     Write an ExpL program to implement a linked list. Your program should first read an integer N, then read N intergers from console and store them in the linked list and print the linked list to the console. Run this program using shell version-I of stage 17.
 
 !!! assignment "Assignment 2"
-    Use the [XSM debugger](/support_tools-files/xsm-simulator.html) to dump the contents of the Exception Flag registers upon entry into the Exception Handler. Also, print out the contents of the Disk Map Table and the Page Table after the Get Code Page function (inside the Memory Manager module).
+    Use the [XSM debugger](../support-tools/xsm-simulator.md) to dump the contents of the Exception Flag registers upon entry into the Exception Handler. Also, print out the contents of the Disk Map Table and the Page Table after the Get Code Page function (inside the Memory Manager module).

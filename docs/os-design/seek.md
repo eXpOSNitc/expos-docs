@@ -24,7 +24,7 @@ File Descriptor(Integer) , Offset (Integer)
 The Seek operation allows the application program to change the value of the file pointer so that subsequent Read/Write is performed from a new position in the file. The new value of the file pointer is determined by adding the offset to the current value. (A negative Offset will move the pointer backwards). An Offset of 0 will reset the pointer to the beginning of the file. 
 
 
-If a positive offset goes beyond the size of the file, the seek position will be set to the file size (in the [inode table](../os_design-files/disk_ds.html#inode_table) entry). A negative offset leading to LSeek value below 0 will give an error.
+If a positive offset goes beyond the size of the file, the seek position will be set to the file size (in the [inode table](disk-ds.md#inode_table) entry). A negative offset leading to LSeek value below 0 will give an error.
 
 
 

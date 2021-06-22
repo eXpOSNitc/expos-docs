@@ -5,7 +5,7 @@ hide:
     - navigation
 ---
 
-The hardware [paging](http://en.wikipedia.org/wiki/Paging) scheme of XSM maps the virtual address space of a user mode program to the physical address space of the machine. Read the [XSM Virtual Machine Model](../virtual_machine_spec.html) before proceeding further.
+The hardware [paging](http://en.wikipedia.org/wiki/Paging) scheme of XSM maps the virtual address space of a user mode program to the physical address space of the machine. Read the [XSM Virtual Machine Model](../virtual-machine-spec.md) before proceeding further.
 
   
 
@@ -25,9 +25,9 @@ Each page table entry for a logical page is of **2 words**. The 1st word must be
 
 **Reference Bit (R)**: This bit must be initialised to 0 (unreferenced) when a page table entry is initially made valid. On a page access, this bit is set to 1 by the machine hardware i.e, as soon as the page is accessed for the first time, this bit is changed from 0 to 1. Page replacement algorithms of operating systems use this bit.
 
-**Valid/Invalid Bit (V)**: This bit indicates whether the entry of the page table is valid or invalid. The Valid/Invalid bit must be set to 1 if the first word of this entry corresponds to a valid physical page number. Its value is set to 0 if the entry is invalid. The Valid/Invalid bit is set by the application, typically the operating system. If memory access is made to a page whose page table entry is invalid, the machine transfers control to the [Exception Handler routine](../os_design-files/exe_handler.html).
+**Valid/Invalid Bit (V)**: This bit indicates whether the entry of the page table is valid or invalid. The Valid/Invalid bit must be set to 1 if the first word of this entry corresponds to a valid physical page number. Its value is set to 0 if the entry is invalid. The Valid/Invalid bit is set by the application, typically the operating system. If memory access is made to a page whose page table entry is invalid, the machine transfers control to the [Exception Handler routine](../os-design/exe-handler.md).
 
-**Write Permission Bit (W)**: This bit must be set to 1 if the user mode program is permitted to write into the page, otherwise it must be set to 0. If a user mode program tries to modify a page whose Write Permision bit is set to 0, the machine transfers control to the [Exception Handler routine](../os_design-files/exe_handler.html).
+**Write Permission Bit (W)**: This bit must be set to 1 if the user mode program is permitted to write into the page, otherwise it must be set to 0. If a user mode program tries to modify a page whose Write Permision bit is set to 0, the machine transfers control to the [Exception Handler routine](../os-design/exe-handler.md).
 
 **Dirty Bit (D)**: This bit is set to 1 by the machine if an instruction modifies the contents of the page.
 

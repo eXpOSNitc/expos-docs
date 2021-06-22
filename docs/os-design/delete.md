@@ -76,7 +76,7 @@ Return from system call with 0.    /* indicating success */
 	At each point of return from the system call, remember to reset the MODE FLAG and switch back to the user stack.
 
 !!! question "Question 1"
-	Why are we not updating the [Open File Table](../os_design-files/mem_ds.html#file_table) when a file is being deleted?
+	Why are we not updating the [Open File Table](mem-ds.md#file_table) when a file is being deleted?
 
 !!! question "Question 2"
 	Why can't an open file be deleted?

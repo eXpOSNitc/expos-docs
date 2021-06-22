@@ -5,7 +5,7 @@ hide:
     - navigation
 ---
 
-[NEXSM](../arch_spec-files/nexsm.html) is an extension of the XSM architecture with a dual-core feature. The machine has two identical cores with the same set of internal registers sharing a common memory. All registers in XSM are present in both the cores. Additionally, NEXSM cores contain an extra register called the **core flag**. A few additional privileged instructions provide primitives for synchronization between the two cores. One of the processors is called the **primary core** and the other called the **secondary core**. The machine can operate in two modes – **active mode** and **reset mode**. **In the reset mode, the secondary is non-functional.** The mode in which the machine operates can be controlled by the primary using a pair of special privileged instructions – START and RESET.
+[NEXSM](../arch-spec/nexsm.md) is an extension of the XSM architecture with a dual-core feature. The machine has two identical cores with the same set of internal registers sharing a common memory. All registers in XSM are present in both the cores. Additionally, NEXSM cores contain an extra register called the **core flag**. A few additional privileged instructions provide primitives for synchronization between the two cores. One of the processors is called the **primary core** and the other called the **secondary core**. The machine can operate in two modes – **active mode** and **reset mode**. **In the reset mode, the secondary is non-functional.** The mode in which the machine operates can be controlled by the primary using a pair of special privileged instructions – START and RESET.
  
 
 
@@ -33,12 +33,12 @@ The application interface specification of the eXpOS undergoes minor modificatio
 
 
 
- The **high level library interface** to these new system calls is specified [here](../os_spec-files/dynamicmemoryroutines.html).
+ The **high level library interface** to these new system calls is specified [here](../os-spec/dynamicmemoryroutines.md).
  
 
 
 
- The **low level system call interface** to these new system calls is specified [here](Sw_interface.html).
+ The **low level system call interface** to these new system calls is specified [here](sw-interface.md).
  
 
 
@@ -80,7 +80,7 @@ The application interface specification of the eXpOS undergoes minor modificatio
 
 
 
- Disk organization is given [here](../os_implementation.html).
+ Disk organization is given [here](../os-implementation.md).
  
 
 
@@ -103,7 +103,7 @@ The application interface specification of the eXpOS undergoes minor modificatio
 
 
 
- Four new system calls, Test4, Test5, Test6 and Test7 are added to eXpOS and all these calls are directed to INT19 (see details [here](../os_spec-files/dynamicmemoryroutines.html)). Currently the functionality of these system calls are unspecified. These are left so for testing future enhancements and conducting experiments on the system.
+ Four new system calls, Test4, Test5, Test6 and Test7 are added to eXpOS and all these calls are directed to INT19 (see details [here](../os-spec/dynamicmemoryroutines.md)). Currently the functionality of these system calls are unspecified. These are left so for testing future enhancements and conducting experiments on the system.
  
 
 
@@ -112,7 +112,7 @@ The application interface specification of the eXpOS undergoes minor modificatio
  
 | **Page Number** | **Contents** |
 | --- | --- |
-| 132-133 | Module 8 ([Access Control Module](../os_modules/Module_8.html)) |
+| 132-133 | Module 8 ([Access Control Module](../modules/module-08.md)) |
 | 134-135 | Module 9 (TestA Module) |
 | 136-137 | Module 10 (TestB Module) |
 | 138-139 | Module 11 (TestC Module) |
@@ -171,7 +171,7 @@ The application interface specification of the eXpOS undergoes minor modificatio
 
 
 
- Atomicity of access locking is implemented using the hardware mechanism provided by the [NEXSM machine](../arch_spec-files/nexsm.html) ([TSL instruction](../arch_spec-files/nexsm.html#instr)). The details follow.
+ Atomicity of access locking is implemented using the hardware mechanism provided by the [NEXSM machine](../arch-spec/nexsm.md) ([TSL instruction](../arch-spec/nexsm.md#instr)). The details follow.
  
 
 
@@ -208,7 +208,7 @@ The application interface specification of the eXpOS undergoes minor modificatio
 
 
 
- The [Access Lock table](mem_ds.html#al_table) is allocated eight words of memory and is stored in memory locations 29576-29583, of which the last five words are unused. (see [memory organization](../os_implementation.html)). 
+ The [Access Lock table](mem-ds.md#al_table) is allocated eight words of memory and is stored in memory locations 29576-29583, of which the last five words are unused. (see [memory organization](../os-implementation.md)). 
  
 
 
@@ -218,7 +218,7 @@ The application interface specification of the eXpOS undergoes minor modificatio
 
 
 
- The [access control module](../os_modules/Module_8.html) contains functions that implement atomic set and reset operations on the kernel lock variables. The following are functions present in the access control module:
+ The [access control module](../modules/module-08.md) contains functions that implement atomic set and reset operations on the kernel lock variables. The following are functions present in the access control module:
  
 
 
@@ -245,7 +245,7 @@ Acquire****Lock() {
 ```
 
 
- The [SPL extension](../support_tools-files/spl.html#nexsm) of NEXSM provides [constants](../support_tools-files/constants.html#nexsm) for identifying the access control variables in the Access Lock Table. Constants for invoking the new modules – TestA, TestB, TestC and the Access Control Module, etc., are also provided.
+ The [SPL extension](../support-tools/spl.md#nexsm) of NEXSM provides [constants](../support-tools/constants.md#nexsm) for identifying the access control variables in the Access Lock Table. Constants for invoking the new modules – TestA, TestB, TestC and the Access Control Module, etc., are also provided.
  
 
 
@@ -264,12 +264,12 @@ Acquire****Lock() {
    
  1. No other process is ready, **OR**
   
- 2. The OS is running the [pager module](../os_modules/Module_6.html) or if [logout system call](multiusersyscalls.html#logout) is being executed in the primary.
+ 2. The OS is running the [pager module](../modules/module-06.md) or if [logout system call](multiusersyscalls.md#logout) is being executed in the primary.
  
 
 
 
- In the present design, the scheduler will run [LOGIN](misc.html#login), [SHELL](misc.html#shell) and the [Swapper Daemon](misc.html#swapper) processes only from the primary. The [pager module](../os_modules/Module_6.html) also will be run only from the primary. These constraints simplify implementation of the kernel, but are neither necessary nor very efficient. 
+ In the present design, the scheduler will run [LOGIN](misc.md#login), [SHELL](misc.md#shell) and the [Swapper Daemon](misc.md#swapper) processes only from the primary. The [pager module](../modules/module-06.md) also will be run only from the primary. These constraints simplify implementation of the kernel, but are neither necessary nor very efficient. 
  
 
 
@@ -279,7 +279,7 @@ Acquire****Lock() {
 
 
 
- NEXSM specification stipulates that the secondary code bootstraps from the physical address 65536 (page 128) upon execution of the START instruction from the primary. Hence, **the bootstrap routine of the primary core must transfer the bootstrap code of the secondary from disk block (see [disk organization](../os_implementation.html)) to memory page 128 before issuing the START instruction**. The START instruction is issued at the end of normal bootstrap by the primary (see [OS Startup code](misc.html#os_startup)).
+ NEXSM specification stipulates that the secondary code bootstraps from the physical address 65536 (page 128) upon execution of the START instruction from the primary. Hence, **the bootstrap routine of the primary core must transfer the bootstrap code of the secondary from disk block (see [disk organization](../os-implementation.md)) to memory page 128 before issuing the START instruction**. The START instruction is issued at the end of normal bootstrap by the primary (see [OS Startup code](misc.md#os_startup)).
  
 
 
@@ -301,9 +301,9 @@ Acquire****Lock() {
  Upon entry into a system call or exception handler, either from an application or from the scheduler, *AcquireKernLock()* must be invoked. The lock must be released before invoking the scheduler or switch back to user mode using *ReleaseLock(KERN\_LOCK)*.
 2. 
  The scheduler module must be modified to set *AcquireSchedLock()* before initiating scheduling actions. Upon completion of scheduling actions, the scheduler must release the lock invoking *ReleaseLock(SCHED\_LOCK)* before setting any process into execution.
-3. *Swapper daemon* will be invoked only from the primary core by the timer interrupt handler (as done in eXpOS). When the scheduler running on the second core finds that pager daemon was initiated from the primary (check PAGING\_STATUS in [system status table](mem_ds.html#ss_table)), it will simply schedule IDLE2.
+3. *Swapper daemon* will be invoked only from the primary core by the timer interrupt handler (as done in eXpOS). When the scheduler running on the second core finds that pager daemon was initiated from the primary (check PAGING\_STATUS in [system status table](mem-ds.md#ss_table)), it will simply schedule IDLE2.
 4. 
- The *Logout system call* will be invoked only from primary core as the shell process will be scheduled to run only on the primary. When the scheduler running on the second core finds that logout/shutdown system call is initiated, from the primary (check LOGOUT\_STATUS in [system status table](mem_ds.html#ss_table)), it will simply schedule IDLE2.
+ The *Logout system call* will be invoked only from primary core as the shell process will be scheduled to run only on the primary. When the scheduler running on the second core finds that logout/shutdown system call is initiated, from the primary (check LOGOUT\_STATUS in [system status table](mem-ds.md#ss_table)), it will simply schedule IDLE2.
 
   
 

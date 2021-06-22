@@ -7,7 +7,7 @@ hide:
 ---
 
 #### Description
-Hardware sends an interrupt on completion of a [load/store operation](../arch_spec-files/instruction_set.html). This interrupt is handled by the Disk Interrupt Handler. The data structure updated is the [Disk Status Table](mem_ds.html#ds_table).
+Hardware sends an interrupt on completion of a [load/store operation](../arch-spec/instruction-set.md). This interrupt is handled by the Disk Interrupt Handler. The data structure updated is the [Disk Status Table](mem-ds.md#ds_table).
 
 
 #### Algorithm

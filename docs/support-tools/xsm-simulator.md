@@ -142,7 +142,7 @@ The commands in DEBUG mode are :
     **_Semantics_** : Displays commands in brief.
   
 -   **_Syntax_** : `accesslocktable` / `alt`  
-    **_Semantics_** : Displays the Access Lock Table. (Only available on [NEXSM](../arch_spec-files/nexsm.html) simulator used in Stage 28 of [Roadmap](../Roadmap.html))
+    **_Semantics_** : Displays the Access Lock Table. (Only available on [NEXSM](../arch-spec/nexsm.md) simulator used in Stage 28 of [Roadmap](../roadmap/index.md))
 
 !!! note
     Simply pressing the Return key at the debug prompt will re-execute the previous command.

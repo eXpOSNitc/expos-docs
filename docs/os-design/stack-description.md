@@ -165,7 +165,7 @@ module must save the register context of the application in its own stack before
 registers and must restore the context before returning to the application. 
 The kernel stack is used to store the execution context of the user process. 
 This context is restored before the return from the kernel module. 
-(The [backup](../arch_spec-files/instruction_set.html#backup) and [restore](../arch_spec-files/instruction_set.html#restore) instructions of the XSM machine facilitate this).
+(The [backup](../arch-spec/instruction-set.md#backup) and [restore](../arch-spec/instruction-set.md#restore) instructions of the XSM machine facilitate this).
 
 
 !!! note

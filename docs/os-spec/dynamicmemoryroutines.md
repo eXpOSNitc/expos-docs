@@ -12,7 +12,7 @@ The High Level Library Interface is a unified Application Programming Interface 
 t = exposcall(fun_code, arg1, arg2, arg3);
 ```
 
-Depending on the fun_code the control is transferred to the [system call routines](http://exposnitc.github.io/os_spec-files/systemcallinterface.html) and the dynamic memory management functions (see below) .
+Depending on the fun_code the control is transferred to the [system call routines](systemcallinterface.md) and the dynamic memory management functions (see below) .
 
 <table class="table table-bordered" style="text-align: center;" id="syscalltable">
 <thead>
@@ -448,7 +448,7 @@ To write to terminal, use -2 as first argument. Note that expressions such as 2 
 
 **The present library routine alloc allocates 8 words for any variable irrespective of the size mentioned in its alloc exposcall(). So, do not define a user defined type having more than 8 fields. Remember to call library function Intialize using exposcall() once before invoking first alloc in any ExpL program.**
 
-The description of the system calls can be seen [here](http://exposnitc.github.io/os_spec-files/systemcallinterface.html). The dynamic memory management routines are described below.
+The description of the system calls can be seen [here](systemcallinterface.md). The dynamic memory management routines are described below.
 
 
 

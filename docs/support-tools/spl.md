@@ -3,9 +3,9 @@ title: 'SPL Specification'
 original_url: 'http://eXpOSNitc.github.io/support_tools-files/spl.html'
 ---
 
-**SPL** or _System Programmer's Language_ in reality is not a high level programming language, but an enriched assembly language programming system for writing protected mode programs for the XSM machine. This language is useful for implementation of an OS on top of the XSM machine. The language is minimalistic and consists only of very basic constructs. Programming using SPL requires an understanding of the underlying [XSM architecture](../arch_spec.html).
+**SPL** or _System Programmer's Language_ in reality is not a high level programming language, but an enriched assembly language programming system for writing protected mode programs for the XSM machine. This language is useful for implementation of an OS on top of the XSM machine. The language is minimalistic and consists only of very basic constructs. Programming using SPL requires an understanding of the underlying [XSM architecture](../arch-spec/index.md).
 
-Each SPL program is considered as a **module**. A module consists of a maximum of 1024 words which includes both the space allocated for code and data. Particular class of modules called **Interrupt Service Routines** can be invoked from the application by the INT instruction. Other modules can only be invoked from the kernel. The SPL compiler translates an SPL source program to a target XSM assembly module. [(See Loading modules into the disk architecture)](../support_tools-files/xfs-interface.html).
+Each SPL program is considered as a **module**. A module consists of a maximum of 1024 words which includes both the space allocated for code and data. Particular class of modules called **Interrupt Service Routines** can be invoked from the application by the INT instruction. Other modules can only be invoked from the kernel. The SPL compiler translates an SPL source program to a target XSM assembly module. [(See Loading modules into the disk architecture)](xfs-interface.md).
 
 This specification defines the syntax and semantics of the basic constructs of the SPL language and also specifies the programming conventions recommended in using the langugage. The default SPL compiler provided as part of the eXpOS package is designed to follow the programming conventions specified in this document.
 
@@ -31,7 +31,7 @@ else 	endif	tsl*	start*	reset*
 ```
 
 
-*\** These keywords are available only on eXpOS running on [NEXSM](../arch_spec-files/nexsm.html) (a two-core extension of XSM) machine.
+*\** These keywords are available only on eXpOS running on [NEXSM](../arch-spec/nexsm.md) (a two-core extension of XSM) machine.
  
 ### Operators and Delimiters
 
@@ -113,7 +113,7 @@ The register set in SPL contains 29 registers. There is a direct mapping between
 | Unused Ports | P2, P3 |
 | Core Flag :red_circle: | CORE |
 
-:red_circle: This is an extra read-only register available only on [NEXSM machine](../arch_spec-files/nexsm.html) (a two-core extension of XSM).
+:red_circle: This is an extra read-only register available only on [NEXSM machine](../arch-spec/nexsm.md) (a two-core extension of XSM).
  
 ### Aliasing
 Any register/port can be referred to by using a different name. A name is assigned to a particular register/port using the **alias** keyword. 
@@ -132,7 +132,7 @@ Unlike aliasing, two or more names can be assigned to the same value. A constant
 
 SPL provides a set of predefined constants defined in the file **splconstants.cfg**. 
 
-The standard SPL implementation comes with a set of [pre-defined constants](./constants.html) included in the *splconstants.cfg* file specifically tuned for the implementation of eXpOS on the XSM architecture. These constants are mostly the starting addresses of various OS data structures/handlers in the memory which are specified in the [implementation](../os_implementation.html) of the eXpOS. 
+The standard SPL implementation comes with a set of [pre-defined constants](constants.md) included in the *splconstants.cfg* file specifically tuned for the implementation of eXpOS on the XSM architecture. These constants are mostly the starting addresses of various OS data structures/handlers in the memory which are specified in the [implementation](../os-implementation.md) of the eXpOS. 
  
 Users can also define constants which are visible in all 
 SPL modules by including the definition in the *splconstants.cfg* file. If a constant defined in the *splconstants.cfg* file is re-defined in a module, the local definition will override the global definition. These predefined constants' definitions can be over-ruled by assigning different values explicitly by the user using the **define** keyword.
@@ -208,11 +208,11 @@ An **alias** statement is used to associate a register/port with a name. Alias s
 ```
 
 ### Breakpoint Statement
-The **breakpoint** statement is used to debug the program. The program when run in the [debug mode](xsm-simulator.html) pauses the execution at this instruction.  
+The **breakpoint** statement is used to debug the program. The program when run in the [debug mode](xsm-simulator.md) pauses the execution at this instruction.  
 
 **SYNTAX :** `breakpoint;`
 
-This statement translates to [BRKP machine instruction](../arch_spec-files/instruction_set.html).
+This statement translates to [BRKP machine instruction](../arch-spec/instruction-set.md).
 
 
 ### Assignment Statement
@@ -272,7 +272,7 @@ This statement cannot be used anywhere else other than while loop.
 
 **SYNTAX :**  `ireturn  ;`
 
-The **ireturn** is generally used at the end of an interrupt code. This statement translates to [IRET machine instruction](../arch_spec-files/instruction_set.html).
+The **ireturn** is generally used at the end of an interrupt code. This statement translates to [IRET machine instruction](../arch-spec/instruction-set.md).
 
 
 ### Read/Print Statements
@@ -340,7 +340,7 @@ The **backup** statement is used to backup all the machine registers (except SP,
 
 **SYNTAX :** `backup;`
 
-This statement translates to the [BACKUP machine instruction](../arch_spec-files/instruction_set.html).
+This statement translates to the [BACKUP machine instruction](../arch-spec/instruction-set.md).
 
 
 ### Restore Statement
@@ -350,7 +350,7 @@ The **restore** statement is used to restore the backed up machine registers fro
 
 **SYNTAX :** `restore;`
 
-This statement translates to the [RESTORE machine instruction](../arch_spec-files/instruction_set.html).
+This statement translates to the [RESTORE machine instruction](../arch-spec/instruction-set.md).
 
 
 ### Encrypt Statement
@@ -359,7 +359,7 @@ The **encrypt** statement replaces the value in the register Ri with its encrypt
 
 **SYNTAX :** `encrypt Ri;`
 
-This statement translates to the [ENCRYPT machine instruction](../arch_spec-files/instruction_set.html).
+This statement translates to the [ENCRYPT machine instruction](../arch-spec/instruction-set.md).
 
 
 ### Goto Statement
@@ -367,7 +367,7 @@ This statement translates to the [ENCRYPT machine instruction](../arch_spec-file
 The **goto** statement transfers control to the specified labelled statement.
 
 
-**SYNTAX :** `goto label / INT_n / MOD_n / constants;` (See [SPL constants](constants.html))
+**SYNTAX :** `goto label / INT_n / MOD_n / constants;` (See [SPL constants](constants.md))
 ```
 goto label1;
 goto INT\_7;
@@ -383,7 +383,7 @@ goto MEMORY\_MANAGER;
 
 The **call** statement saves procedure linking information on the stack and branches to the procedure specified by the argument.
 
-**SYNTAX :** `call label / INT_n / MOD`_n / constants;` (See [SPL constants](constants.html))
+**SYNTAX :** `call label / INT_n / MOD`_n / constants;` (See [SPL constants](constants.md))
 
 ```
 call swap\_func;
@@ -395,7 +395,7 @@ call MEMORY\_MANAGER;
 !!! note
     label should be defined within the module.
 
-Call statement translates to the [CALL machine instruction](../arch_spec-files/instruction_set.html).
+Call statement translates to the [CALL machine instruction](../arch-spec/instruction-set.md).
 
 
 ### Return Statement
@@ -404,7 +404,7 @@ The **return** statement is used to transfer the control from a subroutine to th
 
 **SYNTAX :** `return;`
 
-This statement translates to the [RET machine instruction](../arch_spec-files/instruction_set.html).
+This statement translates to the [RET machine instruction](../arch-spec/instruction-set.md).
 
 ### Halt Statement
 
@@ -412,7 +412,7 @@ The **halt** statement is used to halt the machine.
 
 **SYNTAX :** `halt;`
 
-This statement translates to [HALT machine instruction](../arch_spec-files/instruction_set.html).
+This statement translates to [HALT machine instruction](../arch-spec/instruction-set.md).
 
 
 ### Inline Statement
@@ -480,14 +480,14 @@ before the call.
 
 
 !!! note
-    The SPL compiler given here uses the constants (given in  [*splconstants.cfg*](constants.html)  file) MOD\_0 to MOD\_7 as starting address of eXpOS kernel modules. eXpOS kernel loads these modules into various pre-defined memory pages of the XSM machine on startup. 
+    The SPL compiler given here uses the constants (given in  [*splconstants.cfg*](constants.md)  file) MOD\_0 to MOD\_7 as starting address of eXpOS kernel modules. eXpOS kernel loads these modules into various pre-defined memory pages of the XSM machine on startup. 
     In addition to these, all interrupt service routines can be programmed as SPL modules and loaded to the corresponding 
     interrupt service routine locations in memory. 
  
 
 ## <span style="color:red">SPL Specification for NEXSM</span>
 
-The following additonal instructions are available in SPL when running on the [NEXSM machine](../arch_spec-files/nexsm.html), which is a two core extension for XSM. 
+The following additonal instructions are available in SPL when running on the [NEXSM machine](../arch-spec/nexsm.md), which is a two core extension for XSM. 
 
 ### TSL Expression
 
@@ -500,23 +500,23 @@ while( tsl(KERN\_LOCK) == 1 ) do
      continue; 
 endwhile;
 ``` 
-This statement translates to a sequence of instructions that uses the [TSL machine instruction](../arch_spec-files/nexsm.html#instr).
+This statement translates to a sequence of instructions that uses the [TSL machine instruction](../arch-spec/nexsm.md#instr).
  
 
 
 ### START Statement
 
-The **start** instruction when executed from primary core of the [NEXSM machine](../arch_spec-files/nexsm.html) will start the secondary core into parallel execution.
+The **start** instruction when executed from primary core of the [NEXSM machine](../arch-spec/nexsm.md) will start the secondary core into parallel execution.
 
 **SYNTAX :** `start;`
 
-This statement translates to the [START machine instruction](../arch_spec-files/nexsm.html#instr).
+This statement translates to the [START machine instruction](../arch-spec/nexsm.md#instr).
  
 ### RESET Statement
 
-The **reset** instruction when executed from primary core of the [NEXSM machine](../arch_spec-files/nexsm.html) will freeze the secondary core.
+The **reset** instruction when executed from primary core of the [NEXSM machine](../arch-spec/nexsm.md) will freeze the secondary core.
 
 **SYNTAX :** `reset;`
 
-This statement translates to the [RESET machine instruction](../arch_spec-files/nexsm.html#instr).
+This statement translates to the [RESET machine instruction](../arch-spec/nexsm.md#instr).
  

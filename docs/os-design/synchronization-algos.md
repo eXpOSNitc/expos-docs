@@ -22,7 +22,7 @@ Process Identifier of the process for which the current process has to wait.
 
 #### Description
 The current process is blocked till the process with PID given as argument
-executes a Signal system call or exits. The system call will fail if a process attempts to wait for itself. The only data structure updated is [Process Table](process_table.html). The mode flag in the [Process Table](process_table.html) has to be set to Kernel mode when the process enters the system call and reset before exiting from the system call. 
+executes a Signal system call or exits. The system call will fail if a process attempts to wait for itself. The only data structure updated is [Process Table](process-table.md). The mode flag in the [Process Table](process-table.md) has to be set to Kernel mode when the process enters the system call and reset before exiting from the system call. 
 
 #### Algorithm
 
@@ -66,7 +66,7 @@ None
 
 
 #### Description
-All processes waiting for the signalling process are resumed. The system call does not fail. The only data structure updated is [Process Table](process_table.html).The mode flag in the [Process Table](process_table.html) has to be set to Kernel mode when the process enters the system call and reset before exiting from the system call.
+All processes waiting for the signalling process are resumed. The system call does not fail. The only data structure updated is [Process Table](process-table.md).The mode flag in the [Process Table](process-table.md) has to be set to Kernel mode when the process enters the system call and reset before exiting from the system call.
 
 #### Algorithm
 

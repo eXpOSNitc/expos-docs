@@ -20,9 +20,9 @@ None
 
 #### Description
 This system call is used to obtain a binary [semaphore](https://en.wikipedia.org/wiki/Semaphore_(programming)). eXpOS has a fixed number of semaphores.
-The semaphores of a process are shared with it's child processes. Data Structures updated are [Per Process Resource Table](process_table.html#per_process_table) and [Semaphore table](mem_ds.html#sem_table).
+The semaphores of a process are shared with it's child processes. Data Structures updated are [Per Process Resource Table](process-table.md#per_process_table) and [Semaphore table](mem-ds.md#sem_table).
 
-The mode flag in the [Process Table](process_table.html) has to be set to Kernel mode when the process enters the system call and must be reset before exiting from the system call.
+The mode flag in the [Process Table](process-table.md) has to be set to Kernel mode when the process enters the system call and must be reset before exiting from the system call.
 
 <figure>
     <img src="http://exposnitc.github.io/img/roadmap/semget.png">
@@ -76,7 +76,7 @@ Semaphore Descriptor (Integer)
 
 
 #### Description
-This system call is used to release a semaphore descriptor held by the process. Data Structures updated are [Per Process Resource Table](process_table.html#per_process_table) and [Semaphore table](mem_ds.html#sem_table). The mode flag in the [Process Table](process_table.html) has to be set to Kernel mode when the process enters the system call and reset before exiting from the system call.
+This system call is used to release a semaphore descriptor held by the process. Data Structures updated are [Per Process Resource Table](process-table.md#per_process_table) and [Semaphore table](mem-ds.md#sem_table). The mode flag in the [Process Table](process-table.md) has to be set to Kernel mode when the process enters the system call and reset before exiting from the system call.
 
 
   
@@ -125,10 +125,10 @@ Semaphore Descriptor (Integer)
 
 
 #### Description
-This system call is used to lock the semaphore. If the semaphore is already locked by some other process, then the calling process goes to sleep and wakes up only when the semaphore is unlocked. Otherwise, it locks the semaphore and continues execution. Data Structures updated are [Process Table](process_table.html) and [Semaphore table](mem_ds.html#sem_table).
+This system call is used to lock the semaphore. If the semaphore is already locked by some other process, then the calling process goes to sleep and wakes up only when the semaphore is unlocked. Otherwise, it locks the semaphore and continues execution. Data Structures updated are [Process Table](process-table.md) and [Semaphore table](mem-ds.md#sem_table).
 
 
-The mode flag in the [Process Table](process_table.html) has to be set to Kernel mode when the process enters the system call and reset before exiting from the system call.
+The mode flag in the [Process Table](process-table.md) has to be set to Kernel mode when the process enters the system call and reset before exiting from the system call.
 
 
   
@@ -179,10 +179,10 @@ Semaphore Descriptor (Integer)
 
 
 #### Description
-This system call is used to unlock a semaphore that was previously locked by the calling process. It wakes up all the processes which went to sleep trying to lock the semaphore while the semaphore was locked by the calling process. Data Structures updated are [Process Table](process_table.html) and [Semaphore table](mem_ds.html#sem_table). 
+This system call is used to unlock a semaphore that was previously locked by the calling process. It wakes up all the processes which went to sleep trying to lock the semaphore while the semaphore was locked by the calling process. Data Structures updated are [Process Table](process-table.md) and [Semaphore table](mem-ds.md#sem_table). 
 
 
-The mode flag in the [Process Table](process_table.html) has to be set to Kernel mode when the process enters the system call and reset before exiting from the system call.
+The mode flag in the [Process Table](process-table.md) has to be set to Kernel mode when the process enters the system call and reset before exiting from the system call.
 
 
 #### Algorithm

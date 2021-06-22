@@ -18,7 +18,7 @@ Return Value:
 
 
 #### Description
-The Create operation takes as input a filename. If the file already exists, then the system call returns 0 (success). Otherwise, it creates an empty file by that name, sets the file type to [DATA](../support-tools/constants.md), file size to 0, userid to that of the process (from the [process table](../os_design-files/process_table.html)) and permission as given in the input in the [Inode Table](disk_ds.html#inode_table). It also creates a root entry for that file.
+The Create operation takes as input a filename. If the file already exists, then the system call returns 0 (success). Otherwise, it creates an empty file by that name, sets the file type to [DATA](../support-tools/constants.md), file size to 0, userid to that of the process (from the [process table](process-table.md)) and permission as given in the input in the [Inode Table](disk-ds.md#inode_table). It also creates a root entry for that file.
   
 
 

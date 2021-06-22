@@ -7,13 +7,13 @@ hide:
 
 ### Inode Table
 
-The Inode table is stored in the disk and has an entry for each file present in the disk (A copy of the Inode table is maintained in the memory when the OS is running). It consists of MAX\_FILE\_NUM entries. Thus [eXpFS](../os_spec-files/eXpFS.html) permits a maximum of MAX\_FILE\_NUM files. This version of eXpOS sets MAX\_FILE\_NUM = 60. 
+The Inode table is stored in the disk and has an entry for each file present in the disk (A copy of the Inode table is maintained in the memory when the OS is running). It consists of MAX\_FILE\_NUM entries. Thus [eXpFS](../os-spec/expfs.md) permits a maximum of MAX\_FILE\_NUM files. This version of eXpOS sets MAX\_FILE\_NUM = 60. 
 
 
- Each Inode table entry stores the name, size, type and data block numbers of a file stored in the disk ( * In [Multiuser](http://exposnitc.github.io/os_spec-files/multiuser.html) extension of eXpOS, userid and permission are also included in the inode table entry). The current version of eXpOS limits the maximum number of blocks in an eXpFS file to MAX\_FILE\_BLOCKS = 4. Each Inode table entry consists of 16 words of which the 7 are unused in the present version of eXpOS. 
+ Each Inode table entry stores the name, size, type and data block numbers of a file stored in the disk ( * In [Multiuser](../os-spec/multiuser.md) extension of eXpOS, userid and permission are also included in the inode table entry). The current version of eXpOS limits the maximum number of blocks in an eXpFS file to MAX\_FILE\_BLOCKS = 4. Each Inode table entry consists of 16 words of which the 7 are unused in the present version of eXpOS. 
 
 
- eXpoS reserves the first entry in the Inode table for the [root file](disk_ds.html#root_file). The root file is a special file containing details about other files stored in the system. 
+ eXpoS reserves the first entry in the Inode table for the [root file](disk-ds.md#root_file). The root file is a special file containing details about other files stored in the system. 
 
 
 The entry of an Inode table has the following format:
@@ -35,11 +35,11 @@ The entry of an Inode table has the following format:
 </tr>
 </tbody></table>
 
-- **FILE TYPE** (1 word) - specifies the type of the given file ([DATA](../support_tools-files/constants.html), [EXEC](../support_tools-files/constants.html) or [ROOT](../support_tools-files/constants.html)). More information about file types is given [here](../os_spec-files/eXpFS.html).
+- **FILE TYPE** (1 word) - specifies the type of the given file ([DATA](../support-tools/constants.md), [EXEC](../support-tools/constants.md) or [ROOT](../support-tools/constants.md)). More information about file types is given [here](../os-spec/expfs.md).
 - **FILE NAME** (1 word) - Name of the file
 - **FILE SIZE** (1 word) - Size of the file. Maximum size for File = MAX\_FILE\_SIZE = 2048 words 
 - <span style="color:red">**USER ID** (1 word) - User Id of the owner of the file.</span>
-- <span style="color:red">**PERMISSION** (1 word) - Permission of the file; it can be [OPEN\_ACCESS](../support_tools-files/constants.html) or [EXCLUSIVE](../support_tools-files/constants.html).</span>
+- <span style="color:red">**PERMISSION** (1 word) - Permission of the file; it can be [OPEN\_ACCESS](../support-tools/constants.md) or [EXCLUSIVE](../support-tools/constants.md).</span>
 - **Unused** (3 words)
 - **DATA BLOCK 1 to 4** (4 words) - each DATA BLOCK column stores the block number of a data block of the file. If a file does not use a particular DATA BLOCK , it is set to -1.
 - **Unused** (4 words)
@@ -50,13 +50,13 @@ An unused entry is indicated by -1 in the FILE NAME field.
 
 
 !!! note "Note 1"
-    fdisk command of XFS Interface initilizes the inode table entry of the root file with values FILE TYPE = 1, FILE SIZE = 512, and DATA BLOCK = 5 (Root file is stored in block 5 of disk. See [Disk Organisation](../os_implementation.html)).
+    fdisk command of XFS Interface initilizes the inode table entry of the root file with values FILE TYPE = 1, FILE SIZE = 512, and DATA BLOCK = 5 (Root file is stored in block 5 of disk. See [Disk Organisation](../os-implementation.md)).
 
 !!! note "Note 2"
     A Free inode entry is denoted by  **-1**  in the  **FILENAME**  field.
 
 !!! note "Note 3"
-    Memory copy of the Inode Table is present in page 59 of the memory (see [Memory Organisation](../os_implementation.html)), and the SPL constant [INODE\_TABLE](../support_tools-files/constants.html) points to the starting address of the table.
+    Memory copy of the Inode Table is present in page 59 of the memory (see [Memory Organisation](../os-implementation.md)), and the SPL constant [INODE\_TABLE](../support-tools/constants.md) points to the starting address of the table.
 
 !!! warning "Importanat Note"
     eXpOS requires that the index of the inode table entry of a file and the 
@@ -75,7 +75,7 @@ When the system starts up, the OS startup code loads the Disk Free List to memor
 
 
 !!! note
-    Memory copy of the Disk Free List is present in page 61 of the memory (see [Memory Organisation](../os_implementation.html)), and the SPL constant [DISK\_FREE\_LIST](../support_tools-files/constants.html) points to the starting address of the table.
+    Memory copy of the Disk Free List is present in page 61 of the memory (see [Memory Organisation](../os-implementation.md)), and the SPL constant [DISK\_FREE\_LIST](../support-tools/constants.md) points to the starting address of the table.
 
 
 ### Root File
@@ -83,7 +83,7 @@ When the system starts up, the OS startup code loads the Disk Free List to memor
 The Root File is stored in the disk and has an entry for each file present in the disk (A copy of the Root File is maintained in the memory when the OS is running). It consists of MAX\_FILE\_NUM entries. Thus eXpFS permits a maximum of MAX\_FILE\_NUM files. This version of eXpOS sets MAX\_FILE\_NUM = 60. 
 
 
- The root file has the name **root** and contains meta-data about the files stored in the file system. For each file stored in eXpFS, the root stores five words of information - file-name, file-size, file-type and username, permission in the case of [Multiuser](http://exposnitc.github.io/os_spec-files/multiuser.html) extension of eXpOS. This 5-tuple is called the root entry for the file. The first root entry is for the root itself. Each Root File entry consists of 8 words of which the last 3 are unused in the present version of eXpOS. 
+ The root file has the name **root** and contains meta-data about the files stored in the file system. For each file stored in eXpFS, the root stores five words of information - file-name, file-size, file-type and username, permission in the case of [Multiuser](../os-spec/multiuser.md) extension of eXpOS. This 5-tuple is called the root entry for the file. The first root entry is for the root itself. Each Root File entry consists of 8 words of which the last 3 are unused in the present version of eXpOS. 
 
 
 The entry of Root file has the following format:
@@ -112,7 +112,7 @@ An unused entry is indicated by -1 in the FILE NAME field.
 
 
 !!! note
-    Memory copy of the Root File is present in page 62 of the memory (see [Memory Organisation](../os_implementation.html)), and the SPL constant [ROOT\_FILE](../support_tools-files/constants.html) points to the starting address of data structure.
+    Memory copy of the Root File is present in page 62 of the memory (see [Memory Organisation](../os-implementation.md)), and the SPL constant [ROOT\_FILE](../support-tools/constants.md) points to the starting address of data structure.
 
 
 !!! warning "Important Note"

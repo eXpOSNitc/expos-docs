@@ -23,16 +23,16 @@ The eXpOS kernal provides a hardware independent logical file system model (call
 eXpFS support three kinds of files - **data files, program files**  (executable files) and a special file called the **root file.**  The root file is a meta-data file that contains the list of all files in the file system. A data file consists of a sequence of words. A program contains a header, a sequence of machine instructions called text and static data, if any. 
 
 
-eXpOS does not provide any mechanisms for application programs to create **executable files**. Executable files have to be pre-loaded into the disk using some other external disk access mechanism before OS bootstrap. Since such mechanisms are implementation dependent, they are not part of the OS specification. For instance, the [XFS-Interface](../support_tools-files/xfs-interface.html) tool for eXpOS implementation on the XSM machine is one such mechanism. 
+eXpOS does not provide any mechanisms for application programs to create **executable files**. Executable files have to be pre-loaded into the disk using some other external disk access mechanism before OS bootstrap. Since such mechanisms are implementation dependent, they are not part of the OS specification. For instance, the [XFS-Interface](../support-tools/xfs-interface.md) tool for eXpOS implementation on the XSM machine is one such mechanism. 
 
 
-Executable files follow certain format called the **[experimental executable format or XEXE format](../abi.html#xexe)**. The OS will execute only program files stored in the file system in the XEXE format. Hence system programs like compilers that translate high level application programs must ensure that the executable files adhere to the XEXE format. 
+Executable files follow certain format called the **[experimental executable format or XEXE format](../abi.md#xexe)**. The OS will execute only program files stored in the file system in the XEXE format. Hence system programs like compilers that translate high level application programs must ensure that the executable files adhere to the XEXE format. 
 
 
-Application programs can create, modify and delete data files using appropriate OS system calls. These are discussed [here](systemcallinterface.html).
+Application programs can create, modify and delete data files using appropriate OS system calls. These are discussed [here](systemcallinterface.md).
 
 
-A detailed discussion of the file system structure, file system calls and XEXE format is given in [Section 3](eXpFS.html).
+A detailed discussion of the file system structure, file system calls and XEXE format is given in [Section 3](expfs.md).
 
 
 
@@ -47,7 +47,7 @@ It was noted earlier that at the end of bootstrap, eXpOS loads into memory a pro
 Associated with each process, there is a (virtual) address space (or logical memory space). This address space is a sequence of memory locations, each of which can store a word. eXpOS logically divides the address space of a process into four regions - **(shared) library, code, stack and heap**. 
 
 
-When a process is created using the fork system call, the OS creates a virtual address space for the new process. Each process is given a view that it has its own virtual address space containing its code, library, stack and heap. The virtual address space is a continuous address space starting from address 0 up to a maximum limit that is implementation dependent. Internally, the OS maps the virtual address space into the machine memory using hardware mechanisms available in the machine like paging/segmentation.( Check mapping implementation in XSM [here](../arch_spec-files/paging_hardware.html))
+When a process is created using the fork system call, the OS creates a virtual address space for the new process. Each process is given a view that it has its own virtual address space containing its code, library, stack and heap. The virtual address space is a continuous address space starting from address 0 up to a maximum limit that is implementation dependent. Internally, the OS maps the virtual address space into the machine memory using hardware mechanisms available in the machine like paging/segmentation.( Check mapping implementation in XSM [here](../arch-spec/paging-hardware.md))
 
 
 The code region of a process contains the machine instructions that are to be executed. This code consists of instructions stored in some executable file in the file system. When a new process is created using the fork system call, *the child process shares the library, code and heap with the parent*. This means that any modifications to memory words in these regions by one process will result in modification of the contents for both the processes. The stack region of the parent and the child will be separate. The parent and the child concurrently proceeds execution from the instruction immediately following the fork system call in the code. 
@@ -59,7 +59,7 @@ The stack region of a process stores the variables and stack frames during the e
 A process can load an XEXE executable file from the file system into the virtual address space (of the calling process) using the **exec** system call. During loading, the original code and stack regions are overlayed by those of the newly loaded program. If the original process had shared its heap with its parent process (or any other process), the OS ensures that other processes do not lose their shared heap data. Finally, the (shared) library is common to every application. 
 
 
-The OS expects that executable files respect the programming conventions laid down by the OS (defined in the **[Application Binary Interface-ABI](../abi.html)**) like the division of memory into stack, code, heap and library. Each XEXE executable file must have a header which specifies how much size must be allocated by the OS for each region when the program is loaded for execution. Application programs are typically written in high level languages like [ExpL](../support_tools-files/expl.html) and eXpOS expects the compiler to generate code respecting the ABI specification. 
+The OS expects that executable files respect the programming conventions laid down by the OS (defined in the **[Application Binary Interface-ABI](../abi.md)**) like the division of memory into stack, code, heap and library. Each XEXE executable file must have a header which specifies how much size must be allocated by the OS for each region when the program is loaded for execution. Application programs are typically written in high level languages like [ExpL](../support-tools/expl.md) and eXpOS expects the compiler to generate code respecting the ABI specification. 
 
 
 It must be noted here that an application program is free to violate the ABI conventions and decide to use its virtual address space in its own way. It is only required that the executable file follows XEXE format in order to ensure that exec system call does not fail. As long as such a process operates within its own address space, the OS permits the process to execute. However, if at any point during its execution, the process generates a virtual address beyond its permitted virtual address space, a hardware exception will be generated and the OS routine handling the exception will terminate the process. 
@@ -85,7 +85,7 @@ It was already noted that the child process shares the **heap** of the parent pr
 Thus, eXpOS does not support any explicit primitives for memory sharing, but instead allows related processes to share these resources implicitly using the fork system call semantics. 
 
 
-The file sharing semantics between users in Multiuser extension to eXpOS is described [here](http://exposnitc.github.io/os_spec-files/multiuser.html).
+The file sharing semantics between users in Multiuser extension to eXpOS is described [here](multiuser.md).
 
 
  
@@ -102,7 +102,7 @@ The eXpOS system calls are software interrupt routines of the eXpOS kernal which
 Application programs are not permitted to directly access files/semaphores or create new processes. Instead they must invoke the corresponding system call routines. System calls are kernal routines and operate in **privileged or system mode**. Thus when an application program invokes a system call (by invoking the corresponding software interrupt), a change of mode from unprivileged mode to privileged mode occurs. The system call code checks whether the request is valid and the process has permission to the resources/actions requested and then perform the request. Upon completion of the interrupt service routine, control is transferred back to the user process with a switch back to the unprivileged mode. 
 
 
-eXpOS system calls can be classified as file system calls, process system calls and system calls for access control and synchronization. The following table lists the system calls. A detailed specification can be found [here](systemcallinterface.html).
+eXpOS system calls can be classified as file system calls, process system calls and system calls for access control and synchronization. The following table lists the system calls. A detailed specification can be found [here](systemcallinterface.md).
 
 
 #### <a href="../systemcallinterface/">File system calls</a>

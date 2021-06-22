@@ -77,7 +77,7 @@ hide:
 
 
 ??? question "8. What are the system requirements for working on the eXpOS package?"
-    We expect you to have a Linux/Unix Machine with Lex/Flex and Yacc/Bison software packages installed. (For Flex/Bison installation on your Linux system, see [link](http://en.kioskea.net/faq/30635-how-to-install-flex-and-bison-under-ubuntu)). Once you have these, you can download the eXpOS package by following instructions at [Setting Up](./support_tools-files/setting-up.html).
+    We expect you to have a Linux/Unix Machine with Lex/Flex and Yacc/Bison software packages installed. (For Flex/Bison installation on your Linux system, see [link](http://en.kioskea.net/faq/30635-how-to-install-flex-and-bison-under-ubuntu)). Once you have these, you can download the eXpOS package by following instructions at [Setting Up](support-tools/setting-up.md).
 
 
 ??? question "9. What are the contents of the eXpOS package?"

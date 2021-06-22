@@ -24,7 +24,7 @@ File Descriptor(Integer) and the word to be written
 The file descriptor is used to identify an open instance of the file. The Write operation writes the word given as argument to the position pointed by the file pointer of the file. After each Write operation, the file pointer advances to the next word in the file. Root file and Executable files cannot be written.
 
 
-:red_circle: In addition to this in  [Multiuser](http://exposnitc.github.io/os_spec-files/multiuser.html) implementation, data files which are created with exclusive permission, cannot be written into by any user other than the owner, root or kernel.
+:red_circle: In addition to this in  [Multiuser](../os-spec/multiuser.md) implementation, data files which are created with exclusive permission, cannot be written into by any user other than the owner, root or kernel.
 
 <figure>
     <img src="http://exposnitc.github.io/img/roadmap/FileWrite.png">

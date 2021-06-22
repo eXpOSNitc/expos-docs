@@ -23,10 +23,10 @@ Filename (String)
 ### Description
 For a process to read/write a file, it must first open the file. Only data and root files can be opened. The Open operation returns a file descriptor which identifies the open instance of the file. An application can open the same file several times and each time, a different descriptor will be returned by the Open operation. 
 
-The OS associates a seek position with every open instance of a file. The seek position indicates the current location of file access (read/write). The Open system call initilizes the seek position to 0 (beginning of the file). The seek position can be modified using the [Seek system call](seek.html).
+The OS associates a seek position with every open instance of a file. The seek position indicates the current location of file access (read/write). The Open system call initilizes the seek position to 0 (beginning of the file). The seek position can be modified using the [Seek system call](seek.md).
 
 
-The [root file](disk_ds.html#root_file) can be opened for Reading by specifying the filename as  ***"root"***. Note that the Root file is different from the other files - It has a reserved memory page copy. So this will be treated as a special case in all related system calls. 
+The [root file](disk-ds.md#root_file) can be opened for Reading by specifying the filename as  ***"root"***. Note that the Root file is different from the other files - It has a reserved memory page copy. So this will be treated as a special case in all related system calls. 
 
 
    

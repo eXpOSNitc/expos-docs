@@ -8,7 +8,7 @@ hide:
 
 The hardware requirement specification for eXpOS assumes that the machine is equipped
 with a timer device that sends periodic hardware interrupts. 
-The timer interrupt handler internally invokes the eXpOS  [scheduler module](../os_modules/Module_5.html) . 
+The timer interrupt handler internally invokes the eXpOS  [scheduler module](../modules/module-05.md) . 
  
 <figure>
     <img src="http://exposnitc.github.io/img/roadmap/timer_interrupt.png">

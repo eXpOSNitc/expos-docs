@@ -7,7 +7,7 @@ hide:
 
 
 ### OS Startup Code
-OS Startup Code is loaded from disk to memory by the ROM Code on machine startup. Its main function is to prepare the machine for executing the processes. It initializes data structures, loads root file, disk free list, etc into the memory. OS startup code invokes [Boot Module](../os_modules/Module_7.html) to help the booting.
+OS Startup Code is loaded from disk to memory by the ROM Code on machine startup. Its main function is to prepare the machine for executing the processes. It initializes data structures, loads root file, disk free list, etc into the memory. OS startup code invokes [Boot Module](../modules/module-07.md) to help the booting.
 
 #### Algorithm
 
@@ -92,10 +92,10 @@ It is created by the init process to act like a console. It accepts a command fr
 Typically in eXpOS, the shell process acts as the init process.
 
 
-:red_circle: In  [Multiuser](http://exposnitc.github.io/os_spec-files/multiuser.html) implemention of eXpOS, the login process acts as the init process, which then executes the shell process with PID = 2.
+:red_circle: In  [Multiuser](../os-spec/multiuser.md) implemention of eXpOS, the login process acts as the init process, which then executes the shell process with PID = 2.
 
 
-Complete ExpL code for Shell program is provided [here](../test_prog.html#test_program_7).
+Complete ExpL code for Shell program is provided [here](../test-programs/index.md#test_program_7).
 
 
   
@@ -137,7 +137,7 @@ endwhile
 ```
 
 ### INIT/Login Process
-The login process is the first process scheduled for execution. It is used to login a user.The login process waits invoking the (terminal) read system call for a username and password to be input from the console. The login process executes the [Login system call](http://exposnitc.github.io/os_spec-files/systemcallinterface.html#multiusersystemcalls) with the username and the password as the arguments. The login system call verifies the user and creates a new [shell process](http://exposnitc.github.io/os_design-files/misc.html#shell).The original login process waits inside the login system call for the shell to exit. Upon exit of the shell, the login process proceeds to log in the next user. The login process is the init process in [Multiuser](http://exposnitc.github.io/os_spec-files/multiuser.html) extension to eXpOS.
+The login process is the first process scheduled for execution. It is used to login a user.The login process waits invoking the (terminal) read system call for a username and password to be input from the console. The login process executes the [Login system call](../os-spec/systemcallinterface.md#multiusersystemcalls) with the username and the password as the arguments. The login system call verifies the user and creates a new [shell process](misc.md#shell).The original login process waits inside the login system call for the shell to exit. Upon exit of the shell, the login process proceeds to log in the next user. The login process is the init process in [Multiuser](../os-spec/multiuser.md) extension to eXpOS.
 
 #### Algorithm
 
@@ -172,7 +172,7 @@ Identical to the Idle Process and runs with the code of the Idle Process.
 ### <span style="color:red">OS Startup Code for Secondary Core</span> :red_circle:
 :red_circle: This is only relevant for Stage 28. 
 
-OS Startup Code for the secondary core is loaded from disk to memory by the [Boot Module](../os_modules/Module_7.html). Its main function is to prepare the secondary core of the machine for executing the processes. 
+OS Startup Code for the secondary core is loaded from disk to memory by the [Boot Module](../modules/module-07.md). Its main function is to prepare the secondary core of the machine for executing the processes. 
 
 #### Algorithm
 

@@ -15,9 +15,9 @@ always invoked from some kernel routine like an interrupt/exception handler or s
 
 When a kernel routine invokes a module, the return address from the module gets pushed into the currently active
 kernel stack. The functional and interface design of eXpOS
-modules are presented  [here](../os_modules/Module_Design.html) . 
+modules are presented  [here](../modules/index.md) . 
 
-SPL lays down programming conventions regarding the invocation and programming of kernel modules. The  [SPL module programming conventions](../support_tools-files/spl.html)  (see Case c) documentation describes these conventions. 
+SPL lays down programming conventions regarding the invocation and programming of kernel modules. The  [SPL module programming conventions](../support-tools/spl.md)  (see Case c) documentation describes these conventions. 
 
 A kernel module or an interrupt service routine can invoke another kernel module while it is executing. 
 The invoked kernel module also uses the same kernel stack. 

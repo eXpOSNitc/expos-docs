@@ -8,7 +8,7 @@ hide:
 ### Description
 The Read operation for terminal input, puts the process executing the operation to sleep while the input is being read. Once input data is read, the terminal device sends a hardware interrupt, which is handled by the terminal handler. The terminal handler is responsible for waking up processes that are blocked for input console. 
 
-The data structures modified are [Terminal Status Table](mem_ds.html#ts_table) and [Process Table](process_table.html).
+The data structures modified are [Terminal Status Table](mem-ds.md#ts_table) and [Process Table](process-table.md).
 
 
   

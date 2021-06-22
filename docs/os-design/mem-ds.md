@@ -25,7 +25,7 @@ Every entry of the Open File Table has the following format :
 </tr>
 </tbody></table>
 
-* **INODE INDEX**  (1 word) - specifies the index of the entry for the file in the Inode table. The special constant [INODE\_ROOT](../support_tools-files/constants.html) is stored in the case of the "root" file.
+* **INODE INDEX**  (1 word) - specifies the index of the entry for the file in the Inode table. The special constant [INODE\_ROOT](../support-tools/constants.md) is stored in the case of the "root" file.
 * **OPEN INSTANCE COUNT**  (1 word) - specifies the number of processes sharing the open instance of the file represented by this open file table entry.
 * **LSEEK** (1 word) - specifies the position from which the next word is read from or written into in the file.
 * **Unused** (1 word)
@@ -37,7 +37,7 @@ An Unused entry is indicated by value of -1 in the INODE INDEX field.
 
 
 !!! note
-    The Open File Table is present in page 56 of the memory (see [Memory Organisation](../os_implementation.html)), and the SPL constant [OPEN\_FILE\_TABLE](../support_tools-files/constants.html) points to the starting address of the table.
+    The Open File Table is present in page 56 of the memory (see [Memory Organisation](../os-implementation.md)), and the SPL constant [OPEN\_FILE\_TABLE](../support-tools/constants.md) points to the starting address of the table.
 
 
 ### File (Inode) Status Table
@@ -67,7 +67,7 @@ All invalid entries are set to -1
 
 
 !!! note
-    The File Status Table is present in page 57 of the memory (see [Memory Organisation](../os_implementation.html)), and the SPL constant [FILE\_STATUS\_TABLE](../support_tools-files/constants.html) points to the starting address of the table.
+    The File Status Table is present in page 57 of the memory (see [Memory Organisation](../os-implementation.md)), and the SPL constant [FILE\_STATUS\_TABLE](../support-tools/constants.md) points to the starting address of the table.
 
 
 ### Semaphore Table
@@ -105,7 +105,7 @@ An unused entry is indicated by 0 in the PROCESS COUNT field.
 
 
 !!! note
-    The Semaphore Table is present in page 56 of the memory (see [Memory Organisation](../os_implementation.html)), and the SPL constant [SEMAPHORE\_TABLE](../support_tools-files/constants.html) points to the starting address of the table.
+    The Semaphore Table is present in page 56 of the memory (see [Memory Organisation](../os-implementation.md)), and the SPL constant [SEMAPHORE\_TABLE](../support-tools/constants.md) points to the starting address of the table.
 
 
 ### Disk Status Table
@@ -129,12 +129,12 @@ The size of the table is 8 words of which the last 2 are unused.
 * **LOAD/STORE BIT** (1 word) - specifies whether the operation being done on the device is a load (indicated by 0) or store (indicated by 1).
 * **PAGE NUMBER** (1 word) - specifies the memory page number involved in the disk transfer.
 * **BLOCK NUMBER** (1 word) - specifies the disk block number involved in the disk transfer.
-* **PID** (1 word) - specifies the PID of the process which invoked the disk transfer. If the disk transfer was initiated by the OS during paging/swapping, the field is set to PID of [idle process](misc.html#idle), which is 0.
+* **PID** (1 word) - specifies the PID of the process which invoked the disk transfer. If the disk transfer was initiated by the OS during paging/swapping, the field is set to PID of [idle process](misc.md#idle), which is 0.
 * **Unused** (2 words)
 
 
 !!! note
-    The Disk Staus Table is present in page 56 of the memory (see [Memory Organisation](../os_implementation.html)), and the SPL constant [DISK\_STATUS\_TABLE](../support_tools-files/constants.html) points to the starting address of the table.
+    The Disk Staus Table is present in page 56 of the memory (see [Memory Organisation](../os-implementation.md)), and the SPL constant [DISK\_STATUS\_TABLE](../support-tools/constants.md) points to the starting address of the table.
 
 
 ### Buffer Table
@@ -173,7 +173,7 @@ Free entries are represented by -1 in all the fields.
 
 
 !!! note
-    The Buffer Table is present in page 58 of the memory (see [Memory Organisation](../os_implementation.html)), and the SPL constant [BUFFER\_TABLE](../support_tools-files/constants.html) points to the starting address of the table.
+    The Buffer Table is present in page 58 of the memory (see [Memory Organisation](../os-implementation.md)), and the SPL constant [BUFFER\_TABLE](../support-tools/constants.md) points to the starting address of the table.
 
 
 
@@ -203,15 +203,15 @@ The System Status Table has the following format:
 * **WAIT\_MEM\_COUNT** (1 word) - specifies the number of processes waiting (blocked) for memory.
 * **SWAPPED\_COUNT** (1 word) - specifies the number of processes which are swapped. A process is said to be swapped if any of its user stack pages or its kernel stack page is swapped out.
 * **PAGING\_STATUS** (1 word) - specifies whether swapping is initiated. Swap Out/Swap In are indicated by 0 and 1, respectively. Set to 0 if paging is not in progress.
-* <span style="color:red">**CURRENT\_PID2** (1 word) - specifies the pid of the currently running process on the secondary core. This field is used only when eXpOS is running on [NEXSM](../arch_spec-files/nexsm.html) (a two-core extension of XSM) machine.</span>
-* <span style="color:red">***LOGOUT\_STATUS** (1 word) - specifies whether logout is initiated on the primary core. Set to 0 if logout is not initiated. This field is used only when eXpOS is running on [NEXSM](../arch_spec-files/nexsm.html) (a two-core extension of XSM) machine.</span>
+* <span style="color:red">**CURRENT\_PID2** (1 word) - specifies the pid of the currently running process on the secondary core. This field is used only when eXpOS is running on [NEXSM](../arch-spec/nexsm.md) (a two-core extension of XSM) machine.</span>
+* <span style="color:red">***LOGOUT\_STATUS** (1 word) - specifies whether logout is initiated on the primary core. Set to 0 if logout is not initiated. This field is used only when eXpOS is running on [NEXSM](../arch-spec/nexsm.md) (a two-core extension of XSM) machine.</span>
 
 
 Initially, when the table is set up by the OS startup code, the MEM\_FREE\_COUNT is initialized to the number of free pages available in the system, WAIT\_MEM\_COUNT to 0, SWAPPED\_COUNT to 0 and PAGING\_STATUS to 0. 
 
 
 !!! note
-    The System Status Table is present in page 57 of the memory (see [Memory Organisation](../os_implementation.html)), and the SPL constant [SYSTEM\_STATUS\_TABLE](../support_tools-files/constants.html) points to the starting address of the table.
+    The System Status Table is present in page 57 of the memory (see [Memory Organisation](../os-implementation.md)), and the SPL constant [SYSTEM\_STATUS\_TABLE](../support-tools/constants.md) points to the starting address of the table.
 
 ### Terminal Status Table
 
@@ -234,7 +234,7 @@ Every entry of the Terminal Status Table has the following format:
 
 
 !!! note
-    The Terminal Table is present in page 57 of the memory (see [Memory Organisation](../os_implementation.html)), and the SPL constant [TERMINAL\_STATUS\_TABLE](../support_tools-files/constants.html) points to the starting address of the table.
+    The Terminal Table is present in page 57 of the memory (see [Memory Organisation](../os-implementation.md)), and the SPL constant [TERMINAL\_STATUS\_TABLE](../support-tools/constants.md) points to the starting address of the table.
 
 ### Memory Free List
 
@@ -244,12 +244,12 @@ Each entry of the free list contains either the value 0 indicating that the corr
 
 
 !!! note
-    Memory copy of the Mem Free List is present in page 57 of the memory (see [Memory Organisation](../os_implementation.html)), and the SPL constant [MEMORY\_FREE\_LIST](../support_tools-files/constants.html) points to the starting address of the data structure.
+    Memory copy of the Mem Free List is present in page 57 of the memory (see [Memory Organisation](../os-implementation.md)), and the SPL constant [MEMORY\_FREE\_LIST](../support-tools/constants.md) points to the starting address of the data structure.
 
 
 ### <span style="color:red">Access Lock Table</span>
 
-When eXpOS runs on a two-core machine like [NEXSM](../arch_spec-files/nexsm.html), the OS kernel code executes parallelly on the cores. Hence, to ensure atomicity of the resource acquire functions (of the resource manager module), as well as access/updates of OS data structures, an additional layer of access locking is introduced. The OS maintains an Access Lock Table in memory with the following fields to hold the additional locks.
+When eXpOS runs on a two-core machine like [NEXSM](../arch-spec/nexsm.md), the OS kernel code executes parallelly on the cores. Hence, to ensure atomicity of the resource acquire functions (of the resource manager module), as well as access/updates of OS data structures, an additional layer of access locking is introduced. The OS maintains an Access Lock Table in memory with the following fields to hold the additional locks.
 
 
 The Access Lock Table has the following format:
@@ -273,4 +273,4 @@ The Access Lock Table has the following format:
 
 
 !!! note
-    This data structure is used only when eXpOS is running on [NEXSM](../arch_spec-files/nexsm.html) (a two-core extension of XSM) machine.
+    This data structure is used only when eXpOS is running on [NEXSM](../arch-spec/nexsm.md) (a two-core extension of XSM) machine.

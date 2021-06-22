@@ -15,7 +15,7 @@ None
 ### Description
 Exit system call terminates the execution of the process which invoked it and destroys its memory address space. The calling application ceases to exist after the system call and hence the system call never returns.
 
-Data structures modified are [Memory Free List](mem_ds.html#mem_free_list), [Disk Free List](disk_ds.html#disk_free_list), [Open File Table](mem_ds.html#file_table), [Semaphore Table](mem_ds.html#sem_table), [System Status Table](mem_ds.html#ss_table), [Resource Table](process_table.html#per_process_table) and the [Disk Map Table](process_table.html#disk_map_table).
+Data structures modified are [Memory Free List](mem-ds.md#mem_free_list), [Disk Free List](disk-ds.md#disk_free_list), [Open File Table](mem-ds.md#file_table), [Semaphore Table](mem-ds.md#sem_table), [System Status Table](mem-ds.md#ss_table), [Resource Table](process-table.md#per_process_table) and the [Disk Map Table](process-table.md#disk_map_table).
 
 
 ![](../img/roadmap/exit.png)

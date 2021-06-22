@@ -10,7 +10,7 @@ Application programmers interact with the Operating System using the system call
 
 The system calls of eXpOS are classified into file system calls, process system calls and system calls for access control and synchronization.
 
-\* In addition to this, [Multiuser](http://exposnitc.github.io/os_spec-files/multiuser.html) extension of eXpOS includes system calls for handling multiple users.
+\* In addition to this, [Multiuser](multiuser.md) extension of eXpOS includes system calls for handling multiple users.
  
   
 
@@ -35,7 +35,7 @@ Return Value:
 
 Description: The Create operation takes as input a filename and creates an empty file by that name. If a root entry for the file already exists, then the system call returns 0 (success). Otherwise, it creates a root entry for the file name, sets the file type to DATA and file size to 0.
 
-\* In [Multiuser](http://exposnitc.github.io/os_spec-files/multiuser.html) implementation, the file permission is either 0 or 1, indicating file is open-access or exclusive respectively. If the exclusive flag is set, write and delete system calls will fail except when made by the owner or the root.
+\* In [Multiuser](multiuser.md) implementation, the file permission is either 0 or 1, indicating file is open-access or exclusive respectively. If the exclusive flag is set, write and delete system calls will fail except when made by the owner or the root.
 
 #### Delete
 
@@ -59,7 +59,7 @@ Return Value:
 
 Description: Delete removes the file from the file system and removes its root entry. A file that is currently opened by any application cannot be deleted. Root file and Executable files also cannot be deleted.
 
-\* In addition to this in [Multiuser](http://exposnitc.github.io/os_spec-files/multiuser.html) implementation, data files which are created with exclusive permission, cannot be deleted by any user other than the owner, root or kernel.
+\* In addition to this in [Multiuser](multiuser.md) implementation, data files which are created with exclusive permission, cannot be deleted by any user other than the owner, root or kernel.
 
 #### Open
 
@@ -159,7 +159,7 @@ Return Value:
 
 Description: The file descriptor is used to identify an open instance of the file. The Write operation writes the word passed as argument to the position pointed by the file pointer of the file. After each Write operation, the file pointer advances to the next word in the file. Root file and Executable files cannot be written.
 
-\* In addition to this in [Multiuser](http://exposnitc.github.io/os_spec-files/multiuser.html) implementation, data files which are created with exclusive permission, cannot be written into by any user other than the owner, root or kernel.
+\* In addition to this in [Multiuser](multiuser.md) implementation, data files which are created with exclusive permission, cannot be written into by any user other than the owner, root or kernel.
 
 #### Seek
 
@@ -212,7 +212,7 @@ Description: Replicates the process invoking the system call. The heap, code and
 
 When a process executes the Fork system call, the child process shares with the parent all the file and semaphore descriptors previously acquired by the parent. Semaphore/file descriptors acquired subsequent to the fork operation by either the child or the parent will be exclusive to the respective process and will not be shared.
 
-\* In [Multiuser](http://exposnitc.github.io/os_spec-files/multiuser.html) implementation, the child process inherits the userid of the parent process.
+\* In [Multiuser](multiuser.md) implementation, the child process inherits the userid of the parent process.
 
 #### Exec
 
@@ -232,7 +232,7 @@ Return Value:
 
 Description: Exec destroys the present process and loads the executable file given as input into a new memory address space. A successful Exec operation results in the extinction of the invoking application and hence never returns to it. All open instances of file and semaphores of the parent process are closed. However, the newly created process will inherit the PID of the calling process.
 
-\* In [Multiuser](http://exposnitc.github.io/os_spec-files/multiuser.html) implementation, the newly created process inherits the userid of the invoking process.
+\* In [Multiuser](multiuser.md) implementation, the newly created process inherits the userid of the invoking process.
 
 #### Exit
 
@@ -240,9 +240,9 @@ Arguments: None
 
 Return Value: None
 
-Description: Exit system call terminates the execution of the process which invoked it and destroys its memory address space. The calling application ceases to exist after the system call and hence the system call never returns. All processes waiting for this process using [Wait system call](http://exposnitc.github.io/os_spec-files/systemcallinterface.html#synsystemcalls), are awakened on exit of this process. Exit never fails.
+Description: Exit system call terminates the execution of the process which invoked it and destroys its memory address space. The calling application ceases to exist after the system call and hence the system call never returns. All processes waiting for this process using [Wait system call](systemcallinterface.md#synsystemcalls), are awakened on exit of this process. Exit never fails.
 
-\* In [Multiuser](http://exposnitc.github.io/os_spec-files/multiuser.html) implementation, if the process created by the login process (shell) exits, all processes with that userid has to be killed and the login process that was waiting for its exit has to be awakened.
+\* In [Multiuser](multiuser.md) implementation, if the process created by the login process (shell) exits, all processes with that userid has to be killed and the login process that was waiting for its exit has to be awakened.
 
 #### Getpid
 
@@ -287,7 +287,7 @@ Return Value:
 
 Description: Shutdown system call terminates all processes and halts the machine.
 
-\* In [Multiuser](http://exposnitc.github.io/os_spec-files/multiuser.html) implemention of eXpOS, only processes with the user as either the root or kernel can execute shutdown system call.
+\* In [Multiuser](multiuser.md) implemention of eXpOS, only processes with the user as either the root or kernel can execute shutdown system call.
 
 
 

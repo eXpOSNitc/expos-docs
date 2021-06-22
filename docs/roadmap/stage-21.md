@@ -7,7 +7,7 @@ original_url: https://exposnitc.github.io/Roadmap.html
     - Implementation of Wait and Signal system calls
 
 !!! abstract "Pre-requisite Reading"
-    Read and understand [Access control and synchronization](/os_spec-files/expos_abstractions.html) and [Process synchronization](/os_spec-files/synchronization.html#process_synchronization) documentations before proceeding further.
+    Read and understand [Access control and synchronization](../os-spec/expos-abstractions.md) and [Process synchronization](../os-spec/synchronization.md#process_synchronization) documentations before proceeding further.
 
 In this stage, we will add support for process synchronization using
 <i> Wait</i> and <i>Signal</i>system calls to eXpOS. With the help of these system calls, we will design a more advanced
@@ -138,7 +138,7 @@ Compile and load the newly written/modified files to the disk using XFS-interfac
     No. The present eXpOS does not provide any functionality to avoid circular wait. It is the responsiblity of the user program to make sure that such conditions will not occur.
 
 !!! assignment "Assignment 1: [Shell Version-II]"
-    It is recommended to implement the shell program according to the description given earlier on your own. One implementation of shell program is given [here](test_prog.html#shell_version_2_p) . Load this program as the INIT program. Test the shell version by giving different ExpL programs written in previous stages. Remember to load the xsm files of ExpL programs as executables into the disk before trying to execute them using shell.
+    It is recommended to implement the shell program according to the description given earlier on your own. One implementation of shell program is given [here](../test-programs/index.md#shell_version_2_p) . Load this program as the INIT program. Test the shell version by giving different ExpL programs written in previous stages. Remember to load the xsm files of ExpL programs as executables into the disk before trying to execute them using shell.
 
 !!! assignment "Assignment 2"
     Write an ExpL program 'pid.expl' which invokes Getpid system call and prints the pid. Write another ExpL program which invokes Fork system call three times back to back. Then, the program shall use Exec system call to execute pid.xsm file. Run this program using the shell.

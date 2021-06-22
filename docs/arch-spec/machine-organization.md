@@ -15,7 +15,7 @@ The processor consists of a set of **registers** and **ports** along with the ha
 The machine is equipped with an **instruction set**. Two contiguous memory words are necessary to store each XSM instruction. The reader is assumed to have a basic understanding of the general principles of computer organization, hardware and software interrupts, exceptions, and hardware paging to follow the processor description in this document.
 
 
-The processor has two fundamental modes of operation - **privileged execution mode** and the **unprivileged execution mode**. A program executing in the privileged mode can execute any XSM instruction and has the full view of the memory and the disk. A program executing in the unprivileged mode has access only to a restricted machine model called the **XSM virtual machine**. The instruction set and the memory model available to a program executing in unprivileged mode is a subset of that in the privileged mode. These are called the virtual machine instruction set and the virtual machine memory model respectively. ( See [Virtual Machine Specification](../virtual_machine_spec.html) for more). XSM implements the virtual machine model using its [**paging hardware**](paging_hardware.html).
+The processor has two fundamental modes of operation - **privileged execution mode** and the **unprivileged execution mode**. A program executing in the privileged mode can execute any XSM instruction and has the full view of the memory and the disk. A program executing in the unprivileged mode has access only to a restricted machine model called the **XSM virtual machine**. The instruction set and the memory model available to a program executing in unprivileged mode is a subset of that in the privileged mode. These are called the virtual machine instruction set and the virtual machine memory model respectively. ( See [Virtual Machine Specification](../virtual-machine-spec.md) for more). XSM implements the virtual machine model using its [**paging hardware**](paging-hardware.md).
 
 
 
@@ -57,7 +57,7 @@ When the machine is executing in privileged mode, a memory address “N” betwe
 
 
 !!! note
-    Since the memory model is different when the machine operates in unprivileged mode, the total amount of memory and the interpretation of addresses are different and will be discussed in the [Virtual Machine Specification](../virtual_machine_spec.html).
+    Since the memory model is different when the machine operates in unprivileged mode, the total amount of memory and the interpretation of addresses are different and will be discussed in the [Virtual Machine Specification](../virtual-machine-spec.md).
 
 
 The Memory of the XSM Machine is organised as follows :
@@ -125,7 +125,7 @@ A block index between 0 and 511 refers to the corresponding disk block.
 The block 0 of the disk is reserved for *boot block* and will be loaded into the memory at the time of system startup.
 
 
-The machine instruction set includes four special **disk access macro routines** (load, loadi and store -  [see instruction set](instruction_set.html#privileged_instruction) ) for disk-block to memory-page data transfer and back. These are actually macros whose internal details are hidden from programs. These macros are accessible only when the machine is executing in privileged mode. XSM gives no provision for programs to access the disk directly while executing in unprivileged mode.
+The machine instruction set includes four special **disk access macro routines** (load, loadi and store -  [see instruction set](instruction-set.md#privileged_instruction) ) for disk-block to memory-page data transfer and back. These are actually macros whose internal details are hidden from programs. These macros are accessible only when the machine is executing in privileged mode. XSM gives no provision for programs to access the disk directly while executing in unprivileged mode.
 
 
 
@@ -143,11 +143,11 @@ The machine instruction set includes four special **disk access macro routines**
 
 ### Timer
 
-Timer is a device that can be set to interrupt the processor each time after the machine executes XSM\_TICKS instructions in **unprivileged mode** (If the XSM\_TICKS numbered instruction changes mode from unprivileged to privileged, then the interrupt occurs before executing the next instruction after the machine is back to unprivileged mode). The value of XSM\_TICKS must be set externally. (XSM specification leaves how XSM\_TICKS is initialized to the implementation.) Upon receipt of the interrupt, the machine switches to the privileged mode and executes the [timer interrupt service routine](interrupts_exception_handling.html#timer_interrupt).
+Timer is a device that can be set to interrupt the processor each time after the machine executes XSM\_TICKS instructions in **unprivileged mode** (If the XSM\_TICKS numbered instruction changes mode from unprivileged to privileged, then the interrupt occurs before executing the next instruction after the machine is back to unprivileged mode). The value of XSM\_TICKS must be set externally. (XSM specification leaves how XSM\_TICKS is initialized to the implementation.) Upon receipt of the interrupt, the machine switches to the privileged mode and executes the [timer interrupt service routine](interrupts-exception-handling.md#timer_interrupt).
 
 ### Disk Controller
 
-Disk Controller is the device that controls the data transfer between the memory and the disk. If the **load** macro or **store** macro is used for disk-memory transfer, then upon subsequent completion of XSM\_DTIME instructions in the unprivileged mode, the disk controller interrupts the machine. (If the XSM\_DTIME numbered instruction changes mode from unprivileged to privileged, then the interrupt occurs before executing the next instruction after the machine is back to unprivileged mode). Upon receipt of the interrupt, the machine executes [disk interrupt service routine](interrupts_exception_handling.html). If the **loadi** macro is used for disk-memory transfer, the machine will wait for the block transfer and will continue the execution of next instruction only after the block transfer is complete.
+Disk Controller is the device that controls the data transfer between the memory and the disk. If the **load** macro or **store** macro is used for disk-memory transfer, then upon subsequent completion of XSM\_DTIME instructions in the unprivileged mode, the disk controller interrupts the machine. (If the XSM\_DTIME numbered instruction changes mode from unprivileged to privileged, then the interrupt occurs before executing the next instruction after the machine is back to unprivileged mode). Upon receipt of the interrupt, the machine executes [disk interrupt service routine](interrupts-exception-handling.md). If the **loadi** macro is used for disk-memory transfer, the machine will wait for the block transfer and will continue the execution of next instruction only after the block transfer is complete.
 
 
 ### Console/Terminal
@@ -156,11 +156,11 @@ Disk Controller is the device that controls the data transfer between the memory
 The console device is a single device that handles the standard input and output. 
 
 
-The **OUT** instruction displays the contents of port P1 onto the terminal [(see instruction set)](instruction_set.html#privileged_instruction).
+The **OUT** instruction displays the contents of port P1 onto the terminal [(see instruction set)](instruction-set.md#privileged_instruction).
 
 
 If the XSM machine executes an **IN** instruction, the console device waits for the user to enter a word
-into the console. When a word is entered, the console device transfers the word to the port P0 and raises the console interrupt [(see console interrupt handling)](interrupts_exception_handling.html). The console device ignores any further input entered by the user before the execution of another IN/INI instruction. While the console waits for the user input, the XSM machine proceeds the execution of the next instruction.
+into the console. When a word is entered, the console device transfers the word to the port P0 and raises the console interrupt [(see console interrupt handling)](interrupts-exception-handling.md). The console device ignores any further input entered by the user before the execution of another IN/INI instruction. While the console waits for the user input, the XSM machine proceeds the execution of the next instruction.
 
 
 If the XSM machine executes the **INI** instruction (which can be used only in debug mode), the console device as well as the XSM machine waits for the user input and the data entered is immediately transferred to the port P0, only after which the next instruction is executed. No interrupt is generated by the INI instruction.

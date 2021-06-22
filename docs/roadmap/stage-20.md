@@ -7,7 +7,7 @@ original_url: https://exposnitc.github.io/Roadmap.html
     - Implementation of fork and exit system calls.
 
 !!! abstract "Pre-requisite Reading"
-    Read and understand [eXpOS process abstraction](os_spec-files/expos_abstractions.html) and [eXpOS process model](os_spec-files/processmodel.html) documentation before proceeding further.
+    Read and understand [eXpOS process abstraction](../os-spec/expos-abstractions.md) and [eXpOS process model](../os-spec/processmodel.md) documentation before proceeding further.
 
 In this stage, you will learn how to create a new process using the fork system call and how
 to terminate a process using the exit system call.

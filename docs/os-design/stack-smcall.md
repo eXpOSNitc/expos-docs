@@ -11,7 +11,7 @@ This document is a tutorial explaining how the eXpOS kernel must manage the kern
  
 Since the user program has control over the transfer to the system call module, it is expected to save its register context (in the user stack) before the system call and restore the context after returing from the system call.
 
-The application program must also pass the parameters to the system call through the user stack. The return value of the system call is also passed back to the application through the user stack. For the calling conventions followed in eXpOS, see [ABI](http://exposnitc.github.io/abi.html).
+The application program must also pass the parameters to the system call through the user stack. The return value of the system call is also passed back to the application through the user stack. For the calling conventions followed in eXpOS, see [ABI](../abi.md).
 
 If the application program is written in ExpL, then the ExpL compiler will generate code for saving and restoring the context
 and pushing arguments into the user stack (if you are writing directly in assembly language, then your code must explicitly contain the code to do these). 
@@ -26,7 +26,7 @@ of return.
 
 
 !!! note
-	The algorithms described in the [design page](../os_design.html) stipulates that each system call sets the [MODE flag](process_table.html) to the appropriate [system call number](Sw_interface.html) and switches to the kernel stack.
+	The algorithms described in the [design page](index.md) stipulates that each system call sets the [MODE flag](process-table.md) to the appropriate [system call number](sw-interface.md) and switches to the kernel stack.
   
 	However, if the same (software) interrupt contains multiple system calls,
 	code duplication can be avoided by

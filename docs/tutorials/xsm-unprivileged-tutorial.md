@@ -10,7 +10,7 @@ In this tutorial we will explain the unprivileged mode execution of XSM machine.
 
 
 
-Please go through [Paging specification](http://exposnitc.github.io/arch_spec-files/paging_hardware.html) and [Virtual address space model](http://exposnitc.github.io/virtual_machine_spec.html) before reading further.
+Please go through [Paging specification](../arch-spec/paging-hardware.md) and [Virtual address space model](../virtual-machine-spec.md) before reading further.
  
 
 
@@ -39,7 +39,7 @@ and then transfers contents of the register R0 to the top of the stack - that is
   
 
 
-**However, PUSH and other [unprivileged instructions](../arch_spec-files/instruction_set.html) have a different behaviour when executed in unprivileged mode.** 
+**However, PUSH and other [unprivileged instructions](../arch-spec/instruction-set.md) have a different behaviour when executed in unprivileged mode.** 
 PUSH will increment SP to 1001 as before, but the memory address to which contents of R0 is copied is determined
 in a different way. The machine will treat the contents of SP as a logical address, find out the
 physical address corresponding to the logical address 1001 using the **address translation mechanism** of XSM and
@@ -84,7 +84,7 @@ detail with examples soon:
   
 
 
-**The machine assumes that the PTBR register holds the base(starting) address of the [page table](../os_design-files/process_table.html#per_page_table) in memory.** 
+**The machine assumes that the PTBR register holds the base(starting) address of the [page table](../os-design/process-table.md#per_page_table) in memory.** 
  Since PTBR register can be accessed only in privileged mode, your code must have set the PTBR register
  to store the address of the page table before entering unprivileged mode execution. Moreover, to get the address translation hardware to work
  the way you want it to, your must write privilaged code to
@@ -169,7 +169,7 @@ First of all, as an OS designer, why should you learn to run the machine in unpr
  system resources are accessible. Architecture support is needed to achieve this.
 
 The architecture support provided by the XSM machine is the support for the
-[XSM virtual machine model](http://exposnitc.github.io/virtual_machine_spec.html).
+[XSM virtual machine model](../virtual-machine-spec.md).
  
 
 
@@ -195,7 +195,7 @@ The OS views this address space as being divided into logical pages of 512 words
 The XSM machine on the other hand has 128 physical pages into which the logical pages of all programs running in
 the system has to be mapped into.
 Hence, **there needs to be some data structure to map the logical pages of each program to the corresponding physical pages.**
-This data structure is called the **[page table](../arch_spec-files/paging_hardware.html)**. The OS maintains a seperate page table for each program
+This data structure is called the **[page table](../arch-spec/paging-hardware.md)**. The OS maintains a seperate page table for each program
 that stores the physical page number to which each logical page of the program is mapped to. Note that the page table is
 a "meta data" about a program maintained by the OS. The OS stores the table outside the address space of the process and 
 the process has no access to it.
@@ -264,7 +264,7 @@ We explain each of the above four steps in detail:
 **While executing in user mode, if an instruction in the application refers to a logical address beyond this limit,
  the machine will raise an exception.** This will result in the machine switching to privileged mode and
  control transferred to the starting address of the exception handler routine
- (memory address 1024 – see [Machine Organisation](http://exposnitc.github.io/arch_spec-files/machine_organisation.html#content)).
+ (memory address 1024 – see [Machine Organisation](../arch-spec/machine-organization.md#content)).
 
 
 
@@ -497,7 +497,7 @@ To summarise:
 	system publishes an interface specification called Application Binary Interface (ABI) that fixes this and
 	several other matters. In the eXpOS project, the ABI convention is that the application code must be loaded
 	to logical pages 4,5,6 and 7. The details are given in the eXpOS ABI given
-	[here](../abi.html). Thus the code area of an eXpOS
+	[here](../abi.md). Thus the code area of an eXpOS
 	application will start at address 2048. The above example had followed this eXpOS ABI.
 
 
@@ -518,7 +518,7 @@ requires the stack.
 
 
 
-The [eXpOS ABI](http://exposnitc.github.io/abi.html) of our concern stipulates that logical pages 8 and 9 of an application must be allocated
+The [eXpOS ABI](../abi.md) of our concern stipulates that logical pages 8 and 9 of an application must be allocated
 for the stack. Hence the stack begins at logical address 4096. Therefore, **before an application is run
 for the first time, the stack pointer register SP is set to value 4095** (why not 4096?). Continuing the above example, if the physical
 pages allocated for the stack are 120 and 121, then the page table starting at address 1000 will be as below:
@@ -584,7 +584,7 @@ the operating system the correct starting address.**
 
 
 The way in which the eXpOS ABI does this is as follows. Each eXpOS application can have at most four code
-pages of machine instructions. An eXpOS compatible [XEXE](http://exposnitc.github.io/abi.html) executable file
+pages of machine instructions. An eXpOS compatible [XEXE](../abi.md) executable file
  must contain these instructions listed in sequential order. But before the code, the file must contain an
  eight-word **header**. The code follows the header. The first word (word 0) must be set to value 0.
  For the time being, we will be concerned only about the second word (word 1) called **entry point**.
@@ -766,7 +766,7 @@ application.
 **OS handlers that can be called from application programs for privileged tasks are known as system call routines.
  Software interrupts provide hardware support mechanism for implementing system calls.** In the eXpOS project,
  the mapping of each system call to interrupt numbers is given
- [here](../os_design-files/Sw_interface.html).
+ [here](../os-design/sw-interface.md).
  (Note that in some cases, the same interrupt handler is designed to handle multiple system calls.
  In such cases the *system call number* passed as an argument to the interrupt handler is used to
  identify the correct service).
@@ -776,7 +776,7 @@ application.
 *Typically, the application pushes the input arguments to a system call handler into the
 stack before executing INT instruction. The handler after doing the corresponding action
 stores return value in a designated position in the application's stack.* The conventions
-regarding how arguments and return values are passed are stipulated in the [ABI](../abi.html).
+regarding how arguments and return values are passed are stipulated in the [ABI](../abi.md).
   
   
 
@@ -820,7 +820,7 @@ PTBR is changed?)
 	the disk. Your bootstrap loader must load these interrupt handlers from the disk to the appropriate memory
 	pages. The eXpOS system has clear specification regarding the disk locations where each interrupt handler
 	must be stored and the memory pages to which the OS bootstrap loader must place each interrupt handler.
-	This is specified in the eXpOS  [Memory Organisation](../os_implementation.html) documentation.
+	This is specified in the eXpOS  [Memory Organisation](../os-implementation.md) documentation.
   
 
   

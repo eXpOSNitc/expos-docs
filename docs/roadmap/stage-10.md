@@ -4,7 +4,7 @@ original_url: https://exposnitc.github.io/Roadmap.html
 ---
 
 !!! note "Learning Objectives"
-    - Familiarise with the [low level system call interface](abi.html) in eXpOS.
+    - Familiarise with the [low level system call interface](../abi.md) in eXpOS.
     - Familiarise with the console output mechanism in eXpOS.
 
 !!! abstract "Pre-requisite Reading"

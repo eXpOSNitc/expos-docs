@@ -15,13 +15,13 @@ None
 
 
 ### Description
-If a process 1) generates an illegal instruction or an invalid address (outside its virtual address space) 2) do a division by zero 3) tries to write to a page which is read-only, 4) causes other faulty conditions which are machine dependent, the machine will generate an exception. See [Exception Handling (Tutorial)](../Tutorials/xsm_interrupts_tutorial.html). The exception handler must terminate the process and invoke the context switch module to to schedule other processes. 
+If a process 1) generates an illegal instruction or an invalid address (outside its virtual address space) 2) do a division by zero 3) tries to write to a page which is read-only, 4) causes other faulty conditions which are machine dependent, the machine will generate an exception. See [Exception Handling (Tutorial)](../tutorials/xsm-interrupts-tutorial.md). The exception handler must terminate the process and invoke the context switch module to to schedule other processes. 
 
 
 The exception handler is also invoked when a page required by a process is not present in the memory. This condition is known as a [page fault](http://en.wikipedia.org/wiki/Page_fault). The eXpOS scheduler will never schedule a process if its stack page is not present in the memory. Hence, a page fault can occur only when either a) one of the code pages of the process (logical pages 4 to 7) has to be loaded from the disk or b) one of the heap pages has not been allocated (logical page 2 or 3). When a page fault exception occurs, the exception handler routine checks if the page resides in the disk. If it does, it is loaded to the memory and the page table is updated. Otherwise, a new page is allocated to the process by the exception handler.
 
 
-The data structures updated are [Disk Status Table](mem_ds.html#ds_table), [System Status Table](mem_ds.html#ss_table), [Memory Free List](mem_ds.html#mem_free_list) and [Page Table](process_table.html#per_page_table).
+The data structures updated are [Disk Status Table](mem-ds.md#ds_table), [System Status Table](mem-ds.md#ss_table), [Memory Free List](mem-ds.md#mem_free_list) and [Page Table](process-table.md#per_page_table).
 
 
 The MODE FLAG must be set upon entering the system call and reset before returning.

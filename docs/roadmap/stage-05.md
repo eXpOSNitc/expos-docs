@@ -9,7 +9,7 @@ original_url: https://exposnitc.github.io/Roadmap.html
 !!! info "Pre-requisite Reading"
      Read and understand the <a href="support_tools-files/xsm-simulator.html" target="_blank">Debugger Specification</a>
 
-In this stage you will write an SPL program with a **breakpoint** statement. The breakpoint statement translates to the [BRKP](arch_spec-files/instruction_set.html) machine instruction and is used for debugging. If the XSM machine is run in the [Debug mode](support_tools-files/xsm-simulator.html) , on encountering the BRKP instruction, the machine simulator will suspend the program execution and allow you to inspect the values of the registers, memory, os data structures etc. Execution resumes only after you instruct the simulator to proceed.
+In this stage you will write an SPL program with a **breakpoint** statement. The breakpoint statement translates to the [BRKP](../arch-spec/instruction-set.md) machine instruction and is used for debugging. If the XSM machine is run in the [Debug mode](../support-tools/xsm-simulator.md) , on encountering the BRKP instruction, the machine simulator will suspend the program execution and allow you to inspect the values of the registers, memory, os data structures etc. Execution resumes only after you instruct the simulator to proceed.
 
 1)  Write an SPL code to generate odd numbers from 1 to 10. Add a debug instruction in between :
 
