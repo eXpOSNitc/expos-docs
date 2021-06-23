@@ -229,7 +229,7 @@ BACKUP		// machine instruction to save the
 
 
 <div style="padding: 1em;border: 1px solid var(--md-code-fg-color);">
-<img src="https://exposnitc.github.io/img/stack-management/aftr_interrupt_step2a.png">
+<img src="../../assets/img/stack-management/aftr_interrupt_step2a.png">
 <pre><code>
 <b>Pseudo code</b>
 ....

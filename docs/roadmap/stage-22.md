@@ -29,7 +29,7 @@ The [per-process resource table](../os-design/process-table.md#per_process_table
 
 
 <figure>
-<img src="https://exposnitc.github.io/img/roadmap/sem.png"/>
+<img src="../../assets/img/roadmap/sem.png"/>
 <figcaption> Control flow for <i>Semaphore </i> system calls</figcaption>
 </figure>
 <br/>

@@ -63,7 +63,7 @@ Then returns to the process which was interrupted by disk controller.
     other similar situations.
 
 <figure>
-<img src="https://exposnitc.github.io/img/roadmap/exec2.png"/>
+<img src="../../assets/img/roadmap/exec2.png"/>
 <figcaption>Control flow for <i>Exec</i> system call</figcaption>
 </figure>
 

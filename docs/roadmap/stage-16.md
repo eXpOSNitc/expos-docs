@@ -81,7 +81,7 @@ Read about [XSM interrupts](../tutorials/xsm-interrupts-tutorial.md)
 before proceeding further.
 
 <figure style="text-align: center;">
-<img src="https://exposnitc.github.io/img/roadmap/read.png"/>
+<img src="../../assets/img/roadmap/read.png"/>
 <figcaption>Control flow for <i>Read</i> system call</figcaption>
 </figure>
 

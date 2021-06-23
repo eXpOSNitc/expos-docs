@@ -31,7 +31,7 @@ The [root file](disk-ds.md#root_file) can be opened for Reading by specifying th
 
    
 <figure>
-	<img src="https://exposnitc.github.io/img/roadmap/open.png">
+	<img src="../../assets/img/roadmap/open.png">
 	<figcaption>Control flow diagram for *Open* system call</figcaption>
 </figure>
 

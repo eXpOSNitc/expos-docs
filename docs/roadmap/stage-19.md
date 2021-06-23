@@ -170,7 +170,7 @@ disk block number, and if so decrements its disk free list entry by invoking the
 ** Release Block** function of the memory manager module.
 
 <figure>
-<img src="https://exposnitc.github.io/img/roadmap/exec3.png"/>
+<img src="../../assets/img/roadmap/exec3.png"/>
 <figcaption> Control flow for <i>Exec </i>system call</figcaption>
 </figure>
 
@@ -207,7 +207,7 @@ With these modifications, You have completed the final implementation of Exec sy
 
 #### Implementation of [Exception Handler](../os-design/exe-handler.md)
 <figure>
-<img src="https://exposnitc.github.io/img/roadmap/exception.png"/>
+<img src="../../assets/img/roadmap/exception.png"/>
 <figcaption>Control flow for Exception handler</figcaption>
 </figure>
 

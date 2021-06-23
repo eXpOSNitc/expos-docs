@@ -127,7 +127,7 @@ page is available for use. Upon waking up, the Get Free Page function allocates 
 memory page and updates the WAIT_MEM_COUNT and MEM_FREE_COUNT in the system status table.
 
 <figure>
-<img src="https://exposnitc.github.io/img/roadmap/exec1.png"/>
+<img src="../../assets/img/roadmap/exec1.png"/>
 <figcaption>Control flow for <i>Exec</i> system call</figcaption>
 </figure>
 

@@ -101,7 +101,7 @@ stages.
     register context into the stack for proper resumption of execution.
 
 <figure>
-<img src="https://exposnitc.github.io/img/roadmap/write.png"/>
+<img src="../../assets/img/roadmap/write.png"/>
 <figcaption>Control flow for <i>Write</i> system call</figcaption>
 </figure>
 

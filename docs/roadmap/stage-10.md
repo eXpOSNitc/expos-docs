@@ -131,8 +131,8 @@ INT 10
 Contents of the stack before and after the INT instruction
 
 <div style="display: inline-flex;width: 100%">
-<img src="https://exposnitc.github.io/img/system_call_stack1.png" width="50%"/>
-<img src="https://exposnitc.github.io/img/system_call_stack2.png" width="50%"/>
+<img src="../../assets/img/system_call_stack1.png" width="50%"/>
+<img src="../../assets/img/system_call_stack2.png" width="50%"/>
 </div>
 Now, you will write the system call handler for processing the write request.
 

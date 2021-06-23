@@ -87,7 +87,7 @@ Interrupt routine 6 written in stage 16 reads data (words) only from the termina
 
 
 <figure>
-<img src="https://exposnitc.github.io/img/roadmap/FileRead.png"/>
+<img src="../../assets/img/roadmap/FileRead.png"/>
 <figcaption>Control flow for reading a word from a file  </figcaption>
 </figure>
 
