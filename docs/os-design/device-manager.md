@@ -13,10 +13,10 @@ Memory page number, Disk block number
 
 #### Return Value
 
-|  |  |
-| --- | --- |
-| 0 | Success |
-| -1 | Failure |
+|     |         |
+| --- | ------- |
+| 0   | Success |
+| -1  | Failure |
 
 
 #### Algorithm
@@ -35,10 +35,10 @@ Disk block number, Memory page number
 
 #### Return Value
 
-|  |  |
-| --- | --- |
-| 0 | Success |
-| -1 | Failure |
+|     |         |
+| --- | ------- |
+| 0   | Success |
+| -1  | Failure |
 
 
 #### Algorithm
@@ -57,10 +57,10 @@ data
 
 #### Return Value
 
-|  |  |
-| --- | --- |
-| 0 | Success |
-| -1 | Failure |
+|     |         |
+| --- | ------- |
+| 0   | Success |
+| -1  | Failure |
 
 
 #### Algorithm
@@ -77,10 +77,10 @@ bufferptr
 
 #### Return Value
 
-|  |  |
-| --- | --- |
-| 0 | Success |
-| -1 | Failure |
+|     |         |
+| --- | ------- |
+| 0   | Success |
+| -1  | Failure |
 
 
 #### Algorithm

@@ -95,23 +95,23 @@ goto label1
 SPL provides a fixed set of registers and ports are provided. 
 The register set in SPL contains 29 registers. There is a direct mapping between these registers and the machine registers in XSM. There are 4 ports supported.
 
-| Name | Register/Port |
-| --- | --- |
-| Program Registers | R0 - R15 |
-| Reserved Registers **(For the use of SPL compiler)** | R16 - R19 |
-| Base Pointer | BP  |
-| Stack Pointer | SP |
-| Instruction Pointer | IP  |
-| Page Table Base Register | PTBR  |
-| Page Table Length Register | PTLR  |
-| Exception Instruction Pointer | EIP  |
-| Exception Cause | EC  |
-| Exception Page Number | EPN  |
-| Exception Memory Address | EMA  |
-| Input Port | P0 |
-| Output Port | P1 |
-| Unused Ports | P2, P3 |
-| Core Flag :red_circle: | CORE |
+| Name                                                 | Register/Port |
+| ---------------------------------------------------- | ------------- |
+| Program Registers                                    | R0 - R15      |
+| Reserved Registers **(For the use of SPL compiler)** | R16 - R19     |
+| Base Pointer                                         | BP            |
+| Stack Pointer                                        | SP            |
+| Instruction Pointer                                  | IP            |
+| Page Table Base Register                             | PTBR          |
+| Page Table Length Register                           | PTLR          |
+| Exception Instruction Pointer                        | EIP           |
+| Exception Cause                                      | EC            |
+| Exception Page Number                                | EPN           |
+| Exception Memory Address                             | EMA           |
+| Input Port                                           | P0            |
+| Output Port                                          | P1            |
+| Unused Ports                                         | P2, P3        |
+| Core Flag :red_circle:                               | CORE          |
 
 :red_circle: This is an extra read-only register available only on [NEXSM machine](../arch-spec/nexsm.md) (a two-core extension of XSM).
  

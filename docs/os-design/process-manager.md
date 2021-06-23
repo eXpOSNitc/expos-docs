@@ -12,10 +12,10 @@ NIL
 
 ##### Return Value
 
-|  |  |
-| --- | --- |
+|                                       |         |
+| ------------------------------------- | ------- |
 | Index of the free process table entry | Success |
-| -1 | Failure |
+| -1                                    | Failure |
 
 
 ##### Algorithm
@@ -35,10 +35,10 @@ Process Identifier( PID )
 
 ##### Return Value
 
-|  |  |
-| --- | --- |
-| 0 | Success |
-| -1 | Failure |
+|     |         |
+| --- | ------- |
+| 0   | Success |
+| -1  | Failure |
 
 
 ##### **Algorithm:**

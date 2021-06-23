@@ -12,10 +12,10 @@ NIL
 
 #### Return Value
 
-|  |  |
-| --- | --- |
+|                                   |         |
+| --------------------------------- | ------- |
 | Page number of a free memory page | Success |
-| -1 | Failure |
+| -1                                | Failure |
 
 
 #### Algorithm
@@ -34,10 +34,10 @@ Memory page number
 
 #### Return Value
 
-|  |  |
-| --- | --- |
-| 0 | Success |
-| -1 | Failure |
+|     |         |
+| --- | ------- |
+| 0   | Success |
+| -1  | Failure |
 
 
 #### Algorithm

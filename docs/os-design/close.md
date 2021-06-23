@@ -11,10 +11,10 @@ Arguments: File Descriptor (Integer)
 
 Return Value:
 
-|  |  |
-| --- | --- |
-| 0 | Success |
-| -1 | File Descriptor given is invalid |
+|     |                                  |
+| --- | -------------------------------- |
+| 0   | Success                          |
+| -1  | File Descriptor given is invalid |
 
 
 #### Description 

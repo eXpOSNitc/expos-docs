@@ -12,12 +12,12 @@ File Descriptor(Integer) and the word to be written
 
 ### Return Value
 
-|  |  |
-| --- | --- |
-| 0 | Success |
-| -1 | File Descriptor given is invalid |
-| -2 | No disk space / File Full |
-| -3 | Permission denied |
+|     |                                  |
+| --- | -------------------------------- |
+| 0   | Success                          |
+| -1  | File Descriptor given is invalid |
+| -2  | No disk space / File Full        |
+| -3  | Permission denied                |
 
 
 ### Description

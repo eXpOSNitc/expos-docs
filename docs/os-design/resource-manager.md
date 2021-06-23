@@ -15,10 +15,10 @@ If the resource is either Disk or Terminal, argument = NIL. If the resource is I
 
 #### Return Value
 
-|  |  |
-| --- | --- |
-| 0 | Success |
-| -1 | Failure |
+|     |         |
+| --- | ------- |
+| 0   | Success |
+| -1  | Failure |
 
 
 #### Algorithm
@@ -42,10 +42,10 @@ Inode
 
 #### Return Value
 
-|  |  |
-| --- | --- |
-| 0 | Success |
-| -1 | Failure |
+|     |         |
+| --- | ------- |
+| 0   | Success |
+| -1  | Failure |
 
 
 #### Algorithm

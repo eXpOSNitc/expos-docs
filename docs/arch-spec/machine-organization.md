@@ -29,13 +29,13 @@ The following table gives an overview of XSM registers/ports according to their 
 
 
 
-| Registers | Purpose | Access Mode |
-| --- | --- | --- |
-| *R0-R19 | General Purpose User Registers | Unprivileged |
-| BP, SP, IP | Base, Stack and Instruction Pointers | Unprivileged |
-| PTBR, PTLR | Page Table (Base, Length) Registers | Privileged |
-| EIP, EC, EPN, EMA | Exception Status Registers | Privileged |
-| P0-P3 **(Ports)** | P0-Input port, P1-Output port P2,P3-Unused | Privileged |
+| Registers         | Purpose                                    | Access Mode  |
+| ----------------- | ------------------------------------------ | ------------ |
+| *R0-R19           | General Purpose User Registers             | Unprivileged |
+| BP, SP, IP        | Base, Stack and Instruction Pointers       | Unprivileged |
+| PTBR, PTLR        | Page Table (Base, Length) Registers        | Privileged   |
+| EIP, EC, EPN, EMA | Exception Status Registers                 | Privileged   |
+| P0-P3 **(Ports)** | P0-Input port, P1-Output port P2,P3-Unused | Privileged   |
 
 
 \* The registers R12 - R15 (both inclusive) must be used by the system programmer with caution as they may be used by the OS.
@@ -65,30 +65,30 @@ The Memory of the XSM Machine is organised as follows :
 
 
 
-| Page Number | Contents | Word Address | Number of Words |
-| --- | --- | --- | --- |
-| 0 | ROM Code | 0 - 511 | 512 |
-| 1 | Page for loading the BOOT block | 512 - 1023 | 512 |
-| 2 - 3 | Exception handler (INT 0) | 1024 - 2047 | 1024 |
-| 4 - 5 | Timer Interrupt (INT 1) | 2048 - 3071 | 1024 |
-| 6 - 7 | Disk Interrupt (INT 2) | 3072 – 4095 | 1024 |
-| 8 - 9 | Console Interrupt (INT 3) | 4096 – 5119 | 1024 |
-| 10 - 11 | INT 4 (Create, Delete) | 5120 - 6143 | 1024 |
-| 12 - 13 | INT 5 (Seek, Open, Close) | 6144 - 7167 | 1024 |
-| 14 - 15 | INT 6 (Read) | 7168 - 8191 | 1024 |
-| 16 - 17 | INT 7 (Write) | 8192 - 9215 | 1024 |
-| 18 - 19 | INT 8 (Fork) | 9216 - 10239 | 1024 |
-| 20 - 21 | INT 9 (Exec) | 10240 - 11263 | 1024 |
-| 22 - 23 | INT 10 (Exit) | 11264 - 12287 | 1024 |
-| 24 - 25 | INT 11 (Getpid, Getppid, Wait, Signal) | 12288 - 13311 | 1024 |
-| 26 - 27 | INT 12 (Logout) | 13312 - 14335 | 1024 |
-| 28 - 29 | INT 13 (Semget, Semrelease) | 14336 - 15359 | 1024 |
-| 30 - 31 | INT 14 (SemLock, SemUnLock) | 15360 - 16383 | 1024 |
-| 32 - 33 | INT 15 (Shutdown) | 16384 - 17407 | 1024 |
-| 34 - 35 | INT 16 (Newusr, Remusr, Setpwd, Getuname, Getuid) | 17408 - 18431 | 1024 |
-| 36 - 37 | INT 17 (Login) | 18432 - 19455 | 1024 |
-| 38 - 39 | INT 18 (Test0, Test1, Test2, Test3) | 19456 - 20479 | 1024 |
-| 40 - 127 | Unreserved Pages | 20480 - 65535 | 45056 |
+| Page Number | Contents                                          | Word Address  | Number of Words |
+| ----------- | ------------------------------------------------- | ------------- | --------------- |
+| 0           | ROM Code                                          | 0 - 511       | 512             |
+| 1           | Page for loading the BOOT block                   | 512 - 1023    | 512             |
+| 2 - 3       | Exception handler (INT 0)                         | 1024 - 2047   | 1024            |
+| 4 - 5       | Timer Interrupt (INT 1)                           | 2048 - 3071   | 1024            |
+| 6 - 7       | Disk Interrupt (INT 2)                            | 3072 – 4095   | 1024            |
+| 8 - 9       | Console Interrupt (INT 3)                         | 4096 – 5119   | 1024            |
+| 10 - 11     | INT 4 (Create, Delete)                            | 5120 - 6143   | 1024            |
+| 12 - 13     | INT 5 (Seek, Open, Close)                         | 6144 - 7167   | 1024            |
+| 14 - 15     | INT 6 (Read)                                      | 7168 - 8191   | 1024            |
+| 16 - 17     | INT 7 (Write)                                     | 8192 - 9215   | 1024            |
+| 18 - 19     | INT 8 (Fork)                                      | 9216 - 10239  | 1024            |
+| 20 - 21     | INT 9 (Exec)                                      | 10240 - 11263 | 1024            |
+| 22 - 23     | INT 10 (Exit)                                     | 11264 - 12287 | 1024            |
+| 24 - 25     | INT 11 (Getpid, Getppid, Wait, Signal)            | 12288 - 13311 | 1024            |
+| 26 - 27     | INT 12 (Logout)                                   | 13312 - 14335 | 1024            |
+| 28 - 29     | INT 13 (Semget, Semrelease)                       | 14336 - 15359 | 1024            |
+| 30 - 31     | INT 14 (SemLock, SemUnLock)                       | 15360 - 16383 | 1024            |
+| 32 - 33     | INT 15 (Shutdown)                                 | 16384 - 17407 | 1024            |
+| 34 - 35     | INT 16 (Newusr, Remusr, Setpwd, Getuname, Getuid) | 17408 - 18431 | 1024            |
+| 36 - 37     | INT 17 (Login)                                    | 18432 - 19455 | 1024            |
+| 38 - 39     | INT 18 (Test0, Test1, Test2, Test3)               | 19456 - 20479 | 1024            |
+| 40 - 127    | Unreserved Pages                                  | 20480 - 65535 | 45056           |
 
 
 !!! note

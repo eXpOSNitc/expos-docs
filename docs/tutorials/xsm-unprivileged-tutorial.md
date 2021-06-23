@@ -532,27 +532,25 @@ pages allocated for the stack are 120 and 121, then the page table starting at a
 | Location | Entry | Desciption                                            |
 | -------- | ----- | ----------------------------------------------------- |
 | 1000     | xx    | page 0 physical page number - irrelevant (not loaded) |
-|          |
- 1001
-  | ?? | page 0 invalid – what must be the value set here? |
-| 1002 | xx | page 1 physical page number (not loaded) |
-| 1003 | ?? | page 1 invalid – what must be the value set here? |
-| 1004 | xx | page 2 physical page number (not loaded) |
-| 1005 | ?? | page 2 invalid - what must be the value set here? |
-| 1006 | xx | Page 3 not loaded |
-| 1007 | ?? | Must be set to invalid |
-| 1008 | 100 | Page 4 – loaded to physical page100 |
-| 1009 | ?? | Page 4 – Valid, Write Only – what must be set here? |
-| 1010 | 110 | Page 5 – loaded to physical page 110 |
-| 1011 | ?? | Page 5 Valid, write only |
-| 1012 | xx | Page not loaded |
-| 1013 | ?? | Invalid |
-| 1014 | xx | Page not loaded |
-| 1015 | ?? | Invalid |
-| 1016 | 120 | First stack page |
-| 1017 | ?? | Valid, Write permission on – what must be set here? |
-| 1018 | 121 | Second Stack page |
-| 1019 | ?? | Valid, Write permission on – what must be set here? |
+| 1001     | ??    | page 0 invalid – what must be the value set here?     |
+| 1002     | xx    | page 1 physical page number (not loaded)              |
+| 1003     | ??    | page 1 invalid – what must be the value set here?     |
+| 1004     | xx    | page 2 physical page number (not loaded)              |
+| 1005     | ??    | page 2 invalid - what must be the value set here?     |
+| 1006     | xx    | Page 3 not loaded                                     |
+| 1007     | ??    | Must be set to invalid                                |
+| 1008     | 100   | Page 4 – loaded to physical page100                   |
+| 1009     | ??    | Page 4 – Valid, Write Only – what must be set here?   |
+| 1010     | 110   | Page 5 – loaded to physical page 110                  |
+| 1011     | ??    | Page 5 Valid, write only                              |
+| 1012     | xx    | Page not loaded                                       |
+| 1013     | ??    | Invalid                                               |
+| 1014     | xx    | Page not loaded                                       |
+| 1015     | ??    | Invalid                                               |
+| 1016     | 120   | First stack page                                      |
+| 1017     | ??    | Valid, Write permission on – what must be set here?   |
+| 1018     | 121   | Second Stack page                                     |
+| 1019     | ??    | Valid, Write permission on – what must be set here?   |
 
 
 

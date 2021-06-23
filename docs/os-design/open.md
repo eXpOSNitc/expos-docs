@@ -12,12 +12,12 @@ Filename (String)
 
 ### Return Value
 
-|  |  |
-| --- | --- |
-| File Descriptor (Integer) | Success, the return value is the file descriptor for the opened file.  |
-| -1 | File not found or file is not a data or root file |
-| -2 | System has reached its limit of open files |
-| -3 | Process has reached its limit of resources |
+|                           |                                                                       |
+| ------------------------- | --------------------------------------------------------------------- |
+| File Descriptor (Integer) | Success, the return value is the file descriptor for the opened file. |
+| -1                        | File not found or file is not a data or root file                     |
+| -2                        | System has reached its limit of open files                            |
+| -3                        | Process has reached its limit of resources                            |
 
 
 ### Description

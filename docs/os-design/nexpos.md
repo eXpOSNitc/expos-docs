@@ -22,11 +22,11 @@ The application interface specification of the eXpOS undergoes minor modificatio
  
 
 | **System Call Name** | **System Call Number** |
-| --- | --- |
-| Test4 | 100 |
-| Test5 | 101 |
-| Test6 | 102 |
-| Test7 | 103 |
+| -------------------- | ---------------------- |
+| Test4                | 100                    |
+| Test5                | 101                    |
+| Test6                | 102                    |
+| Test7                | 103                    |
 
 
 
@@ -65,15 +65,15 @@ The application interface specification of the eXpOS undergoes minor modificatio
 
  NEXSM disk has 16 additional disk blocks (block numbers 512 to 527). The OS uses these blocks for loading the following handlers:
  
-| **Block Number** | **Contents** |
-| --- | --- |
-| 512-513 | Secondary Bootstrap Loader |
-| 514-515 | INT 19 handler |
-| 516-517 | Module 8 |
-| 518-519 | Module 9 |
-| 520-521 | Module 10 |
-| 522-523 | Module 11 |
-| 524-527 | Unused |
+| **Block Number** | **Contents**               |
+| ---------------- | -------------------------- |
+| 512-513          | Secondary Bootstrap Loader |
+| 514-515          | INT 19 handler             |
+| 516-517          | Module 8                   |
+| 518-519          | Module 9                   |
+| 520-521          | Module 10                  |
+| 522-523          | Module 11                  |
+| 524-527          | Unused                     |
 
 
 
@@ -93,10 +93,10 @@ The application interface specification of the eXpOS undergoes minor modificatio
  NEXSM has 16 additional pages of memory (pages 128 to 144). The first four new pages are reserved by the machine. These are:
  
 
-| **Page Number** | **Contents** |
-| --- | --- |
-| 128-129 | Secondary bootstrap loader (bootstrap loader for secondary core) |
-| 130-131 | Software interrupt, INT 19 (currently INT19 is unused) |
+| **Page Number** | **Contents**                                                     |
+| --------------- | ---------------------------------------------------------------- |
+| 128-129         | Secondary bootstrap loader (bootstrap loader for secondary core) |
+| 130-131         | Software interrupt, INT 19 (currently INT19 is unused)           |
 
 
 
@@ -110,13 +110,13 @@ The application interface specification of the eXpOS undergoes minor modificatio
 
  From among the remaining 12 available pages, eXpOS reserves the next eight pages for storing OS code as follows:
  
-| **Page Number** | **Contents** |
-| --- | --- |
-| 132-133 | Module 8 ([Access Control Module](../modules/module-08.md)) |
-| 134-135 | Module 9 (TestA Module) |
-| 136-137 | Module 10 (TestB Module) |
-| 138-139 | Module 11 (TestC Module) |
-| 140-143 | Reserved for future use |
+| **Page Number** | **Contents**                                                |
+| --------------- | ----------------------------------------------------------- |
+| 132-133         | Module 8 ([Access Control Module](../modules/module-08.md)) |
+| 134-135         | Module 9 (TestA Module)                                     |
+| 136-137         | Module 10 (TestB Module)                                    |
+| 138-139         | Module 11 (TestC Module)                                    |
+| 140-143         | Reserved for future use                                     |
 
 
 
@@ -192,11 +192,11 @@ The application interface specification of the eXpOS undergoes minor modificatio
 
 
 
-| **Field** | **Function** |
-| --- | --- |
-| KERN\_LOCK | Common access lock to be set before running any critical kernel code other than scheduling. Before performing any kernel function, this lock must be set by the kernel module/interrupt handler so that the other core waits till the critical action is completed. |
-| SCHED\_LOCK | Access lock to run the Scheduler Module. If one core has set the SCHED\_LOCK in the Scheduler Module, the other core runs in a busy loop until execution of the Scheduler Module is completed. |
-| GLOCK | A general purpose lock variable that is left unused for future use. |
+| **Field**   | **Function**                                                                                                                                                                                                                                                        |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| KERN\_LOCK  | Common access lock to be set before running any critical kernel code other than scheduling. Before performing any kernel function, this lock must be set by the kernel module/interrupt handler so that the other core waits till the critical action is completed. |
+| SCHED\_LOCK | Access lock to run the Scheduler Module. If one core has set the SCHED\_LOCK in the Scheduler Module, the other core runs in a busy loop until execution of the Scheduler Module is completed.                                                                      |
+| GLOCK       | A general purpose lock variable that is left unused for future use.                                                                                                                                                                                                 |
 
 
 

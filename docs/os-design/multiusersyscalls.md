@@ -13,12 +13,12 @@ User name, Password
 
 #### Return Value:
 
-|  |  |
-| --- | --- |
-| 0 | Success |
-| -1 | User already exists |
-| -2 | Permission denied |
-| -3 | Number of users has reached the system limit. |
+|     |                                               |
+| --- | --------------------------------------------- |
+| 0   | Success                                       |
+| -1  | User already exists                           |
+| -2  | Permission denied                             |
+| -3  | Number of users has reached the system limit. |
 
 
 #### Description
@@ -55,12 +55,12 @@ User name
 
 #### Return Value
 
-|  |  |
-| --- | --- |
-| 0 | Success |
-| -1 | User does not exist |
-| -2 | Permission denied |
-| -3 | Undeleted files exist for the user |
+|     |                                    |
+| --- | ---------------------------------- |
+| 0   | Success                            |
+| -1  | User does not exist                |
+| -2  | Permission denied                  |
+| -3  | Undeleted files exist for the user |
 
 
 #### Description
@@ -101,11 +101,11 @@ User name, Password
 
 #### Return Value:
 
-|  |  |
-| --- | --- |
-| 0 | Success |
-| -1 | Unauthorised attempt to change password |
-| -2 | The user does not exist |
+|     |                                         |
+| --- | --------------------------------------- |
+| 0   | Success                                 |
+| -1  | Unauthorised attempt to change password |
+| -2  | The user does not exist                 |
 
 
 #### Description
@@ -148,10 +148,10 @@ User name
 
 #### Return Value:
 
-|  |  |
-| --- | --- |
-| -1 | Invalid Username |
-| User Identifier | Success |
+|                 |                  |
+| --------------- | ---------------- |
+| -1              | Invalid Username |
+| User Identifier | Success          |
 
 
 #### Description
@@ -183,10 +183,10 @@ User ID
 
 #### Return Value
 
-|  |  |
-| --- | --- |
-| -1 | Invalid UserID |
-| User Name | Success |
+|           |                |
+| --------- | -------------- |
+| -1        | Invalid UserID |
+| User Name | Success        |
 
 
 #### Description
@@ -223,11 +223,11 @@ User name, Password
 
 #### Return Value 
 
-|  |  |
-| --- | --- |
-| 0 | Success |
-| -1 | Invalid username or password |
-| -2 | Permission denied |
+|     |                              |
+| --- | ---------------------------- |
+| 0   | Success                      |
+| -1  | Invalid username or password |
+| -2  | Permission denied            |
 
 
 #### Description

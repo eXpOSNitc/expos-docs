@@ -11,11 +11,11 @@ None
 
 #### Return Value 
 
-| Value | Description |
-| --- | --- |
-| SEMID (Integer)  | Success, returns a semaphore descriptor(SEMID) |
-| -1 | Process has reached its limit of resources  |
-| -2 | Number of semaphores has reached its maximum |
+| Value           | Description                                    |
+| --------------- | ---------------------------------------------- |
+| SEMID (Integer) | Success, returns a semaphore descriptor(SEMID) |
+| -1              | Process has reached its limit of resources     |
+| -2              | Number of semaphores has reached its maximum   |
 
 
 #### Description
@@ -69,10 +69,10 @@ Semaphore Descriptor (Integer)
 
 #### Return Value
 
-|  |  |
-| --- | --- |
-| 0 | Success |
-| -1 | Semaphore Descriptor is invalid |
+|     |                                 |
+| --- | ------------------------------- |
+| 0   | Success                         |
+| -1  | Semaphore Descriptor is invalid |
 
 
 #### Description
@@ -118,10 +118,10 @@ Semaphore Descriptor (Integer)
 
 #### Return Value
 
-|  |  |
-| --- | --- |
-| 0 | Success or the semaphore is already locked by the current process |
-| -1 | Semaphore Descriptor is invalid |
+|     |                                                                   |
+| --- | ----------------------------------------------------------------- |
+| 0   | Success or the semaphore is already locked by the current process |
+| -1  | Semaphore Descriptor is invalid                                   |
 
 
 #### Description
@@ -171,11 +171,11 @@ Semaphore Descriptor (Integer)
 
 
 
-|  |  |
-| --- | --- |
-| 0 | Success |
-| -1 | Semaphore Descriptor is invalid |
-| -2 | Semaphore was not locked by the calling process |
+|     |                                                 |
+| --- | ----------------------------------------------- |
+| 0   | Success                                         |
+| -1  | Semaphore Descriptor is invalid                 |
+| -2  | Semaphore was not locked by the calling process |
 
 
 #### Description

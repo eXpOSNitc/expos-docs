@@ -12,11 +12,11 @@ File Descriptor(Integer) and a Buffer (a String/Integer variable) into which a w
 
 ### Return Value
 
-|  |  |
-| --- | --- |
-| 0 | Success |
-| -1 | File Descriptor given is invalid |
-| -2 | File pointer has reached the end of file |
+|     |                                          |
+| --- | ---------------------------------------- |
+| 0   | Success                                  |
+| -1  | File Descriptor given is invalid         |
+| -2  | File pointer has reached the end of file |
 
 ### Description
 The Read operation reads one word from the position pointed by the file pointer and stores it into the buffer. After each read operation, the file pointer advances to the next word in the file.

@@ -11,10 +11,10 @@ Arguments: Filename (String), Permission (0 - exclusive/1 - open-access)
 
 Return Value:
 
-|  |  |
-| --- | --- |
-| 0 | Success/File already exists |
-| -1 | No free inode table entry |
+|     |                             |
+| --- | --------------------------- |
+| 0   | Success/File already exists |
+| -1  | No free inode table entry   |
 
 
 #### Description

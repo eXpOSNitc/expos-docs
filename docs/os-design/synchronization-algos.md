@@ -14,10 +14,10 @@ Process Identifier of the process for which the current process has to wait.
 
 #### Return Values
 
-|  |  |
-| --- | --- |
-| 0 | Success |
-| -1 | Given process identifier is invalid or it is the pid of the same process invoking wait |
+|     |                                                                                        |
+| --- | -------------------------------------------------------------------------------------- |
+| 0   | Success                                                                                |
+| -1  | Given process identifier is invalid or it is the pid of the same process invoking wait |
 
 
 #### Description
@@ -60,9 +60,9 @@ None
 
 #### Return Value: 
 
-|  |  |
-| --- | --- |
-| 0 | Success |
+|     |         |
+| --- | ------- |
+| 0   | Success |
 
 
 #### Description
