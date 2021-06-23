@@ -68,7 +68,7 @@ This document discusses the mapping of various eXpOS data structures to the XSM 
 ### Memory Organization
 The Memory layout of the XSM machine is as follows :
 
-<!-- This table can't be migrated because it has colspan -->
+<!-- This table can't be migrated because it has colspan, rowspan -->
 <div class="md-typeset__table">
 <table class="table table-bordered" style="text-align: center;">
 <thead>
