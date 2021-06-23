@@ -1,6 +1,6 @@
 ---
 title: 'Kernel Stack Management During Context switch'
-original_url: 'http://eXpOSNitc.github.io/os_design-files/timer_stack-management.html'
+original_url: 'http://eXpOSNitc.github.io/os_design-files/timer_stack_management.html'
 hide:
     - navigation
 ---
