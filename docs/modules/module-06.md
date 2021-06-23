@@ -6,9 +6,9 @@ original_url: 'http://eXpOSNitc.github.io/os_modules/Module_6.html'
 This module is responsible for swapping in and out processes. Swap-out is initiated from the timer interrupt when the free memory is critically low. Similiarly, if there is enough memory available in the system, swap-in is initiated by the timer.
 
 | Function Number | Function Name | Arguments | Return Value |
-| --- | --- | --- | --- |
-| SWAP\_OUT = 1 | Swap Out | PID | NIL |
-| SWAP\_IN = 2 | Swap In | PID | NIL |
+| --------------- | ------------- | --------- | ------------ |
+| SWAP\_OUT = 1   | Swap Out      | PID       | NIL          |
+| SWAP\_IN = 2    | Swap In       | PID       | NIL          |
 
 ![](../assets/img/modules/Pager.png)
 
