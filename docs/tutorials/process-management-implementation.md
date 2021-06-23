@@ -53,7 +53,7 @@ The OS expects that the application program logically divides the 10 page logica
 The ​_Exec_ system call uses the ​_DiskLoad_ function of the ​[Device Manager Module](../modules/module-04.md)​ to load the contents of the executable file specified into logical pages 4,5,6 and 7. (That is, the disk blocks will be loaded to the physical pages corresponding to these logical pages). Logical pages 0 and 1 are mapped to the eXpOS ​[run time library​](../abi.md). The OS pre-loads the library into memory pages 63 and 64 at boot time. The ​_Exec_ system call sets the page table entries for the logical pages 0 and 1 of each process to physical pages 63 and 64. Pages are allocated using the _GetFreePage_​ function of the ​Memory Manager Module​ for stack and heap regions of memory during program loading.
 
 <figure>
-    <img src="http://exposnitc.github.io/img/roadmap/exec3.png">
+    <img src="../../assets/img/roadmap/exec3.png">
     <figcaption>Control flow diagram for <i>Exec</i> system call</figcaption>
 </figure>
 
@@ -96,7 +96,7 @@ After initializing process meta-data in child’s process table and setting up t
 
 After completing the work, ​_Fork_ returns to the parent and the parent process continues execution immediately. The OS scheduler will put the child to execution in due course of round robin scheduling.
 <figure>
-    <img src="http://exposnitc.github.io/img/roadmap/fork.png">
+    <img src="../../assets/img/roadmap/fork.png">
     <figcaption>Control flow diagram for <i>Fork</i> system call</figcaption>
 </figure>
 

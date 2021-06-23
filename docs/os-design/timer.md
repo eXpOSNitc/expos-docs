@@ -11,7 +11,7 @@ with a timer device that sends periodic hardware interrupts.
 The timer interrupt handler internally invokes the eXpOS  [scheduler module](../modules/module-05.md) . 
  
 <figure>
-    <img src="http://exposnitc.github.io/img/roadmap/timer_interrupt.png">
+    <img src="../../assets/img/roadmap/timer_interrupt.png">
     <figcaption>Control flow diagram for *Timer interrupt handler*</figcaption>
 </figure>
 

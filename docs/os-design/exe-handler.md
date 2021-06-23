@@ -28,7 +28,7 @@ The MODE FLAG must be set upon entering the system call and reset before returni
 
 
 <figure>
-	<img src="http://exposnitc.github.io/img/roadmap/exception.png">
+	<img src="../../assets/img/roadmap/exception.png">
 	<figcaption>Control flow diagram for *Exception handler*</figcaption>
 </figure>
  

@@ -1,6 +1,6 @@
 ---
 title: 'Kernel Stack Management During Context switch'
-original_url: 'http://eXpOSNitc.github.io/os_design-files/timer_stack_management.html'
+original_url: 'http://eXpOSNitc.github.io/os_design-files/timer_stack-management.html'
 hide:
     - navigation
 ---
@@ -109,7 +109,7 @@ The scheduler module is responsible for performing the actual context switch. Co
 
  
 <div style="padding: 1em;border: 1px solid var(--md-code-fg-color);">
-<img src="http://exposnitc.github.io/img/kernel_mode_timer_step2.i.a.png">
+<img src="../../assets/img/kernel_mode_timer_step2.i.a.png">
 <pre><code>			
 ...
 						
@@ -141,7 +141,7 @@ MOV SP, R4
 
 
 <div style="padding: 1em;border: 1px solid var(--md-code-fg-color);">
-<img src="http://exposnitc.github.io/img/user_mode_timer_step2c.png">
+<img src="../../assets/img/user_mode_timer_step2c.png">
 <pre><code>
 ...
 						

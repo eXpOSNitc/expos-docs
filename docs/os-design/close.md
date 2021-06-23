@@ -21,7 +21,7 @@ Return Value:
 The Close system call closes an open file. The file descriptor ceases to be valid once the close system call is invoked. 
 
 <figure>
-<img src="http://exposnitc.github.io/img/roadmap/close.png">
+<img src="../../assets/img/roadmap/close.png">
 <figcaption>Control flow diagram for *Close* system call</figcaption>
 </figure>
   

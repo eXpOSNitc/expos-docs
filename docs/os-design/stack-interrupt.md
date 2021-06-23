@@ -23,7 +23,7 @@ On Receiving an interrupt or exception, the XSM machine does 3 things:
 
 <div style="padding: 1em;border: 1px solid var(--md-code-fg-color);">
 <b>Execution context just after interrupt/exception:</b>
-<img src="http://exposnitc.github.io/img/Stack_Management/Kernel_interrupt1.png">
+<img src="../../assets/img/stack-management/Kernel_interrupt1.png">
 </div>
 
 
@@ -40,7 +40,7 @@ On Receiving an interrupt or exception, the XSM machine does 3 things:
 3. Continue execution of the interrupt routine code
 
 <div style="padding: 1em;border: 1px solid var(--md-code-fg-color);">
-<img src="https://exposnitc.github.io/img/Stack_Management/Kernel_interrupt2.png">
+<img src="https://exposnitc.github.io/img/stack-management/Kernel_interrupt2.png">
 <pre><code>
 <b>Pseudo code</b>
 ....
@@ -58,7 +58,7 @@ MOV SP, User Area Page Number*512 - 1
 </div>
 
 <div style="padding: 1em;border: 1px solid var(--md-code-fg-color);">
-<img src="https://exposnitc.github.io/img/Stack_Management/Kernel_interrupt3.png">
+<img src="https://exposnitc.github.io/img/stack-management/Kernel_interrupt3.png">
 <pre><code>
 <b>Pseudo code</b>
 
@@ -79,7 +79,7 @@ BACKUP		// machine instruction to save the
 3. Transfer control back to the user process
 
 <div style="padding: 1em;border: 1px solid var(--md-code-fg-color);">
-<img src="http://exposnitc.github.io/img/Stack_Management/Kernel_interrupt4.png">
+<img src="../../assets/img/stack-management/Kernel_interrupt4.png">
 <pre><code>
 <b>Pseudo code</b>
 
@@ -94,7 +94,7 @@ RESTORE		// machine instruction to restore
 
 
 <div style="padding: 1em;border: 1px solid var(--md-code-fg-color);">
-<img src="https://exposnitc.github.io/img/Stack_Management/Kernel_interrupt5.png">
+<img src="https://exposnitc.github.io/img/stack-management/Kernel_interrupt5.png">
 <pre><code>
 <b>Pseudo code</b>
 ....

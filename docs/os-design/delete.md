@@ -21,7 +21,7 @@ Return Value:
 The Delete operation takes as input a filename and deletes it. It returns with an error if any instance of the file is open in the system or if the file is not a DATA file. Delete command fails also if the file to be deleted does not belong to the current user and it has exclusive permissions. Otherwise, it deletes the root entry for the file name, invalidates the Inode Table entry for the file, releases the disk blocks allocated to the file and returns 0. 
 
 <figure>
-	<img src="http://exposnitc.github.io/img/roadmap/delete.png">
+	<img src="../../assets/img/roadmap/delete.png">
 	<figcaption>Control flow diagram for *Delete* system call</figcaption>
 </figure>
   

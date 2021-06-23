@@ -25,7 +25,7 @@ The semaphores of a process are shared with it's child processes. Data Structure
 The mode flag in the [Process Table](process-table.md) has to be set to Kernel mode when the process enters the system call and must be reset before exiting from the system call.
 
 <figure>
-    <img src="http://exposnitc.github.io/img/roadmap/semget.png">
+    <img src="../../assets/img/roadmap/semget.png">
     <figcaption>Control flow diagram for *Semget* system call</figcaption>
 </figure>
 
@@ -82,7 +82,7 @@ This system call is used to release a semaphore descriptor held by the process. 
   
 
 <figure>
-    <img src="http://exposnitc.github.io/img/roadmap/semrelease.png">
+    <img src="../../assets/img/roadmap/semrelease.png">
     <figcaption>Control flow diagram for *Semrelease* system call</figcaption>
 </figure>
   

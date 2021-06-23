@@ -22,7 +22,7 @@ File Descriptor(Integer) and a Buffer (a String/Integer variable) into which a w
 The Read operation reads one word from the position pointed by the file pointer and stores it into the buffer. After each read operation, the file pointer advances to the next word in the file.
 
 <figure>
-	<img src="http://exposnitc.github.io/img/roadmap/FileRead.png">
+	<img src="../../assets/img/roadmap/FileRead.png">
 	<figcaption>Control flow diagram for *Read* system call</figcaption>
 </figure>
 

@@ -28,7 +28,7 @@ Inode table and root file stores details of every eXpOS file stored in the disk.
 
 #### Interrupt routine 4
 <figure>
-<img src="http://exposnitc.github.io/img/roadmap/create_delete.png"/>
+<img src="../../assets/img/roadmap/create_delete.png"/>
 <figcaption>Control flow for <i>Create </i>and<i>Delete </i>system calls</figcaption>
 </figure>
 
@@ -74,7 +74,7 @@ There is one subtility involved in deleting a file. If any of the disk blocks of
 _Create_ and _Delete_ system calls update the memory copies of Inode table, disk free list and root file. The changed data structures are not committed into the disk by these system calls. The disk update for these data structures are done during system shutdown.
 
 <figure>
-<img src="http://exposnitc.github.io/img/roadmap/Initial_shutdown.png"/>
+<img src="../../assets/img/roadmap/Initial_shutdown.png"/>
 <figcaption>Control flow for <i>Shutdown</i>system call</figcaption>
 </figure>
 

@@ -47,7 +47,7 @@ Please note that the description below does not apply to the [stack management d
 	The XSM Machine, on execution of INT instruction, pushes the return adress (IP + 2 value) on to the user stack.
   
 <div style="padding: 1em;border: 1px solid var(--md-code-fg-color);">
-<img src="http://exposnitc.github.io/img/Stack_Management/actions_of_process_upon_encountering_sys_call.png">
+<img src="../../assets/img/stack-management/actions_of_process_upon_encountering_sys_call.png">
 <pre><code>
 <b>Pseudo code</b>
 .... 			// Code to push registers
@@ -73,7 +73,7 @@ INT number		//  Invoke the corresponding INT
     3. Transfer the physical address of the kernel stack pointer to the SP register.
 4. Identify the system call using the system call number and transfer control to the system call code
 <div style="padding: 1em;border: 1px solid var(--md-code-fg-color);">
-<img src="http://exposnitc.github.io/img/Stack_Management/actions_of_process_upon_encountering_sys_call.png">
+<img src="../../assets/img/stack-management/actions_of_process_upon_encountering_sys_call.png">
 <pre><code>
 <b>Pseudo code</b>
 ... 
@@ -104,7 +104,7 @@ MOV SP, R4
 
 
 <div style="padding: 1em;border: 1px solid var(--md-code-fg-color);">
-<img src="http://exposnitc.github.io/img/Stack_Management/actions_of_kernel_returning_from_sys_call_step3.png">
+<img src="../../assets/img/stack-management/actions_of_kernel_returning_from_sys_call_step3.png">
 <pre><code>
 <b>Pseudo code</b>
 ....		   
@@ -136,7 +136,7 @@ IRET		// return to the user program
 3. Restore the register context and resume execution.
 
 <div style="padding: 1em;border: 1px solid var(--md-code-fg-color);">
-<img src="http://exposnitc.github.io/img/Stack_Management/actions_of_process_aftr_return_sys_call.png">
+<img src="../../assets/img/stack-management/actions_of_process_aftr_return_sys_call.png">
 <pre><code>
 <b>Pseudo code</b>
 
@@ -183,11 +183,11 @@ This context is restored before the return from the kernel module.
 
 <div style="padding: 1em;border: 1px solid var(--md-code-fg-color);">
 <b>Execution context before an interrupt/exception:</b>
-<img src="http://exposnitc.github.io/img/Stack_Management/execn_context_b4_interrupt.png">
+<img src="../../assets/img/stack-management/execn_context_b4_interrupt.png">
 </div>
 
 <div style="padding: 1em;border: 1px solid var(--md-code-fg-color);">
-<img src="http://exposnitc.github.io/img/Stack_Management/aftr_interrupt_step1a.png">
+<img src="../../assets/img/stack-management/aftr_interrupt_step1a.png">
 <pre><code>
 <b>Pseudo code</b>	
 ....
@@ -206,7 +206,7 @@ MOV SP, User Area Page Number*512 + KPTR
 </div>
 
 <div style="padding: 1em;border: 1px solid var(--md-code-fg-color);">
-<img src="http://exposnitc.github.io/img/Stack_Management/aftr_interrupt_step1b.png">
+<img src="../../assets/img/stack-management/aftr_interrupt_step1b.png">
 <pre><code>
 <b>Pseudo code</b>
 ....
@@ -229,7 +229,7 @@ BACKUP		// machine instruction to save the
 
 
 <div style="padding: 1em;border: 1px solid var(--md-code-fg-color);">
-<img src="https://exposnitc.github.io/img/Stack_Management/aftr_interrupt_step2a.png">
+<img src="https://exposnitc.github.io/img/stack-management/aftr_interrupt_step2a.png">
 <pre><code>
 <b>Pseudo code</b>
 ....
@@ -241,7 +241,7 @@ RESTORE		// machine instruction to restore
 </div>
   
 <div style="padding: 1em;border: 1px solid var(--md-code-fg-color);">
-<img src="http://exposnitc.github.io/img/Stack_Management/aftr_interrupt_step2b.png">
+<img src="../../assets/img/stack-management/aftr_interrupt_step2b.png">
 <pre><code>
 <b>Pseudo code</b>
 
@@ -288,7 +288,7 @@ the register context upon return before resuming its execution.
 3. Transfer control to the kernel module to be executed 
 
 <div style="padding: 1em;border: 1px solid var(--md-code-fg-color);">
-<img src="http://exposnitc.github.io/img/Stack_Management/kernel_to_kernel_step1a.png">
+<img src="../../assets/img/stack-management/kernel_to_kernel_step1a.png">
 <pre><code>
 <b>Pseudo code</b>	
 			
@@ -312,7 +312,7 @@ CALL MODULE\_N
 
 
 <div style="padding: 1em;border: 1px solid var(--md-code-fg-color);">
-<img src="http://exposnitc.github.io/img/Stack_Management/kernel_to_kernel_step2.png">
+<img src="../../assets/img/stack-management/kernel_to_kernel_step2.png">
 <pre><code>
 <b>Pseudo code</b>	
 ....

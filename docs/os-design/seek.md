@@ -31,7 +31,7 @@ If a positive offset goes beyond the size of the file, the seek position will be
   
 
 <figure>
-	<img src="http://exposnitc.github.io/img/roadmap/Seek.png">
+	<img src="../../assets/img/roadmap/Seek.png">
 	<figcaption>Control flow diagram for *Seek* system call</figcaption>
 </figure>
 

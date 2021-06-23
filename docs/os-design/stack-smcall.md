@@ -49,7 +49,7 @@ of return.
 5. Invoke the INT machine instruction corresponding to the system call
 
 <div style="padding: 1em;border: 1px solid var(--md-code-fg-color);">
-<img src="http://exposnitc.github.io/img/Stack_Management/Kernel_sw1.png">
+<img src="../../assets/img/stack-management/Kernel_sw1.png">
 <pre><code>
 <b>Pseudo code</b>
 
@@ -80,7 +80,7 @@ INT number		// Invoke the corresponding INT
   
 
 <div style="padding: 1em;border: 1px solid var(--md-code-fg-color);">
-<img src="http://exposnitc.github.io/img/Stack_Management/Kernel_sw2.png">
+<img src="../../assets/img/stack-management/Kernel_sw2.png">
 <pre><code>
 <b>Pseudo code</b>
 
@@ -108,7 +108,7 @@ SP   <- User Area Page Number * 512 - 1
 4. Return to the user program using the IRET machine instruction
 
 <div style="padding: 1em;border: 1px solid var(--md-code-fg-color);">
-<img src="http://exposnitc.github.io/img/Stack_Management/Kernel_sw1.png">
+<img src="../../assets/img/stack-management/Kernel_sw1.png">
 <pre><code>
 <b>Pseudo code</b>
 ....		   

@@ -27,7 +27,7 @@ The mode flag in the [Process Table](process-table.md) has to be set to Kernel m
 
   
 <figure>
-    <img src="http://exposnitc.github.io/img/roadmap/exec3.png">
+    <img src="../../assets/img/roadmap/exec3.png">
     <figcaption>Control flow diagram for *Exec* system call</figcaption>
 </figure>
  

@@ -17,7 +17,7 @@ In this stage, we will understand the mechanism of opening and closing a file wi
 The system calls *Open* and *Close* are implemented in the interrupt routine 5. *Open* and *Close* have system call numbers 2 and 3 respectively. From ExpL programs, these system calls are called using [exposcall function](../os-spec/dynamicmemoryroutines.md) .
 
 <figure>
-<img src="http://exposnitc.github.io/img/roadmap/open_close.png"/>
+<img src="../../assets/img/roadmap/open_close.png"/>
 <figcaption>Control flow for <i>Open</i> and <i>Close</i> system calls</figcaption>
 </figure>
 

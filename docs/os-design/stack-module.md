@@ -48,7 +48,7 @@ the register context upon return before resuming its execution.
 3. Transfer control to the kernel module to be executed 
 
 <div style="border: 1px solid var(--md-code-fg-color);padding: 1em">
-<img src="http://exposnitc.github.io/img/Stack_Management/kernel_to_kernel_step1a.png">
+<img src="../../assets/img/stack-management/kernel_to_kernel_step1a.png">
 <pre><code>
 <b>Pseudo code</b>
 			
@@ -77,7 +77,7 @@ CALL MODULE\_N
 3. Use RET instruction to transfer control back to the kernel module which invoked it 
 
 <div style="border: 1px solid var(--md-code-fg-color);padding: 1em">
-<img src="http://exposnitc.github.io/img/Stack_Management/kernel_to_kernel_step2.png">
+<img src="../../assets/img/stack-management/kernel_to_kernel_step2.png">
 <pre><code>
 <b>Pseudo code</b>	
 ....

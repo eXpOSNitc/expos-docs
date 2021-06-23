@@ -75,7 +75,7 @@ their access is read only.
     that the parent is allocated its heap pages and these pages are shared with the child.
 
 <figure>
-<img src="http://exposnitc.github.io/img/roadmap/fork.png"/>
+<img src="../../assets/img/roadmap/fork.png"/>
 <figcaption>Control flow for <i>Fork</i>system call</figcaption>
 </figure>
 
@@ -152,7 +152,7 @@ the state of the process to TERMINATED. These tasks are done by invoking the ** 
 function of the [process manager module](../modules/module-01.md).
 
 <figure>
-<img src="http://exposnitc.github.io/img/roadmap/exit.png"/>
+<img src="../../assets/img/roadmap/exit.png"/>
 <figcaption>Control flow for<i>Exit</i>system call</figcaption>
 </figure>
 <i>Exit</i>system call has a system call number 10 and is implemented in the interrupt

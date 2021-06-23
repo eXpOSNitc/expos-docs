@@ -20,7 +20,7 @@ Invoked when the physical memory is critically low. The function chooses a proce
 
 
 <figure>
-<img src="http://exposnitc.github.io/img/roadmap/swap_out.png">
+<img src="../../assets/img/roadmap/swap_out.png">
 <figcaption>Control flow diagram for *Swap Out*</figcaption>
 </figure>
 
@@ -82,7 +82,7 @@ Called by the timer interrupt.
 Invoked when the physical memory is high enough that a process can be swapped in. If a suitable process is found, it is loaded back to the main memory. PID of the currently running process is passed as an argument.  
 
 <figure>
-<img src="http://exposnitc.github.io/img/roadmap/swap_in.png">
+<img src="../../assets/img/roadmap/swap_in.png">
 <figcaption>Control flow diagram for *Swap In*</figcaption>
 </figure>
   
