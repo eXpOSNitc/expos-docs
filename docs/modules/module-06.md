@@ -60,7 +60,7 @@ Invalidate the Page table entries correpsonding to the two stack pages.
 
 Set the SWAP_FLAG field in the process table entry of the process to 1.
 
-In the <a href="../../os-design/mem-ds/#ss_table">System Status Table</a>, increment the SWAP_COUNT and reset the PAGING_STATUS back to 0.	
+In the <a href="../../os-design/mem-ds/#system-status-table">System Status Table</a>, increment the SWAP_COUNT and reset the PAGING_STATUS back to 0.	
 /* The scheduler can now resume normal scheduling */ 
 
 return;
@@ -115,7 +115,7 @@ Invalidate the Disk Map Table entry of the process corresponding to the pages.
 
 Set the SWAP_FLAG field in the process table entry of the process to 0.
 
-In the <a href="../../os-design/mem-ds/#ss_table">System Status Table</a>, decrement the SWAP_COUNT and reset the PAGING_STATUS back to 0.	
+In the <a href="../../os-design/mem-ds/#system-status-table">System Status Table</a>, decrement the SWAP_COUNT and reset the PAGING_STATUS back to 0.	
 /* The scheduler can now resume normal scheduling */ 
 
 return;

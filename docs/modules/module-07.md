@@ -68,19 +68,19 @@ Initialize <a href="../../os-design/process-table/#disk_map_table" target="_blan
 /* Initialize all memory data structures */
 
 Set the states of all processes (other than INIT, IDLE, SHELL and Swapper Daemon) in the <a href="../../os-design/process-table/" target="_blank">process table</a> to TERMINATED.
-Reset the status field in the <a href="../../os-design/mem-ds/#ts_table" target="_blank">terminal status table</a> and <a href="../../os-design/mem-ds/#ds_table" target="_blank">disk status table</a> to 0.
-Initialize the <a href="../../os-design/mem-ds/#mem_free_list" target="_blank">memory free list</a> by setting 0 (free) for free entries and 1 for allocated pages.
+Reset the status field in the <a href="../../os-design/mem-ds/#terminal-status-table" target="_blank">terminal status table</a> and <a href="../../os-design/mem-ds/#disk-status-table" target="_blank">disk status table</a> to 0.
+Initialize the <a href="../../os-design/mem-ds/#memory-free-list" target="_blank">memory free list</a> by setting 0 (free) for free entries and 1 for allocated pages.
 // presently 82 memory pages are allocated
 
-Initialize the fields of <a href="../../os-design/mem-ds/#ss_table" target="_blank">System Status Table</a>. MEM_FREE_COUNT as 45, WAIT_MEM_COUNT as 0, SWAPPED_COUNT as 0, PAGING_STATUS as 0.
+Initialize the fields of <a href="../../os-design/mem-ds/#system-status-table" target="_blank">System Status Table</a>. MEM_FREE_COUNT as 45, WAIT_MEM_COUNT as 0, SWAPPED_COUNT as 0, PAGING_STATUS as 0.
 
 Invalidate <a href="../../os-design/process-table/#per_process_table" target="_blank">Per Process Resource Table</a> of INIT and SHELL processes (all entries are set to -1).
 
 Store 0 in the PROCESS_COUNT field for all entries in <a href="../../os-design/mem-ds/#semaphore-table" target="_blank">Semaphore Table</a>.
 
-Initialize BLOCK NUMBER to -1, DIRTY BIT to 0 and LOCKING PID to -1 for the four buffer pages in the <a href="../../os-design/mem-ds/#buffer_table" target="_blank">Buffer table</a>.
+Initialize BLOCK NUMBER to -1, DIRTY BIT to 0 and LOCKING PID to -1 for the four buffer pages in the <a href="../../os-design/mem-ds/#buffer-table" target="_blank">Buffer table</a>.
 
-Set FILE OPEN COUNT and LOCKING PID to -1 for all entries in the <a href="../../os-design/mem-ds/#file_lock_status_table" target="_blank">File Status Table</a>. 
+Set FILE OPEN COUNT and LOCKING PID to -1 for all entries in the <a href="../../os-design/mem-ds/#file-inode-status-table" target="_blank">File Status Table</a>. 
 
 Set the INODE INDEX to -1 in the <a <a href="../../os-design/mem-ds/" target="_blank">Open File Table</a> for all entries.
 

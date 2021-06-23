@@ -49,12 +49,12 @@ If the file is not a DATA file, return -1.
 
 Acquire a lock on the file by calling the <b>acquire_inode()</b> function in the <a href="../../modules/module-00/">Resource Manager</a> module.
 
-Check if the the file open count is -1 in the <a href="../../os-design/mem-ds/#file_lock_status_table" target="_blank"> File Status Table </a>. If not, release the lock and return -2.    
+Check if the the file open count is -1 in the <a href="../../os-design/mem-ds/#file-inode-status-table" target="_blank"> File Status Table </a>. If not, release the lock and return -2.    
 /* File is open, cannot be deleted */
 
 <b>For</b> each disk block allocated to the file, <b>do</b> { 	/* Check <a href="../../os-design/disk-ds/#inode_table" target="_blank">Inode Table</a> */
 	If the disk block is loaded into a buffer, and the DIRTY BIT is set, reset the dirty bit. 
-	/* Check the <a href="../../os-design/mem-ds/#buffer_table">Buffer Table</a> */ 
+	/* Check the <a href="../../os-design/mem-ds/#buffer-table">Buffer Table</a> */ 
 
 	Call the <b>release_block()</b> function in the <a href="../../modules/module-02/">Memory Manager</a> module to free the disk block.        
 }

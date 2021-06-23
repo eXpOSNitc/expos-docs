@@ -25,7 +25,7 @@ Handles Terminal I/O and Disk operations (Load and Store).
 Acquire the lock on the disk device by calling the Acquire_Disk() function
 in the <a href="../../modules/module-00/">Resource Manager</a> module;
 
-Set the LOAD/STORE BIT, PAGE NUMBER and BLOCK NUMBER in the <a href="../../os-design/mem-ds/#ds_table">Disk Status Table</a>.
+Set the LOAD/STORE BIT, PAGE NUMBER and BLOCK NUMBER in the <a href="../../os-design/mem-ds/#disk-status-table">Disk Status Table</a>.
 
 Use the store statement to store the memory page to disk;
 
@@ -50,7 +50,7 @@ Called by Shutdown, Buffer Read and Buffer Write.
 Acquire the lock on the disk device by calling the Acquire_Disk() function
 in the <a href="../../modules/module-00/">Resource Manager</a> module;
 
-Reset the LOAD/STORE BIT, set PAGE NUMBER and BLOCK NUMBER in the <a href="../../os-design/mem-ds/#ds_table">Disk Status Table</a>.
+Reset the LOAD/STORE BIT, set PAGE NUMBER and BLOCK NUMBER in the <a href="../../os-design/mem-ds/#disk-status-table">Disk Status Table</a>.
 
 Use the load statement to load the disk block to memory;
 

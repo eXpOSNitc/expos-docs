@@ -48,7 +48,7 @@ Set the value of SP to the beginning of User Area Page.
 Call the exit_process() function in the <a href="../../modules/module-01/">Process Manager Module</a> to deallocate resources of the current process.
 
 Reacquire the same User Area Page of the old process manually by incrementing 
-the <a href="../../os-design/mem-ds/#mem_free_list">Mem Free List</a> and decrementing MEM_FREE_COUNT in the <a href="../../os-design/mem-ds/#ss_table">System Status Table</a>.
+the <a href="../../os-design/mem-ds/#memory-free-list">Mem Free List</a> and decrementing MEM_FREE_COUNT in the <a href="../../os-design/mem-ds/#system-status-table">System Status Table</a>.
 
 /* exit_process() in the previous step deallocated the user area page, and 
 hence we immediately reclaim the page for loading the new program.  Since the page

@@ -267,7 +267,7 @@ Routine</a></td>
 <td>256</td>
 </tr>
 <tr>
-<td><a href="../os-design/mem-ds/#file_table" target="_blank">Open File Table</a></td>
+<td><a href="../os-design/mem-ds/#open-file-table" target="_blank">Open File Table</a></td>
 <td>28928 - 29055</td>
 <td>128</td>
 </tr>
@@ -278,32 +278,32 @@ Routine</a></td>
 </tr>
 <tr>
 <td rowspan="7" style="vertical-align:middle">57</td>
-<td><a href="../os-design/mem-ds/#mem_free_list" target="_blank">Memory Free List</a></td>
+<td><a href="../os-design/mem-ds/#memory-free-list" target="_blank">Memory Free List</a></td>
 <td>29184 - 29311</td>
 <td>128</td>
 </tr>
 <tr>
-<td><a href="../os-design/mem-ds/#file_lock_status_table" target="_blank">File Status Table</a></td>
+<td><a href="../os-design/mem-ds/#file-inode-status-table" target="_blank">File Status Table</a></td>
 <td>29312 - 29551</td>
 <td>240</td>
 </tr>
 <tr>
-<td><a href="../os-design/mem-ds/#ds_table" target="_blank">Disk Status Table</a></td>
+<td><a href="../os-design/mem-ds/#disk-status-table" target="_blank">Disk Status Table</a></td>
 <td>29552 - 29559</td>
 <td>8</td>
 </tr>
 <tr>
-<td><a href="../os-design/mem-ds/#ss_table" target="_blank">System Status Table</a></td>
+<td><a href="../os-design/mem-ds/#system-status-table" target="_blank">System Status Table</a></td>
 <td>29560 - 29567</td>
 <td>8</td>
 </tr>
 <tr>
-<td><a href="../os-design/mem-ds/#ts_table" target="_blank">Terminal Status Table</a></td>
+<td><a href="../os-design/mem-ds/#terminal-status-table" target="_blank">Terminal Status Table</a></td>
 <td>29568 - 29575</td>
 <td>8</td>
 </tr>
 <tr>
-<td><a href="../os-design/mem-ds/#al_table" target="_blank" style="color:red">Access Lock Table <span style="color:red">*</span></a></td>
+<td><a href="../os-design/mem-ds/#access-lock-table" target="_blank" style="color:red">Access Lock Table <span style="color:red">*</span></a></td>
 <td>29576 - 29583</td>
 <td>8</td>
 </tr>
@@ -319,7 +319,7 @@ Routine</a></td>
 <td>320</td>
 </tr>
 <tr>
-<td><a href="../os-design/mem-ds/#buffer_table" target="_blank">Buffer Table</a></td>
+<td><a href="../os-design/mem-ds/#buffer-table" target="_blank">Buffer Table</a></td>
 <td>30016 - 30031</td>
 <td>16</td>
 </tr>

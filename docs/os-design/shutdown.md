@@ -36,7 +36,7 @@ If the current user is not the root, return -1.
 Kill all user processes except the idle, login and the current process(shell) by calling the 
 <b>kill_all()</b> function in the <a href="../../modules/module-01/">Process Manager</a> module.
 
-Loop through the <a href="../mem-ds/#buffer_table">Buffer Table</a>
+Loop through the <a href="../mem-ds/#buffer-table">Buffer Table</a>
 	If the buffer is dirty
 		Commit changes to the disk by calling the <b>disk_store()</b> function in the <a href="../../modules/module-04/">Device Manager</a> module.
 

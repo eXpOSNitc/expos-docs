@@ -22,7 +22,7 @@ Set the value of SP to the beginning of User Area Page.
 
 Backup the register context of the current process using the <a href="../../arch-spec/instruction-set/">BACKUP</a> instruction.
 
-Set the status field in <a href="../../os-design/mem-ds/#ts_table" target="_blank">Terminal Status Table</a> to 0 to indicate that the terminal is free.
+Set the status field in <a href="../../os-design/mem-ds/#terminal-status-table" target="_blank">Terminal Status Table</a> to 0 to indicate that the terminal is free.
 
 Using the PID field of the Terminal Status Table, locate the <a href="../../os-design/process-table/" target="_blank">Process Table</a> entry of the process that read the data.
 

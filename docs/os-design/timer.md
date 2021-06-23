@@ -27,7 +27,7 @@ Backup the register context of the current process using the <a href="../../arch
 
 
 <details class="code-accordion"><summary>/* This code is relevant only when the Pager Module is implemented in Stage 27 */</summary>
-<b>If</b> swapping is initiated, /* check <a href="../../os-design/mem-ds/#ss_table">System Status Table</a> */
+<b>If</b> swapping is initiated, /* check <a href="../../os-design/mem-ds/#system-status-table">System Status Table</a> */
 {
     /* Call Swap In/Out, if necessary */
 
@@ -45,11 +45,11 @@ Backup the register context of the current process using the <a href="../../arch
 
 <b>else</b>           /* Swapping is not on now.  Check whether it must be initiated */
 {
-    <b>if</b> (MEM_FREE_COUNT < <a href="../../support-tools/constants/">MEM_LOW</a>)	 	/* Check the <a href="../../os-design/mem-ds/#ss_table">System Status Table</a> */
+    <b>if</b> (MEM_FREE_COUNT < <a href="../../support-tools/constants/">MEM_LOW</a>)	 	/* Check the <a href="../../os-design/mem-ds/#system-status-table">System Status Table</a> */
         /* Swap Out to be invoked during next Timer Interrupt */
         Set the Paging Status in System Status Table to <a href="../../support-tools/constants/">SWAP_OUT</a>.
 
-    <b>else if</b> (there are swapped out processes)            /* Check SWAPPED_COUNT in <a href="../../os-design/mem-ds/#ss_table">System Status Table</a> */
+    <b>else if</b> (there are swapped out processes)            /* Check SWAPPED_COUNT in <a href="../../os-design/mem-ds/#system-status-table">System Status Table</a> */
         <b>if</b> (Tick of any Swapped Out process > <a href="../../support-tools/constants/">MAX_TICK</a> or MEM_FREE_COUNT > <a href="../../support-tools/constants/">MEM_HIGH</a>)
             /* Swap In to be invoked during next Timer Interrupt */
             Set the Paging Status in System Status Table to <a href="../../support-tools/constants/">SWAP_IN</a>.

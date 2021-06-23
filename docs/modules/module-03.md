@@ -30,7 +30,7 @@ good enough for our purposes. More efficient schemes are used in real systems */
 Acquire the buffer by calling the Acquire_Buffer() function	
 in the <a href="../../modules/module-00/">Resource Manager module</a>;
 
-if (the buffer contains a different disk block){  			/* check block number in <a href="../../os-design/mem-ds/#buffer_table">Buffer Table</a>. */
+if (the buffer contains a different disk block){  			/* check block number in <a href="../../os-design/mem-ds/#buffer-table">Buffer Table</a>. */
     
     if (the buffer contents are dirty){					/* check DIRTY BIT of buffer table */
             Write back the contents of the buffer
@@ -70,7 +70,7 @@ good enough for our purposes. More efficient schemes are used in real systems */
 Acquire the buffer by calling the Acquire_Buffer() function
 in the <a href="../../modules/module-00/">Resource Manager module</a>;
 
-if (the buffer contains a different disk block){  			/* check block number in <a href="../../os-design/mem-ds/#buffer_table">Buffer Table</a>. */
+if (the buffer contains a different disk block){  			/* check block number in <a href="../../os-design/mem-ds/#buffer-table">Buffer Table</a>. */
     
     if (the buffer contents are dirty){					/* check DIRTY BIT of buffer table */
             Write back the contents of the buffer
@@ -114,13 +114,13 @@ If the locking fails, return -1.
 
 If the file is of type EXEC, <b>release_inode()</b> and return -1. 	/* Only data files can be opened */
 
-Find a free entry in the <a href="../../os-design/mem-ds/#file_table">Open File Table</a>.
+Find a free entry in the <a href="../../os-design/mem-ds/#open-file-table">Open File Table</a>.
 If there are no free entries, <b>release_inode()</b> and return -2.  /* Reached maximum number of open files in the system. */
 
 <b>If</b> the file name is "root" <b>then</b> 
 	Set the INODE INDEX field in the open file table entry to <a href="../../support-tools/constants/">INODE_ROOT</a>. 
 <b>else</b>
-	In the <a href="../../os-design/mem-ds/#file_lock_status_table">File Status Table</a>, if the File Open Count is -1, set it to 1. Otherwise, increment the File Open Count.
+	In the <a href="../../os-design/mem-ds/#file-inode-status-table">File Status Table</a>, if the File Open Count is -1, set it to 1. Otherwise, increment the File Open Count.
 	Set the INODE INDEX field in the open file table entry to the inode table index of the file. 
 
 Set the OPEN INSTANCE COUNT to 1 and LSEEK to 0 in the open file table entry.
@@ -147,11 +147,11 @@ Closes the open instance of a file. Assumes a valid Open File Table index is giv
 
 Find the index of the <a href="../../os-design/disk-ds/#inode_table">Inode Table</a> entry of the file from the Open File Table.
 
-In the <a href="../../os-design/mem-ds/#file_table">Open File Table Entry</a>, decrement the Open Instance Count.
+In the <a href="../../os-design/mem-ds/#open-file-table">Open File Table Entry</a>, decrement the Open Instance Count.
 
 If the Open Instance Count becomes 0
 	Invalidate the entry by setting all fields to -1.
-	If the file is not the "root", decrement the File Open Count in the <a href="../../os-design/mem-ds/#file_lock_status_table">File (Inode) Status Table</a>.
+	If the file is not the "root", decrement the File Open Count in the <a href="../../os-design/mem-ds/#file-inode-status-table">File (Inode) Status Table</a>.
 	If the File Open Count in File Status Table becomes 0, set it to -1.
 	/* Check the INODE_INDEX field in the Open File Table entry */
 

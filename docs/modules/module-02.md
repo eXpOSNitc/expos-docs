@@ -21,7 +21,7 @@ This module handles allocation and deallocation of memory pages. The memory free
 Returns the page number of a free page.
 
 <pre><code>
-Increment WAIT_MEM_COUNT field in the <a href="../../os-design/mem-ds/#ss_table">System Status Table</a>
+Increment WAIT_MEM_COUNT field in the <a href="../../os-design/mem-ds/#system-status-table">System Status Table</a>
 
 while ( memory is full ){   /* Check the MEM_FREE_COUNT in the System Status Table */
 
@@ -32,7 +32,7 @@ while ( memory is full ){   /* Check the MEM_FREE_COUNT in the System Status Tab
 // There is a free page available for use.
 Decrement the WAIT_MEM_COUNT field and decrement the MEM_FREE_COUNT field in the System Status Table.
 
-loop through entries in the <a href="../../os-design/mem-ds/#mem_free_list">Memory Free List</a>{
+loop through entries in the <a href="../../os-design/mem-ds/#memory-free-list">Memory Free List</a>{
 /* Available pages for user processes are from 76- 127. See <a href="../../os-implementation/">Memory Organisation</a>. */
     if ( a free entry is found ){
             Set the Memory Free List entry as 1;
@@ -47,9 +47,9 @@ Called by fork and exec system calls. Also called by exception handler on page f
 Decrements the entry corresponding to page in memory free list.
 
 <pre><code>
-Decrement the entry corresponding to the page in the <a href="../../os-design/mem-ds/#mem_free_list">Memory Free List</a>;
+Decrement the entry corresponding to the page in the <a href="../../os-design/mem-ds/#memory-free-list">Memory Free List</a>;
 
-<b>If</b> Mem Free List entry becomes 0, increment the MEM_FREE_COUNT field in the <a href="../../os-design/mem-ds/#ss_table">System Status Table</a>
+<b>If</b> Mem Free List entry becomes 0, increment the MEM_FREE_COUNT field in the <a href="../../os-design/mem-ds/#system-status-table">System Status Table</a>
 
 loop through the process table{ 
     if (the process state is ( WAIT_MEM , _ ) ){
@@ -90,12 +90,12 @@ Decrements the entry corresponding to the disk block in the disk free list.
 Loads a single code page to memory given the block number of the page in the disk. It takes the block number and PID as an argument.
 
 <pre><code>
-/* If the required code page is already loaded by some other process, we simply increment the share count in the <a href="../../os-design/mem-ds/#mem_free_list">Mem Free List</a> */
+/* If the required code page is already loaded by some other process, we simply increment the share count in the <a href="../../os-design/mem-ds/#memory-free-list">Mem Free List</a> */
 
 Loop though code page entries in the <a href="../../os-design/process-table/#disk_map_table">disk map table</a> of all processes
     If (the block number in the Disk Map Table entry matches the 
     block to be loaded, and it's corresponding <a href="../../os-design/process-table/#per_page_table">page table</a> entry is set to VALID) {
-        <b>increment the share count</b> of the page in the <a href="../../os-design/mem-ds/#mem_free_list">Mem Free List</a>.
+        <b>increment the share count</b> of the page in the <a href="../../os-design/mem-ds/#memory-free-list">Mem Free List</a>.
         return the physical page number
     }
 

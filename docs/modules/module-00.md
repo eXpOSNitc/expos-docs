@@ -27,13 +27,13 @@ _**Description**_: Acquire the buffer corresponding to buffer number given as in
 
 <pre>
 <code>
-while ( Buffer is locked ){   /* Check the Locking PID field in the <a href="../../os-design/mem-ds/#buffer_table" target="_blank">Buffer Status Table</a> */
+while ( Buffer is locked ){   /* Check the Locking PID field in the <a href="../../os-design/mem-ds/#buffer-table" target="_blank">Buffer Status Table</a> */
     Set state of the process as ( WAIT_BUFFER , Buffer Number );
     Call the <b>switch_context()</b> function from the <a href="../module-05/">Scheduler Module</a>.
 }
 
 Lock the Buffer by setting the PID of the current process in the Locking PID field
-in the <a href="../../os-design/mem-ds/#buffer_table" target="_blank">Buffer Status Table</a> ;
+in the <a href="../../os-design/mem-ds/#buffer-table" target="_blank">Buffer Status Table</a> ;
 
 return;
 </code>
@@ -46,9 +46,9 @@ Called by BufRead and BufWrite functions in the [File Manager](./module-03.md).
 _**Description**_ : Release the buffer corresponding to buffer number given as input. Assumes a valid PID and a valid buffer number are given.  
   
 <pre><code>
-If PID given as input is not equal to the LOCKING PID in the <a href="../../os-design/mem-ds/#buffer_table" target="_blank">Buffer Status Table</a>, return -1.
+If PID given as input is not equal to the LOCKING PID in the <a href="../../os-design/mem-ds/#buffer-table" target="_blank">Buffer Status Table</a>, return -1.
 
-Free the lock in the the <a href="../../os-design/mem-ds/#buffer_table" target="_blank">Buffer Status Table</a> entry corresponding to 
+Free the lock in the the <a href="../../os-design/mem-ds/#buffer-table" target="_blank">Buffer Status Table</a> entry corresponding to 
 the buffer Number; /* Set Locking PID field to -1 */
 loop through the process table{ 
        if (the process state is ( WAIT_BUFFER , Buffer Number ) ){
@@ -65,12 +65,12 @@ Called by BufRead and BufWrite functions in the [File Manager](./module-03.md).
 _**Description**_ : Locks the disk device. Assumes that a valid PID is given as input.  
 
 <pre><code>
-while ( disk is locked ){  /* Check the <i>Status</i> field in the <a href="../../os-design/mem-ds/#ds_table" target="_blank">Disk Status Table</a>. */
+while ( disk is locked ){  /* Check the <i>Status</i> field in the <a href="../../os-design/mem-ds/#disk-status-table" target="_blank">Disk Status Table</a>. */
     Set state of the process as ( WAIT_DISK , - );
     Call the <b>switch_context()</b> function from the <a href="../module-05/">Scheduler Module</a>.
 }
 
-Lock the disk by setting PID and the status field in the <a href="../../os-design/mem-ds/#ds_table" target="_blank">Disk Status Table.</a>
+Lock the disk by setting PID and the status field in the <a href="../../os-design/mem-ds/#disk-status-table" target="_blank">Disk Status Table.</a>
 
 return;
 </code></pre>
@@ -82,14 +82,14 @@ Called by BufRead and BufWrite functions in the [File Manager](./module-03.md) a
 _**Description**_ : Locks the Inode entry corresponding to the inodeindex given as input. Assumes a valid PID and a valid inode index are given.  
   
 <pre><code>
-while ( inode is locked ){   /* Check the Lock field in the <a href="../../os-design/mem-ds/#file_lock_status_table" target="_blank">File Status Table</a>. */
+while ( inode is locked ){   /* Check the Lock field in the <a href="../../os-design/mem-ds/#file-inode-status-table" target="_blank">File Status Table</a>. */
     Set state of the process as ( WAIT_FILE , Inode Index );
     Call the <b>switch_context()</b> function from the <a href="../module-05/">Scheduler Module</a>.
 } 
 
 If inode becomes invalid, return -1. /* File was deleted by the time the inode was acquired */
 
-Lock the Inode by setting the Lock field in the <a href="../../os-design/mem-ds/#file_lock_status_table" target="_blank">File Status Table</a> 
+Lock the Inode by setting the Lock field in the <a href="../../os-design/mem-ds/#file-inode-status-table" target="_blank">File Status Table</a> 
 to the PID of the current process.;
 
 return 0;
@@ -102,7 +102,7 @@ Called by Delete, Read, Write and Seek system calls.
 _**Description**_ : Frees the lock of the inode entry corresponding to the inodeindex given as input. Assumes a valid PID and a valid inode index are given.  
   
 <pre><code>
-If PID given as input is not equal to the LOCKING PID in the <a href="../../os-design/mem-ds/#file_lock_status_table" target="_blank">File Status Table</a>, return -1.
+If PID given as input is not equal to the LOCKING PID in the <a href="../../os-design/mem-ds/#file-inode-status-table" target="_blank">File Status Table</a>, return -1.
 
 Free the lock in the File Status Table corresponding to the inode index;       /* Set the Lock field to -1 */
 
@@ -156,12 +156,12 @@ _**Description**_ : Locks the Terminal device. Assumes a valid PID is given as i
   
 
 <pre><code>
-while ( Terminal device is locked ){    /* Check the Status field in the <a href="../../os-design/mem-ds/#ts_table" target="_blank">Terminal Status Table</a> */
+while ( Terminal device is locked ){    /* Check the Status field in the <a href="../../os-design/mem-ds/#terminal-status-table" target="_blank">Terminal Status Table</a> */
     Set state of the process as ( WAIT_TERMINAL , - );
     Call the <b>switch_context()</b> function from the <a href="../module-05/">Scheduler Module</a>.
 }
     
-Lock the Terminal device by setting the Status and PID fields in the <a href="../../os-design/mem-ds/#ts_table" target="_blank">Terminal Status Table</a>.
+Lock the Terminal device by setting the Status and PID fields in the <a href="../../os-design/mem-ds/#terminal-status-table" target="_blank">Terminal Status Table</a>.
 
 return;
 </code></pre>
@@ -172,7 +172,7 @@ Called by the Terminal Read and Terimnal Write functions of the [Device Manager 
 _**Description**_ : Frees the Terminal device. Assumes a valid PID is given as input.  
 
 <pre><code>
-If PID given as input is not equal to the LOCKING PID in the <a href="../../os-design/mem-ds/#ts_table">Teminal Status Table</a>, return -1.
+If PID given as input is not equal to the LOCKING PID in the <a href="../../os-design/mem-ds/#terminal-status-table">Teminal Status Table</a>, return -1.
 
     Release the lock on the Terminal by updating the Terminal Status Table.;
 

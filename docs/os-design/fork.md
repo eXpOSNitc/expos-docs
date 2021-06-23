@@ -75,7 +75,7 @@ to the new UA Page, MODE, TICK and Kernel Stack Pointer to 0.
 /* PID, PTBR, PTLR fields of the child's process table is initilized by the get_pcb_entry function.*/ 
 
 Copy the <a href="../../os-design/process-table/#per_process_table">per-process resource table</a> and <a href="../../os-design/process-table/#disk_map_table">per-process disk map table</a>.
-For every open file of the parent, increment the Open Instance Count in the <a href="../../os-design/mem-ds/#file_table" target="_blank">Open File Table</a>.
+For every open file of the parent, increment the Open Instance Count in the <a href="../../os-design/mem-ds/#open-file-table" target="_blank">Open File Table</a>.
 For every semaphore acquired by the parent, increment Process Count in the <a href="../../os-design/mem-ds/#semaphore-table" target="_blank">Semaphore Table</a>.
 /* The child shares open files and acquired semaphores with the parent */
 

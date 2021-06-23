@@ -257,7 +257,7 @@ This system call is used to login a new user. It can be executed only from the l
 
 	Set the state of the current process in it's process table entry as (WAIT_PROCESS, 2) /* Login waits for shell to exit */
 
-        In <a href="../../os-design/mem-ds/#ss_table" target="_blank">system status table</a>, set the CURRENT_USER_ID as that of the user who is logging in.
+        In <a href="../../os-design/mem-ds/#system-status-table" target="_blank">system status table</a>, set the CURRENT_USER_ID as that of the user who is logging in.
 
 	Invoke the <b>context_switch()</b> function in the <a href="../../modules/module-05/">Scheduler Module</a>.
 
@@ -317,7 +317,7 @@ of the stack of the shell(current process). Reset the USERSP field of the shell 
 
 Wake up the Login process by changing STATE in it's process table entry to READY.
 
-In <a href="../../os-design/mem-ds/#ss_table" target="_blank">system status table</a>, reset the CURRENT_USER_ID field back to 0 (kernel).
+In <a href="../../os-design/mem-ds/#system-status-table" target="_blank">system status table</a>, reset the CURRENT_USER_ID field back to 0 (kernel).
 
 Invoke the <b>context_switch()</b> function in the <a href="../../modules/module-05/">Scheduler Module</a>.
 
