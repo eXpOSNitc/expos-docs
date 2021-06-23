@@ -42,7 +42,7 @@ Resource Identifier field of the per-process resource table entry is set to 1 to
 
 Acquire a semaphore by calling the <b>acquire_semaphore()</b> function in the <a href="../../modules/module-00/">Resource Manager</a> Module.
 
-/* acquire_semaphore() module function acquires a semaphore by making an entry in the <a href="../../os-design/mem-ds/#sem_table">Semaphore Table</a> and 
+/* acquire_semaphore() module function acquires a semaphore by making an entry in the <a href="../../os-design/mem-ds/#semaphore-table">Semaphore Table</a> and 
 returns the index of the entry. If there are no free semaphores, it returns -1 */
 
 If there are no free semaphores, return -2.
@@ -140,14 +140,14 @@ Set the MODE_FLAG in the <a href="../../os-design/process-table/" target="_blank
 <b>If</b> Semaphore descriptor is not valid or the entry in the <a href="../../os-design/process-table/#per_process_table" target="_blank">Per Process Resource Table</a> is not valid, return -1. 
 /* The descriptor is invalid if not in the range 0 - 7, or if the resource identifier field of the table entry is not 1 */
              
-<b>while</b> the semaphore is locked by a process other than the current process <b>do</b>    /* Check the Locking PID field in the <a href="../../os-design/mem-ds/#sem_table" target="_blank">Semaphore table</a> */
+<b>while</b> the semaphore is locked by a process other than the current process <b>do</b>    /* Check the Locking PID field in the <a href="../../os-design/mem-ds/#semaphore-table" target="_blank">Semaphore table</a> */
               Change the <a href="../../os-design/process-table/#state" target="_blank">state</a> of the current process to (<a href="../../support-tools/constants/" target="_blank">WAIT_SEMAPHORE</a>, Semaphore table index of the locked semaphore).
               Invoke the <b>switch_context()</b> function in the <a href="../../modules/module-05/">Scheduler Module</a>.
 <b>endwhile</b>
 
 /* Reaches here when the semaphore becomes free for locking */
 
-Change the Locking PID to PID of the current process in the <a href="../../os-design/mem-ds/#sem_table" target="_blank">Semaphore Table </a>.
+Change the Locking PID to PID of the current process in the <a href="../../os-design/mem-ds/#semaphore-table" target="_blank">Semaphore Table </a>.
 
 Reset the mode flag in the <a href="../../os-design/process-table/" target="_blank">Process Table</a> to 0 and switch back to the user stack.
 
@@ -193,7 +193,7 @@ Set the MODE_FLAG in the <a href="../../os-design/process-table/" target="_blank
 <b>If</b> Semaphore descriptor is not valid or the entry in the <a href="../../os-design/process-table/#per_process_table" target="_blank">Per Process Resource Table</a> is not valid, return -1. 
 /* The descriptor is invalid if not in the range 0 - 7, or if the resource identifier field of the table entry is not 1 */
          
-<b>If</b> semaphore is locked. /* Check the Locking PID in the <a href="../../os-design/mem-ds/#sem_table">Semaphore table</a> */
+<b>If</b> semaphore is locked. /* Check the Locking PID in the <a href="../../os-design/mem-ds/#semaphore-table">Semaphore table</a> */
 
               <b>If</b> current process has not locked the semaphore, return -2.   /* The semaphore is locked by some other process.*/
 

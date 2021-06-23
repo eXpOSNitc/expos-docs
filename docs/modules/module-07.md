@@ -76,7 +76,7 @@ Initialize the fields of <a href="../../os-design/mem-ds/#ss_table" target="_bla
 
 Invalidate <a href="../../os-design/process-table/#per_process_table" target="_blank">Per Process Resource Table</a> of INIT and SHELL processes (all entries are set to -1).
 
-Store 0 in the PROCESS_COUNT field for all entries in <a href="../../os-design/mem-ds/#sem_table" target="_blank">Semaphore Table</a>.
+Store 0 in the PROCESS_COUNT field for all entries in <a href="../../os-design/mem-ds/#semaphore-table" target="_blank">Semaphore Table</a>.
 
 Initialize BLOCK NUMBER to -1, DIRTY BIT to 0 and LOCKING PID to -1 for the four buffer pages in the <a href="../../os-design/mem-ds/#buffer_table" target="_blank">Buffer table</a>.
 

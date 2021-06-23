@@ -81,7 +81,7 @@ Algorithms specified in this document can fall into any of the five categories -
 <a target="_blank" href="../os-design/process-table/#user_area" style="position: absolute; height: 32px; width: 290px; margin-top: 233px; margin-left: 310px"></a>
 <a target="_blank" href="../os-design/mem-ds/#file_table" style="position: absolute; height: 32px; width: 290px; margin-top: 325px; margin-left: 310px"></a>
 <a target="_blank" href="../os-design/mem-ds/#file_lock_status_table" style="position: absolute; height: 32px; width: 290px; margin-top: 365px; margin-left: 310px"></a>
-<a target="_blank" href="../os-design/mem-ds/#sem_table" style="position: absolute; height: 32px; width: 290px; margin-top: 405px; margin-left: 310px"></a>
+<a target="_blank" href="../os-design/mem-ds/#semaphore-table" style="position: absolute; height: 32px; width: 290px; margin-top: 405px; margin-left: 310px"></a>
 <a target="_blank" href="../os-design/mem-ds/#ds_table" style="position: absolute; height: 32px; width: 290px; margin-top: 445px; margin-left: 310px"></a>
 <a target="_blank" href="../os-design/mem-ds/#ss_table" style="position: absolute; height: 30px; width: 290px; margin-top: 485px; margin-left: 310px"></a>
 <a target="_blank" href="../os-design/mem-ds/#ts_table" style="position: absolute; height: 30px; width: 290px; margin-top: 525px; margin-left: 310px"></a>

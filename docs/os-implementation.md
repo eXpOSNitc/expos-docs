@@ -272,7 +272,7 @@ Routine</a></td>
 <td>128</td>
 </tr>
 <tr>
-<td><a href="../os-design/mem-ds/#sem_table" target="_blank">Semaphore Table</a></td>
+<td><a href="../os-design/mem-ds/#semaphore-table" target="_blank">Semaphore Table</a></td>
 <td>29056 - 29183</td>
 <td>128</td>
 </tr>

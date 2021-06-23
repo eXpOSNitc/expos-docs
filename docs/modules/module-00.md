@@ -120,7 +120,7 @@ Called by Read, Write and Seek system calls.
 _**Description**_ : Acquires a semaphore and returns it's semaphore number. Assumes a valid PID is given as input. Returns -1 upon failure.  
 
 <pre> <code>
-Find the index of a free entry in <a href="../../os-design/mem-ds/#sem_table" target="_blank">Semaphore table</a>. If no free entry, return -1.
+Find the index of a free entry in <a href="../../os-design/mem-ds/#semaphore-table" target="_blank">Semaphore table</a>. If no free entry, return -1.
 /* Free entry is indicated by a Process Count of 0. */ 
 
 Set the PROCESS_COUNT to 1 and LOCKING_PID to -1.
@@ -135,7 +135,7 @@ Called by the [Semget system call](../os-design/semaphore-algos.md#semget).
 _**Description**_ : Releases a semaphore. Assumes a valid PID and semaphore table index are given as input.  
   
 <pre><code>
-If ( semaphore is locked by the current process) /*Check the Locking PID in the <a href="../../os-design/mem-ds/#sem_table" target="_blank">Semaphore table</a>*/
+If ( semaphore is locked by the current process) /*Check the Locking PID in the <a href="../../os-design/mem-ds/#semaphore-table" target="_blank">Semaphore table</a>*/
 	Set the Locking PID to -1. /* Unlock the semaphore before release */
 	loop through the process table{ /*wake up processes blocked by the semaphore */
        		if (the process state is ( WAIT_SEMAPHORE, SEMTABLEINDEX ) ){
