@@ -5,13 +5,13 @@ original_url: 'http://eXpOSNitc.github.io/os_modules/Module_1.html'
 
 This module contains functions that manage the different aspects related to processes.
 
-| Function Number | Function Name | Arguments | Return Value |
-| --- | --- | --- | --- |
-| GET\_PCB\_ENTRY = 1 | Get Pcb Entry | NIL | Index of Free PCB.  |
-| FREE\_USER\_AREA\_PAGE = 2 | Free User Area Page | PID | NIL |
-| EXIT\_PROCESS = 3 | Exit Process | PID | NIL |
-| FREE\_PAGE\_TABLE = 4 | Free Page Table | PID | NIL |
-| KILL\_ALL = 5 | Kill All | PID | NIL |
+| Function Number            | Function Name       | Arguments | Return Value       |
+| -------------------------- | ------------------- | --------- | ------------------ |
+| GET\_PCB\_ENTRY = 1        | Get Pcb Entry       | NIL       | Index of Free PCB. |
+| FREE\_USER\_AREA\_PAGE = 2 | Free User Area Page | PID       | NIL                |
+| EXIT\_PROCESS = 3          | Exit Process        | PID       | NIL                |
+| FREE\_PAGE\_TABLE = 4      | Free Page Table     | PID       | NIL                |
+| KILL\_ALL = 5              | Kill All            | PID       | NIL                |
 
 
 ![](../assets/img/modules/ProcessManager.png)

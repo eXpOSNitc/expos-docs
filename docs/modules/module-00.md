@@ -5,17 +5,17 @@ original_url: https://eXpOSNitc.github.io/os_modules/Module_0.html
 
 This module is responsible for allocating and releasing the different resources. Note that the Terminal and Disk devices are freed by the corresponding interrupt handlers.
 
-|Function Number|Function Name|Arguments|Return Value|
-|--- |--- |--- |--- |
-|ACQUIRE_BUFFER = 1|Acquire Buffer|Buffer Number, PID|NIL|
-|RELEASE_BUFFER = 2|Release Buffer|Buffer Number, PID|0 or -1|
-|ACQUIRE_DISK = 3|Acquire Disk*|PID|NIL|
-|ACQUIRE_INODE = 4|Acquire Inode|Inodeindex, PID|0 or -1|
-|RELEASE_INODE = 5|Release Inode|Inodeindex, PID|0 or -1|
-|ACQUIRE_SEMAPHORE = 6|Acquire Semaphore|PID|Semaphore Table Index or -1|
-|RELEASE_SEMAPHORE = 7|Release Semaphore|Semaphore Table Index, PID|0 or -1|
-|ACQUIRE_TERMINAL = 8|Acquire Terminal|PID|NIL|
-|RELEASE_TERMINAL = 9|Release Terminal|PID|0 or -1|
+| Function Number       | Function Name     | Arguments                  | Return Value                |
+| --------------------- | ----------------- | -------------------------- | --------------------------- |
+| ACQUIRE_BUFFER = 1    | Acquire Buffer    | Buffer Number, PID         | NIL                         |
+| RELEASE_BUFFER = 2    | Release Buffer    | Buffer Number, PID         | 0 or -1                     |
+| ACQUIRE_DISK = 3      | Acquire Disk*     | PID                        | NIL                         |
+| ACQUIRE_INODE = 4     | Acquire Inode     | Inodeindex, PID            | 0 or -1                     |
+| RELEASE_INODE = 5     | Release Inode     | Inodeindex, PID            | 0 or -1                     |
+| ACQUIRE_SEMAPHORE = 6 | Acquire Semaphore | PID                        | Semaphore Table Index or -1 |
+| RELEASE_SEMAPHORE = 7 | Release Semaphore | Semaphore Table Index, PID | 0 or -1                     |
+| ACQUIRE_TERMINAL = 8  | Acquire Terminal  | PID                        | NIL                         |
+| RELEASE_TERMINAL = 9  | Release Terminal  | PID                        | 0 or -1                     |
 
 *Release function for the disk is implimented in the disk interrupt handler.
 

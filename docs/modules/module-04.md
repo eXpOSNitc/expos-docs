@@ -6,12 +6,12 @@ original_url: 'http://eXpOSNitc.github.io/os_modules/Module_4.html'
 
 Handles Terminal I/O and Disk operations (Load and Store).
 
-| Function Number | Function Name | Arguments | Return Value |
-| --- | --- | --- | --- |
-| DISK\_STORE = 1 | Disk Store | PID, Page Number, Block Number | NIL |
-| DISK\_LOAD = 2 | Disk Load | PID, Page Number, Block Number | NIL |
-| TERMINAL\_WRITE = 3 | Terminal Write | PID, Word | NIL |
-| TERMINAL\_READ = 4 | Terminal Read | PID, Address | NIL |
+| Function Number     | Function Name  | Arguments                      | Return Value |
+| ------------------- | -------------- | ------------------------------ | ------------ |
+| DISK\_STORE = 1     | Disk Store     | PID, Page Number, Block Number | NIL          |
+| DISK\_LOAD = 2      | Disk Load      | PID, Page Number, Block Number | NIL          |
+| TERMINAL\_WRITE = 3 | Terminal Write | PID, Word                      | NIL          |
+| TERMINAL\_READ = 4  | Terminal Read  | PID, Address                   | NIL          |
 
 ![](../assets/img/modules/DeviceManager.png)
 
