@@ -10,7 +10,8 @@ This module is responsible for swapping in and out processes. Swap-out is initia
 | SWAP\_OUT = 1 | Swap Out | PID | NIL |
 | SWAP\_IN = 2 | Swap In | PID | NIL |
 
-<img src="http://exposnitc.github.io/img/os-modules/Pager.png">
+![](../assets/img/modules/Pager.png)
+
 
 ### Swap Out
 

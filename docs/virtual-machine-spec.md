@@ -28,9 +28,7 @@ Operating systems using the XSM architecture typically specifies the maximum val
 for its user processes and divide the allocated address space for an application into library, code,
 data, stack, heap etc.
 
-<figure>
-    <img src="https://exposnitc.github.io/img/addr_transln.png">
-</figure>
+![](./assets/img/addr_transln.png)
 
 ### Interrupts
 Software Interrupts (traps) are the mechanisms by which user mode programs can transfer control to the code that runs in the kernel mode. Software interrupt service routines typically contain the OS code for various system calls. Upon return from a software interrupt, execution resumes from the next instruction in the user mode program. A total of 15 software interrupts are available to a user mode program (Interrupt 4 - Interrupt 18).

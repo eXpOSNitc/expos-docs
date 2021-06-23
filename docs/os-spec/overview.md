@@ -30,7 +30,7 @@ It is assumed that the reader has some working familiarity with the following te
 
 The OS specification assumes a generic hardware model described below. The arrows show interaction between various components of the system.
 
-<img src="http://exposnitc.github.io/img/hw_model.png">
+![](../assets/img/hw_model.png)
 
 The basic Machine model consists of memory, disk and the CPU. A small part of memory is assumed to contain a **bootstrap loader** stored permanently in ROM memory. These are machine instructions to load into the memory an **OS startup code** stored in a pre-defined area in the disk. The ROM code then transfers control to this newly loaded code. This code loads the operating system routines stored in (pre-defined areas of) the disk into memory and sets up the Operating system. This includes all the OS code for various system calls, the scheduler, the exception handler, device drivers etc. Further hardware support required like the timer, disk controller, Input-output system etc. are discussed later.
 

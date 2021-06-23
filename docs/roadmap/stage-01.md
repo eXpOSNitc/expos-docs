@@ -9,4 +9,4 @@ Please follow the setting up procedure from [here](../support-tools/setting-up.m
 
 After the setting up of the system is done correctly the following directories will be created.
 
-<img src="../../assets/img/xsm_folders.png"/>
+![](../assets/img/xsm_folders.jpg)

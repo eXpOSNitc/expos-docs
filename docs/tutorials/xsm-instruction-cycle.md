@@ -81,10 +81,7 @@ writing the OS bootstrap loader and storing it in block 0 in Stage 3 of the eXpO
     change the addresses of the handlers. The figure below gives the layout of Boot ROM.
 
 
-<figure>
-<img src="http://exposnitc.github.io/img/architecture/boot.png">
-</figure>
-
+![](../assets/img/architecture/boot.png)
 
 ### Privileged mode of execution
 
