@@ -39,7 +39,7 @@ Algorithms specified in this document can fall into any of the five categories -
 <a target="_blank" href="../os-design/misc/#os_startup" style="position: absolute; height: 68px; width: 120px; margin-top: 730px; margin-left: 950px"></a>
 </div>
 
-/#/# System Calls
+## System Calls
 
 <div style="background: url(https://exposnitc.github.io/img/os-design/SystemCalls.png); height: 442px; width: 1032px" ;="">
 <a target="_blank" href="../os-design/shutdown/" style="position: absolute; height: 60px; width: 190px; margin-top: 52px; margin-left: 20px"></a>
