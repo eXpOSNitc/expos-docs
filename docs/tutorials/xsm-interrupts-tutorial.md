@@ -46,7 +46,7 @@ The timer device can be used to ensure that privileged code gets control of the 
 !!! note "Important Note"
     In real machines, timer, disk and console are devices that are external to the CPU. (This is why the [XSM machine model](../arch-spec/machine-organization.md) draws them outside the machine's CPU). Such devices are generally attached to [programmable device-controllers](https://simple.wikipedia.org/wiki/Device_controller) in the computer system's [mother-board](https://en.wikipedia.org/wiki/Motherboard) containing the CPU. These devices are typically either I/O mapped (via ports) or [memory mapped](https://en.wikipedia.org/wiki/Memory-mapped_I/O) and the exact configuration is determined by the hardware manufacturer. The hardware manufacturer supplies a [device driver software](https://en.wikipedia.org/wiki/Device_driver) for each of these device controller. The device driver software is typically loaded into memory along with the OS kernel during machine bootstrap. Thus, the device drivers run as part of the kernel. Each device driver contains a set of functions that can be invoked from the OS kernel. These device driver functions in turn contain code that issues commands to the respective device controller. Finally, the device controller contains the software and hardware necessary to make the device physically behave in the required way based on the commands received.
 
-    ![](../../assets/img/xsm_machine_model.jpg)
+    ![](../assets/img/xsm_machine_model.jpg)
 
     Thus, in a real systems, the OS loads into the memory
     the timer device's driver during bootstrap.

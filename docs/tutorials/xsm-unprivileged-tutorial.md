@@ -749,7 +749,7 @@ location 497 contains the address of INT 5 handler and so on. When the machine e
 instruction, the corresponding ROM location is searched for the handler address, and IP is set to this value.
 Since the values are hard-coded in the ROM code of the XSM simulator given to you, you cannot change the
 addresses of the handlers.
- ![](../img/architecture/boot.png)
+ ![](../assets/img/architecture/boot.png)
   
 **Why do you need software interrupts?** 
 

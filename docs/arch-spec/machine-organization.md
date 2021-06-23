@@ -5,7 +5,7 @@ hide:
     - navigation
 ---
 
-![](../../assets/img/machine_organisation_new.png)
+![](../assets/img/machine_organisation_new.png)
 
 ### Processor
 
@@ -182,7 +182,7 @@ Note that the interrupt vector table is hard-coded in the ROM code of the XSM si
 
   
 
-![](.././assets/img/boot.png)
+![](../assets/img/boot.png)
   
 
   

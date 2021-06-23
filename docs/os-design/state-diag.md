@@ -20,7 +20,7 @@ Process State Transition Diagram in eXpOS
 The state transitions that a process in eXpOS can undergo are shown in the following diagram. The events that cause each transition are explained below the diagram.
 
 
-![](http://exposnitc.github.io/img/state_trans.png)
+![](../assets/img/state_trans.png)
   
 
 The events that cause the transitions:

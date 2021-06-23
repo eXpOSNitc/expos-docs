@@ -288,7 +288,7 @@ None
 This system call is used to logout the current user. It can be invoked only from the shell process (PID = 2). When the logout system call is invoked, all running processes of the current user are terminated and all resources released. Idle and init/Login will be the only processes running after the execution of Logout. Login process is woken up at the end of logout.
 
 
-![](../img/roadmap/logout.png)
+![](../assets/img/roadmap/logout.png)
   
 
 Control flow diagram for *Logout* system call

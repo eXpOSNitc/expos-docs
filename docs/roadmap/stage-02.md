@@ -172,9 +172,9 @@ structures :
 1) A disk block will be allocated for the file (as `sample.dat` contains less than
 512 words) and corresponding to this allocated block (here block 69 - this is because the
 1<sup>st</sup> free block is allocated by the allocator), an entry will be marked as 1
-(used) in the [Disk Free List](os_design-files/disk_ds.html#disk_free_list).
+(used) in the [Disk Free List](../os-design/disk-ds.md#disk_free_list).
 
-2) An entry in the [InodeTable](os_design-files/disk_ds.html#inode_table) will be created for this file. Inode Table contains information such as the file type, file name, file size, userid, permission and the block numbers of the data
+2) An entry in the [InodeTable](../os-design/disk-ds.md#inode_table) will be created for this file. Inode Table contains information such as the file type, file name, file size, userid, permission and the block numbers of the data
 of data files loaded through <i>xfs-interface</i> is the <i>root</i>. Userid is the index
 of the user entry in the [User Table](../os-design/disk-ds.md#user_table).The userid of <i>root</i> 
 is 1 and hence the userid field in the <i>inode table</i> is set to 1 for all data files loaded 

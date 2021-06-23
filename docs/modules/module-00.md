@@ -19,7 +19,7 @@ This module is responsible for allocating and releasing the different resources.
 
 *Release function for the disk is implimented in the disk interrupt handler.
 
-![](http://eXpOSNitc.github.io/img/os-modules/ResourceManager.png)
+![](../assets/img/modules/ResourceManager.png)
 
 ### Acquire Buffer
 

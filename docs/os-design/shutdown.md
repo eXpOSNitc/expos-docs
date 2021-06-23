@@ -15,7 +15,7 @@ None
 ### Description
 The shut down system call is used to halt the system. It can be invoked only from shell of the root user. It terminates all the running processes, commits back the disk data (inode table, disk free list, root file, user table and dirty disk buffers) and halts the system.
 
-![](https://exposnitc.github.io/img/roadmap/shutdown.png)
+![](../assets/img/roadmap/shutdown.png)
 
 Control flow diagram for *Shutdown* system call
 

@@ -56,7 +56,7 @@ The *Logout* system call is implemented in the interrupt routine 12. *Logout* ha
 1.  ***Logout* system call**
   
 
-![](img/roadmap/logout.png)  
+![](../assets/img/roadmap/logout.png)  
 
 Control flow for *Logout* system call
 

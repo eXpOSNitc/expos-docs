@@ -13,7 +13,7 @@ Handles Terminal I/O and Disk operations (Load and Store).
 | TERMINAL\_WRITE = 3 | Terminal Write | PID, Word | NIL |
 | TERMINAL\_READ = 4 | Terminal Read | PID, Address | NIL |
 
-![](http://exposnitc.github.io/img/os-modules/DeviceManager.png)
+![](../assets/img/modules/DeviceManager.png)
 
 ### Disk Store
 

@@ -217,7 +217,7 @@ Hence in eXpOS, each process has a kernel stack in addition to user stack. We ma
 
   
 
-![User Area](http://exposnitc.github.io/img/user_area_new.png)
+![User Area](../assets/img/user_area_new.png)
 
   
 

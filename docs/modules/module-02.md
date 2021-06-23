@@ -15,7 +15,7 @@ This module handles allocation and deallocation of memory pages. The memory free
 | GET_SWAP_BLOCK = 6 | Get Swap Block | NIL               | Block Number            |
 
 
-![](http://exposnitc.github.io//img/os-modules/MemoryManager.png)
+![](../assets/img/modules/MemoryManager.png)
 
 ### Get Free Page
 Returns the page number of a free page.

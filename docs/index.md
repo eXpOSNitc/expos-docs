@@ -22,7 +22,7 @@ If you wish to work on the project, the approach we suggest is to follow the pro
 [Proceed to Roadmap :material-road:](./roadmap/){ .md-button .md-button--primary  target=_blank}
 
 ## Final System
-![Final User View](assets/img/user-view.png){ align=left }
+![Final User View](./assets/img/user-view.png){ align=left }
 If you are curious about what the "final system" you are going to build looks like, we give a brief overview here. You are warned not to get lost in the links. The roadmap will ask you to read the appropriate parts of the documentation as and when required. 
 
 
@@ -46,12 +46,12 @@ For the first task, a cross compiler for an enriched XSM assembly language calle
 For the second task, we provide you with an interface software called the [XFS interface](support-tools/xfs-interface.md).This tool allows you to transfer executable kernel modules from your host (Linux/Unix) system to specified blocks of the XSM disk. Thus, you can load the XSM target modules into the appropriate areas of the XSM disk.
 
 The following figure illustrates the OS development environment from an OS programmer's viewpoint.
-![Kernel Module](assets/img/kernel-module.png){ style="display:block; margin-left: auto; margin-right: auto; width: 50%;" }
+![Kernel Module](./assets/img/kernel-module.png){ style="display:block; margin-left: auto; margin-right: auto; width: 50%;" }
 
 A similar mechanism is provided for preparing application programs and loading them to the machine's disk. A cross compiler for a tiny high level programming language called the [Experimental Language (ExpL)](support-tools/expl.md) is supplied to you. The ExpL compiler translates your program into the target executable format recognized by eXpOS. These programs can be stored in the XSM machine's disk using the XFS interface tool.
 
 The following figure illustrates the development environment from an application programmer's perspective.
-![Application Program](assets/img/app-pgm.png){ style="display:block; margin-left: auto; margin-right: auto; width: 50%;" }
+![Application Program](./assets/img/app-pgm.png){ style="display:block; margin-left: auto; margin-right: auto; width: 50%;" }
 
 The OS that you build will be very elementary. There will be no system software like compilers or file editors that run on top of the OS. **The OS will only be capable of loading into the memory and executing programs that are already pre-loaded into machine's disk before boot up.** Hence, the only way to write application programs (or kernel code) for the OS will be to write the code from your host (Linux/Unix) system, compile the code using ExpL (or SPL) cross compiler and pre-load the target executable into the XSM disk using the XFS-Interface tool, before powering on the simulator. 
 
@@ -61,7 +61,7 @@ The collection of development tools given to you including the XSM simulator, co
 
 The following figure gives a high level picture of the OS that you will build by the end of the project.
 
-![High Level Design of eXpOS](assets/img/high-level-design.png){ style="display:block; margin-left: auto; margin-right: auto; width: 50%;" }
+![High Level Design of eXpOS](./assets/img/high-level-design.png){ style="display:block; margin-left: auto; margin-right: auto; width: 50%;" }
 
 The [eXpOS specification](os-spec/index.md) provides an informal description of OS from the view point of the user/application programmer. You may also have a quick look at the high level system design for a closer view of the OS.
 

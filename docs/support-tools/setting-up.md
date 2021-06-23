@@ -48,7 +48,7 @@ If the setup worked correctly, the following executables will be created:
 
 If the setting up of the system is done correctly the following directories will be created.
 
-![](https://exposnitc.github.io/img/xsm_folders.png)
+![](../assets/img/xsm_folders.png)
 
 -   **$HOME/myexpos/expl**  
     This directory contains the [ExpL](./expl.md) (Experimental Language) compiler required to compile user programs to XSM machine instructions.
@@ -117,7 +117,7 @@ If the setup worked correctly, the following executables will be created:
 If the setting up of the system is done correctly the following directories will be created.
 
 
-![](https://exposnitc.github.io/img/nexsm_folders.png)
+![](../assets/img/nexsm_folders.png)
 
 -   **$HOME/mynexpos/expl**  
     This directory contains the [ExpL](./expl.md) (Experimental Language) compiler required to compile user programs to NEXSM machine instructions.

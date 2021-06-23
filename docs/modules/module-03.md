@@ -15,7 +15,7 @@ This module contains the functions that manages files.
 | OPEN = 3           | Open           | File Name                                 | File Table Index, -1 or -2 |
 | CLOSE = 4          | Close          | File Table Index                          | NIL                        |
 
-![](https://exposnitc.github.io//img/os-modules/FileManager.png)
+![](../assets/img/modules/FileManager.png)
 
 ###  Buffered Write
 The disk page provided is loaded to the corresponding buffer. The word provided is written into the offset position of the buffer.

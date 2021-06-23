@@ -14,7 +14,7 @@ This module contains functions that manage the different aspects related to proc
 | KILL\_ALL = 5 | Kill All | PID | NIL |
 
 
-![](http://exposnitc.github.io//img/os-modules/ProcessManager.png)
+![](../assets/img/modules/ProcessManager.png)
 
 ###  Get PCB entry
 Returns a Free PCB index. Returns -1 if PCB is full.  

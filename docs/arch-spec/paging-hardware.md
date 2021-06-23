@@ -13,7 +13,7 @@ The hardware [paging](http://en.wikipedia.org/wiki/Paging) scheme of XSM maps th
 
 Every user mode program has an associated page table which maps its virtual address space to the machine's physical address space. For the hardware address translation to work, the base address of the Page Table (of the user mode program currently in execution) must be stored in the Page Table Base Register (**PTBR**) and the number of entries in this Page Table must be stored in the Page Table Length Register (**PTLR**). The page tables must be set up in the **privileged mode**.
 
-![](http://exposnitc.github.io/img/architecture/Page_Table_Structure.png)
+![](../assets/img/architecture/Page_Table_Structure.png)
 
   
 
@@ -21,7 +21,7 @@ Each Page Table stores the physical page number corresponding to all the logical
 
 Each page table entry for a logical page is of **2 words**. The 1st word must be set to the physical page number in the memory where the logical page is actually loaded. In this case, the page table entry is said to be **valid**. If the page has not been loaded into the memory, the page table entry is said to be **invalid**. The 2nd word in a page table entry stores a sequence of flag bits storing information regarding whether the page a) is **valid** or not b) is **read only/read write**, c) has been **referenced** in the user mode after being set to valid and d) has been **modified** in the user mode after being set to valid (**dirty**). The layout of this word is given below:
 
-![](http://exposnitc.github.io/img/aux_info.png)
+![](../assets/img/aux_info.png)
 
 **Reference Bit (R)**: This bit must be initialised to 0 (unreferenced) when a page table entry is initially made valid. On a page access, this bit is set to 1 by the machine hardware i.e, as soon as the page is accessed for the first time, this bit is changed from 0 to 1. Page replacement algorithms of operating systems use this bit.
 
@@ -56,7 +56,7 @@ The physical address is computed by multiplying the physical page number by page
 
   
   
-![](http://exposnitc.github.io/img/address_translation.png)  
+![](../assets/img/address_translation.png)  
   
 
 #### Example

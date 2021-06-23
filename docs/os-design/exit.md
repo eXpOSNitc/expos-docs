@@ -18,7 +18,7 @@ Exit system call terminates the execution of the process which invoked it and de
 Data structures modified are [Memory Free List](mem-ds.md#mem_free_list), [Disk Free List](disk-ds.md#disk_free_list), [Open File Table](mem-ds.md#file_table), [Semaphore Table](mem-ds.md#sem_table), [System Status Table](mem-ds.md#ss_table), [Resource Table](process-table.md#per_process_table) and the [Disk Map Table](process-table.md#disk_map_table).
 
 
-![](../img/roadmap/exit.png)
+![](../assets/img/roadmap/exit.png)
 Control flow diagram for *Exit* system call
   
 

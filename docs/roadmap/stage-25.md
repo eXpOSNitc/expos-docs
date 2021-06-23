@@ -22,7 +22,7 @@ Interrupt routine 7 written in stage 15, writes data (words) only to the termina
 
   
 
-![](img/roadmap/FileWrite.png)  
+![](../assets/img/roadmap/FileWrite.png)  
 
 Control flow for writing a word to a file
 
@@ -82,7 +82,7 @@ Interrupt routine 5 implements *Seek* system call along with *Open* and *Close* 
   
   
 
-![](img/roadmap/Seek.png)  
+![](../assets/img/roadmap/Seek.png)  
 
 Control flow for *Seek* system call
 
@@ -107,7 +107,7 @@ Now that eXpOS supports writing to the files, the disk has to be consistent with
 
   
 
-![](img/roadmap/shutdown.png)  
+![](../assets/img/roadmap/shutdown.png)  
 
 Control flow for *Shutdown* system call
 
@@ -189,7 +189,7 @@ Compile and load the modified files to the disk using XFS-interface.
     
     The following figure demonstrates the flow of control in device/file operations.
     
-    ![](img/os-design/device_driver.png)  
+    ![](../assets/img/os-design/device_driver.png)  
     
     **Note:** Each device will have a programmable device controller hardware that is connected to the machine through a port/serial bus or some such interface. The device driver issues the Write/Read command to the device controller and the device controller in turn commands the device to perform appropriate action to get the task done. Thus, in the case of a printer, the device driver will issue commands to the printer controller, which in turn controls the printer actions.
     

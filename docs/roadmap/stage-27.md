@@ -45,7 +45,7 @@ The algorithms for Swap-in and Swap-out are implemented in the [Pager Module](..
   
   
 
-![](img/roadmap/timer_interrupt.png)  
+![](../assets/img/roadmap/timer_interrupt.png)  
 
 Control flow for timer interrupt
 
@@ -78,7 +78,7 @@ Pager module is responsible for selecting processes to swap-out/swap-in and also
 1.  **Swap Out (function number = 1, [Pager module](../modules/module-06.md) )**
   
 
-![](img/roadmap/swap_out.png)  
+![](../assets/img/roadmap/swap_out.png)  
 
 Control flow for **Swap Out**
 
@@ -100,7 +100,7 @@ Implement *Swap Out* function using the detailed algorithm given in the pager mo
   
   
 
-![](img/roadmap/swap_in.png)  
+![](../assets/img/roadmap/swap_in.png)  
 
 Control flow for **Swap In**
 
