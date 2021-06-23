@@ -62,8 +62,8 @@ of the XSM machine. Building eXpOS begins with understanding the underlying file
 The xfs-interface is used for transferring files between your linux system and the xsm disk.
 
 <figure>
-<img src="/assets/img/xfs-interface.png"/>
-<figcaption style="text-align:center">Schematic interface between linux system and XSM disk
+<img src="../../assets/img/xfs-interface.png"/>
+<figcaption >Schematic interface between linux system and XSM disk
 </figcaption></figure>
 
 *In this stage, you will create a text file and load it to the XFS disk using xfs-interface.*
