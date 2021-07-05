@@ -1,5 +1,7 @@
 ---
 title: 'Test Program 4 (Reader-Writer Program)'
+hide:
+  - navigation
 ---
 ```
 

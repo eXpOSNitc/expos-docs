@@ -1,5 +1,7 @@
 ---
 title: 'Test Program 10'
+hide:
+  - navigation
 ---
 ```
 

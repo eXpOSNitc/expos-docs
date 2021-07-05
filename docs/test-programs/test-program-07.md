@@ -1,5 +1,7 @@
 ---
 title: 'Test Program 7 (Extended Shell)'
+hide:
+  - navigation
 ---
 ```
 
