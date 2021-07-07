@@ -6,7 +6,7 @@ original_url: https://exposnitc.github.io/support_tools-files/expl.html
 ExpL is a simple programming language designed specifically for instructional purposes. Application programs for eXpOS may be written in ExpL.
 
 
-### [:link: Specification Of ExpL](https://silcnitc.github.io/expl.html)
+### [:link: Specification Of ExpL](https://silcnitc.github.io/expl.html){ target=_blank }
 
 ### The `exposcall()` interface 
 The ExpL compiler supplied along with the eXpOS pakage  extents the language with an additional eXpOS library

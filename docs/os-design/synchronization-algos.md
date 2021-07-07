@@ -3,6 +3,7 @@ title: 'System calls for Synchronization'
 original_url: 'http://eXpOSNitc.github.io/os_design-files/synchronization_algos.html'
 hide:
     - toc
+    - navigation
 ---
 
 
