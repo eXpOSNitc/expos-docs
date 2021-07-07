@@ -5,7 +5,7 @@ hide:
     - navigation
 ---
 
-## Introduction
+### Introduction
 This document discusses the mapping of various eXpOS data structures to the XSM machine's disk and memory. The implementation of eXpOS on XSM discussed in the project modularises the code of system calls into smaller module functions. An interface description of the module functions is given here. The document also outlines the useage of kernel stack of user processes.
 
 
