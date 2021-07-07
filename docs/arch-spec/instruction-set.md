@@ -16,7 +16,7 @@ Every instruction in XSM is 2 words long. The instructions provided by the XSM a
 
 XSM provides a set of unprivileged instructions, which are the only instructions available when the machine is executing in the user mode. The machine can execute unprivileged instructions in kernel mode also, however, the instruction semantics will be different as explained in [Paging hardware](./paging-hardware.md). The unprivileged instructions are _Data Transfer Instructions_, _Arithmetic Instructions_, _Logical Instructions_, _Stack Instructions_, _Sub-routine instructions_, _Debug instructions_ and _Software interrupts_. Registers available in user mode are R0-R19, SP, BP and IP.
 
-### Data Transfer Instructions
+### [Data Transfer Instructions]
 
 #### 1\. **Register Addressing** :  
 _Syntax_ : MOV Ri, Rj  
@@ -44,7 +44,7 @@ For all the above instructions, Ri/Rj may be any register **except IP**.
 !!! note
     Only registers R0-R19, SP and BP shall be used in code that executes in unpreviliged mode. An [exception](./interrupts-exception-handling.md#exceptions) (illegal instruction) will be generated otherwise.
 
-### Arithmetic Instructions
+### [Arithmetic Instructions]
 
 Arithmetic Instructions perform arithmetic operations on registers containing integers. If the register contains a non-integer value, an exception (illegal instruction) is raised.
 
