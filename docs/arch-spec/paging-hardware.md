@@ -95,10 +95,19 @@ Physical Address = 48 * 512 + 460 = 25036
 ##### Example 2
 
 Suppose the machine runs in user mode with IP register pointing to the virtual address 40, and this memory contains the machine instruction  
-MOV R0,\[1032\]. Memory address 1032 will be resolved as follows:
+`MOV R0, [1032]`. Memory address 1032 will be resolved as follows:
 
+```
 Logical page number = 1032/512 = 2
 
-Since the valid bit is set to 0, in the page table, the page is not physically present in the memory. Hence, the hardware will generate a page fault exception with the exception flag registers set as the following:
+Since the valid bit is set to 0, in the page table,
+the page is not physically present in the memory.
 
-EIP : 40 (Virtual IP address), EPN: 02 (exception page number), EC: 0 (exception cause - page fault), EMA: 1032.
+Hence,
+the hardware will generate a page fault exception with the exception flag registers set as the following:
+
+EIP : 40 (Virtual IP address)
+EPN : 02 (exception page number)
+EC  : 0 (exception cause - page fault)
+EMA : 1032
+```

@@ -14,7 +14,7 @@
 }
 
 /* For images in darkmode */
-.md-typeset img {
+.md-content img {
     padding: 8px;
     border-radius: 4px;
     background-color: var(--md-primary-bg-color--light);
