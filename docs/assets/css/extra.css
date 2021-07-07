@@ -13,6 +13,13 @@
     border-bottom: 0;
 }
 
+/* For images in darkmode */
+img {
+    padding: 8px;
+    border-radius: 4px;
+    background-color: var(--md-primary-bg-color--light);
+}
+
 /* For the admonition on homepage */
 
 @media screen and (min-width: 45em) {
