@@ -83,3 +83,13 @@ The kernel modules and the functions present in each module are described below.
 | Function Number | Function Name | Arguments |
 | --------------- | ------------- | --------- |
 | -               | -             | Nil       |
+
+
+### [module-8: AccessControl Module](module-08.md)
+
+| Function Number        | Function Name          | Arguments      | Return Value |
+| ---------------------- | ---------------------- | -------------- | ------------ |
+| ACQUIRE_KERN_LOCK = 1  | Acquire Kernel Lock    | NIL            | NIL          |
+| ACQUIRE_SCHED_LOCK = 2 | Acquire Scheduler Lock | NIL            | NIL          |
+| ACQUIRE_GLOCK = 3      | Acquire Glock (Unused) | NIL            | NIL          |
+| RELEASE_LOCK = 4       | Release Lock           | LockVarAddress | NIL          |
