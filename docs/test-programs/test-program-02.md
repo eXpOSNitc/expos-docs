@@ -3,6 +3,16 @@ title: 'Test Program 2'
 hide:
   - navigation
 ---
+**Input**
+
+An integer N and N integers.
+
+**Output**
+
+N integers entered in the input.
+
+**Description :** The program given below implements a linked list for integers. The program reads an integer N from the console. It then creates a linked list and inserts N integers entered from console into the linked list in the same order. The program traverses the linked list and prints data to the console.
+
 ```
 
 type

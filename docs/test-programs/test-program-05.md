@@ -3,6 +3,17 @@ title: 'Test Program 5'
 hide:
   - navigation
 ---
+**Input**
+
+Name of a data file (String)
+
+**Output**
+
+Content of the given file
+
+**Description :** The program takes names of data files as input and opens the file first. It then forks to create a child process. The content of the file with shared open instance (shared LSEEK) will be printed to the terminal concurrently by parent and child. To synchronize the use open instance between parent and child a semaphore is used.
+
+
 ```
 
 decl

@@ -3,6 +3,16 @@ title: 'Test Program 10'
 hide:
   - navigation
 ---
+**Input**
+
+\-
+
+**Output (For each 12 proceesses)**
+
+A file will be created containing 100 consecutive numbers (PID-3)\*100+1 to (PID-3)\*100+100
+
+**Description :** This program can not be run individualy. The test program 9 will invoke Exec with below given program with name "pgm1.xsm". Make sure to compile and save this program as "pgm1.xsm". Below given program will create a new file according to the PID of the process and read 100 numbers from file "num.dat" from offset (PID-3)\*100 to (PID-3)\*100+99 and write to newly created file. After successful execution, there should be 12 data files each containing 100 consecutive numbers (PID-3)\*100+1 to PID-3)\*100+100.
+
 ```
 
 int main()

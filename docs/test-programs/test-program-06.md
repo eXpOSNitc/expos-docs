@@ -3,6 +3,17 @@ title: 'Test Program 6'
 hide:
   - navigation
 ---
+**Input**
+
+A file name (String) and permission (Integer)
+
+**Output**
+
+Integers from 1 to 100, but not necessarily in sequential order.
+
+**Description :** The program takes a file name and permission as input and creates a new file with given inputs. It then forks to create two child processes. Similar to Reader-Writer program seen before, the two child processes act as writers and parent as reader. A file open instances is shared between two writers and there is separate open instance of the same file for reader. Two writers will write numbers from 1 to 100 to file - one writer will write even numbers other will write odd numbers and reader will read from the file and print to the console concurrently. To synchronize the use of the shared open instance between two writers a semaphore is used.
+
+
 ```
 
 int main()

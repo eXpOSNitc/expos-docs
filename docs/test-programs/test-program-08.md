@@ -3,6 +3,17 @@ title: 'Test Program 8'
 hide:
   - navigation
 ---
+
+**Input**
+
+Delay Parameter
+
+**Output**
+
+8 integers - PID\*100 to PID\*100+7.
+
+**Description :** The program given in above link will first read a delay parameter and then, call the Fork system call and create 12 processes. Each process prints numbers from PID\*100 to PID\*100 + 7. After printing each number, a delay function is called with the the delay parameter provided.
+
 ```
 
 decl

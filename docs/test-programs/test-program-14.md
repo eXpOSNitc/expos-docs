@@ -3,6 +3,16 @@ title: 'Test Program 14'
 hide:
   - navigation
 ---
+**Input**
+
+\-
+
+**Output**
+
+Print numbers from 1 to 64 in ascending order.
+
+**Description :** These two ExpL programs perform merge sort in two different ways. The first one is done in a sequential manner and the second one, in a concurrent approach. Values from 1 to 64 are stored in decreasing order in a linked list and are sorted using a recursive merge sort function. In the concurrent approach, the process is forked and the merge sort function is called recursively for the two sub-lists from the two child processes.
+
 ### Merge Sort - Sequential
 ```
 type    

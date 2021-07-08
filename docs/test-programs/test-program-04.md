@@ -3,6 +3,18 @@ title: 'Test Program 4 (Reader-Writer Program)'
 hide:
   - navigation
 ---
+
+**Input**
+
+\-
+
+**Output**
+
+Integers from 1 to 100, but not necessarily in sequential order.
+
+**Description :** The reader-writer program provides below has two writers and one reader. The parent process will create two child processes by invoking _fork_. The parent and two child processes share a buffer of one word. At a time only one process can read/write to this buffer. To acheive this, these three processes use a shared semaphore. A writer process can write to the buffer if it is empty and the reader process can only read from the buffer if it is full. Before the word in the buffer is overwritten the reader process must read it and print the word to the console. The parent process is the reader process and its two children are writers. One child process writes even numbers from 1 to 100 and other one writes odd numbers from 1 to 100 to the buffer. The parent process reads the numbers and prints them on to the console.
+
+
 ```
 
 type

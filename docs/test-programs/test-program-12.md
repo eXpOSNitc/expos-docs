@@ -3,6 +3,17 @@ title: 'Test Program 12'
 hide:
   - navigation
 ---
+
+**Input**
+
+\-
+
+**Output (For each 12 proceesses)**
+
+A file will be created containing 100 consecutive numbers from data file "numbers.dat".
+
+**Description :** This program can not be run individualy. Test program 11 will invoke Exec with below given program with name "pgm2.xsm". Make sure to compile and save this program as "pgm2.xsm". Below given program will create a new file according to the PID of the process and read 100 numbers from file "numbers.dat" from offset (PID-3)\*100 to (PID-3)\*100+99 and write to newly created file. After successful execution, there should be 12 data files each containing 100 numbers each X\*1000 -X\*1000+99, where X=\[3,4..14\]. The numbers written by a process in the newly created file need not be the same numbers the process has written in "numbers.dat" file.
+
 ```
 
 decl

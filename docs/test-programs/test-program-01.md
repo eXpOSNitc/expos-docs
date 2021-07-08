@@ -4,6 +4,18 @@ hide:
     - navigation
 ---
 
+
+**Input**
+
+Executable file name/string "Shutdown"
+
+**Output**
+
+Executes given xsm program/halt system if input is "Shutdown"
+
+**Description :** shell version II without the multiuser
+
+
 ```
 int main()
 {

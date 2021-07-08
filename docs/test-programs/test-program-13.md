@@ -4,6 +4,17 @@ hide:
     - navigation
 ---
 
+**Input**
+
+\-
+
+**Output (For each 8 processes with PID = 2 to 9)**
+
+Return values from Fork system call and integers from PID\*100 to PID\*100+9.
+
+**Description :** This program calls fork 3 times creating 8 child processes. Each process prints the value returned from the last Fork system call and Exec system call is invoked with file "child.xsm". The "child.xsm" program stores numbers from PID\*100 to PID\*100+9 onto a linked list and prints them to the console.
+
+
 ### `parent.expl`
 ```
 int main()

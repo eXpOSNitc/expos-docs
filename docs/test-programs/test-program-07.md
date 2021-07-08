@@ -3,6 +3,19 @@ title: 'Test Program 7 (Extended Shell)'
 hide:
   - navigation
 ---
+**Input**
+
+Built in shell command/ Name of XSM executable file (String)
+
+**Output**
+
+Ouput of corresponding to shell command or executable file.
+
+**Description :** Shell program given below reads command from console. If the command is halt, then program will invoke Shutdown system call. If the command is built in shell command, then shell will read suitable number of arguments from the console and corresponding system call is invoked from shell itself. If the command is an executable file, shell will fork and exec with the given executable file.
+
+Note that the shell program should fit in 2 blocks/pages provided in [disk/memory organization](../os-implementation.md). The program given below is optimized to fits in 2 blocks/pages. In order to optimize the code, the program violates some of the type checkings. Even with type checking errors, the program will still compile and execute correctly. Also some system calls are invoked with arguments, even though the system call does not need any arguments. This will not cause any problem as these arguments will simply be ignored in the corresponding system call.
+
+
 ```
 
 int main()

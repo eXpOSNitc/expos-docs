@@ -3,6 +3,16 @@ title: 'Test Program 3'
 hide:
   - navigation
 ---
+**Input**
+
+\-
+
+**Output**
+
+Integers 1 to 100, not necessarily in the order.
+
+**Description :** The program creates a linked list with numbers 1 to 100 in them. The program invokes fork to create a child process. The parent and the child process reads from the shared linked list with different pointers and prints the data read to the console. Parent process prints the even numbers 2, 4, 6, 8.. and child process prints 1, 3, 5 ..
+
 ```
 
 type

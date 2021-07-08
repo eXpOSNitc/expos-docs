@@ -4,6 +4,16 @@ hide:
   - navigation
 ---
 
+**Input**
+
+\-
+
+**Output**
+
+Creates a file _merge.dat_ with numbers from 1 to 512 and also prints them.
+
+**Description :** The first ExpL program, _merge.expl_, first stores numbers from 1 to 512 in a random order into a file _merge.dat_. It then forks and executes _m\_store.expl_ which creates 8 files _temp{i}.dat_, where i=1..8 and stores 64 numbers each from _merge.expl_. Then, all the temporary files are sorted by executing _m\_sort.expl_. Next, the first ExpL program forks and executes _m\_merge.expl_ which merges all the temporary files back into _merge.dat_ and finally, prints the contents from 1 to 512 in ascending order.
+
 ### `merge.expl`
 ```
 int main()

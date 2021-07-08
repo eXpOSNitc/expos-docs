@@ -3,6 +3,16 @@ title: 'Test Program 15 (Merge Files)'
 hide:
   - navigation
 ---
+**Input**
+
+\-
+
+**Output**
+
+Creates a file _merge.dat_ with numbers from 1 to 2048.
+
+**Description :** The ExpL program first creates 4 files with values from s to 4\*c+s, where s=\[1..and c=\[0..511\]. The program then, merges the 4 files taking 2 at a time, and finally, creates a _merge.dat_ file containing numbers from 1 to 2048.
+
 ```
 decl
     int store(str file, int start);
