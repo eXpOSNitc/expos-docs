@@ -9,7 +9,7 @@ original_url: https://exposnitc.github.io/Roadmap.html
     - Modify *Shutdown* system call so that file writes are committed to the disk properly.
     
 !!! abstract "Pre-requisite Reading"
-    - Description of disk data structures - [Inode table](../os-design/disk-ds.md#inode_table) and [disk free list](../os-design/disk-ds.md#disk_free_list).
+    - Description of disk data structures - [Inode table](../os-design/disk-ds.md#inode-table) and [disk free list](../os-design/disk-ds.md#disk-free-list).
     - Description of memory data structures - [Buffer table](../os-design/mem-ds.md#buffer_table) , [Open file table](../os-design/mem-ds.md#file_table) and [per-process resource table](../os-design/process-table.md#per_process_table) .
     
 In this stage, We will learn how contents of a file are modified using *Write* system call. *Seek* system call which is used to change the LSEEK position for a open instance is also implemented in this stage. *Shutdown* system call is modified to terminate all processes and store back the memory buffers which are modified during *Write* system call to the disk.
@@ -35,7 +35,7 @@ Control flow for writing a word to a file
 
 After acquiring the Inode, *Write* system call writes the given word to the file, at the offset determined by LSEEK (field in the [open file table](../os-design/mem-ds.md#file_table) entry). Previously present data, if any, at the position determined by LSEEK is overwritten by the write operation. The maximum file size permitted by eXpOS is four disk blocks. Hence, *Write* fails if the LSEEK value exceeds 2047.
 
-The *Write* system call finds the **logical block number** corresponding to the LSEEK position using the formula LSEEK / 512. LSEEK % 512 gives the **offset position** in the block to which data must be written into. For example, if the LSEEK value is 1024, then the block number will be 2 (third data block) and the offset is 0. The block numbers of the disk blocks that had been allocated for the file so far are stored in the [inode table](../os-design/disk-ds.md#inode_table) entry corresponding to the file.
+The *Write* system call finds the **logical block number** corresponding to the LSEEK position using the formula LSEEK / 512. LSEEK % 512 gives the **offset position** in the block to which data must be written into. For example, if the LSEEK value is 1024, then the block number will be 2 (third data block) and the offset is 0. The block numbers of the disk blocks that had been allocated for the file so far are stored in the [inode table](../os-design/disk-ds.md#inode-table) entry corresponding to the file.
 
 In the above example, suppose that the file had been allocated three or more blocks earlier. Then, the physical block number corresponding to logical block number = 2 will have a valid entry in the inode table for the file. Hence, *Write* system call must bring that block into the buffer and write the data into the required offset position within the block. However, if there is no disk block allocated for logical block number = 2 (that is the file had been allocated only 2 blocks so far), then *Write* system call must allocate a new block for the file.
 
@@ -64,7 +64,7 @@ Implement *Buffered Write* function using the detailed algorithm given in the fi
   
 1.   **Get Free Block (function number = 3, [memory manager module](../modules/module-02.md) )**
 
-**Get Free Block** function does not take any argument and returns the block number of a free block in the disk. If no free block is found, Get Free Block returns -1. A free block can be found by searching for a free entry in the [disk free list](../os-design/disk-ds.md#disk_free_list) from position DISK\_FREE\_AREA to DISK\_SWAP\_AREA-1. A free entry in the disk free list is denoted by 0. In the disk, the blocks from 69 to 255 called User blocks, are reserved for allocation to executable and data files. SPL constant [DISK\_FREE\_AREA](../support-tools/constants.md) gives the starting block number for User blocks. [DISK\_SWAP\_AREA](../support-tools/constants.md) gives the starting block number of swap area. See [disk organization](../os-implementation.md) .
+**Get Free Block** function does not take any argument and returns the block number of a free block in the disk. If no free block is found, Get Free Block returns -1. A free block can be found by searching for a free entry in the [disk free list](../os-design/disk-ds.md#disk-free-list) from position DISK\_FREE\_AREA to DISK\_SWAP\_AREA-1. A free entry in the disk free list is denoted by 0. In the disk, the blocks from 69 to 255 called User blocks, are reserved for allocation to executable and data files. SPL constant [DISK\_FREE\_AREA](../support-tools/constants.md) gives the starting block number for User blocks. [DISK\_SWAP\_AREA](../support-tools/constants.md) gives the starting block number of swap area. See [disk organization](../os-implementation.md) .
 
 Implement *Get Free Block* function using the detailed algorithm given in the memory manager module link above.
 

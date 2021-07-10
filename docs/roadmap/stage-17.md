@@ -138,7 +138,7 @@ memory page and updates the WAIT_MEM_COUNT and MEM_FREE_COUNT in the system stat
 1. Save user stack value for later use, set up the kernel stack.(see [kernel stack management during system calls](../os-design/stack-smcall.md).)
 2. Set the MODE FLAG in the [process table](../os-design/process-table.md) to system call number of exec.
 3. Get the argument (name of the file) from user stack.
-4. Search the memory copy of the [inode table](../os-design/disk-ds.md#inode_table) for the file, If the file is not present or file is not in XEXE format return to user mode with return value -1 indicating failure (after setting up MODE FLAG and the user stack).
+4. Search the memory copy of the [inode table](../os-design/disk-ds.md#inode-table) for the file, If the file is not present or file is not in XEXE format return to user mode with return value -1 indicating failure (after setting up MODE FLAG and the user stack).
 5. If the file is present, save the inode index of the file into a register for future use.
 6. Call the **Exit Process** function in [process manager module](../modules/module-01.md) to deallocate the resources and pages of the current process.
 7. Get the user area page number from the process table of the current process. This page has been deallocated by the Exit Process function. Reclaim the same page by incrementing the memory free list entry of user area page and decrementing the MEM_FREE_COUNT field in the [system status table](../os-design/mem-ds.md#ss_table). (same user area page is reclaimed - why?)
@@ -147,7 +147,7 @@ memory page and updates the WAIT_MEM_COUNT and MEM_FREE_COUNT in the system stat
 10. Allocate new pages and set the page table entries for the new process.
     1. Set the library page entries in the page table. (must be set to read only-why? Note that library page need not be allocated.)
     2. Invoke the **Get Free Page** function to allocate 2 stack and 2 heap pages. Also validate the corresponding entries in page table.
-    3. Find out the number of blocks occupied by the file from [inode table](../os-design/disk-ds.md#inode_table). Allocate same number of code pages by invoking the **GetFree Page** function and update the page table entries.
+    3. Find out the number of blocks occupied by the file from [inode table](../os-design/disk-ds.md#inode-table). Allocate same number of code pages by invoking the **GetFree Page** function and update the page table entries.
 11. Load the code blocks from the disk to the memory pages using [loadi statement](../support-tools/spl.md).(We will change this step in the next stage.)
 12. Store the entry point IP (present in the header of first code page) value on top of the user stack.
 13. Change SP to user stack, change the MODE FLAG back to user mode and return to user mode.

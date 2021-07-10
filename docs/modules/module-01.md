@@ -150,7 +150,7 @@ Kills all the processes except the current process, idle and init/login*.
 
 <pre><code>
 /* Lock all files to ensure that no processes are in the middle of a file operation */
-<b>For</b> each valid entry in the <a href="../../os-design/disk-ds/#inode_table">Inode table</a>	
+<b>For</b> each valid entry in the <a href="../../os-design/disk-ds/#inode-table">Inode table</a>	
 	Acquire lock on the file by calling the <b>acquire_inode()</b> function in the <a href="../../modules/module-00/">Resource Manager</a> module.
 
 <b>For</b> each pid from 2 to MAX_PROC_NUM - 1 	/* PID 0 is idle and 1 is init */

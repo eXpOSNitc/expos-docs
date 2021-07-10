@@ -164,7 +164,7 @@ hide:
 | ALLOCATED      | 12            | Process Table entry has been allocated for the process, but process creation is not complete |
 
 
-#### SPL constants identifying the File Type/Permission in [Inode Table](https://exposnitc.github.io/os_design-files/disk_ds.html#inode_table)
+#### SPL constants identifying the File Type/Permission in [Inode Table](https://exposnitc.github.io/os_design-files/disk_ds.html#inode-table)
 | Name        | Default Value | Comments                                      |
 | ----------- | ------------- | --------------------------------------------- |
 | EXCLUSIVE   | 0             | EXCLUSIVE file permission                     |

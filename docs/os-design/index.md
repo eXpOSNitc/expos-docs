@@ -73,10 +73,10 @@ Algorithms specified in this document can fall into any of the five categories -
 ## Data Structures
 
 <div style="background: url(http://exposnitc.github.io/img/os-design/DataStructures_new.png); height: 671px; width: 671px; margin-bottom:30px" ;="">
-<a target="_blank" href="../os-design/disk-ds/#inode_table" style="position: absolute; height: 30px; width: 150px; margin-top: 83px; margin-left: 50px"></a>
-<a target="_blank" href="../os-design/disk-ds/#disk_free_list" style="position: absolute; height: 30px; width: 150px; margin-top: 123px; margin-left: 50px"></a>
-<a target="_blank" href="../os-design/disk-ds/#root_file" style="position: absolute; height: 32px; width: 150px; margin-top: 168px; margin-left: 50px"></a>
-<a target="_blank" href="../os-design/disk-ds/#user_table" style="position: absolute; height: 32px; width: 150px; margin-top: 208px; margin-left: 50px"></a>
+<a target="_blank" href="../os-design/disk-ds/#inode-table" style="position: absolute; height: 30px; width: 150px; margin-top: 83px; margin-left: 50px"></a>
+<a target="_blank" href="../os-design/disk-ds/#disk-free-list" style="position: absolute; height: 30px; width: 150px; margin-top: 123px; margin-left: 50px"></a>
+<a target="_blank" href="../os-design/disk-ds/#root-file" style="position: absolute; height: 32px; width: 150px; margin-top: 168px; margin-left: 50px"></a>
+<a target="_blank" href="../os-design/disk-ds/#user-table" style="position: absolute; height: 32px; width: 150px; margin-top: 208px; margin-left: 50px"></a>
 <a target="_blank" href="../os-design/process-table/" style="position: absolute; height: 32px; width: 290px; margin-top: 113px; margin-left: 310px"></a>
 <a target="_blank" href="../os-design/process-table/#user_area" style="position: absolute; height: 32px; width: 290px; margin-top: 233px; margin-left: 310px"></a>
 <a target="_blank" href="../os-design/mem-ds/#open-file-table" style="position: absolute; height: 32px; width: 290px; margin-top: 325px; margin-left: 310px"></a>

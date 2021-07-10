@@ -107,7 +107,7 @@ Locates the file in the inode table and makes an entry in the Open File Table. R
 
 <pre><code>
 
-Find the index of the <a href="../../os-design/disk-ds/#inode_table">Inode Table</a> entry of the file. If the entry is not found, return -1.
+Find the index of the <a href="../../os-design/disk-ds/#inode-table">Inode Table</a> entry of the file. If the entry is not found, return -1.
 
 Call the <b>acquire_inode()</b> function in the <a href="../../modules/module-00/">Resource Manager</a> module.&nbsp;&nbsp; /* Lock the inode */
 If the locking fails, return -1. 
@@ -145,7 +145,7 @@ Closes the open instance of a file. Assumes a valid Open File Table index is giv
 
 <pre><code>
 
-Find the index of the <a href="../../os-design/disk-ds/#inode_table">Inode Table</a> entry of the file from the Open File Table.
+Find the index of the <a href="../../os-design/disk-ds/#inode-table">Inode Table</a> entry of the file from the Open File Table.
 
 In the <a href="../../os-design/mem-ds/#open-file-table">Open File Table Entry</a>, decrement the Open Instance Count.
 

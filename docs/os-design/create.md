@@ -18,7 +18,7 @@ Return Value:
 
 
 #### Description
-The Create operation takes as input a filename. If the file already exists, then the system call returns 0 (success). Otherwise, it creates an empty file by that name, sets the file type to [DATA](../support-tools/constants.md), file size to 0, userid to that of the process (from the [process table](process-table.md)) and permission as given in the input in the [Inode Table](disk-ds.md#inode_table). It also creates a root entry for that file.
+The Create operation takes as input a filename. If the file already exists, then the system call returns 0 (success). Otherwise, it creates an empty file by that name, sets the file type to [DATA](../support-tools/constants.md), file size to 0, userid to that of the process (from the [process table](process-table.md)) and permission as given in the input in the [Inode Table](disk-ds.md#inode-table). It also creates a root entry for that file.
   
 
 
@@ -28,7 +28,7 @@ The Create operation takes as input a filename. If the file already exists, then
 Set the MODE_FLAG in the <a href="../../os-design/process-table/">process table</a> entry to 1, 
 indicating that the process is in the create system call.
 
-If the file is present in the system, return 0.   /* Check the <a href="../../os-design/disk-ds/#inode_table" target="_blank">Inode Table</a>  */ 
+If the file is present in the system, return 0.   /* Check the <a href="../../os-design/disk-ds/#inode-table" target="_blank">Inode Table</a>  */ 
       
 Find the index of a free entry in the Inode Table. 
 If no free entry found, return -1.   /* Maximum number of files reached */
@@ -39,7 +39,7 @@ In the Inode Table entry, set the block numbers to -1.  /* No disk blocks are al
 Set the USER ID to the USERID of the process /* See the <a href="../../os-design/process-table/">process table</a> for user id */
 Set the PERMISSION to the permission supplied as input.
 
-In the <a href="../../os-design/disk-ds/#root_file" target="_blank">Root file</a> entry corresponding to the Inode Table index, 
+In the <a href="../../os-design/disk-ds/#root-file" target="_blank">Root file</a> entry corresponding to the Inode Table index, 
 set the FILE NAME, FILE SIZE, FILE TYPE, USERNAME and PERMISSION fields.
 
 Set the MODE_FLAG in the <a href="../../os-design/process-table/">process table</a> entry to 0.

@@ -24,7 +24,7 @@ File Descriptor(Integer) , Offset (Integer)
 The Seek operation allows the application program to change the value of the file pointer so that subsequent Read/Write is performed from a new position in the file. The new value of the file pointer is determined by adding the offset to the current value. (A negative Offset will move the pointer backwards). An Offset of 0 will reset the pointer to the beginning of the file. 
 
 
-If a positive offset goes beyond the size of the file, the seek position will be set to the file size (in the [inode table](disk-ds.md#inode_table) entry). A negative offset leading to LSeek value below 0 will give an error.
+If a positive offset goes beyond the size of the file, the seek position will be set to the file size (in the [inode table](disk-ds.md#inode-table) entry). A negative offset leading to LSeek value below 0 will give an error.
 
 
 
@@ -61,7 +61,7 @@ If file descriptor is invalid, return -1.    /* File descriptor value must lie w
 
 Get the index of the <a href="../../os-design/mem-ds/#open-file-table" target="_blank">Open File Table</a> entry from the Per Process Resource Table entry.
 
-Get the index of the <a href="../../os-design/disk-ds/#inode_table" target="_blank">Inode Table</a> entry from the Open File Table entry.
+Get the index of the <a href="../../os-design/disk-ds/#inode-table" target="_blank">Inode Table</a> entry from the Open File Table entry.
 
 Call the <b>acquire_inode()</b> function in the <a href="../../modules/module-00/">Resource Manager</a> module.   /* Lock the inode */
 If the locking fails, return -1. 
@@ -69,7 +69,7 @@ If the locking fails, return -1.
 Get the current Lseek position from the Open File Table entry. 
 
 <details class="code-accordion"><summary>Check the validity of the given offset </summary>
-1. Get the file size of the file from the <a href="../../os-design/disk-ds/#inode_table" target="_blank">Inode Table</a> (Use 480 if inode index is "INODE_ROOT").
+1. Get the file size of the file from the <a href="../../os-design/disk-ds/#inode-table" target="_blank">Inode Table</a> (Use 480 if inode index is "INODE_ROOT").
 2. <b>If</b> (lseek + the given offset) is less than 0, <b>release_inode()</b> and return -2.
 </details>
 

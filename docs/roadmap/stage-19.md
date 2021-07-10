@@ -142,13 +142,13 @@ switches to user stack and returns to user mode.
 
 
 The **Free Page Table** function of the [process manager module](../modules/module-01.md)
-decrements the memory reference count (in the[memory free list](../os-design/mem-ds.md#mem_free_list) ) of the memory pages acquired by a process. If some stack/heap page is swapped in the disk, the reference count of the corresponding disk block is decremented in the [disk free list](../os-design/disk-ds.md#disk_free_list). Note that in the present stage, we allocate the stack/heap pages of a process
+decrements the memory reference count (in the[memory free list](../os-design/mem-ds.md#mem_free_list) ) of the memory pages acquired by a process. If some stack/heap page is swapped in the disk, the reference count of the corresponding disk block is decremented in the [disk free list](../os-design/disk-ds.md#disk-free-list). Note that in the present stage, we allocate the stack/heap pages of a process
 in memory and never allocate any disk block to store stack/heap pages. Thus, the disk free list
 decrement is a vaccous step in the present stage. However this will be useful for later stages.
 Hence we design the module function in advance to meet the future requirements. The following
 is a brief explanation on why this step can be useful later.
 
-As already seen in Stage 2, eXpOS maintains the [disk free list](../os-design/disk-ds.md#disk_free_list)to keep track of disk block allocation.**In later
+As already seen in Stage 2, eXpOS maintains the [disk free list](../os-design/disk-ds.md#disk-free-list)to keep track of disk block allocation.**In later
 stages, the OS will allocate certain disk blocks to a process temporarily.
 This is done to swap out the heap/stack pages of a process when the OS finds shortage of
 memory space to run all the processes.**

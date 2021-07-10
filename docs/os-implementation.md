@@ -335,12 +335,12 @@ Routine</a></td>
 </tr>
 <tr>
 <td rowspan="3" style="vertical-align:middle">59 - 60</td>
-<td>Memory copy of <a href="../os-design/disk-ds/#inode_table" target="_blank"> Inode Table</a></td>
+<td>Memory copy of <a href="../os-design/disk-ds/#inode-table" target="_blank"> Inode Table</a></td>
 <td>30208 - 31167</td>
 <td>960</td>
 </tr>
 <tr>
-<td>Memory copy of<a href="../os-design/disk-ds/#user_table" target="_blank"> User Table</a></td>
+<td>Memory copy of<a href="../os-design/disk-ds/#user-table" target="_blank"> User Table</a></td>
 <td>31168 - 31199</td>
 <td>32</td>
 </tr>
@@ -351,13 +351,13 @@ Routine</a></td>
 </tr>
 <tr>
 <td>61</td>
-<td>Memory copy of <a href="../os-design/disk-ds/#disk_free_list" target="_blank">Disk Free List</a></td>
+<td>Memory copy of <a href="../os-design/disk-ds/#disk-free-list" target="_blank">Disk Free List</a></td>
 <td>31232 - 31743</td>
 <td>512</td>
 </tr>
 <tr>
 <td rowspan="2" style="vertical-align:middle">62</td>
-<td>Memory copy of<a href="../os-design/disk-ds/#root_file" target="_blank"> Root File</a></td>
+<td>Memory copy of<a href="../os-design/disk-ds/#root-file" target="_blank"> Root File</a></td>
 <td>31744 - 32223</td>
 <td>480</td>
 </tr>

@@ -16,8 +16,8 @@ load --init <path to odd.xsm>;
 ```
 Using the `--exec` option of XFS interface, you can load an executable program into the XFS
 disk. XFS interface will load the executable into the disk and create
-[Inode table](../os-design/disk-ds.md#inode_table)
-entry for the file. XFS interface will also create a [root entry](../os-design/disk-ds.md#root_file) for the loaded file. From the Inode Table Entry, 
+[Inode table](../os-design/disk-ds.md#inode-table)
+entry for the file. XFS interface will also create a [root entry](../os-design/disk-ds.md#root-file) for the loaded file. From the Inode Table Entry, 
 you will be able to find out the disk blocks where the contents of the file are loaded by XFS
 interface. Recall that these were discussed in detail in Stage 2 : [Understanding the File System](index.md#collapse2))
 
@@ -27,7 +27,7 @@ executable.
 load --exec <path to even.xsm>;
 ```
 Dump the
-[inode table](../os-design/disk-ds.md#inode_table)using
+[inode table](../os-design/disk-ds.md#inode-table)using
 <i>dump --inodeusertable</i> command in xfs-interface. Check the disk address of code blocks of even.xsm.
 
 #### Modifications to the boot module code

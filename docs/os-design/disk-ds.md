@@ -13,7 +13,7 @@ The Inode table is stored in the disk and has an entry for each file present in 
  Each Inode table entry stores the name, size, type and data block numbers of a file stored in the disk ( * In [Multiuser](../os-spec/multiuser.md) extension of eXpOS, userid and permission are also included in the inode table entry). The current version of eXpOS limits the maximum number of blocks in an eXpFS file to MAX\_FILE\_BLOCKS = 4. Each Inode table entry consists of 16 words of which the 7 are unused in the present version of eXpOS. 
 
 
- eXpoS reserves the first entry in the Inode table for the [root file](disk-ds.md#root_file). The root file is a special file containing details about other files stored in the system. 
+ eXpoS reserves the first entry in the Inode table for the [root file](disk-ds.md#root-file). The root file is a special file containing details about other files stored in the system. 
 
 
 The entry of an Inode table has the following format:

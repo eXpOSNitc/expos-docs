@@ -31,7 +31,7 @@ indicating that the process is in the newusr system call.
 
 If the current user is not root, or if the current process is not the shell, return -2.
 
-Loop through the <a href="../../os-design/disk-ds/#user_table">User Table</a> and exit returning -1 if an entry for the user already exists.
+Loop through the <a href="../../os-design/disk-ds/#user-table">User Table</a> and exit returning -1 if an entry for the user already exists.
 
 Find a free entry in the User Table. If no free entry is found, return -3.
 
@@ -76,10 +76,10 @@ If the current user is not root, or if the current process is not the shell, ret
 
 If the user to be removed is the "root" or "kernel" return -2.
 
-Loop through the <a href="../../os-design/disk-ds/#user_table">User Table</a> and find the entry curresponding to the user.
+Loop through the <a href="../../os-design/disk-ds/#user-table">User Table</a> and find the entry curresponding to the user.
 If the entry is not found, return -1.
 
-Loop through the <a href="../../os-design/disk-ds/#root_file">Root File</a> and exit returning -3 if there are files of the user present on disk.
+Loop through the <a href="../../os-design/disk-ds/#root-file">Root File</a> and exit returning -3 if there are files of the user present on disk.
 
 Invalidate the entry by setting the USERNAME and ENCRYPTED PASSWORD fields to -1.
 
@@ -119,7 +119,7 @@ indicating that the process is in the setpwd system call.
 
 If the current process is not the shell, return -1.
 
-Loop through the <a href="../../os-design/disk-ds/#user_table">User Table</a> and finds the entry curresponding to the user name.
+Loop through the <a href="../../os-design/disk-ds/#user-table">User Table</a> and finds the entry curresponding to the user name.
 If entry is not found, return -2.
 
 If (userid of the process is not equal to the userid of the user) {
@@ -165,7 +165,7 @@ The userid of a user is the index of the user table entry of the user.
 Set the MODE_FLAG in the <a href="../../os-design/process-table/">process table</a> entry to 26, 
 indicating that the process is in the getuid system call.
 
-Loop through the <a href="../../os-design/disk-ds/#user_table">User Table</a>:
+Loop through the <a href="../../os-design/disk-ds/#user-table">User Table</a>:
 	If username is equal to USERNAME field of the entry
 		return index of the entry
 
@@ -205,7 +205,7 @@ If (UserID < 0 or UserID > 15)
 
 If the user table entry curresponding to the userid is invalid, return -1.
 
-Fetch the user name from the <a href="../../os-design/disk-ds/#user_table">User Table</a>.
+Fetch the user name from the <a href="../../os-design/disk-ds/#user-table">User Table</a>.
 
 Set the MODE_FLAG in the <a href="../../os-design/process-table/">process table</a> entry of the parent process to 0.
 Return the username.
@@ -246,7 +246,7 @@ This system call is used to login a new user. It can be executed only from the l
 
 	If PID of the current process is not 1, return -2. 	/* Login process has PID = 1 */
 
-	Get the <a href="../../os-design/disk-ds/#user_table">User Table</a> entry curresponding to the username.
+	Get the <a href="../../os-design/disk-ds/#user-table">User Table</a> entry curresponding to the username.
 	If an entry does not exist, return -1.
 
 	Use the <a href="../../support-tools/spl/">ecrypt statement</a> to encrypt the password supplied as input.

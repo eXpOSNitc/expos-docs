@@ -58,7 +58,7 @@ Set the value of SP to the beginning of User Area Page.
 
 	Get the index of the <a href="../../os-design/mem-ds/#open-file-table" target="_blank">Open File Table</a> entry from the Per Process Resource Table entry.
 
-	Get the index of the <a href="../../os-design/disk-ds/#inode_table" target="_blank">Inode Table</a> entry from the Open File Table entry. 
+	Get the index of the <a href="../../os-design/disk-ds/#inode-table" target="_blank">Inode Table</a> entry from the Open File Table entry. 
 	
 	Acquire the Lock on the File by calling the <b>acquire_inode()</b> function in the <a href="../../modules/module-00/" target="_blank">Resource Manager</a> module.
 	If acquiring the inode fails, return -1.
@@ -70,7 +70,7 @@ Set the value of SP to the beginning of User Area Page.
 	<b>If</b> the File corresponds to Root file ( indicated by Inode index as INODE_ROOT)  
                   If the lseek value is equal to the root file size(480), <b>release_inode()</b> return -2. 
 
-                  Read from the word at lseek position in memory copy of <a href="../../os-design/disk-ds/#root_file">root file</a> to the translated memory address. 
+                  Read from the word at lseek position in memory copy of <a href="../../os-design/disk-ds/#root-file">root file</a> to the translated memory address. 
 		  		  /* Use SPL Constant <a href="../../support-tools/constants/ ">ROOT_FILE</a> */
 
                   Increment the Lseek position in the Open File Table.        
@@ -79,7 +79,7 @@ Set the value of SP to the beginning of User Area Page.
 
 		<details class="code-accordion"><summary>Find the disk block number and the position in the block from which input is read.</summary>
 			Get the block index from lseek position.   /* lseek/512 gives the index of the block */
-			Get the disk block number corresponding to the block index from the <a href="../../os-design/disk-ds/#inode_table" target="_blank">Inode Table</a> .
+			Get the disk block number corresponding to the block index from the <a href="../../os-design/disk-ds/#inode-table" target="_blank">Inode Table</a> .
             Get the offset value from lseek position.   /* lseek%512 gives the position to be read from.*/
       	</details>
 		Read the data from the File Buffer by calling the <b>buffered_read()</b> function in the <a href="../../modules/module-03/" target="_blank">File Manager</a> module.

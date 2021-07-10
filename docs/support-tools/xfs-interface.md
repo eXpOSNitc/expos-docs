@@ -26,20 +26,20 @@ The various commands available in XFS Interface are discussed below.
 
 ### **Disk Formatting**     
 *   _Syntax_ : `fdisk`
-*   _Semantics_ : It is used to create the disk (”disk.xfs”) or to format the disk if already created. On a newly created/formatted disk default entries for the [Disk Free List](../os-design/disk-ds.md#disk_free_list), [Inode Table](../os-design/disk-ds.md#inode_table), [Root File](../os-design/disk-ds.md#root_file) and [User Table](../os-design/disk-ds.md#user_table) are initialized according to the XFS [implementation](../os-implementation.md) for the XSM machine. These include entries for the root file in the Inode table, entry for the root file itself in the root file, entry for the special users "root" and "system" in the user table etc.
+*   _Semantics_ : It is used to create the disk (”disk.xfs”) or to format the disk if already created. On a newly created/formatted disk default entries for the [Disk Free List](../os-design/disk-ds.md#disk-free-list), [Inode Table](../os-design/disk-ds.md#inode-table), [Root File](../os-design/disk-ds.md#root-file) and [User Table](../os-design/disk-ds.md#user-table) are initialized according to the XFS [implementation](../os-implementation.md) for the XSM machine. These include entries for the root file in the Inode table, entry for the root file itself in the root file, entry for the special users "root" and "system" in the user table etc.
 
 ### **Loading Files**  
 
 The command **load** is used to load files from the UNIX filesystem to the XFS disk. The type of the file that is loaded is specified by the first argument. The second argument `<pathname>` is the path to the UNIX file which is to be loaded to the filesystem.
 
-The command checks the size of the [executable/data file](../os-spec/expfs.md), allocates the required number of blocks for the file, updates the [disk free list](../os-design/disk-ds.md#disk_free_list) and creates the corresponding [inode table](../os-design/disk-ds.md#inode_table) and [root file](../os-design/disk-ds.md#root_file) entries for the file. xfs-interface recognizes the disk blocks designated for the timer, console and disk interrupt handlers, the exception handler, idle process, the shell code, OS modules and the OS startup code by the [eXpOS implementation](../os-implementation.md) on the XSM machine and loads these modules to the appropriate places.
+The command checks the size of the [executable/data file](../os-spec/expfs.md), allocates the required number of blocks for the file, updates the [disk free list](../os-design/disk-ds.md#disk-free-list) and creates the corresponding [inode table](../os-design/disk-ds.md#inode-table) and [root file](../os-design/disk-ds.md#root-file) entries for the file. xfs-interface recognizes the disk blocks designated for the timer, console and disk interrupt handlers, the exception handler, idle process, the shell code, OS modules and the OS startup code by the [eXpOS implementation](../os-implementation.md) on the XSM machine and loads these modules to the appropriate places.
 
 The various **load** commands are listed below :  
 
 *   _Syntax_ : `load --exec <pathname>`  
-    _Semantics_ : Loads an executable file to XFS disk after allocating sufficient disk blocks and creating [inode table](../os-design/disk-ds.md#inode_table) and root file entries.
+    _Semantics_ : Loads an executable file to XFS disk after allocating sufficient disk blocks and creating [inode table](../os-design/disk-ds.md#inode-table) and root file entries.
 *   _Syntax_ : `load --data <pathname>`  
-    _Semantics_ : Loads a data file to XFS disk after allocating sufficient disk blocks and creating [inode table](../os-design/disk-ds.md#inode_table) and root file entries.
+    _Semantics_ : Loads a data file to XFS disk after allocating sufficient disk blocks and creating [inode table](../os-design/disk-ds.md#inode-table) and root file entries.
 *   _Syntax_ : `load --init <pathname>`  
     _Semantics_ : Loads INIT/Login code to the recognised XFS [disk blocks](../os-implementation.md).  
 
@@ -71,7 +71,7 @@ The various **load** commands are listed below :
     
 The command **export** is used to export _data files_ from the XFS disk to the UNIX filesystem. The argument `<xfs_filename>` specifies the file which is to be exported and the argument `<pathname>` specifies the UNIX file to which it is to be exported.
 
-The command searches the [inode table](../os-design/disk-ds.md#inode_table) entries for the data file and copies all the blocks corresponding to the file to the UNIX file specified. Note that if the argument `   ` is not given the file will be stored at **$HOME/myexpos/xfs-interface/** and named as `<xfs_filename>`.
+The command searches the [inode table](../os-design/disk-ds.md#inode-table) entries for the data file and copies all the blocks corresponding to the file to the UNIX file specified. Note that if the argument `   ` is not given the file will be stored at **$HOME/myexpos/xfs-interface/** and named as `<xfs_filename>`.
 
 -   _Syntax_ : `export <xfs_filename> <pathname>`  
     _Semantics_ : Exports a data file from XFS disk to UNIX file system.
@@ -80,22 +80,22 @@ The command searches the [inode table](../os-design/disk-ds.md#inode_table) entr
     
 The command **rm** is used to remove files from the XFS disk. The argument `<xfs_filename>` specifies the file which is to be removed.
 
-The command searches the [inode table](../os-design/disk-ds.md#inode_table) entries for the file (executable/data file) and clears the blocks corresponding to the file, updates the [disk free list](../os-design/disk-ds.md#disk_free_list) and removes root file and inode table entries. Only data and executable files can be removed.
+The command searches the [inode table](../os-design/disk-ds.md#inode-table) entries for the file (executable/data file) and clears the blocks corresponding to the file, updates the [disk free list](../os-design/disk-ds.md#disk-free-list) and removes root file and inode table entries. Only data and executable files can be removed.
 
 -   _Syntax_ : `rm <xfs_filename>`  
     _Semantics_ : Removes an executable/data file from XFS disk.
     
 ### **Listing Files**   
 *   _Syntax_ : `ls`
-*   _Semantics_ : It lists all the files which are loaded into the filesystem. The size of the file is also displayed in number of words. This is done by traversing through the [inode table](../os-design/disk-ds.md#inode_table) entries.
+*   _Semantics_ : It lists all the files which are loaded into the filesystem. The size of the file is also displayed in number of words. This is done by traversing through the [inode table](../os-design/disk-ds.md#inode-table) entries.
 
 ###  **Display Disk Free List**  
 *   _Syntax_ : `df`
-*   _Semantics_ : It displays the [Disk Free List](../os-design/disk-ds.md#disk_free_list). It also displays the total number of blocks and the number of free blocks.
+*   _Semantics_ : It displays the [Disk Free List](../os-design/disk-ds.md#disk-free-list). It also displays the total number of blocks and the number of free blocks.
 
 ### **Display File Contents**  
 *   _Syntax_ : `cat <xfs_filename>`
-*   _Semantics_ : It displays the contents of a file in the filesystem. The [inode table](../os-design/disk-ds.md#inode_table) entries are searched to get the blocks corresponding to the file and then the blocks are displayed.
+*   _Semantics_ : It displays the contents of a file in the filesystem. The [inode table](../os-design/disk-ds.md#inode-table) entries are searched to get the blocks corresponding to the file and then the blocks are displayed.
   
 ### **Copying Disk Blocks to a UNIX File**  
       

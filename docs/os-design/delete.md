@@ -37,9 +37,9 @@ indicating that the process is in the delete system call.
 Save the value of SP to the USER SP field in the <a href="../../os-design/process-table/">Process Table</a> entry of the process.
 Set the value of SP to the beginning of User Area Page.
 
-Find the index of the file in the <a href="../../os-design/disk-ds/#inode_table" target="_blank">Inode Table</a>.
+Find the index of the file in the <a href="../../os-design/disk-ds/#inode-table" target="_blank">Inode Table</a>.
 		
-If file is not present in the <a href="../../os-design/disk-ds/#inode_table" target="_blank">Inode Table</a>, return 0. 
+If file is not present in the <a href="../../os-design/disk-ds/#inode-table" target="_blank">Inode Table</a>, return 0. 
 
 If the file is not a DATA file, return -1.
 
@@ -52,7 +52,7 @@ Acquire a lock on the file by calling the <b>acquire_inode()</b> function in the
 Check if the the file open count is -1 in the <a href="../../os-design/mem-ds/#file-inode-status-table" target="_blank"> File Status Table </a>. If not, release the lock and return -2.    
 /* File is open, cannot be deleted */
 
-<b>For</b> each disk block allocated to the file, <b>do</b> { 	/* Check <a href="../../os-design/disk-ds/#inode_table" target="_blank">Inode Table</a> */
+<b>For</b> each disk block allocated to the file, <b>do</b> { 	/* Check <a href="../../os-design/disk-ds/#inode-table" target="_blank">Inode Table</a> */
 	If the disk block is loaded into a buffer, and the DIRTY BIT is set, reset the dirty bit. 
 	/* Check the <a href="../../os-design/mem-ds/#buffer-table">Buffer Table</a> */ 
 
@@ -61,7 +61,7 @@ Check if the the file open count is -1 in the <a href="../../os-design/mem-ds/#f
 
 Invalidate (set to -1) the Inode Table of the file.
 
-Update the <a href="../../os-design/disk-ds/#root_file" target="_blank">Root file</a> by invalidating the entry for the file.
+Update the <a href="../../os-design/disk-ds/#root-file" target="_blank">Root file</a> by invalidating the entry for the file.
 
 Release the lock on the file by calling the <b>release_inode()</b> function in the <a href="../../modules/module-00/">Resource Manager</a> module.
 

@@ -64,7 +64,7 @@ If the Resource identifier field of the <a href="../../os-design/process-table/#
 
 Get the index of the <a href="../../os-design/mem-ds/#open-file-table" target="_blank">Open File Table</a> entry from the Per Process Resource Table entry.
 
-Get the index of the <a href="../../os-design/disk-ds/#inode_table" target="_blank">Inode Table</a> entry from the Open File Table entry. 
+Get the index of the <a href="../../os-design/disk-ds/#inode-table" target="_blank">Inode Table</a> entry from the Open File Table entry. 
 
 If the current user is not root and the current user does not own the file and 		/* Check the <a href="../../os-design/process-table/">process table</a> entry */
 the exclusive permission is set, return -3. 
@@ -81,17 +81,17 @@ Get the Lseek position from the Open File Table entry.
 
               If no free disk block is found <b>release_inode()</b> and return -2. 
 
-              Set the new disk block found in the corresponding (lseek / 512) disk block field  in the <a href="../../os-design/disk-ds/#inode_table" target="_blank">Inode table</a> entry.
+              Set the new disk block found in the corresponding (lseek / 512) disk block field  in the <a href="../../os-design/disk-ds/#inode-table" target="_blank">Inode table</a> entry.
 </details>
 
 <details class="code-accordion"><summary>Find the disk block number and the position in the block from which input is to be written.</summary>
                Get the block index from lseek position.   /* block index = lseek / block size (512) */
-               Get the disk block number corresponding to the block index from the <a href="../../os-design/disk-ds/#inode_table" target="_blank">Inode Table</a> .
+               Get the disk block number corresponding to the block index from the <a href="../../os-design/disk-ds/#inode-table" target="_blank">Inode Table</a> .
                Get the offset value from lseek position.   /* offset = lseek % the block size (512) */
 </details>
 Write the word to the File Buffer by calling the <b>buffered_write()</b> function in the <a href="../../modules/module-03/" target="_blank">Buffer Manager</a> module.
 
-If Lseek equals file size, increment file size in the inode table entry and also in the memory copy of the <a href="../../os-design/disk-ds/#root_file">root file</a>.
+If Lseek equals file size, increment file size in the inode table entry and also in the memory copy of the <a href="../../os-design/disk-ds/#root-file">root file</a>.
 
 Increment the Lseek position in the Open File Table entry.
 

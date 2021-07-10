@@ -9,7 +9,7 @@ original_url: https://exposnitc.github.io/Roadmap.html
 
 !!! abstract "Pre-requisite Reading"
     - It is **absolutely necessary** to read and understand **[eXpOS FILE SYSTEM and Implementation Tutorial](../tutorials/filesystem-implementation.md)** documentation.
-    - Description of data structures- [Inode Table](../os-design/disk-ds.md#inode_table) , [Root file](../os-design/disk-ds.md#root_file) , [File(inode) status table](../os-design/mem-ds.md#file_lock_status_table) and [buffer table](../os-design/mem-ds.md#buffer_table) .
+    - Description of data structures- [Inode Table](../os-design/disk-ds.md#inode-table) , [Root file](../os-design/disk-ds.md#root-file) , [File(inode) status table](../os-design/mem-ds.md#file_lock_status_table) and [buffer table](../os-design/mem-ds.md#buffer_table) .
 
 
  
@@ -20,7 +20,7 @@ original_url: https://exposnitc.github.io/Roadmap.html
  
  In this stage, we will discuss how files are created and deleted by the application program with the help of file system calls _Create_ and _Delete_ . _Shutdown_ system call will be modified in this stage.
 
-_Create_ system call creates an empty file with the name given as input. _Create_ system call initializes the disk data structures with meta data related to the file. [Inode table](../os-design/disk-ds.md#inode_table) and [root file](../os-design/disk-ds.md#root_file) are the disk data structures used to maintain permanent record of files. _Delete_ system call deletes the record of the file with the given name from inode table and root file. _Delete_ also releases the disk blocks occupied by the file to be deleted. The _Shutdown_ system call is modified to commit the changes made by _Create_ and _Delete_ system calls in the memory copy of the disk data structures back into the disk.
+_Create_ system call creates an empty file with the name given as input. _Create_ system call initializes the disk data structures with meta data related to the file. [Inode table](../os-design/disk-ds.md#inode-table) and [root file](../os-design/disk-ds.md#root-file) are the disk data structures used to maintain permanent record of files. _Delete_ system call deletes the record of the file with the given name from inode table and root file. _Delete_ also releases the disk blocks occupied by the file to be deleted. The _Shutdown_ system call is modified to commit the changes made by _Create_ and _Delete_ system calls in the memory copy of the disk data structures back into the disk.
 
 Inode table and root file stores details of every eXpOS file stored in the disk. eXpOS allows at most [MAX\_FILE\_NUM](../support-tools/constants.md) (60) files to be stored in the disk. Hence, both inode table and root file has MAX\_FILE\_NUM entries. The entry for a file in the inode table is identified by an index of its record in the inode table. For each file, the inode table entry and root file entry should have the same index. The disk data structures have to be loaded from the disk to the memory in order to use them while OS is running. The OS maintains the memory copy of the inode table in memory pages 59 and 60. Also the memory copy of root file is present in memory page 62. See [memory organization](../os-implementation.md) for more details.
 
@@ -38,7 +38,7 @@ The system calls _Create_ and _Delete_ are implemented in the interrupt routine 
 
 _Create_ system call takes filename and permission (integer 0 or 1) as arguments from the user program. As _Create_ allows to create only data file, it is recommended to use _.dat_ as extension for file names. _Create_ finds a free entry (indicated by -1 in the FILE NAME field) in the inode table to store details related to the new file. The fields in the free inode table entry and corresponding root file entry are initialized with the meta-data of the new file.
 
-The USERID field in the inode table is initialized to the USERID field from the process table of the current process. Hence, the user executing the _Create_ system call becomes the **owner** of the file. The USERNAME field in the root file entry is initialized to the username corresponding to the USERID. The username can be obtained from memory copy of the [user table](../os-design/disk-ds.md#user_table) with index as USERID. User table in the disk is initialized by the XFS-interface (during disk formatting) to create two users - kernel and root.
+The USERID field in the inode table is initialized to the USERID field from the process table of the current process. Hence, the user executing the _Create_ system call becomes the **owner** of the file. The USERNAME field in the root file entry is initialized to the username corresponding to the USERID. The username can be obtained from memory copy of the [user table](../os-design/disk-ds.md#user-table) with index as USERID. User table in the disk is initialized by the XFS-interface (during disk formatting) to create two users - kernel and root.
 
 Implement _Create_ system call using the detailed algorithm provided [here](../os-design/create.md).
 

@@ -50,8 +50,8 @@ blocks, and that the index to these blocks along with the name and the size of t
 stored in a pre-define area of the disk called the [Inode table](../os-design/disk-ds.md).
 (The inode table is stored in disk blocks 3 and 4).
 There are also other pre-defined areas of the disk that stores
-meta data about the disk (see description of the [root file](../os-design/disk-ds.md#root_file)
-and the [disk free list](../os-design/disk-ds.md#disk_free_list)
+meta data about the disk (see description of the [root file](../os-design/disk-ds.md#root-file)
+and the [disk free list](../os-design/disk-ds.md#disk-free-list)
 for more details). When you use XFS interface to load a file from your Linux/Unix system to the XSM disk, the
 interface tool will correctly fill all the required meta data information as stipulated by the eXpFS format.
 
@@ -95,7 +95,7 @@ The XSM machine's disk is a sequence of 512 blocks, each block capable of holdin
 512 words (see [Disk Organization](../os-implementation.md)). The
 second block of the formatted disk contains a disk free list which is explained below.
 
-The [Disk Free List](../os-design/disk-ds.md#disk_free_list)
+The [Disk Free List](../os-design/disk-ds.md#disk-free-list)
 in XFS is a data structure which keeps track of used and unused blocks in the disk. An unused
 block is indicated by 0 and a used block is indicated by 1. Check the contents of the Disk
 Free List after formatting the disk. Use the **df** command to view the Disk Free List
@@ -172,16 +172,16 @@ structures :
 1) A disk block will be allocated for the file (as `sample.dat` contains less than
 512 words) and corresponding to this allocated block (here block 69 - this is because the
 1<sup>st</sup> free block is allocated by the allocator), an entry will be marked as 1
-(used) in the [Disk Free List](../os-design/disk-ds.md#disk_free_list).
+(used) in the [Disk Free List](../os-design/disk-ds.md#disk-free-list).
 
-2) An entry in the [InodeTable](../os-design/disk-ds.md#inode_table) will be created for this file. Inode Table contains information such as the file type, file name, file size, userid, permission and the block numbers of the data
+2) An entry in the [InodeTable](../os-design/disk-ds.md#inode-table) will be created for this file. Inode Table contains information such as the file type, file name, file size, userid, permission and the block numbers of the data
 of data files loaded through <i>xfs-interface</i> is the <i>root</i>. Userid is the index
-of the user entry in the [User Table](../os-design/disk-ds.md#user_table).The userid of <i>root</i> 
+of the user entry in the [User Table](../os-design/disk-ds.md#user-table).The userid of <i>root</i> 
 is 1 and hence the userid field in the <i>inode table</i> is set to 1 for all data files loaded 
 through the <i>xfs interface</i>. The [permission](../os-spec/multiuser.md) is set to open(1). 
 Note that any file in eXpFS file system is permitted to have a maximum of four data blocks.
 
-3) An entry for this file will be made in the [Root File](../os-design/disk-ds.md#root_file) also.
+3) An entry for this file will be made in the [Root File](../os-design/disk-ds.md#root-file) also.
 
 
 Before proceeding further you must be clear about [eXpFS (eXperimental File System)](../os-spec/expfs.md). In the following steps we will see the above mentioned updations.
@@ -198,7 +198,7 @@ UNIX file (say `$HOME/myexpos/inode_table.txt`).
 
 !!! note 
     The Inode table occupies only the first 960 words (60 entries, each of size 16 words)
-    in the disk blocks 3 and 4. [User table](../os-design/disk-ds.md#user_table)
+    in the disk blocks 3 and 4. [User table](../os-design/disk-ds.md#user-table)
     occupies the next 32 words (16 entries, each of size 2 words) and the last 32 words are reserved for future use.
     (You will learn about User Table later on).
 

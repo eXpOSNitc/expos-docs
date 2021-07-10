@@ -10,13 +10,13 @@ original_url: https://exposnitc.github.io/Roadmap.html
 -   [Pre-requisite Reading](index.md#lo26a)
     
     -   It is **absolutely necessary** to read and understand **[multi-user management and implementation](../tutorials/multiuser-implementation.md)** documentation.
-    -   Description of data structures- [User Table](../os-design/disk-ds.md#user_table)
+    -   Description of data structures- [User Table](../os-design/disk-ds.md#user-table)
     -   Description of special processes - [Init (Login) and Shell process](../os-spec/misc.md) .
     
 
   
 
-In this stage, we will enable eXpOS to handle multiple users by implementing [multi-user system calls](../os-spec/systemcallinterface.md#multiusersystemcalls) . *Newusr* and *Remusr* system calls are implemented to create new users and delete existing users in the system. The data structure called [user table](../os-design/disk-ds.md#user_table) is maintained to store user name and encrypted password of each user in the system. The index of the user table entry for a user is the USERID for the user. Two special users called "kernel" (USERID = 0) and "root" (USERID = 1) are already initialized in the user table at the time of disk formatting (executing fdisk command in XFS-interface). Password of "kernel" is unspecified and "root" user is given default password "root" (The user table will store the encrypted form of the string "root"). System calls *Setpwd* , *Getuname* and *Getuid* are also implemented in this stage.
+In this stage, we will enable eXpOS to handle multiple users by implementing [multi-user system calls](../os-spec/systemcallinterface.md#multiusersystemcalls) . *Newusr* and *Remusr* system calls are implemented to create new users and delete existing users in the system. The data structure called [user table](../os-design/disk-ds.md#user-table) is maintained to store user name and encrypted password of each user in the system. The index of the user table entry for a user is the USERID for the user. Two special users called "kernel" (USERID = 0) and "root" (USERID = 1) are already initialized in the user table at the time of disk formatting (executing fdisk command in XFS-interface). Password of "kernel" is unspecified and "root" user is given default password "root" (The user table will store the encrypted form of the string "root"). System calls *Setpwd* , *Getuname* and *Getuid* are also implemented in this stage.
 
 *Login* and *Logout* system calls are implemented to enable users to login into the system and logout from the system. From this stage onwards, we will modify the INIT process to work as a special **login process** , running with PID=1 and owned by the kernel (user id is set to 0). Login process enables users to login into the system with their user name and password. After a user logs into the system, the OS (the login system call) will schedule the shell process with PID=2. **The shell will run in the context of the logged in user** (that is, user id of the shell will be set to the user id of the logged in user). Note that the address space for the shell process would be already set up in the memory by the OS boot code. Hence the login process simply sets the shell process to ready state and invoke the scheduler to start its execution. The Shell program will be modified in this stage to support [built-in shell commands](../os-spec/shell-spec.md) .
 
@@ -32,7 +32,7 @@ The *Login* system call is implemented in the interrupt routine 17. *Login* has 
 
 *Login* system call takes two arguments 1) a user name (string) and 2) an unencrypted password (string). ***Login* system call can only be invoked from the [login process](../os-design/misc.md#login) (PID = 1).** The init process of eXpOS is called login process. Login process will ask the user to enter user name and password from the console and invokes *Login* system call with provided login credentials.
 
-To login a user into the system, *Login* system call checks whether the user with given user name and password is present in the [user table](../os-design/disk-ds.md#user_table) or not. Note that the password given as input is unencrypted and should be encrypted (using [encrypt statement](../arch-spec/instruction-set.md) ) before comparing to ENCRYPTED PASSWORD field in the user table. *Login* system call fails if the user with given user name and password is not found.
+To login a user into the system, *Login* system call checks whether the user with given user name and password is present in the [user table](../os-design/disk-ds.md#user-table) or not. Note that the password given as input is unencrypted and should be encrypted (using [encrypt statement](../arch-spec/instruction-set.md) ) before comparing to ENCRYPTED PASSWORD field in the user table. *Login* system call fails if the user with given user name and password is not found.
 
 When a user with given login credentials is found, *Login* system call makes the shell process (PID = 2) ready for execution by changing the STATE field in the [process table](../os-design/process-table.md) entry of shell process to CREATED. Although, login process does not explicitly invoke *Fork* and *Exec* system calls to create child, conceptually login process is considered as parent of shell process. So the PPID field in the process table entry of shell process is set to PID of login process (PID = 1). Also, login process must wait for shell process to terminate, so STATE of login process is changed to the tuple (WAIT\_PROCESS, PID of shell). Then, Scheduler is invoked in order to schedule shell process for execution.
 
@@ -86,28 +86,28 @@ The system calls *Newusr* , *Remusr* , *Setpwd* , *Getuname* and *Getuid* are im
 
 A user name and an unencrypted text password are arguments to the *Newusr* system call. ***Newusr* system call can only be invoked from the shell process of the root user.**
 
-*Newusr* finds a free entry for the new user in the [user table](../os-design/disk-ds.md#user_table) and initialize this entry with the provided user name and password. The password is encrypted (using [encrypt statement](../support-tools/spl.md) ) before storing it into the user table.
+*Newusr* finds a free entry for the new user in the [user table](../os-design/disk-ds.md#user-table) and initialize this entry with the provided user name and password. The password is encrypted (using [encrypt statement](../support-tools/spl.md) ) before storing it into the user table.
 
 Implement *Newusr* system call using detailed algorithm provided [here](../os-design/multiusersyscalls.md#newusr) .
 
   
 6.  ***Remusr* system call**
 
-***Remusr*** system call takes the user name of the user to be removed as an argument. ***Remusr* system call can only be invoked from the shell process of the root user. A user can not be removed from the system if the user is the owner of one or more files in the system.** To remove a user from the system, *Remusr* system call invalidates the entry in the [user table](../os-design/disk-ds.md#user_table) corresponding to given username by storing -1 in the USERNAME and ENCRYPTED PASSWORD fields. Note that the special users "root" and "kernel" can not be removed using *Remusr* system call.
+***Remusr*** system call takes the user name of the user to be removed as an argument. ***Remusr* system call can only be invoked from the shell process of the root user. A user can not be removed from the system if the user is the owner of one or more files in the system.** To remove a user from the system, *Remusr* system call invalidates the entry in the [user table](../os-design/disk-ds.md#user-table) corresponding to given username by storing -1 in the USERNAME and ENCRYPTED PASSWORD fields. Note that the special users "root" and "kernel" can not be removed using *Remusr* system call.
 
 Implement *Remusr* system call using detailed algorithm provided [here](../os-design/multiusersyscalls.md#remusr) .
 
   
 10.  ***Setpwd* system call**
 
-***Setpwd*** changes the password of a user to newly provided password. It takes as arguments a user name and a new password from application program. *Setpwd* can only be executed by shell process. A user is permitted to change only its own password. The privileged user "root" has permission to change the password of any user. The "root" user is provided the default password "root". The password of root user can be changed later using *Setpwd* . *Setpwd* encrypts the provided password and replaces the ENCRYPTED PASSWORD field in the [user table](../os-design/disk-ds.md#user_table) entry corresponding to provided user name.
+***Setpwd*** changes the password of a user to newly provided password. It takes as arguments a user name and a new password from application program. *Setpwd* can only be executed by shell process. A user is permitted to change only its own password. The privileged user "root" has permission to change the password of any user. The "root" user is provided the default password "root". The password of root user can be changed later using *Setpwd* . *Setpwd* encrypts the provided password and replaces the ENCRYPTED PASSWORD field in the [user table](../os-design/disk-ds.md#user-table) entry corresponding to provided user name.
 
 Implement *Setpwd* system call using detailed algorithm provided [here](../os-design/multiusersyscalls.md#setpwd) .
 
   
 14.  ***Getuname* and *Getuid* system calls**
 
-***Getuname*** takes as argument a USERID from user program. *Getuname* returns the user name of the given USERID from the [user table](../os-design/disk-ds.md#user_table) . ***Getuid*** takes a user name (string) as an argument from the user program. *Getuid* returns the USERID of the given user name. The system calls *Getuname* and *Getuid* can be executed from any process of any user.
+***Getuname*** takes as argument a USERID from user program. *Getuname* returns the user name of the given USERID from the [user table](../os-design/disk-ds.md#user-table) . ***Getuid*** takes a user name (string) as an argument from the user program. *Getuid* returns the USERID of the given user name. The system calls *Getuname* and *Getuid* can be executed from any process of any user.
 
 Implement *Getuid* and *Getuname* system calls using detailed algorithms provided [here](../os-design/multiusersyscalls.md#getuid) .
 

@@ -20,7 +20,7 @@ File Name (String) of the executable file (which must be of [XEXE format](../abi
 ### Description
 Exec destroys the present process and loads the executable file given as input into a new memory address space. A successful Exec operation results in the extinction of the invoking process and hence never returns to it. All open instances of file and semaphores of the parent process are closed. However, the newly created process will inherit the PID of the calling process.
 
-The data structures that are modified in this system call are [Process Table](process-table.md), [Memory Free List](mem-ds.md#mem_free_list), [Disk Free List](disk-ds.md#disk_free_list), [Open File Table](mem-ds.md#file_table), [Semaphore Table](mem-ds.md#sem_table), [System Status Table](mem-ds.md#ss_table), [Resource Table](process-table.md#per_process_table) and the [Disk Map Table](process-table.md#disk_map_table).
+The data structures that are modified in this system call are [Process Table](process-table.md), [Memory Free List](mem-ds.md#mem_free_list), [Disk Free List](disk-ds.md#disk-free-list), [Open File Table](mem-ds.md#file_table), [Semaphore Table](mem-ds.md#sem_table), [System Status Table](mem-ds.md#ss_table), [Resource Table](process-table.md#per_process_table) and the [Disk Map Table](process-table.md#disk_map_table).
 
 The mode flag in the [Process Table](process-table.md) has to be set to Kernel mode when the process enters the system call and reset before exiting from the system call.
 
@@ -41,7 +41,7 @@ Set the MODE_FLAG in the <a href="../../os-design/process-table/">process table<
 Save the value of SP to the USER SP field in the <a href="../../os-design/process-table/">Process Table</a> entry of the process.
 Set the value of SP to the beginning of User Area Page.
 
-/* Check for the file entry in <a href="../../os-design/disk-ds/#inode_table" target="_blank">Inode Table</a>. */
+/* Check for the file entry in <a href="../../os-design/disk-ds/#inode-table" target="_blank">Inode Table</a>. */
 <b>If</b> filename is invalid, return -1.
 <b>If</b> file not found in system or file type is not EXEC, return -1 
 
@@ -84,7 +84,7 @@ Load the first code page into memory by invoking the <b>get_code_page()</b> func
                 pages found earlier. Set the valid bit and write bit to 1.
 
                 Set the code pages in the <a href="../../os-design/process-table/#disk_map_table">Disk Map Table</a> to the Block numbers by refering 
-                to the <a href="../../os-design/disk-ds/#inode_table" target="_blank">Inode Table</a>. Other fields are set to -1.
+                to the <a href="../../os-design/disk-ds/#inode-table" target="_blank">Inode Table</a>. Other fields are set to -1.
 </details>
 Obtain the entry point IP value from the header of the new process and set it to the beginning  of user stack(logical address 4096).
 Set SP to the logical address of the user stack.
