@@ -246,7 +246,7 @@ sample.dat
 ```
 
 !!! note 
-    Instead of using the `copy` command you can use [`dump`](../support-tools/xfs-interface.md#dump) command provided by the XFS interface to directly copy
+    Instead of using the `copy` command you can use [`dump`](../support-tools/xfs-interface.md#dumping-disk-data-structures-to-a-unix-file) command provided by the XFS interface to directly copy
     the disk data structures (inode table, root file) to the UNIX machine as shown below.
 
 ```
