@@ -71,14 +71,62 @@ nav:
   - Documentation:
     - Documentation: documentation.md
     - Operating System:
-      - Specification: os-spec/index.md
-      - Design: os-design/index.md
-      - Implementation: os-implementation.md
+      - Specification:
+        - Specification: os-spec/index.md
+        - Overview: os-spec/overview.md
+        - eXpOS Abstractions: os-spec/expos-abstractions.md
+        - The Logical File System eXpFS: os-spec/expfs.md
+        - Process Model: os-spec/processmodel.md
+        - Synchronization and Access Control: os-spec/synchronization.md
+        - Micellaneous: os-spec/misc.md
+        - Multi-User Extension to eXpOS: os-spec/multiuser.md
+        - Application Programmer's Interface (API):
+          - High Level System Call Interface: os-spec/systemcallinterface.md
+          - High Level Library Interface: os-spec/dynamicmemoryroutines.md
+        - eXpOS Shell Specification: os-spec/shell-spec.md
+      - Design: 
+        - Design: os-design/index.md
+        - Micellaneous: os-design/misc.md
+        - Exception Handler: os-design/exe-handler.md
+        - Timer: os-design/timer.md
+        - Disk Interrupt Handler: os-design/disk-interrupt.md
+        - Terminal Interrupt Handler: os-design/term-handler.md
+        - Shutdown: os-design/shutdown.md
+        - Create: os-design/create.md
+        - Delete: os-design/delete.md
+        - Open: os-design/open.md
+        - Close: os-design/close.md
+        - Read: os-design/read.md
+        - Write: os-design/write.md
+        - Seek: os-design/seek.md
+        - Fork: os-design/fork.md
+        - Exec: os-design/exec.md
+        - Exit: os-design/exit.md
+        - Process Micellaneous: os-design/proc-misc.md
+        - Synchronization Algorithms: os-design/synchronization-algos.md
+        - Semaphore Algorithms: os-design/semaphore-algos.md
+        - Multi-User System Calls: os-design/multiusersyscalls.md
+        - Disk Data Structures: os-design/disk-ds.md
+        - Process Table: os-design/process-table.md
+        - Memory Data Structures: os-design/mem-ds.md
+        - Process State Diagram: os-design/state-diag.md
+        - NeXpOS Design: os-design/nexpos.md
+      - Implementation: 
+        - Implementation: os-implementation.md
+        - Kernel Stack Management:
+          - During System Calls: os-design/stack-smcall.md
+          - During Hardware interrupts or exceptions: os-design/stack-interrupt.md
+          - During Module calls: os-design/stack-module.md
+          - During Context Switch: os-design/timer-stack-management.md
     - Architecture:
       - Specification: 
         - XSM Architecture Specifcation: arch-spec/index.md
         - Virtual Machine Model: virtual-machine-spec.md
         - Machine Organisation: "arch-spec/machine-organization.md"
+        - Interrupts and Exception Handling: arch-spec/interrupts-exception-handling.md
+        - Instruction Set: arch-spec/instruction-set.md
+        - Paging Hardware and Address Translation: arch-spec/paging-hardware.md
+        - NEXSM (Two Core) Architecture Specification: arch-spec/nexsm.md
       - Modules:
         - Modules: "modules/index.md"
         - Module 0: "modules/module-00.md"
@@ -103,13 +151,31 @@ nav:
         - SPL: support-tools/spl.md
         - ExpL: support-tools/expl.md
         - XSM Simulator: support-tools/xsm-simulator.md
+        - Constants: support-tools/constants.md
       - Application Interface:
         - Application Binary Interface (ABI): abi.md
         - Low Level System Call Interface: os-design/sw-interface.md
         - High Level Library Interface: os-spec/dynamicmemoryroutines.md
         - Low Level Library Interface: abi.md
     - Others:
-      - Test Programs: test-programs/index.md
+      - Test Programs: 
+        - Test Programs: test-programs/index.md
+        - Program 1: test-programs/test-program-01.md
+        - Program 2: test-programs/test-program-02.md
+        - Program 3: test-programs/test-program-03.md
+        - Program 4: test-programs/test-program-04.md
+        - Program 5: test-programs/test-program-05.md
+        - Program 6: test-programs/test-program-06.md
+        - Program 7: test-programs/test-program-07.md
+        - Program 8: test-programs/test-program-08.md
+        - Program 9: test-programs/test-program-09.md
+        - Program 10: test-programs/test-program-10.md
+        - Program 11: test-programs/test-program-11.md
+        - Program 12: test-programs/test-program-12.md
+        - Program 13: test-programs/test-program-13.md
+        - Program 14: test-programs/test-program-14.md
+        - Program 15: test-programs/test-program-15.md
+        - Program 16: test-programs/test-program-16.md
   - Roadmap:
     - Roadmap: roadmap/index.md
     - Preparatory Stages:
@@ -154,4 +220,5 @@ nav:
   - About:
     - About: about.md
     - Changelog: changelog.md
-  - XOS: http://xosnitc.github.io" target="_blank # *hack* injected in the anchor code
+    - Project Reports: reports.md
+  - XOS: http://xosnitc.github.io" target="_blank # hack injected in the anchor code
