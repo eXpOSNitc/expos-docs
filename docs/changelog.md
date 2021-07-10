@@ -84,7 +84,7 @@ hide:
     
 ??? quote "14th October 2018"
     
-    The code for the Stage 22 assignment problem ([Merge Sort](test-programs/index.md#test_program_14)) has been modified to avoid the stack overflow problem. A new assignment problem has been added to Stage 25 (File Write). The changes in the sub-directories are:-
+    The code for the Stage 22 assignment problem ([Merge Sort](test-programs/index.md#test-program-14-merge-sort)) has been modified to avoid the stack overflow problem. A new assignment problem has been added to Stage 25 (File Write). The changes in the sub-directories are:-
     
     *   **expl:** Fixed a bug which caused an exception when function with more than one argument was called after an exposcall with more than one argument.
     *   **xfs-interface:** Fixed a bug which stored the file size of data files 1 more than the actual value.

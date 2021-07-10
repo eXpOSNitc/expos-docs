@@ -7,7 +7,7 @@ original_url: http://exposnitc.github.io/Tutorials/multiuser_implementation.html
     It is necessary to read the following documentations before starting with this tutorial.
     
     1. User level specification of [eXpOS multi-user model](../os-spec/multiuser.md).
-    2. [Multi-user system call specification](../os-spec/systemcallinterface.md#multiusersystemcalls).
+    2. [Multi-user system call specification](../os-spec/systemcallinterface.md#multiuser-system-calls).
     3. Specification of [Shell commands and system utilities](../os-spec/shell-spec.md).
 
 eXpOS implements a very primitive support for multiple users to login into the system. eXpOS supports only one terminal. Hence, only one user is permitted to login into the system at one time and another user can login only after the current user logs out. The OS permits only a maximum of 16 users to be created. Of these 16, two are default users - the **kernel** and the **root**.

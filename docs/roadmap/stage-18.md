@@ -27,7 +27,7 @@ detect the completion of data transfer. XSM machine raises the [disk interrupt](
     initiates a disk read/write operation from the context of a process, the device driver module is invoked with appropriate arguments. In our present context, the [device manager module](../modules/module-04.md) integrates a common "driver software" for all devices of XSM. The load and store instructions actually are high level "macro operations" given to you that abstract away the low level details of the device specific code to program the disk controller hardware. The <i>loadi</i> instruction abstracts disk I/O using the method of [polling](https://en.wikipedia.org/wiki/Polling_(computer_science)) whereas the <i>load</i> instruction abstracts [interrupt based](https://en.wikipedia.org/wiki/Asynchronous_I/O)disk I/O.
 
 To initiate the disk transfer using the load statement, first the process has to **acquire**
-the disk. This ensures that no other process uses the disk while the process which has acquired the disk is loading the disk block to the memory page. eXpOS maintains a data structure called [Disk Status Table](../os-design/mem-ds.md#ds_table) to keep track of these disk-memory transfers. The disk status table stores the status of the disk
+the disk. This ensures that no other process uses the disk while the process which has acquired the disk is loading the disk block to the memory page. eXpOS maintains a data structure called [Disk Status Table](../os-design/mem-ds.md#disk-status-table) to keep track of these disk-memory transfers. The disk status table stores the status of the disk
 indicating whether the disk is busy or free. The disk status table has a LOAD/STORE bit
 indicating whether the disk operation is a load or store. The table also stores the page number
 and the block number involved in the transfer. To keep track of the process that has currently
@@ -76,7 +76,7 @@ this stage.**Minor modifications are also required for the boot module.
 
 The Disk Load function takes the PID of a process, a page number and a block number as input and performs the following tasks :
 1. Acquires the disk by invoking the Acquire Disk function in the [resource manager module](../modules/module-00.md) (module 0)
-2. Set the [Disk Status table](../os-design/mem-ds.md#ds_table)entries as mentioned in the algorithm (specified in the above link).
+2. Set the [Disk Status table](../os-design/mem-ds.md#disk-status-table)entries as mentioned in the algorithm (specified in the above link).
 3. Issue the [load statement](../support-tools/spl.md) to initiate a disk block to memory page DMA transfer.
 4. Set the state of the process (with given PID) to WAIT_DISK and invoke the scheduler.
 

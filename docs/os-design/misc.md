@@ -137,7 +137,7 @@ endwhile
 ```
 
 ### INIT/Login Process
-The login process is the first process scheduled for execution. It is used to login a user.The login process waits invoking the (terminal) read system call for a username and password to be input from the console. The login process executes the [Login system call](../os-spec/systemcallinterface.md#multiusersystemcalls) with the username and the password as the arguments. The login system call verifies the user and creates a new [shell process](misc.md#shell).The original login process waits inside the login system call for the shell to exit. Upon exit of the shell, the login process proceeds to log in the next user. The login process is the init process in [Multiuser](../os-spec/multiuser.md) extension to eXpOS.
+The login process is the first process scheduled for execution. It is used to login a user.The login process waits invoking the (terminal) read system call for a username and password to be input from the console. The login process executes the [Login system call](../os-spec/systemcallinterface.md#multiuser-system-calls) with the username and the password as the arguments. The login system call verifies the user and creates a new [shell process](misc.md#shell).The original login process waits inside the login system call for the shell to exit. Upon exit of the shell, the login process proceeds to log in the next user. The login process is the init process in [Multiuser](../os-spec/multiuser.md) extension to eXpOS.
 
 #### Algorithm
 

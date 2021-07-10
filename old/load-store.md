@@ -8,7 +8,7 @@ hide:
 
 ### Steps to Load/Store
 
-1) In the [Disk Status Table](mem-ds.md#ds_table), do the following steps
+1) In the [Disk Status Table](mem-ds.md#disk-status-table), do the following steps
 
 
 * Set the Status bit to 1.   /* Shows disk is busy */

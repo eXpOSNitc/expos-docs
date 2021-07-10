@@ -91,7 +91,7 @@ Interrupt routine 15 written in stage 21 contains just HALT instruction. In this
 
 #### Disk Store (function number = 1, [Device manager module](../modules/module-04.md))
 
-Disk Store function takes PID of a process, a page number and a block number as arguments. To store data into the disk, Disk Store first needs to lock the disk by invoking the **Acquire Disk** function of the [resource manager module](../modules/module-00.md) . After locking the disk, Disk Store updates the [disk status table](../os-design/mem-ds.md#ds_table) . Finally, Disk Store initiates the store operation for given page number and block number and waits in WAIT\_DISK state until the store operation is complete. When store operation is completed, system raises the disk interrupt which makes this process READY again.
+Disk Store function takes PID of a process, a page number and a block number as arguments. To store data into the disk, Disk Store first needs to lock the disk by invoking the **Acquire Disk** function of the [resource manager module](../modules/module-00.md) . After locking the disk, Disk Store updates the [disk status table](../os-design/mem-ds.md#disk-status-table) . Finally, Disk Store initiates the store operation for given page number and block number and waits in WAIT\_DISK state until the store operation is complete. When store operation is completed, system raises the disk interrupt which makes this process READY again.
 
 Implement **Disk Store** function using the detailed algorithm given in the device manager module link above.
 
