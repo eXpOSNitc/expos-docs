@@ -314,7 +314,7 @@ Routine</a></td>
 </tr>
 <tr>
 <td rowspan="4" style="vertical-align:middle">58</td>
-<td><a href="../os-design/process-table/#per_page_table" target="_blank">Page tables</a></td>
+<td><a href="../os-design/process-table/#per-process-page-table" target="_blank">Page tables</a></td>
 <td>29696 - 30015</td>
 <td>320</td>
 </tr>
@@ -324,7 +324,7 @@ Routine</a></td>
 <td>16</td>
 </tr>
 <tr>
-<td><a href="../os-design/process-table/#disk_map_table" target="_blank">Disk Map Table</a></td>
+<td><a href="../os-design/process-table/#per-process-disk-map-table" target="_blank">Disk Map Table</a></td>
 <td>30032 - 30191</td>
 <td>160</td>
 </tr>

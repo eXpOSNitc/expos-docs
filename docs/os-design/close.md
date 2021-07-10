@@ -40,10 +40,10 @@ If file descriptor is invalid, return -1. &nbsp;&nbsp; /* File descriptor value 
 
 Locate the Per-Process Resource Table of the current process.
 	Find the PID of the current process from the <a href="../../os-design/mem-ds/#system-status-table" target="_blank">System Status Table</a>.
-	Find the User Area page number from the <a href="../../os-design/process-table/#per_process_table" target="_blank">Process Table </a>entry.
-	The <a href="../../os-design/process-table/#per_process_table">Per-Process Resource Table</a> is located at the  <a href="../../support-tools/constants/" target="_blank">RESOURCE_TABLE_OFFSET</a> from the base of the <a href="../../os-design/process-table/#user_area" target="_blank"> User Area Page</a>
+	Find the User Area page number from the <a href="../../os-design/process-table/#per-process-resource-table" target="_blank">Process Table </a>entry.
+	The <a href="../../os-design/process-table/#per-process-resource-table">Per-Process Resource Table</a> is located at the  <a href="../../support-tools/constants/" target="_blank">RESOURCE_TABLE_OFFSET</a> from the base of the <a href="../../os-design/process-table/#user_area" target="_blank"> User Area Page</a>
 
-If the Resource identifier field of the <a href="../../os-design/process-table/#per_process_table" target="_blank">Per Process Resource Table</a> entry is invalid or does not indicate a <a href="../../support-tools/constants/" target="_blank">FILE</a>, return -1.   
+If the Resource identifier field of the <a href="../../os-design/process-table/#per-process-resource-table" target="_blank">Per Process Resource Table</a> entry is invalid or does not indicate a <a href="../../support-tools/constants/" target="_blank">FILE</a>, return -1.   
 
 /* No file is open with this file descriptor. */
 
@@ -51,7 +51,7 @@ Get the index of the <a href="../../os-design/mem-ds/#open-file-table" target="_
 
 Call the <b>close()</b> function in the <a href="../../modules/module-03/">File Manager module</a> with the Open File Table index as arguement.
 
-Invalidate the <a href="../../os-design/process-table/#per_process_table" target="_blank">Per-Process Resource Table</a> entry.
+Invalidate the <a href="../../os-design/process-table/#per-process-resource-table" target="_blank">Per-Process Resource Table</a> entry.
 
 Set the MODE_FLAG in the <a href="../../os-design/process-table/">process table</a> entry to 0.
 Switch back to the user stack.

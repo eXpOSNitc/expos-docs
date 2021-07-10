@@ -28,7 +28,7 @@ Replicates the process invoking the system call. The heap, code and library [reg
 When a process executes the Fork system call, the child process shares with the parent all the file and semaphore descriptors previously acquired by the parent. Semaphore/file descriptors acquired subsequent to the fork operation by either the child or the parent will be exclusive to the respective process and will not be shared.
 
 
-Data Structures modified are [Process Table](process-table.md), [System Status Table](mem-ds.md#ss_table), [Open File Table](mem-ds.md#file_table), [Semaphore Table](mem-ds.md#sem_table), [Memory Free List](mem-ds.md#mem_free_list), [Disk Free List](disk-ds.md#disk-free-list) (in case of swapped pages), [Resource Table](process-table.md#per_process_table) and the [Disk Map Table](process-table.md#disk_map_table).
+Data Structures modified are [Process Table](process-table.md), [System Status Table](mem-ds.md#ss_table), [Open File Table](mem-ds.md#file_table), [Semaphore Table](mem-ds.md#sem_table), [Memory Free List](mem-ds.md#mem_free_list), [Disk Free List](disk-ds.md#disk-free-list) (in case of swapped pages), [Resource Table](process-table.md#per-process-resource-table) and the [Disk Map Table](process-table.md#per-process-disk-map-table).
 
 
 The mode flag in the [Process Table](process-table.md) has to be set to Kernel mode when the process enters the system call and reset before exiting from the system call.
@@ -74,7 +74,7 @@ to the new UA Page, MODE, TICK and Kernel Stack Pointer to 0.
 
 /* PID, PTBR, PTLR fields of the child's process table is initilized by the get_pcb_entry function.*/ 
 
-Copy the <a href="../../os-design/process-table/#per_process_table">per-process resource table</a> and <a href="../../os-design/process-table/#disk_map_table">per-process disk map table</a>.
+Copy the <a href="../../os-design/process-table/#per-process-resource-table">per-process resource table</a> and <a href="../../os-design/process-table/#per-process-disk-map-table">per-process disk map table</a>.
 For every open file of the parent, increment the Open Instance Count in the <a href="../../os-design/mem-ds/#open-file-table" target="_blank">Open File Table</a>.
 For every semaphore acquired by the parent, increment Process Count in the <a href="../../os-design/mem-ds/#semaphore-table" target="_blank">Semaphore Table</a>.
 /* The child shares open files and acquired semaphores with the parent */

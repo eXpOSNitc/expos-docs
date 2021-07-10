@@ -38,11 +38,11 @@ Set the TICK field of the process table entry of the selected process to 0.
 /* When the process goes to swap, TICK starts again */
 
 Call the <b>release_page()</b> function in the <a href="../../modules/module-02/">Memory Manager</a> module to deallocate the valid code pages of the process.
-Invalidate the <a href="../../os-design/process-table/#per_page_table">Page table</a> entry correpsonding to the code pages.
+Invalidate the <a href="../../os-design/process-table/#per-process-page-table">Page table</a> entry correpsonding to the code pages.
 
 <b>For</b> each heap page that is not shared and is valid {	/* Shared heap pages are not swapped out. */
 	Get a free swap block by calling the <b>get_swap_block()</b> function in the <a href="../../modules/module-02/">Memory Manager</a> module.
-	Store the disk block number in the <a href="../../os-design/process-table/#disk_map_table">Disk Map Table</a> entry of the process curresponding to the heap page.
+	Store the disk block number in the <a href="../../os-design/process-table/#per-process-disk-map-table">Disk Map Table</a> entry of the process curresponding to the heap page.
 	Use the <b>disk_store()</b> function in the <a href="../../modules/module-04/">Device Manager</a> module to write the heap page to the block found above
 	Call the <b>release_page()</b> function in the <a href="../../modules/module-02/">Memory Manager</a> module to deallocate the page.
 	Invalidate the Page table entry correpsonding to the page.
@@ -94,9 +94,9 @@ If there is no such process in the READY state, reset the PAGING_STATUS field to
 
 Set the TICK field of the process table entry of the selected process to 0.
 
-<b>For</b> each heap page that is swapped out {	/* Check the <a href="../../os-design/process-table/#disk_map_table">Disk Map Table</a>. */
+<b>For</b> each heap page that is swapped out {	/* Check the <a href="../../os-design/process-table/#per-process-disk-map-table">Disk Map Table</a>. */
 	Call the <b>get_free_page()</b> function in the <a href="../../modules/module-02/">Memory Manager</a> module to allocate a memory page.
-	Get the disk block number in the <a href="../../os-design/process-table/#disk_map_table">Disk Map Table</a> entry of the process corresponding to the heap page.
+	Get the disk block number in the <a href="../../os-design/process-table/#per-process-disk-map-table">Disk Map Table</a> entry of the process corresponding to the heap page.
 	Use the <b>disk_load()</b> function in the <a href="../../modules/module-04/">Device Manager</a> module to copy the heap page found above to the memory.
 	Free the swap block by calling the <b>release_block()</b> function in the <a href="../../modules/module-02/">Memory Manager</a> module.
 	Set the Page table entry correpsonding to the page. Reference bit is set to 0, valid bit and write bit are set to 1.

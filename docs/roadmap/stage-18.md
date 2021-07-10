@@ -114,7 +114,7 @@ function present in the [device manager module](../modules/module-04.md).
 
 
 We will initialize another data strucutre as well in this stage. This is the
-[per-process resource table](../os-design/process-table.md#per_process_table). (This step can be deferred to later
+[per-process resource table](../os-design/process-table.md#per-process-resource-table). (This step can be deferred to later
 stages, but since the work involved is simple, we will finish it here). The per-process
 resource table stores the information about the files and semaphores which a process is
 currently using. For each process, per-process resource table is stored in the user area
@@ -133,7 +133,7 @@ Following modifications are done in boot module :
 
 1. Load the disk interrupt routine from the disk to the memory.
 2. Initialize the STATUS field in the Disk Status Table to 0.
-3. Initialize the [per-process resource table](../os-design/process-table.md#per_process_table) of init process.
+3. Initialize the [per-process resource table](../os-design/process-table.md#per-process-resource-table) of init process.
 
 Compile and load the modified and newly written files into the disk using XFS-interface. Run the Shell version-I with any program to check for errors.
 

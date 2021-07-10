@@ -103,7 +103,7 @@ Called by the Read system call.
 Locates the file in the inode table and makes an entry in the Open File Table. Returns the Open File Table index or an error code if file does not exist or the table is full. On a successfull open, the file status table entry of the file is incremented.
 
 !!! note
-     This function must not be called unless a the calling process has a free entry available in the <a href="../../os-design/process-table/#per_process_table">per-process resource table</a> to store the open file table index returned by this function.
+     This function must not be called unless a the calling process has a free entry available in the <a href="../../os-design/process-table/#per-process-resource-table">per-process resource table</a> to store the open file table index returned by this function.
 
 <pre><code>
 

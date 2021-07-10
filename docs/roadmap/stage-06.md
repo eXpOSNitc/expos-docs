@@ -230,7 +230,7 @@ transfer is completed. XSM will execute the next instruction after the transfer 
 complete. (In later stages you will use the load instruction that can help to speed up
 execution).
 
-2) [Page Table](../os-design/process-table.md#per_page_table)
+2) [Page Table](../os-design/process-table.md#per-process-page-table)
 for INIT must be set up for address translation scheme to work correctly.
 This is because INIT is a user process and all addresses generated are logical.
 Machine translates these logical addresses to physical addresses by looking up the page table

@@ -29,7 +29,7 @@ Load only the first code page of INIT process from the disk to the memory.
 
 <details class="code-accordion"><summary>Initialize the Page table for INIT process (PID = 1)</summary>
     Use <a href="../../support-tools/constants/" target="_blank">PAGE_TABLE_BASE</a> + 20 as starting address for the page table of INIT process.
-    Set the memory pages 63 and 64 for library entries in the <a href="../../os-design/process-table/#per_page_table" target="_blank">page table</a>. Set "0100" as auxiliary information for library pages. <!--the reference bit to 0, valid bit to 1, write bit to 0.-->
+    Set the memory pages 63 and 64 for library entries in the <a href="../../os-design/process-table/#per-process-page-table" target="_blank">page table</a>. Set "0100" as auxiliary information for library pages. <!--the reference bit to 0, valid bit to 1, write bit to 0.-->
     Set the first code page entry to 65 (See <a href="../../os-implementation/" target="_blank">memory organization</a>) and auxiliary information for valid code pages as "0100". <!--Set valid bit to 1 and write bit to 0.-->  
     Set the first stack page entry to 66 and auxiliary information to "0110".<!--valid bit to 1, write bit to 1. Set second stack page entry to -1 and valid bit to 0.-->
     Set remaining code pages, remaining stack page and heap pages entries to -1 and auxiliary information to "0000".
@@ -48,7 +48,7 @@ Load the code pages of SHELL process from the disk to the memory.
 
 <details class="code-accordion"><summary>Initialize the Page table for SHELL process (PID = 2)</summary>
     Use <a href="../../support-tools/constants/" target="_blank">PAGE_TABLE_BASE</a> + 40 as starting address for the page table of SHELL process.
-    Set the memory pages 63 and 64 for library entries in the <a href="../../os-design/process-table/#per_page_table" target="_blank">page table</a>.
+    Set the memory pages 63 and 64 for library entries in the <a href="../../os-design/process-table/#per-process-page-table" target="_blank">page table</a>.
     Set "0100" as auxiliary information for library pages. <!--the reference bit to 0, valid bit to 1, write bit to 0.-->
     Set the code page entries to 67 and 68 (See <a href="../../os-implementation/" target="_blank">memory organization</a>) and auxiliary information for valid code pages as "0100". <!--Set valid bit to 1 and write bit to 0.-->  
     Allocate two memory pages 78 and 79 for user stack.
@@ -62,7 +62,7 @@ Load the code pages of SHELL process from the disk to the memory.
 </details>
 Store the IP value (from the header of the SHELL) on top of first user stack page [78*512] = [67*512 +1].    
 
-Initialize <a href="../../os-design/process-table/#disk_map_table" target="_blank">Disk Map Table</a> for shell. First two code page entries with 9, 10 and all other entries to -1.
+Initialize <a href="../../os-design/process-table/#per-process-disk-map-table" target="_blank">Disk Map Table</a> for shell. First two code page entries with 9, 10 and all other entries to -1.
 
 
 /* Initialize all memory data structures */
@@ -74,7 +74,7 @@ Initialize the <a href="../../os-design/mem-ds/#memory-free-list" target="_blank
 
 Initialize the fields of <a href="../../os-design/mem-ds/#system-status-table" target="_blank">System Status Table</a>. MEM_FREE_COUNT as 45, WAIT_MEM_COUNT as 0, SWAPPED_COUNT as 0, PAGING_STATUS as 0.
 
-Invalidate <a href="../../os-design/process-table/#per_process_table" target="_blank">Per Process Resource Table</a> of INIT and SHELL processes (all entries are set to -1).
+Invalidate <a href="../../os-design/process-table/#per-process-resource-table" target="_blank">Per Process Resource Table</a> of INIT and SHELL processes (all entries are set to -1).
 
 Store 0 in the PROCESS_COUNT field for all entries in <a href="../../os-design/mem-ds/#semaphore-table" target="_blank">Semaphore Table</a>.
 

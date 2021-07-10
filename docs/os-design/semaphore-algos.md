@@ -20,7 +20,7 @@ None
 
 #### Description
 This system call is used to obtain a binary [semaphore](https://en.wikipedia.org/wiki/Semaphore_(programming)). eXpOS has a fixed number of semaphores.
-The semaphores of a process are shared with it's child processes. Data Structures updated are [Per Process Resource Table](process-table.md#per_process_table) and [Semaphore table](mem-ds.md#sem_table).
+The semaphores of a process are shared with it's child processes. Data Structures updated are [Per Process Resource Table](process-table.md#per-process-resource-table) and [Semaphore table](mem-ds.md#sem_table).
 
 The mode flag in the [Process Table](process-table.md) has to be set to Kernel mode when the process enters the system call and must be reset before exiting from the system call.
 
@@ -35,7 +35,7 @@ The mode flag in the [Process Table](process-table.md) has to be set to Kernel m
 <pre><code>
 Set the MODE_FLAG in the <a href="../../os-design/process-table/" target="_blank">Process Table</a> to 17 and <a href="../../os-design/stack-smcall/">switch</a> to kernel stack.
 
-Find the index of a free entry in the <a href="../../os-design/process-table/#per_process_table" target="_blank">Per Process Resource Table</a>. /* This will be our semaphore descriptor */
+Find the index of a free entry in the <a href="../../os-design/process-table/#per-process-resource-table" target="_blank">Per Process Resource Table</a>. /* This will be our semaphore descriptor */
 If no free entry, then return -1.
 
 Resource Identifier field of the per-process resource table entry is set to 1 to indicate that the resource is a semaphore.
@@ -76,7 +76,7 @@ Semaphore Descriptor (Integer)
 
 
 #### Description
-This system call is used to release a semaphore descriptor held by the process. Data Structures updated are [Per Process Resource Table](process-table.md#per_process_table) and [Semaphore table](mem-ds.md#sem_table). The mode flag in the [Process Table](process-table.md) has to be set to Kernel mode when the process enters the system call and reset before exiting from the system call.
+This system call is used to release a semaphore descriptor held by the process. Data Structures updated are [Per Process Resource Table](process-table.md#per-process-resource-table) and [Semaphore table](mem-ds.md#sem_table). The mode flag in the [Process Table](process-table.md) has to be set to Kernel mode when the process enters the system call and reset before exiting from the system call.
 
 
   
@@ -92,7 +92,7 @@ This system call is used to release a semaphore descriptor held by the process. 
 <pre><code>
 Set the MODE_FLAG in the <a href="../../os-design/process-table/" target="_blank">Process Table</a> to 18 and <a href="../../os-design/stack-smcall/">switch</a> to kernel stack.
 
-<b>If</b> Semaphore descriptor is not valid or the entry in the <a href="../../os-design/process-table/#per_process_table" target="_blank">Per Process Resource Table</a> is not valid, return -1. 
+<b>If</b> Semaphore descriptor is not valid or the entry in the <a href="../../os-design/process-table/#per-process-resource-table" target="_blank">Per Process Resource Table</a> is not valid, return -1. 
 /* The descriptor is invalid if not in the range 0 - 7, or if the resource identifier field of the table entry is not 1 */
 
 Invoke the release_semaphore() function in the <a href="../../modules/module-00/">Resource Manager</a> Module.
@@ -137,7 +137,7 @@ The mode flag in the [Process Table](process-table.md) has to be set to Kernel m
 <pre><code>
 Set the MODE_FLAG in the <a href="../../os-design/process-table/" target="_blank">Process Table</a> to 19 and <a href="../../os-design/stack-smcall/">switch</a> to kernel stack.
 
-<b>If</b> Semaphore descriptor is not valid or the entry in the <a href="../../os-design/process-table/#per_process_table" target="_blank">Per Process Resource Table</a> is not valid, return -1. 
+<b>If</b> Semaphore descriptor is not valid or the entry in the <a href="../../os-design/process-table/#per-process-resource-table" target="_blank">Per Process Resource Table</a> is not valid, return -1. 
 /* The descriptor is invalid if not in the range 0 - 7, or if the resource identifier field of the table entry is not 1 */
              
 <b>while</b> the semaphore is locked by a process other than the current process <b>do</b>    /* Check the Locking PID field in the <a href="../../os-design/mem-ds/#semaphore-table" target="_blank">Semaphore table</a> */
@@ -190,7 +190,7 @@ The mode flag in the [Process Table](process-table.md) has to be set to Kernel m
 <pre><code>
 Set the MODE_FLAG in the <a href="../../os-design/process-table/" target="_blank">Process Table</a> to 20 and <a href="../../os-design/stack-smcall/">switch</a> to kernel stack.
 
-<b>If</b> Semaphore descriptor is not valid or the entry in the <a href="../../os-design/process-table/#per_process_table" target="_blank">Per Process Resource Table</a> is not valid, return -1. 
+<b>If</b> Semaphore descriptor is not valid or the entry in the <a href="../../os-design/process-table/#per-process-resource-table" target="_blank">Per Process Resource Table</a> is not valid, return -1. 
 /* The descriptor is invalid if not in the range 0 - 7, or if the resource identifier field of the table entry is not 1 */
          
 <b>If</b> semaphore is locked. /* Check the Locking PID in the <a href="../../os-design/mem-ds/#semaphore-table">Semaphore table</a> */

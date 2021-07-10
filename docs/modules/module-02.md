@@ -92,9 +92,9 @@ Loads a single code page to memory given the block number of the page in the dis
 <pre><code>
 /* If the required code page is already loaded by some other process, we simply increment the share count in the <a href="../../os-design/mem-ds/#memory-free-list">Mem Free List</a> */
 
-Loop though code page entries in the <a href="../../os-design/process-table/#disk_map_table">disk map table</a> of all processes
+Loop though code page entries in the <a href="../../os-design/process-table/#per-process-disk-map-table">disk map table</a> of all processes
     If (the block number in the Disk Map Table entry matches the 
-    block to be loaded, and it's corresponding <a href="../../os-design/process-table/#per_page_table">page table</a> entry is set to VALID) {
+    block to be loaded, and it's corresponding <a href="../../os-design/process-table/#per-process-page-table">page table</a> entry is set to VALID) {
         <b>increment the share count</b> of the page in the <a href="../../os-design/mem-ds/#memory-free-list">Mem Free List</a>.
         return the physical page number
     }

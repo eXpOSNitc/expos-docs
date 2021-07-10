@@ -35,7 +35,7 @@ Dump the
 1) Load the code pages of the even program from disk to memory.
 
 2) Set the [Process Table](../os-design/process-table.md) entry and
-[PageTable](../os-design/process-table.md#per_page_table)
+[PageTable](../os-design/process-table.md#per-process-page-table)
 entries for setting up a process for the even program. You should set up the PTBR, PTLR, UPTR, KPTR, 
 User Area Page Number etc. and also initialize the process state as CREATED in the process
 table entry for the even process. Set the PID field in the process table entry to 2.

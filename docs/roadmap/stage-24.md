@@ -8,7 +8,7 @@ original_url: https://exposnitc.github.io/Roadmap.html
     - Implementation of *Open* , *Close* and *Read* system calls.
     
 !!! abstract "Pre-requisite Reading"
-    Description of data structures - [File(inode) status table](../os-design/mem-ds.md#file_lock_status_table) , [Buffer table](../os-design/mem-ds.md#buffer_table) , [Open file table](../os-design/mem-ds.md#file_table) and [per-process resource table](../os-design/process-table.md#per_process_table).
+    Description of data structures - [File(inode) status table](../os-design/mem-ds.md#file_lock_status_table) , [Buffer table](../os-design/mem-ds.md#buffer_table) , [Open file table](../os-design/mem-ds.md#file_table) and [per-process resource table](../os-design/process-table.md#per-process-resource-table).
     
 In this stage, we will understand the mechanism of opening and closing a file with the help of *Open* and *Close* system calls. We will also understand how contents of a file can be read by using *Read* system call. *Fork* system call and **Free User Area Page** function of process manager module are also modified in this stage.
 
@@ -23,7 +23,7 @@ The system calls *Open* and *Close* are implemented in the interrupt routine 5. 
 
 ##### Open system call
 
-*Open* system call takes a filename as an argument from the user program. To perform read/write operations on a file, a process must open the file first. *Open* system call creates a new **open instance** for the file and returns a **file descriptor** (index of the new [per-process resource table](../os-design/process-table.md#per_process_table) entry created for the open instance). Further operations on the open instance are performed using this file descriptor. A process can open a file several times and each time a different open instance (and new descriptor) is created. The global data structure, [Open file table](../os-design/mem-ds.md#file_table) keeps track of all the open file instances in the system. (A new entry is created in this table whenever the *Open* system call is invoked with any file name.) [File status table](../os-design/mem-ds.md#file_lock_status_table) is a global data structure that maintains an entry for every file in the system (not just opened files).
+*Open* system call takes a filename as an argument from the user program. To perform read/write operations on a file, a process must open the file first. *Open* system call creates a new **open instance** for the file and returns a **file descriptor** (index of the new [per-process resource table](../os-design/process-table.md#per-process-resource-table) entry created for the open instance). Further operations on the open instance are performed using this file descriptor. A process can open a file several times and each time a different open instance (and new descriptor) is created. The global data structure, [Open file table](../os-design/mem-ds.md#file_table) keeps track of all the open file instances in the system. (A new entry is created in this table whenever the *Open* system call is invoked with any file name.) [File status table](../os-design/mem-ds.md#file_lock_status_table) is a global data structure that maintains an entry for every file in the system (not just opened files).
 
 *Open* system call creates new entries for the file to be opened in the per-process resource table and the open file table. A process keeps track of an open instance by storing the index of the open file table entry of the instance in (the corresponding) resource table entry. When a file is opened, the OPEN INSTANCE COUNT in the open file table is set to 1 and **seek** position is initialized to the starting of the file (0).
 
@@ -38,7 +38,7 @@ Implement *Open* system call using the detailed algorithm provided [here](../os-
 
 When a process no longer needs to perform read/write operations on an open instance of a file, the open instance may be closed using the *Close* system call. Even if a process does not explicitly close an open instance by invoking *Close* system call, the open instance is closed at the termination of the process by *Exit* system call.
 
-*Close* system call takes a file descriptor (index of the [per-process resource table](../os-design/process-table.md#per_process_table) entry) as argument from the user program. *Close* system call invalidates the per-process resource table entry (corresponding to given file descriptor) by storing -1 in the Resource Identifier field. To decrement share count of the open instance in the [open file table](../os-design/mem-ds.md#file_table) and update the [file status table](../os-design/mem-ds.md#file_lock_status_table) accordingly, **Close** function of [file manager module](../modules/module-03.md) is invoked by the *Close* system call.
+*Close* system call takes a file descriptor (index of the [per-process resource table](../os-design/process-table.md#per-process-resource-table) entry) as argument from the user program. *Close* system call invalidates the per-process resource table entry (corresponding to given file descriptor) by storing -1 in the Resource Identifier field. To decrement share count of the open instance in the [open file table](../os-design/mem-ds.md#file_table) and update the [file status table](../os-design/mem-ds.md#file_lock_status_table) accordingly, **Close** function of [file manager module](../modules/module-03.md) is invoked by the *Close* system call.
 
 Implement *Close* system call using the detailed algorithm provided [here](../os-design/close.md) .
 
@@ -61,7 +61,7 @@ Implement *Close* function using the detailed algorithm given in the file manage
 
 There is a simple modification required to the *Fork* System call. When a process forks to create a child process, the file instances currently opened by the parent are now shared between child and parent. To reflect this change, the OPEN INSTANCE COUNT field in the [open file table](../os-design/mem-ds.md#file_table) is incremented for each open file instance in the per-process resource table of parent process.
 
--   While Copying the [per-process resource table](../os-design/process-table.md#per_process_table) of parent to the child process do following -
+-   While Copying the [per-process resource table](../os-design/process-table.md#per-process-resource-table) of parent to the child process do following -
 -   If the resource is a file (check the Resource Identifier field in the per-process resource table), then using the open file table index, increment the OPEN INSTANCE COUNT field in the [open file table](../os-design/mem-ds.md#file_table) entry.
 /\*The change in *Fork* system call to update the [semaphore table](../os-design/mem-ds.md#sem_table) , is already done in stage 22\*/
 
@@ -71,7 +71,7 @@ There is a simple modification required to the *Fork* System call. When a proces
 
 When a process terminates, all the files the process has opened (and haven't closed explicitly) have to be closed. This is done in the Free User Area page function. The **Close** function of the [file manager module](../modules/module-03.md) is invoked for every open file in the per-process resource table of the process.
 
--   For each entry in the [per-process resource table](../os-design/process-table.md#per_process_table) of the process, do following -
+-   For each entry in the [per-process resource table](../os-design/process-table.md#per-process-resource-table) of the process, do following -
 -   If the resource is valid and is file (check the Resource Identifier field in the per-process resource table), then invoke the Close function of the [file manager module](../modules/module-03.md) .
 /\*The change in the Free User Area Page to release the unrelased semaphores is already done in stage 22\*/
 

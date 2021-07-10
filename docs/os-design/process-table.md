@@ -63,14 +63,14 @@ Each entry in the Process Table has a constant size, defined by the PT\_ENTRY\_S
 * **USER AREA PAGE NUMBER** (1 word) - Page number allocated for the user area of the process.
 * **KERNEL STACK POINTER** (1 word) - Pointer to the top of the kernel stack of the process. The **offset of this address within the user area** is stored in this field.
 * **USER STACK POINTER** (1 word) - Logical address of the top of the user stack of the process. This is used when the process is running in kernel mode and the machine's stack pointer is pointing to the top of the kernel stack.
-* **PTBR** (1 word) - pointer to [PER-PROCESS PAGE TABLE](process-table.md#per_page_table).
+* **PTBR** (1 word) - pointer to [PER-PROCESS PAGE TABLE](process-table.md#per-process-page-table).
 * **PTLR** (1 word) - PAGE TABLE LENGTH REGISTER of the process.
 
 
 Invalid entries are represented by -1.
 
 
-**Note1:** In this version of eXpOS, the [Per-Process Resource Table](process-table.md#per_process_table) is stored in the user area of each process. Generally, the Per-Process Resource Table is stored somewhere in memory and a pointer to the table is kept in the Process Table entry.
+**Note1:** In this version of eXpOS, the [Per-Process Resource Table](process-table.md#per-process-resource-table) is stored in the user area of each process. Generally, the Per-Process Resource Table is stored somewhere in memory and a pointer to the table is kept in the Process Table entry.
 
 
 **Note2:** The Process Table is present in page 56 of the memory (see [Memory Organisation](../os-implementation.md)), and the SPL constant [PROCESS\_TABLE](../support-tools/constants.md) points to the starting address of the table. PROCESS\_TABLE + PID*16 gives the begining address of process table entry corresponding to the process with identifier PID.
@@ -159,7 +159,7 @@ For more information, see [XSM.](../arch-spec/index.md)
 
 
 !!! note
-    In the eXpOS implementation on the XSM architecture, if a page is not loaded to the memory, but is stored in a disk block, the disk block number corresponding to the physical page number is stored in the [disk map table](process-table.md#disk_map_table) of the process. If memory access is made to a page whose page table entry is invalid, a *page fault* occurs and the machine transfers control to the Exception Handler routine, which is responsible for loading the correct physical page.
+    In the eXpOS implementation on the XSM architecture, if a page is not loaded to the memory, but is stored in a disk block, the disk block number corresponding to the physical page number is stored in the [disk map table](process-table.md#per-process-disk-map-table) of the process. If memory access is made to a page whose page table entry is invalid, a *page fault* occurs and the machine transfers control to the Exception Handler routine, which is responsible for loading the correct physical page.
 
 
 !!! note

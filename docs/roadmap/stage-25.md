@@ -10,7 +10,7 @@ original_url: https://exposnitc.github.io/Roadmap.html
     
 !!! abstract "Pre-requisite Reading"
     - Description of disk data structures - [Inode table](../os-design/disk-ds.md#inode-table) and [disk free list](../os-design/disk-ds.md#disk-free-list).
-    - Description of memory data structures - [Buffer table](../os-design/mem-ds.md#buffer_table) , [Open file table](../os-design/mem-ds.md#file_table) and [per-process resource table](../os-design/process-table.md#per_process_table) .
+    - Description of memory data structures - [Buffer table](../os-design/mem-ds.md#buffer_table) , [Open file table](../os-design/mem-ds.md#file_table) and [per-process resource table](../os-design/process-table.md#per-process-resource-table) .
     
 In this stage, We will learn how contents of a file are modified using *Write* system call. *Seek* system call which is used to change the LSEEK position for a open instance is also implemented in this stage. *Shutdown* system call is modified to terminate all processes and store back the memory buffers which are modified during *Write* system call to the disk.
 

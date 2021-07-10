@@ -174,7 +174,7 @@ hide:
 | EXEC        | 3             | Indicates that the file is an executable file |
 
 
-#### SPL constants related to [Per-process Resource Table](https://exposnitc.github.io/os_design-files/process_table.html#per_process_table)
+#### SPL constants related to [Per-process Resource Table](https://exposnitc.github.io/os_design-files/process_table.html#per-process-resource-table)
 
 | Name                  | Default Value | Comments                                                         |
 | --------------------- | ------------- | ---------------------------------------------------------------- |

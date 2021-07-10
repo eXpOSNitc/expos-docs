@@ -47,7 +47,7 @@ Frees all the resources in the Resource Table inside the User Area page. Also fr
 Get the User Area Page number from the <a href="../../os-design/process-table/">process table</a> entry
 corresponding to the PID;
 
-loop through the <a href="../../os-design/process-table/#per_process_table">Resource Table</a>{
+loop through the <a href="../../os-design/process-table/#per-process-resource-table">Resource Table</a>{
         if ( the resource table entry is valid )
         if (the resource is a file)
                 Close the corresponding file by calling the Close() function in the 
@@ -100,7 +100,7 @@ Terminate the process whose PID is provided.
     }
 }
 
-Free the <a href="../../os-design/process-table/#per_page_table">Page Table</a> entry corresponding to the process by
+Free the <a href="../../os-design/process-table/#per-process-page-table">Page Table</a> entry corresponding to the process by
 invoking the Free_Page_Table() function; 
 
 Free the User Area Page corresponding to the process by calling
@@ -125,7 +125,7 @@ Called by exec system call, exit system call, exception handler, shutdown and lo
 Free the page table entry and the used pages. The Disk Map table entries are also freed.  
 
 <pre><code>
-Invalidate the <a href="../../os-design/process-table/#per_page_table">page table</a> entries corresponding to the shared library pages;
+Invalidate the <a href="../../os-design/process-table/#per-process-page-table">page table</a> entries corresponding to the shared library pages;
 
 loop through the other <a href="../../os-design/process-table/">page table</a> entries{
         if ( the entry is valid ){

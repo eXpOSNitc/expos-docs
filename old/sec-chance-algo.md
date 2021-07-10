@@ -8,7 +8,7 @@ hide:
 
 ### Second Chance Algorithm
 
-The page replacement technique used in eXpOS is a modified version of the [Second Chance Algorithm](http://en.wikipedia.org/wiki/Page_replacement_algorithm#Second-chance). This algorithm uses the [reference bits](process-table.md#per_page_table) in the Page Table. The page to be replaced is selected by first searching the **per-process page tables** of all processes. **Only [valid](process-table.md#per_page_table) pages are searched. The pages which are shared between multiple processes and shared library pages are skipped in the search.** The first valid unshared page with Reference bit as 0 is selected. While searching for the page with reference bit 0, the reference bit of every page table entry that is traversed during the search, is set to 0. This gives the page which is accessed recently a second chance before getting replaced. 
+The page replacement technique used in eXpOS is a modified version of the [Second Chance Algorithm](http://en.wikipedia.org/wiki/Page_replacement_algorithm#Second-chance). This algorithm uses the [reference bits](process-table.md#per-process-page-table) in the Page Table. The page to be replaced is selected by first searching the **per-process page tables** of all processes. **Only [valid](process-table.md#per-process-page-table) pages are searched. The pages which are shared between multiple processes and shared library pages are skipped in the search.** The first valid unshared page with Reference bit as 0 is selected. While searching for the page with reference bit 0, the reference bit of every page table entry that is traversed during the search, is set to 0. This gives the page which is accessed recently a second chance before getting replaced. 
 
 
   

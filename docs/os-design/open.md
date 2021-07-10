@@ -51,8 +51,8 @@ The [root file](disk-ds.md#root-file) can be opened for Reading by specifying th
  	<details class="code-accordion"><summary>Find a free Per-Process Resource Table entry.</summary>
                 Find the PID of the current process from the <a href="../../os-design/mem-ds/#system-status-table" target="_blank">System Status Table</a>.
                 Find the User Area page number from the <a href="../../os-design/process-table/" target="_blank">Process Table </a>entry.
-                The  <a href="../../os-design/process-table/#per_process_table" target="_blank">Per-Process Resource Table</a> is located at the  <a href="../../support-tools/constants/" target="_blank">RESOURCE_TABLE_OFFSET</a> from the base of the <a href="../../os-design/process-table/#user_area" target="_blank"> User Area Page </a>.              
-		Find a free <a href="../../os-design/process-table/#per_process_table" target="_blank">Resource Table</a> entry.&nbsp;&nbsp;
+                The  <a href="../../os-design/process-table/#per-process-resource-table" target="_blank">Per-Process Resource Table</a> is located at the  <a href="../../support-tools/constants/" target="_blank">RESOURCE_TABLE_OFFSET</a> from the base of the <a href="../../os-design/process-table/#user_area" target="_blank"> User Area Page </a>.              
+		Find a free <a href="../../os-design/process-table/#per-process-resource-table" target="_blank">Resource Table</a> entry.&nbsp;&nbsp;
 		If there is no free entry, return -3.  </details>
  
 	Call the <b>open()</b> function from the <a href="../../modules/module-03/" target="_blank">File Manager module</a> to get the <a href="../../os-design/mem-ds/#open-file-table" target="_blank">Open File table</a> entry.
@@ -67,7 +67,7 @@ The [root file](disk-ds.md#root-file) can be opened for Reading by specifying th
 
 	Restore SP to User SP.
 
-	Return the index of the <a href="../../os-design/process-table/#per_process_table" target="_blank">Per-Process Resource Table</a> entry. &nbsp;&nbsp;/* success */
+	Return the index of the <a href="../../os-design/process-table/#per-process-resource-table" target="_blank">Per-Process Resource Table</a> entry. &nbsp;&nbsp;/* success */
 	/* The index of this entry is the File Descriptor of the file. */
 
 </code></pre> 

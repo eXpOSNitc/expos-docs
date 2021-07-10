@@ -20,7 +20,7 @@ File Name (String) of the executable file (which must be of [XEXE format](../abi
 ### Description
 Exec destroys the present process and loads the executable file given as input into a new memory address space. A successful Exec operation results in the extinction of the invoking process and hence never returns to it. All open instances of file and semaphores of the parent process are closed. However, the newly created process will inherit the PID of the calling process.
 
-The data structures that are modified in this system call are [Process Table](process-table.md), [Memory Free List](mem-ds.md#mem_free_list), [Disk Free List](disk-ds.md#disk-free-list), [Open File Table](mem-ds.md#file_table), [Semaphore Table](mem-ds.md#sem_table), [System Status Table](mem-ds.md#ss_table), [Resource Table](process-table.md#per_process_table) and the [Disk Map Table](process-table.md#disk_map_table).
+The data structures that are modified in this system call are [Process Table](process-table.md), [Memory Free List](mem-ds.md#mem_free_list), [Disk Free List](disk-ds.md#disk-free-list), [Open File Table](mem-ds.md#file_table), [Semaphore Table](mem-ds.md#sem_table), [System Status Table](mem-ds.md#ss_table), [Resource Table](process-table.md#per-process-resource-table) and the [Disk Map Table](process-table.md#per-process-disk-map-table).
 
 The mode flag in the [Process Table](process-table.md) has to be set to Kernel mode when the process enters the system call and reset before exiting from the system call.
 
@@ -57,7 +57,7 @@ to invoke the memory manager module for allocating a fresh user area page (why?)
 
 Set SP to User Area Page Number * 512 - 1 /* Start fresh in the new kernel stack */
 
-Initilize the <a href="../../os-design/process-table/#per_process_table">Per-process Resource Table</a> by setting all entries to -1.	
+Initilize the <a href="../../os-design/process-table/#per-process-resource-table">Per-process Resource Table</a> by setting all entries to -1.	
 
 In the <a href="../../os-design/process-table/">Process Table</a> entry of the current process, set the Inode Index field to the 
 index of Inode Table entry for the file and set the state as RUNNING.
@@ -83,7 +83,7 @@ Load the first code page into memory by invoking the <b>get_code_page()</b> func
                 Set the page table entry for the stack page to the 
                 pages found earlier. Set the valid bit and write bit to 1.
 
-                Set the code pages in the <a href="../../os-design/process-table/#disk_map_table">Disk Map Table</a> to the Block numbers by refering 
+                Set the code pages in the <a href="../../os-design/process-table/#per-process-disk-map-table">Disk Map Table</a> to the Block numbers by refering 
                 to the <a href="../../os-design/disk-ds/#inode-table" target="_blank">Inode Table</a>. Other fields are set to -1.
 </details>
 Obtain the entry point IP value from the header of the new process and set it to the beginning  of user stack(logical address 4096).

@@ -84,7 +84,7 @@ detail with examples soon:
   
 
 
-**The machine assumes that the PTBR register holds the base(starting) address of the [page table](../os-design/process-table.md#per_page_table) in memory.** 
+**The machine assumes that the PTBR register holds the base(starting) address of the [page table](../os-design/process-table.md#per-process-page-table) in memory.** 
  Since PTBR register can be accessed only in privileged mode, your code must have set the PTBR register
  to store the address of the page table before entering unprivileged mode execution. Moreover, to get the address translation hardware to work
  the way you want it to, your must write privilaged code to

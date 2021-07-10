@@ -89,7 +89,7 @@ When a process executes a ​_Read_/_Write_​ system call on an open instance, 
 
 #### 3. Per-Process Resource Table
 
-When a process opens a file, a new entry is created for the open instance in the [per process resource table](../os-design/process-table.md#per_process_table) of the process.  
+When a process opens a file, a new entry is created for the open instance in the [per process resource table](../os-design/process-table.md#per-process-resource-table) of the process.  
 This entry contains two fields:  
 a)​ A flag indicating whether the entry corresponds to a file or a semaphore.  
 b)​ Index of the open file table /semaphore table entry of the open file / semaphore instance.  

@@ -21,7 +21,7 @@ If a process 1) generates an illegal instruction or an invalid address (outside 
 The exception handler is also invoked when a page required by a process is not present in the memory. This condition is known as a [page fault](http://en.wikipedia.org/wiki/Page_fault). The eXpOS scheduler will never schedule a process if its stack page is not present in the memory. Hence, a page fault can occur only when either a) one of the code pages of the process (logical pages 4 to 7) has to be loaded from the disk or b) one of the heap pages has not been allocated (logical page 2 or 3). When a page fault exception occurs, the exception handler routine checks if the page resides in the disk. If it does, it is loaded to the memory and the page table is updated. Otherwise, a new page is allocated to the process by the exception handler.
 
 
-The data structures updated are [Disk Status Table](mem-ds.md#ds_table), [System Status Table](mem-ds.md#ss_table), [Memory Free List](mem-ds.md#mem_free_list) and [Page Table](process-table.md#per_page_table).
+The data structures updated are [Disk Status Table](mem-ds.md#ds_table), [System Status Table](mem-ds.md#ss_table), [Memory Free List](mem-ds.md#mem_free_list) and [Page Table](process-table.md#per-process-page-table).
 
 
 The MODE FLAG must be set upon entering the system call and reset before returning.
@@ -54,10 +54,10 @@ Backup the register context of the current process using the <a href="../../arch
 Using the Exception registers, find the page number of the page causing the exception.
 
 If (page corresponds to a code page)
-	Get the disk block number to load from the <a href="../../os-design/process-table/#disk_map_table">Disk Map Table</a> entry of the process.
+	Get the disk block number to load from the <a href="../../os-design/process-table/#per-process-disk-map-table">Disk Map Table</a> entry of the process.
 	Load the page to memory by calling the <b>get_code_page()</b> function in the <a href="../../modules/module-02/">Memory Manager</a> Module.
-	In the <a href="../../os-design/process-table/#per_page_table">page table</a> entry, set the Page Number field to the page number returned by get_code_page()
-	Set the <a href="../../os-design/process-table/#per_page_table">referenced and valid bits</a> to 1. Also set the <a href="../../os-design/process-table/#per_page_table">write bit</a> to 0.
+	In the <a href="../../os-design/process-table/#per-process-page-table">page table</a> entry, set the Page Number field to the page number returned by get_code_page()
+	Set the <a href="../../os-design/process-table/#per-process-page-table">referenced and valid bits</a> to 1. Also set the <a href="../../os-design/process-table/#per-process-page-table">write bit</a> to 0.
 	/* Code pages are not writable */
   
 else if (page corresponds to a heap page)

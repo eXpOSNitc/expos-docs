@@ -71,7 +71,7 @@ that memory page. Note that only the first code page entry in the page table is 
 remaining 3 entries are set to invalid.
 
 
-Each process has a data structure called [Per-process Disk map table](../os-design/process-table.md#disk_map_table). The disk map table stores the disk block numbers corresponding to the 
+Each process has a data structure called [Per-process Disk map table](../os-design/process-table.md#per-process-disk-map-table). The disk map table stores the disk block numbers corresponding to the 
 memory pages used by the process.**Each disk map table has 10 words** of which one is for user area page,
 two for heap, four for code and two for stack pages. Remaining one word is unused. Whenever the copy of the memory page of a process is
 present in some disk block, that disk block number is stored in the per-process Disk Map Table
@@ -155,7 +155,7 @@ memory space to run all the processes.**
 If a heap/stack page of a process is swapped out
 into some disk block, the page can be released to some other process. In such cases, the page
 table entry for the swapped out page will be set to invalid, but the entry corresponding to the
-page in the [disk map table](../os-design/process-table.md#disk_map_table)will contain the disk block number to which the page has been swapped out. The
+page in the [disk map table](../os-design/process-table.md#per-process-disk-map-table)will contain the disk block number to which the page has been swapped out. The
 disk free list entry for the block will be greater than zero as the block is no longer free.
 (It can happen that multiple processes share the block. The disk free list entry for the block
 will indicate the count of the number of processes sharing the disk block.)
@@ -185,7 +185,7 @@ With these modifications, You have completed the final implementation of Exec sy
 
 #### Get Code Page (function number = 5,[memorymanager module](../modules/module-02.md))
 
-1. Check the [disk map table](../os-design/process-table.md#disk_map_table)entries of**all the processes**, if the given block number is present in any entry and the corresponding page table entry is valid then return the memory page number.Also increment the memory free list entry of that page. Memory Free list entry is incrementedas page is being shared by another process.
+1. Check the [disk map table](../os-design/process-table.md#per-process-disk-map-table)entries of**all the processes**, if the given block number is present in any entry and the corresponding page table entry is valid then return the memory page number.Also increment the memory free list entry of that page. Memory Free list entry is incrementedas page is being shared by another process.
 2. If the code page is not in memory, then invoke **Get Free Page** function in the [memory manager module](../modules/module-02.md)to allocate a new page.
 3. Load the disk block to the newly acquired memory page by invoking the **Disk Load** function of the [device manager module](../modules/module-04.md).
 4. Return the memory page number to which the code block has been loaded.
@@ -215,7 +215,7 @@ With these modifications, You have completed the final implementation of Exec sy
 2. Switch to the kernel stack and backup the register context and push EIP onto the stack.
 3. If the cause of the exception is other than page fault (EC is not equal to 0) or if the user stack is full (when userSP is PTLR*512-1, the return address can't be pushed onto the stack), then print a meaningful error message. Then invoke the **Exit Process**
 function to halt the process and invoke the scheduler.
-4. If page fault is caused due to a code page, then get the code block number to be loaded from the [disk map table](../os-design/process-table.md#disk_map_table). For this block, invoke the**Get Code Page**function present in the
+4. If page fault is caused due to a code page, then get the code block number to be loaded from the [disk map table](../os-design/process-table.md#per-process-disk-map-table). For this block, invoke the**Get Code Page**function present in the
 [memory manager module](../modules/module-02.md). Update the page table entry for this code page,set the page number to memory page obtained from**Get Code Page**function and auxiliary information to "1100".<br/>
 
 5. If page fault is caused due to a heap page, then invoke the Get Free Page function of the [memory manager module](../modules/module-02.md)twice to allocate two memory pages for the heap. Update the page table entry for these heap pages, set the page numbers to the memory pages obtained from Get Free Page function and set auxiliary information to "1110".

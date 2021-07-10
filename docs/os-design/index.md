@@ -87,9 +87,9 @@ Algorithms specified in this document can fall into any of the five categories -
 <a target="_blank" href="../os-design/mem-ds/#terminal-status-table" style="position: absolute; height: 30px; width: 290px; margin-top: 525px; margin-left: 310px"></a>
 <a target="_blank" href="../os-design/mem-ds/#memory-free-list" style="position: absolute; height: 30px; width: 290px; margin-top: 562px; margin-left: 310px"></a>
 <a target="_blank" href="../os-design/mem-ds/#buffer-table" style="position: absolute; height: 30px; width: 290px; margin-top: 602px; margin-left: 310px"></a>
-<a target="_blank" href="../os-design/process-table/#per_page_table" style="position: absolute; height: 32px; width: 135px; margin-top: 155px; margin-left: 310px"></a>
-<a target="_blank" href="../os-design/process-table/#disk_map_table" style="position: absolute; height: 32px; width: 137px; margin-top: 155px; margin-left: 460px"></a>
-<a target="_blank" href="../os-design/process-table/#per_process_table" style="position: absolute; height: 32px; width: 135px; margin-top: 195px; margin-left: 310px"></a>
+<a target="_blank" href="../os-design/process-table/#per-process-page-table" style="position: absolute; height: 32px; width: 135px; margin-top: 155px; margin-left: 310px"></a>
+<a target="_blank" href="../os-design/process-table/#per-process-disk-map-table" style="position: absolute; height: 32px; width: 137px; margin-top: 155px; margin-left: 460px"></a>
+<a target="_blank" href="../os-design/process-table/#per-process-resource-table" style="position: absolute; height: 32px; width: 135px; margin-top: 195px; margin-left: 310px"></a>
 <a target="_blank" href="../os-design/process-table/#kernel_stack" style="position: absolute; height: 32px; width: 137px; margin-top: 195px; margin-left: 460px"></a>
 </div>
 
