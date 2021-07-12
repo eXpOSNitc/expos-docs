@@ -165,7 +165,7 @@ Routine</a></td>
 </tr>
 <tr>
 <td>24 - 25</td>
-<td>Interrupt 11 Routine: <a href="../os-design/proc-misc/#getpid" target="_blank">Getpid</a>, <a href="../os-design/proc-misc/#getppid" target="_blank">Getppid</a>, <a href="../os-design/synchronization-algos/#wait" target="_blank">Wait</a>, <a href="../os-design/synchronization-algos/#signal" target="_blank">Signal</a></td>
+<td>Interrupt 11 Routine: <a href="../os-design/proc-misc/#getpid-system-call" target="_blank">Getpid</a>, <a href="../os-design/proc-misc/#getppid-system-call" target="_blank">Getppid</a>, <a href="../os-design/synchronization-algos/#wait-system-call" target="_blank">Wait</a>, <a href="../os-design/synchronization-algos/#signal-system-call" target="_blank">Signal</a></td>
 <td>12288 - 13311</td>
 <td>1024</td>
 </tr>
@@ -177,13 +177,13 @@ Routine</a></td>
 </tr>
 <tr>
 <td>28 - 29</td>
-<td>Interrupt 13 Routine: <a href="../os-design/semaphore-algos/#semget" target="_blank">Semget</a>, <a href="../os-design/semaphore-algos/#semrelease" target="_blank">Semrelease</a></td>
+<td>Interrupt 13 Routine: <a href="../os-design/semaphore-algos/#semget-system-call" target="_blank">Semget</a>, <a href="../os-design/semaphore-algos/#semrelease-system-call" target="_blank">Semrelease</a></td>
 <td>14336 - 15359</td>
 <td>1024</td>
 </tr>
 <tr>
 <td>30 - 31</td>
-<td>Interrupt 14 Routine: <a href="../os-design/semaphore-algos/#semlock" target="_blank">SemLock</a>, <a href="../os-design/semaphore-algos/#semunlock" target="_blank">SemUnLock</a></td>
+<td>Interrupt 14 Routine: <a href="../os-design/semaphore-algos/#semlock-system-call" target="_blank">SemLock</a>, <a href="../os-design/semaphore-algos/#semunlock-system-call" target="_blank">SemUnLock</a></td>
 <td>15360 - 16383</td>
 <td>1024</td>
 </tr>
@@ -368,7 +368,7 @@ Routine</a></td>
 </tr>
 <tr>
 <td>63 - 64</td>
-<td><a href="../os-spec/misc/#expos_library" target="_blank">Expos Library</a></td>
+<td><a href="../os-spec/misc/#expos-library" target="_blank">Expos Library</a></td>
 <td>32256 - 33279</td>
 <td>1024</td>
 </tr>

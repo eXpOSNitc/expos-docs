@@ -16,7 +16,7 @@ Algorithms specified in this document can fall into any of the five categories -
 ## High Level Design
 
 <div style="background: url(http://exposnitc.github.io/img/os-design/os_design_detailed.png); height: 819px; width: 1206px" ;="">
-<a target="_blank" href="../os-design/misc/#swapper" style="position: absolute; height: 62px; width: 120px; margin-top: 10px; margin-left: 260px"></a>
+<a target="_blank" href="../os-design/misc/#swapper-daemon" style="position: absolute; height: 62px; width: 120px; margin-top: 10px; margin-left: 260px"></a>
 <a target="_blank" href="../os-spec/shell-spec/" style="position: absolute; height: 62px; width: 100px; margin-top: 10px; margin-left: 410px"></a>
 <a target="_blank" href="../os-spec/shell-spec/" style="position: absolute; height: 62px; width: 100px; margin-top: 10px; margin-left: 540px"></a>
 <a target="_blank" href="../os-design/misc/#idle" style="position: absolute; height: 62px; width: 120px; margin-top: 90px; margin-left: 20px"></a>
@@ -35,7 +35,7 @@ Algorithms specified in this document can fall into any of the five categories -
 <a target="_blank" href="../modules/module-00/" style="position: absolute; height: 68px; width: 760px; margin-top: 580px; margin-left: 100px"></a>
 <a target="_blank" href="../modules/module-00/" style="position: absolute; height: 260px; width: 60px; margin-top: 380px; margin-left: 40px"></a>
 <a target="_blank" href="../modules/module-07/" style="position: absolute; height: 68px; width: 170px; margin-top: 580px; margin-left: 890px"></a>
-<a target="_blank" href="../arch-spec/machine-organization/#BootROM" style="position: absolute; height: 68px; width: 120px; margin-top: 730px; margin-left: 790px"></a>
+<a target="_blank" href="../arch-spec/machine-organization/#boot-rom-and-boot-block" style="position: absolute; height: 68px; width: 120px; margin-top: 730px; margin-left: 790px"></a>
 <a target="_blank" href="../os-design/misc/#os-startup-code" style="position: absolute; height: 68px; width: 120px; margin-top: 730px; margin-left: 950px"></a>
 </div>
 
@@ -53,14 +53,14 @@ Algorithms specified in this document can fall into any of the five categories -
 <a target="_blank" href="../os-design/fork/" style="position: absolute; height: 30px; width: 150px; margin-top: 113px; margin-left: 440px"></a>
 <a target="_blank" href="../os-design/exec/" style="position: absolute; height: 33px; width: 150px; margin-top: 150px; margin-left: 440px"></a>
 <a target="_blank" href="../os-design/exit/" style="position: absolute; height: 30px; width: 150px; margin-top: 190px; margin-left: 440px"></a>
-<a target="_blank" href="../os-design/proc-misc/#getpid" style="position: absolute; height: 30px; width: 150px; margin-top: 230px; margin-left: 440px"></a>
-<a target="_blank" href="../os-design/proc-misc/#getppid" style="position: absolute; height: 30px; width: 150px; margin-top: 270px; margin-left: 440px"></a>
-<a target="_blank" href="../os-design/synchronization-algos/#wait" style="position: absolute; height: 30px; width: 150px; margin-top: 113px; margin-left: 640px"></a>
-<a target="_blank" href="../os-design/synchronization-algos/#signal" style="position: absolute; height: 33px; width: 150px; margin-top: 150px; margin-left: 640px"></a>
-<a target="_blank" href="../os-design/semaphore-algos/#semget" style="position: absolute; height: 30px; width: 150px; margin-top: 190px; margin-left: 640px"></a>
-<a target="_blank" href="../os-design/semaphore-algos/#semrelease" style="position: absolute; height: 30px; width: 150px; margin-top: 230px; margin-left: 640px"></a>
-<a target="_blank" href="../os-design/semaphore-algos/#semlock" style="position: absolute; height: 30px; width: 150px; margin-top: 270px; margin-left: 640px"></a>
-<a target="_blank" href="../os-design/semaphore-algos/#semunlock" style="position: absolute; height: 30px; width: 150px; margin-top: 315px; margin-left: 640px"></a>
+<a target="_blank" href="../os-design/proc-misc/#getpid-system-call" style="position: absolute; height: 30px; width: 150px; margin-top: 230px; margin-left: 440px"></a>
+<a target="_blank" href="../os-design/proc-misc/#getppid-system-call" style="position: absolute; height: 30px; width: 150px; margin-top: 270px; margin-left: 440px"></a>
+<a target="_blank" href="../os-design/synchronization-algos/#wait-system-call" style="position: absolute; height: 30px; width: 150px; margin-top: 113px; margin-left: 640px"></a>
+<a target="_blank" href="../os-design/synchronization-algos/#signal-system-call" style="position: absolute; height: 33px; width: 150px; margin-top: 150px; margin-left: 640px"></a>
+<a target="_blank" href="../os-design/semaphore-algos/#semget-system-call" style="position: absolute; height: 30px; width: 150px; margin-top: 190px; margin-left: 640px"></a>
+<a target="_blank" href="../os-design/semaphore-algos/#semrelease-system-call" style="position: absolute; height: 30px; width: 150px; margin-top: 230px; margin-left: 640px"></a>
+<a target="_blank" href="../os-design/semaphore-algos/#semlock-system-call" style="position: absolute; height: 30px; width: 150px; margin-top: 270px; margin-left: 640px"></a>
+<a target="_blank" href="../os-design/semaphore-algos/#semunlock-system-call" style="position: absolute; height: 30px; width: 150px; margin-top: 315px; margin-left: 640px"></a>
 <a target="_blank" href="../os-design/multiusersyscalls/#newusr" style="position: absolute; height: 30px; width: 150px; margin-top: 113px; margin-left: 840px"></a>
 <a target="_blank" href="../os-design/multiusersyscalls/#remusr" style="position: absolute; height: 33px; width: 150px; margin-top: 150px; margin-left: 840px"></a>
 <a target="_blank" href="../os-design/multiusersyscalls/#setpwd" style="position: absolute; height: 30px; width: 150px; margin-top: 190px; margin-left: 840px"></a>

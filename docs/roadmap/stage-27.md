@@ -54,7 +54,7 @@ Control flow for timer interrupt
 
 Timer interrupt handler is modified as follows:
 
-The handler must check whether the current process is the [swapper daemon](../os-design/misc.md#swapper) . This condition can happen only when a swap operation is to be initiated. In this case, PAGING\_STATUS field of the system status table must be checked and Swap\_in/Swap\_out function of the pager module must be invoked appropriately (SWAP\_OUT = 1 and SWAP\_IN = 2).
+The handler must check whether the current process is the [swapper daemon](../os-design/misc.md#swapper-daemon) . This condition can happen only when a swap operation is to be initiated. In this case, PAGING\_STATUS field of the system status table must be checked and Swap\_in/Swap\_out function of the pager module must be invoked appropriately (SWAP\_OUT = 1 and SWAP\_IN = 2).
 
 If the current process is the idle process, there are two possibilities. If swapping is ongoing (check PAGING\_STATUS), one can infer that Idle was scheduled because the swapper daemon was blocked. In this case, the timer must invoke the scheduler. (The scheduler will run Idle again if the daemon is not unblocked. Otherwise, the daemon will be scheduled.) The second possibility is that swapping was not on-going. This case is not different from the condition to be checked when timer is entered from any process other than the paging process, and will be descibed next.
 

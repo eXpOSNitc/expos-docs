@@ -45,12 +45,12 @@ The system calls Semget and Semrelease are implemented in the interrupt routine 
 ##### Semget System Call
 **_Semget_ **system call is used to acquire a new semaphore. _Semget_ finds a free entry in the [per-process resource table](../os-design/process-table.md#per-process-resource-table) . _Semget_ then creates a new entry in the semaphore table by invoking the **Acquire Semaphore** function of [resource manager module](../modules/module-00.md) . The index of the semaphore table entry returned by Acquire Semaphore function is stored in the free entry of per-process resource table of the process. Finally, _Semget_ system call returns the index of newly created entry in the per-process resource table as **semaphore descriptor** (SEMID).
 
-Implement _Semget_ system call using the detailed algorithm provided [here](../os-design/semaphore-algos.md#semget) .
+Implement _Semget_ system call using the detailed algorithm provided [here](../os-design/semaphore-algos.md#semget-system-call) .
 
 ##### Semrelease System Call
 **_Semrelease_ **system call takes semaphore desciptor (SEMID) as argument from user program. _Semrelease_ system call is used to detach a semaphore from the process. _Semrelease_ releases the acquired semaphore and wakes up all the processes waiting for the semaphore by invoking the **Release Semaphore** function of [resource manager module](../modules/module-00.md) . _Semrelease_ also invalidates the per-process resource table entry corresponding to the SEMID given as an argument.
 
-Implement _Semrelease_ system call using the detailed algorithm provided [here](../os-design/semaphore-algos.md#semrelease).
+Implement _Semrelease_ system call using the detailed algorithm provided [here](../os-design/semaphore-algos.md#semrelease-system-call).
 
 !!! note
     If any semaphore is not released by a process during execution using <i>Semrelease</i>
@@ -90,7 +90,7 @@ semaphore table entry to the PID of the current process. When the process is sch
 the semaphore is locked by some other process, current process again waits in the busy loop until the requested
 semaphore is unlocked.
 
-Implement <i>SemLock</i> system call using the detailed algorithm provided [here](../os-design/semaphore-algos.md#semlock).
+Implement <i>SemLock</i> system call using the detailed algorithm provided [here](../os-design/semaphore-algos.md#semlock-system-call).
 
 
 ##### SemUnLock System Call
@@ -100,7 +100,7 @@ process invokes<i>SemUnLock</i> system call to unlock the semaphore.
 <i>SemUnLock</i> invalidates the LOCKING PID field (store -1) in the semaphore table entry for the semaphore.
 All the processes waiting for the semaphore are made READY for execution.
 
-Implement <i>SemUnLock</i> system call using the detailed algorithm provided [here](../os-design/semaphore-algos.md#semunlock).
+Implement <i>SemUnLock</i> system call using the detailed algorithm provided [here](../os-design/semaphore-algos.md#semunlock-system-call).
 
 !!! note
     The implementation of **Semget** , **Semrelease** , **SemLock** , **SemUnLock** system calls and **Acquire Semaphore** , **Release Semaphore** module functions are final.

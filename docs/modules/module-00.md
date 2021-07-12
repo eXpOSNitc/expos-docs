@@ -128,7 +128,7 @@ Set the PROCESS_COUNT to 1 and LOCKING_PID to -1.
 Return the Semaphore table index. /* success */
 </code></pre>
 
-Called by the [Semget system call](../os-design/semaphore-algos.md#semget).
+Called by the [Semget system call](../os-design/semaphore-algos.md#semget-system-call).
 
 ### Release Semaphore
 
@@ -148,7 +148,7 @@ Decrement the process count of the semaphore in the semaphore table.
 
 </code></pre>
 	     
-Called by the [Semrelease](../os-design/semaphore-algos.md#semrelease) and exit system call.
+Called by the [Semrelease](../os-design/semaphore-algos.md#semrelease-system-call) and exit system call.
 
 ### Acquire Terminal
 
