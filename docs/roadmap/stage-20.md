@@ -179,7 +179,7 @@ Compile and load interrupt routine 8, interrupt routine 10, module 2, module 5 i
     the page has read only access. So the process can not modify the content of the page.
     For every process, write bit is set to 0 for library and code pages while initializing
     page table. When a process tries to write to a page for which write bit is 0, XSM
-    machine raises [illegal memory access](../tutorials/xsm-interrupts-tutorial.md#exception_handling_in_XSM)exception. Refer about auxiliary information [here](../os-design/process-table.md#per-process-page-table).
+    machine raises [illegal memory access](../tutorials/xsm-interrupts-tutorial.md#exception-handling-in-xsm)exception. Refer about auxiliary information [here](../os-design/process-table.md#per-process-page-table).
 
 ??? question "Q2. Where does ExpL allocate memory for variables of user defined data type?"
     Variables of user defined data type are allocated memory in stack, same as any variable of primitive data type. Every variable in ExpL is allocated one word memory in stack. Variable of primitive data type saves actual data in the word that is allocated to it, but variables of user defined data type stores the starting address of the object. Alloc() library function allocates memory for an object in heap and returns the starting address. This return address is stored in the stack for corresponding variable.

@@ -9,7 +9,7 @@ original_url: https://exposnitc.github.io/Roadmap.html
     - Modify the exec system call to load code pages of a process on [demand](https://en.wikipedia.org/wiki/Demand_paging).
 
 !!! abstract "Pre-requisite Reading"
-    It is absolutely necessary to have clear understanding about [Exception handling in XSM](https://exposnitc.github.io/Tutorials/xsm_interrupts_tutorial.html#exception_handling_in_XSM) before proceeding further.
+    It is absolutely necessary to have clear understanding about [Exception handling in XSM](https://exposnitc.github.io/Tutorials/xsm_interrupts_tutorial.html#exception-handling-in-xsm) before proceeding further.
 
 
 This stage introduces you to exception handling in eXpOS. There are four events that result in
