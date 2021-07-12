@@ -68,7 +68,7 @@ a) KERN\_LOCK      b) SCHED\_LOCK
     1.  **Hardware solution:** If the hardware provides instructions to perform atomic test and set operations on a variable then the facility can be used.
     2.  **Software Solution:** Even if no hardware support is available, there are clever software solutions that achieve synchronization. [Peterson’s algorithm](https://en.wikipedia.org/wiki/Peterson%27s_algorithm) is one famous solution.
     
-    In our case, the NEXSM machine provides a hardware solution in the [**TSL instruction**](../arch-spec/nexsm.md#instr) to support atomic test and set operations and we will use this mechanism to implement atomic operations on KERN\_LOCK and SCHED\_LOCK variables.
+    In our case, the NEXSM machine provides a hardware solution in the [**TSL instruction**](../arch-spec/nexsm.md#additional-privileged-mode-instructions) to support atomic test and set operations and we will use this mechanism to implement atomic operations on KERN\_LOCK and SCHED\_LOCK variables.
 
   
   
@@ -84,7 +84,7 @@ You will add a new module that implements atomic test and set operations on KERN
 !!! note
     The [eXpOS design documentation](../os-design/nexpos.md) supports a general purpose lock called GLOCK, reserved for future enhancements. The present implementation does not need it and we will not discuss it in the roadmap.
 
-The AccessLock functions can be implemented using the NEXSM [TSL instruction](../arch-spec/nexsm.md#instr) to ensure that locking is atomic. SPL provides the [tsl instruction](../support-tools/spl.md#spl-specification-for-nexsm) which is translated to the XSM TSL machine instruction. The general locking logic in SPL would be the following.
+The AccessLock functions can be implemented using the NEXSM [TSL instruction](../arch-spec/nexsm.md#additional-privileged-mode-instructions) to ensure that locking is atomic. SPL provides the [tsl instruction](../support-tools/spl.md#spl-specification-for-nexsm) which is translated to the XSM TSL machine instruction. The general locking logic in SPL would be the following.
 
 Acquire\*\*\*\*Lock() {
     ....

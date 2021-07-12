@@ -49,7 +49,7 @@ variables, with the same values.** Since the stack page is not shared between th
 and the child, subsequent modifications to these variables by either parent or the child will
 not be visible to the other.
 
-The [Alloc()](../os-spec/dynamicmemoryroutines.md#filesystemcalls)function of eXpOS library allocates memory from the heap region of a process. Hence memory
+The [Alloc()](../os-spec/dynamicmemoryroutines.md#alloc)function of eXpOS library allocates memory from the heap region of a process. Hence memory
 allocated by <i>Alloc()</i> to store objects referenced by variables of user defined types in
 an ExpL program will be allocated in the heap. As heap pages are shared by the parent and the
 child, both processes share the memory allocated using <i>Alloc()</i>. Thus,**if the parent

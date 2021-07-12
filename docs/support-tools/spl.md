@@ -500,7 +500,7 @@ while( tsl(KERN\_LOCK) == 1 ) do
      continue; 
 endwhile;
 ``` 
-This statement translates to a sequence of instructions that uses the [TSL machine instruction](../arch-spec/nexsm.md#instr).
+This statement translates to a sequence of instructions that uses the [TSL machine instruction](../arch-spec/nexsm.md#additional-privileged-mode-instructions).
  
 
 
@@ -510,7 +510,7 @@ The **start** instruction when executed from primary core of the [NEXSM machine]
 
 **SYNTAX :** `start;`
 
-This statement translates to the [START machine instruction](../arch-spec/nexsm.md#instr).
+This statement translates to the [START machine instruction](../arch-spec/nexsm.md#additional-privileged-mode-instructions).
  
 ### RESET Statement
 
@@ -518,5 +518,5 @@ The **reset** instruction when executed from primary core of the [NEXSM machine]
 
 **SYNTAX :** `reset;`
 
-This statement translates to the [RESET machine instruction](../arch-spec/nexsm.md#instr).
+This statement translates to the [RESET machine instruction](../arch-spec/nexsm.md#additional-privileged-mode-instructions).
  

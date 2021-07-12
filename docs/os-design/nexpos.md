@@ -171,7 +171,7 @@ The application interface specification of the eXpOS undergoes minor modificatio
 
 
 
- Atomicity of access locking is implemented using the hardware mechanism provided by the [NEXSM machine](../arch-spec/nexsm.md) ([TSL instruction](../arch-spec/nexsm.md#instr)). The details follow.
+ Atomicity of access locking is implemented using the hardware mechanism provided by the [NEXSM machine](../arch-spec/nexsm.md) ([TSL instruction](../arch-spec/nexsm.md#additional-privileged-mode-instructions)). The details follow.
  
 
 
