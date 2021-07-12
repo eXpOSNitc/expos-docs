@@ -19,7 +19,7 @@ disk. XFS interface will load the executable into the disk and create
 [Inode table](../os-design/disk-ds.md#inode-table)
 entry for the file. XFS interface will also create a [root entry](../os-design/disk-ds.md#root-file) for the loaded file. From the Inode Table Entry, 
 you will be able to find out the disk blocks where the contents of the file are loaded by XFS
-interface. Recall that these were discussed in detail in Stage 2 : [Understanding the File System](index.md#collapse2))
+interface. Recall that these were discussed in detail in Stage 2 : [Understanding the File System](./stage-02.md))
 
 2) Write an ExpL program to print the even numbers from 1-100. Load this even program as an
 executable.

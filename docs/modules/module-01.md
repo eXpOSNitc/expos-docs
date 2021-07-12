@@ -24,7 +24,7 @@ loop through the <a href="../../os-design/process-table/">Process Table</a>{
         if ( process table entry is free )
             Set the PID to index of the entry
             Set the STATE to (ALLOCATED, - )
-    Set PTBR to PAGE_TABLE_BASE + 20*index 	/* See <a href="../../os-implementation/#collapse2">Memory Organisation</a> */
+    Set PTBR to PAGE_TABLE_BASE + 20*index 	/* See <a href="../../os-implementation/#memory-organization">Memory Organisation</a> */
     Set PTLR to 10. 						/* <a href="../../abi/">Address space</a> of processes in eXpOS has 10 pages */
     return index;
 }
