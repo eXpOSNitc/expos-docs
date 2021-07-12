@@ -132,8 +132,8 @@ The content in the website and the documentation has been authored in the Depart
     - Nikhil Sojan
 
 ### License
-[![Creative Commons License](https://licensebuttons.net/l/by-nc/4.0/88x31.png)](http://creativecommons.org/licenses/by-nc/4.0/)  
-eXpOS by Dr. Murali Krishnan K, Department of Computer Science and Engineering, National Institute of Technology, Calicut is licensed under a [Creative Commons Attribution-NonCommercial 4.0 International License](http://creativecommons.org/licenses/by-nc/4.0/). Based on a work at [https://github.com/eXpOSNitc](https://github.com/eXpOSNitc/)
+[![Creative Commons License](https://licensebuttons.net/l/by-nc/4.0/88x31.png)](https://creativecommons.org/licenses/by-nc/4.0/)  
+eXpOS by Dr. Murali Krishnan K, Department of Computer Science and Engineering, National Institute of Technology, Calicut is licensed under a [Creative Commons Attribution-NonCommercial 4.0 International License](https://creativecommons.org/licenses/by-nc/4.0/). Based on a work at [https://github.com/eXpOSNitc](https://github.com/eXpOSNitc/)
 
 ### Acknowledgement
 We thank GitHub for providing the free for use platform on which this tutoring system has been hosted. We also thank an uncountable collecton of individuals who have supported the work in one form or the other.

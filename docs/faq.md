@@ -212,6 +212,6 @@ hide:
 
 
 ??? question "20. I am a teacher and wants to use eXpOS for laboratory instruction. How should I proceed?"
-    You are welcome use eXpOS. You may also fork the project on GitHub and customize the project to your own needs subject to the [Creative Commons](http://creativecommons.org/licenses/by-nc/4.0/) license conditions.
+    You are welcome use eXpOS. You may also fork the project on GitHub and customize the project to your own needs subject to the [Creative Commons](https://creativecommons.org/licenses/by-nc/4.0/) license conditions.
 
     Pro Tip: Suppose your institution has the name ABC University, to host your project on GitHub as exposabc.github.io, create a GitHub account by the name eXpOSABC, fork this project, rename your repository to exposabc.github.io, and host your website using [GitHub Pages](https://pages.github.com/)
