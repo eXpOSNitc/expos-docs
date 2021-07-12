@@ -68,8 +68,8 @@ skip over this matter.
 #### Modifications to OS startup code
 
 1) Load module 7 from disk blocks 67 and 68 to memory pages 54 and 55 respectively, also
-load idle process from the [disk](../os-implementation.md#accordion)to the corresponding
-[memory pages](../os-implementation.md#accordion).
+load idle process from the [disk](../os-implementation.md#disk-organization)to the corresponding
+[memory pages](../os-implementation.md#memory-organization).
     
 2) Set SP to (user area page number) * 512 -1. The user area page number for the idle
 process is 82 (as decided in the previous stage). This sets up a stack for calling the
