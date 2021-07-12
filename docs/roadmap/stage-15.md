@@ -42,7 +42,7 @@ the function within the module. In the Resource Manager module,
 **Acquire Terminal and Release Terminal have function numbers 8 and 9 respectively**. 
 When a module function is invoked, the function number (identifying the particular function within the module) is
 stored in register R1 and passed as argument to the module. The other arguments are passed
-through registers R2, R3 etc. See [SPL module calling convention](../support-tools/spl.md#con).
+through registers R2, R3 etc. See [SPL module calling convention](../support-tools/spl.md#spl-interrupt-handler-and-module-programming-conventions).
 For both Acquire Terminal and Release Terminal, PID of the currently running process needs to be passed as an argument through the register R2.
 
 Acquire Terminal and Release Terminal are not directly invoked from the write system call.

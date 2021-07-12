@@ -245,7 +245,7 @@ Acquire****Lock() {
 ```
 
 
- The [SPL extension](../support-tools/spl.md#nexsm) of NEXSM provides [constants](../support-tools/constants.md#nexsm) for identifying the access control variables in the Access Lock Table. Constants for invoking the new modules – TestA, TestB, TestC and the Access Control Module, etc., are also provided.
+ The [SPL extension](../support-tools/spl.md#spl-specification-for-nexsm) of NEXSM provides [constants](../support-tools/constants.md#constants-for-nexsm) for identifying the access control variables in the Access Lock Table. Constants for invoking the new modules – TestA, TestB, TestC and the Access Control Module, etc., are also provided.
  
 
 
