@@ -9,7 +9,7 @@ original_url: https://exposnitc.github.io/Roadmap.html
     - Introduction to input buffer.
 
 !!! abstract "Pre-requisite Reading"
-    Read and understand the [XSM tutorial on Interrupts and Exception handling](../tutorials/xsm-interrupts-tutorial.md#disk_and_console_interrupts) before proceeding further. (Read only the console and disk interrupt part.)
+    Read and understand the [XSM tutorial on Interrupts and Exception handling](../tutorials/xsm-interrupts-tutorial.md#disk-and-console-interrupts) before proceeding further. (Read only the console and disk interrupt part.)
 
 In this stage, we will introduce you to XSM console interrupt handling. A process must use the
 [XSM instruction IN](../arch-spec/instruction-set.md) to **read data from the console into the input **
@@ -33,7 +33,7 @@ execution till data arrives in P0, **a process executing the IN instruction will
 When the console interrupt occurs, the machine interrupts the current process (note that some
 other process would be running) and executes the console interrupt handler. (The interrupt
 mechanism is similar to the timer interrupt. The current value of IP+2 is pushed into the stack
-and control transfers to the interrupt handler - see [XSM machine execution tutorial](../tutorials/xsm-interrupts-tutorial.md#disk_and_console_interrupts) for details).It is the responsiblity of the
+and control transfers to the interrupt handler - see [XSM machine execution tutorial](../tutorials/xsm-interrupts-tutorial.md#disk-and-console-interrupts) for details).It is the responsiblity of the
 **console interrupt handler to transfer the data arrived in port P0 to the process which is waiting for the data**.
 This is done by copying the value present in port P0 into the **input buffer** field of the [process table](../os-design/process-table.md) entry of the process which has requested for the input.
 **Console interrupt handler also wakes up the process in WAIT_TERMINAL by setting its state to READY**.

@@ -8,11 +8,11 @@ original_url: https://exposnitc.github.io/Roadmap.html
     - Modify the Exec system call to handle disk interrupt.
 
 !!! abstract "Pre-requisite Reading"
-    - Read and understand the [XSM tutorial on Interrupts and Exception handling](../tutorials/xsm-interrupts-tutorial.md#disk_and_console_interrupts) before proceeding further.
+    - Read and understand the [XSM tutorial on Interrupts and Exception handling](../tutorials/xsm-interrupts-tutorial.md#disk-and-console-interrupts) before proceeding further.
     - Revise the console and disk interrupt part.
 
 In this stage, we will introduce disk interrupt handling in XSM. In the previous stage, we used
-the *loadi* statement to load a disk block into a memory page. When the [loadi statement](../support-tools/spl.md) (immediate load) is used for loading, the machine will execute the next instruction only after the block transfer is complete by the [disk controller](../arch-spec/interrupts-exception-handling.md#disk_interrupt) . A process can use the **load statement** instead of <i>loadi</i> to load a disk block to a memory page. The
+the *loadi* statement to load a disk block into a memory page. When the [loadi statement](../support-tools/spl.md) (immediate load) is used for loading, the machine will execute the next instruction only after the block transfer is complete by the [disk controller](../arch-spec/interrupts-exception-handling.md#disk-controller-interrupt) . A process can use the **load statement** instead of <i>loadi</i> to load a disk block to a memory page. The
 [load statement](../support-tools/spl.md)in SPL translates to [LOAD instruction in XSM](../arch-spec/instruction-set.md).
 
 
@@ -20,7 +20,7 @@ The LOAD instruction takes two arguments, a page number and a block number. The 
 instruction initiates the transfer of data from the specified disk block to the memory page.
 The **XSM machine doesn't wait for the block transfer to complete**, it continues with the
 execution of the next instruction. Instead, the XSM machine provides a hardware mechanism to
-detect the completion of data transfer. XSM machine raises the [disk interrupt](../tutorials/xsm-interrupts-tutorial.md#disk_and_console_interrupts)when the disk operation is complete.
+detect the completion of data transfer. XSM machine raises the [disk interrupt](../tutorials/xsm-interrupts-tutorial.md#disk-and-console-interrupts)when the disk operation is complete.
 
 !!! note ""
     In real operating systems, the OS maintains a software module called the disk [device driver](https://en.wikipedia.org/wiki/Device_driver)module for handling disk access. This module is responsible for programming the [disk controller](https://en.wikipedia.org/wiki/Disk_controller) hardware for handling disk operations. When the OS
