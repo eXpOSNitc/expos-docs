@@ -7,7 +7,7 @@ hide:
 ---
 
 ### Arguments
-File Name (String) of the executable file (which must be of [XEXE format](../abi.md#xexe))
+File Name (String) of the executable file (which must be of [XEXE format](../abi.md#xexe-executable-file-format))
 
 
 ### Return Value

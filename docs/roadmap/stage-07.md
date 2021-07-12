@@ -7,7 +7,7 @@ original_url: https://exposnitc.github.io/Roadmap.html
       - Familiarise with the Application Binary Interface(ABI) of eXpOS.
       -  Modify the INIT program to comply with the eXpOS ABI.
 !!! info " Pre-requisite Reading"
-      Read and Understand the eXpOS **Virtual Address Space Model** and ** XEXE Executable File Format ** from [eXpOS ABI Documentation](../abi.md#xexe) before proceeding further.
+      Read and Understand the eXpOS **Virtual Address Space Model** and ** XEXE Executable File Format ** from [eXpOS ABI Documentation](../abi.md#xexe-executable-file-format) before proceeding further.
 
 
 In this stage we will rewrite the user program and OS startup code of Stage 6 in compliance with expos ABI.

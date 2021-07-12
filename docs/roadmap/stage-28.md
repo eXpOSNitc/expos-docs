@@ -103,7 +103,7 @@ JNZ Ri, L1
 
 The code atomically reads the lock variable repeatedly until its value is zero. Once the value is founf to be zero, the value is set to one. This procedure is sometimes called a [spin lock](https://en.wikipedia.org/wiki/Spinlock) . A spin-lock is advisable only when the CPU only make a few iterations before the resource could be accessed, as in the present case.
 
-**Important:** LOGOUT\_STATUS will be used by the [Acquire Kernel Lock function](../modules/module-08.md#f1) of the Access Control Module in the following way. **When the *Acquire Kernel Lock* function is called from the secondary core, if PAGING\_STATUS or LOGOUT\_STATUS is on, then the lock must not be acquired.** Instead, the state of the current process must be set to READY and the scheduler must be invoked. This is because when paging module is running or if the system has initiated logout (from the primary), normal processing is stopped and only IDLE2 must be scheduled in the secondary. (The scheduler will be designed so that under these circumstances, only IDLE2 will be scheduled for execution).
+**Important:** LOGOUT\_STATUS will be used by the [Acquire Kernel Lock function](../modules/module-08.md#acquire-kernel-lock) of the Access Control Module in the following way. **When the *Acquire Kernel Lock* function is called from the secondary core, if PAGING\_STATUS or LOGOUT\_STATUS is on, then the lock must not be acquired.** Instead, the state of the current process must be set to READY and the scheduler must be invoked. This is because when paging module is running or if the system has initiated logout (from the primary), normal processing is stopped and only IDLE2 must be scheduled in the secondary. (The scheduler will be designed so that under these circumstances, only IDLE2 will be scheduled for execution).
 
 The access control module algorithms are given [here](../modules/module-08.md) .
 
@@ -116,7 +116,7 @@ When NEXSM boots up, only the primary core will execute. Upon execution of the S
 
   
 
-The required changes to the primary [OS Startup code](../os-design/misc.md#os_startup) /boot module are summarized below:
+The required changes to the primary [OS Startup code](../os-design/misc.md#os-startup-code) /boot module are summarized below:
 
 1.  Transfer the secondary bootstrap loader code from disk to memory (from disk block 512 to memory page 128). The access control module also must be loaded from disk to memory (blocks 516-517 to pages 132-133) - see [disk and memory organization](../os-implementation.md) . (Note: The design allows 2 blocks of secondary bootstrap code, but you will only need one block for the present eXpOS version).
 2.  Set up the page tables for IDLE2 (PID=14) in memory. Since one user stack and one kernel stack pages will have to be allocated for IDLE2 (the first two free pages, 83 and 84 may be allocated). The [**memory free list**](../os-design/mem-ds.md#mem_free_list) has to be updated accordingly. Also, the **free memory count** in the [system status table](../os-design/mem-ds.md#ss_table) will need corresponding update. The [process table entries](../os-design/process-table.md) for IDLE2 will be set (similar to IDLE). In particular, the state has to be set to RUNNING (as it is going to be running very soon on the secondary core!).

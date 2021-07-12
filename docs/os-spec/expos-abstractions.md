@@ -26,7 +26,7 @@ eXpFS support three kinds of files - **data files, program files**  (executable 
 eXpOS does not provide any mechanisms for application programs to create **executable files**. Executable files have to be pre-loaded into the disk using some other external disk access mechanism before OS bootstrap. Since such mechanisms are implementation dependent, they are not part of the OS specification. For instance, the [XFS-Interface](../support-tools/xfs-interface.md) tool for eXpOS implementation on the XSM machine is one such mechanism. 
 
 
-Executable files follow certain format called the **[experimental executable format or XEXE format](../abi.md#xexe)**. The OS will execute only program files stored in the file system in the XEXE format. Hence system programs like compilers that translate high level application programs must ensure that the executable files adhere to the XEXE format. 
+Executable files follow certain format called the **[experimental executable format or XEXE format](../abi.md#xexe-executable-file-format)**. The OS will execute only program files stored in the file system in the XEXE format. Hence system programs like compilers that translate high level application programs must ensure that the executable files adhere to the XEXE format. 
 
 
 Application programs can create, modify and delete data files using appropriate OS system calls. These are discussed [here](systemcallinterface.md).

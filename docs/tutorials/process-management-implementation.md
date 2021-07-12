@@ -7,7 +7,7 @@ original_url: http://eXpOSNitc.github.io/Tutorials/process_management_implementa
     It is necessary to read the following documentations before starting with this tutorial.
 
     1. eXpOS process - [user level specification](../os-spec/processmodel.md).
-    2. [Program level interface](../os-spec/systemcallinterface.md#processsystemcalls) to different process system calls
+    2. [Program level interface](../os-spec/systemcallinterface.md#process-system-calls) to different process system calls
     3. eXpOS [ABI](../abi.md).
     4. [XSM unprivileged](xsm-unprivileged-tutorial.md) mode execution tutorial.
 

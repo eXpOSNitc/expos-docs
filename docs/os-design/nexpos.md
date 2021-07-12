@@ -279,7 +279,7 @@ Acquire****Lock() {
 
 
 
- NEXSM specification stipulates that the secondary code bootstraps from the physical address 65536 (page 128) upon execution of the START instruction from the primary. Hence, **the bootstrap routine of the primary core must transfer the bootstrap code of the secondary from disk block (see [disk organization](../os-implementation.md)) to memory page 128 before issuing the START instruction**. The START instruction is issued at the end of normal bootstrap by the primary (see [OS Startup code](misc.md#os_startup)).
+ NEXSM specification stipulates that the secondary code bootstraps from the physical address 65536 (page 128) upon execution of the START instruction from the primary. Hence, **the bootstrap routine of the primary core must transfer the bootstrap code of the secondary from disk block (see [disk organization](../os-implementation.md)) to memory page 128 before issuing the START instruction**. The START instruction is issued at the end of normal bootstrap by the primary (see [OS Startup code](misc.md#os-startup-code)).
  
 
 

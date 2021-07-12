@@ -13,7 +13,7 @@ original_url: https://exposnitc.github.io/Roadmap.html
 
 In this stage, you will be working on the implementation of the exec system call. Exec is the
 "program loader" of eXpOS. Exec takes as input a filename. It first checks whether the file is
-a valid eXpOS executable stored in the XSM disk, adhering to the [XEXE format](../abi.md#xexe).
+a valid eXpOS executable stored in the XSM disk, adhering to the [XEXE format](../abi.md#xexe-executable-file-format).
 If so, Exec destroys the invoking process, loads the executable file from the
 disk, and sets up the program for execution as a process. A successful exec operation results
 in the termination of the invoking process and hence never returns to it.

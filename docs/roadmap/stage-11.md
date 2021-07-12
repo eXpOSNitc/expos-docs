@@ -131,5 +131,5 @@ will have to save the file to a different name before compiling the next ExpL pr
     arguments from the stack, check whether the request is for a console write, if so call INT 7
     after supplying proper arguments in the stack as done in the previous stage. Upon return from 
     the system call, your library routine must set the return value through the stack (setting return value 
-    in the proper location of the stack -see details [here](../abi.md#library)
+    in the proper location of the stack -see details [here](../abi.md#low-level-runtime-library-interface)
     ) and return control back to the application.

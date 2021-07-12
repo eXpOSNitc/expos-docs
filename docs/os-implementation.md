@@ -89,7 +89,7 @@ The Memory layout of the XSM machine is as follows :
 
 <tr>
 <td>1</td>
-<td>Page for loading the BOOT block (<a href="../os-design/misc/#os_startup" target="_blank">OS Startup Code</a>)</td>
+<td>Page for loading the BOOT block (<a href="../os-design/misc/#os-startup-code" target="_blank">OS Startup Code</a>)</td>
 <td>512 - 1023</td>
 <td>512</td>
 </tr>

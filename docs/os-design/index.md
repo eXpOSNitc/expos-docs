@@ -36,7 +36,7 @@ Algorithms specified in this document can fall into any of the five categories -
 <a target="_blank" href="../modules/module-00/" style="position: absolute; height: 260px; width: 60px; margin-top: 380px; margin-left: 40px"></a>
 <a target="_blank" href="../modules/module-07/" style="position: absolute; height: 68px; width: 170px; margin-top: 580px; margin-left: 890px"></a>
 <a target="_blank" href="../arch-spec/machine-organization/#BootROM" style="position: absolute; height: 68px; width: 120px; margin-top: 730px; margin-left: 790px"></a>
-<a target="_blank" href="../os-design/misc/#os_startup" style="position: absolute; height: 68px; width: 120px; margin-top: 730px; margin-left: 950px"></a>
+<a target="_blank" href="../os-design/misc/#os-startup-code" style="position: absolute; height: 68px; width: 120px; margin-top: 730px; margin-left: 950px"></a>
 </div>
 
 ## System Calls

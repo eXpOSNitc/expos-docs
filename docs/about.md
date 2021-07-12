@@ -31,7 +31,7 @@ These thoughts have translated into the following decisions:
     4.  primitives for interprocess communication (binary semaphores) and process synchronization (signal-wait)
     5.  support for multiple users
     6.  demand-paged memory management
-3.  The OS code has to be completely written by the student with no built-in code given, except for a bootstrap ROM code and code implementing an [application level library interface](abi.md#library). The programming support has been kept minimal to avoid high level programming tools hiding too many low level issues from the OS programmer. Essentially, the student has to do “low level programming” on a “high level hardware".
+3.  The OS code has to be completely written by the student with no built-in code given, except for a bootstrap ROM code and code implementing an [application level library interface](abi.md#low-level-runtime-library-interface). The programming support has been kept minimal to avoid high level programming tools hiding too many low level issues from the OS programmer. Essentially, the student has to do “low level programming” on a “high level hardware".
 4.  The system is designed to help the student appreciate the functioning of a “sufficiently complex” operating system and **not** to help him/her gain experience with real operating systems programming. The architecture, the OS, the API, ABI etc. are all different from any of the existing real systems or standards in use, but designed to make the task of programming the OS as simple as possible.
 
 ---
