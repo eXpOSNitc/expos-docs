@@ -20,8 +20,8 @@ Algorithms specified in this document can fall into any of the five categories -
 <a target="_blank" href="../os-spec/shell-spec/" style="position: absolute; height: 62px; width: 100px; margin-top: 10px; margin-left: 410px"></a>
 <a target="_blank" href="../os-spec/shell-spec/" style="position: absolute; height: 62px; width: 100px; margin-top: 10px; margin-left: 540px"></a>
 <a target="_blank" href="../os-design/misc/#idle" style="position: absolute; height: 62px; width: 120px; margin-top: 90px; margin-left: 20px"></a>
-<a target="_blank" href="../os-design/misc/#login" style="position: absolute; height: 62px; width: 200px; margin-top: 90px; margin-left: 180px"></a>
-<a target="_blank" href="../os-design/misc/#shell" style="position: absolute; height: 62px; width: 220px; margin-top: 90px; margin-left: 420px"></a>
+<a target="_blank" href="../os-design/misc/#initlogin-process" style="position: absolute; height: 62px; width: 200px; margin-top: 90px; margin-left: 180px"></a>
+<a target="_blank" href="../os-design/misc/#shell-process" style="position: absolute; height: 62px; width: 220px; margin-top: 90px; margin-left: 420px"></a>
 <a target="_blank" href="../os-design/exe-handler/" style="position: absolute; height: 60px; width: 80px; margin-top: 230px; margin-left: 750px"></a>
 <a target="_blank" href="../os-design/timer/" style="position: absolute; height: 60px; width: 80px; margin-top: 230px; margin-left: 830px"></a>
 <a target="_blank" href="../os-design/disk-interrupt/" style="position: absolute; height: 60px; width: 80px; margin-top: 230px; margin-left: 910px"></a>

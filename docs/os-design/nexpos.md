@@ -269,7 +269,7 @@ Acquire****Lock() {
 
 
 
- In the present design, the scheduler will run [LOGIN](misc.md#initlogin-process), [SHELL](misc.md#shell-process) and the [Swapper Daemon](misc.md#swapper-daemon) processes only from the primary. The [pager module](../modules/module-06.md) also will be run only from the primary. These constraints simplify implementation of the kernel, but are neither necessary nor very efficient. 
+ In the present design, the scheduler will run [LOGIN](misc.md#initlogin-process), [SHELL](misc.md#shell-process-process) and the [Swapper Daemon](misc.md#swapper-daemon) processes only from the primary. The [pager module](../modules/module-06.md) also will be run only from the primary. These constraints simplify implementation of the kernel, but are neither necessary nor very efficient. 
  
 
 

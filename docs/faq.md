@@ -72,12 +72,12 @@ hide:
     What you learn is very little compared to what is needed to become an OS expert. So, listing out
     everything is impossible. But here are some important misses: 
     
-    - The XSM machine allows you to store a character string in a memory word. No real machine architecture permits you to do such stuff. This is made possible just because XSM is a software simulated. However, XSM makes your data manipulation job much simpler without getting bogged down by details of data formatting. It is in principle possible to implement eXpOS on “more real” machines like [MIPS](http://en.wikipedia.org/wiki/MIPS_instruction_set). However, this would involve considerably more time and effort.
+    - The XSM machine allows you to store a character string in a memory word. No real machine architecture permits you to do such stuff. This is made possible just because XSM is a software simulated. However, XSM makes your data manipulation job much simpler without getting bogged down by details of data formatting. It is in principle possible to implement eXpOS on “more real” machines like [MIPS](https://en.wikipedia.org/wiki/MIPS_instruction_set). However, this would involve considerably more time and effort.
     - The project involves very little work involving input-ouput, device interfacing, security or networking. Moreover the file system and multi-user support are very primitive. The methods studied won't scale up when there is [pre-emptive multitasking](https://en.wikipedia.org/wiki/Computer_multitasking#Preemptive_multitasking) .
 
 
 ??? question "8. What are the system requirements for working on the eXpOS package?"
-    We expect you to have a Linux/Unix Machine with Lex/Flex and Yacc/Bison software packages installed. (For Flex/Bison installation on your Linux system, see [link](http://en.kioskea.net/faq/30635-how-to-install-flex-and-bison-under-ubuntu)). Once you have these, you can download the eXpOS package by following instructions at [Setting Up](support-tools/setting-up.md).
+    We expect you to have a Linux/Unix Machine with Lex/Flex and Yacc/Bison software packages installed. (For Flex/Bison installation on your Linux system, see [link](https://en.kioskea.net/faq/30635-how-to-install-flex-and-bison-under-ubuntu)). Once you have these, you can download the eXpOS package by following instructions at [Setting Up](support-tools/setting-up.md).
 
 
 ??? question "9. What are the contents of the eXpOS package?"

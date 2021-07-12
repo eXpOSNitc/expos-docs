@@ -70,7 +70,7 @@ It must be noted here that an application program is free to violate the ABI con
 Two concurrently executing processes sharing resources like files or memory (for example, parent and child processes sharing the heap) would like to ensure that only one of them execute critical section code that access/modify a resource that is shared between them. 
 
 
-A classical solution to this problem is using [semaphores](http://en.wikipedia.org/wiki/Semaphore_%28programming%29). A process can acquire a semaphore using the **Semget** system call and share it with its child (or later generation) processes. A semaphore can be locked by any of these sharing processes using the **SemLock** system call and the execution of all other processes trying to lock the same semaphore subsequently will be suspended (**blocked**) by the OS until the locking process unlocks the semaphore using the **SemUnlock** system call. 
+A classical solution to this problem is using [semaphores](https://en.wikipedia.org/wiki/Semaphore_%28programming%29). A process can acquire a semaphore using the **Semget** system call and share it with its child (or later generation) processes. A semaphore can be locked by any of these sharing processes using the **SemLock** system call and the execution of all other processes trying to lock the same semaphore subsequently will be suspended (**blocked**) by the OS until the locking process unlocks the semaphore using the **SemUnlock** system call. 
 
 
 The **Wait** system call allows a process to suspend its own execution until another process wakes it up using the **Signal** system call. This primitive is useful when a process must be made to wait at a point during its execution until another related process signals it to continue.

@@ -25,7 +25,7 @@ Save the SP%512, PTBR and PTLR to the Kernel SP, PTBR and PTLR fields of the
 
 <b>if</b> (PAGING_STATUS in the <a href="../../os-design/mem-ds/#system-status-table">System Status Table</a> is not 0) /* Paging is ongoing */
     <b>If</b> the paging process is blocked     /* the paging process is executing a disk operation */
-        Choose <a href="../../os-design/misc/#idle">Idle Process</a> for scheduling.
+        Choose <a href="../../os-design/misc/#idle-process">Idle Process</a> for scheduling.
     <b>else</b>
         Choose the Swapper Daemon to be scheduled.
 <b>else</b>

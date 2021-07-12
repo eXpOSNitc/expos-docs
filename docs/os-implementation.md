@@ -374,19 +374,19 @@ Routine</a></td>
 </tr>
 <tr>
 <td>65 - 66</td>
-<td><a href="../os-design/misc/#login" target="_blank">INIT/Login Program</a></td>
+<td><a href="../os-design/misc/#initlogin-processn" target="_blank">INIT/Login Program</a></td>
 <td>33280 - 34303</td>
 <td>1024</td>
 </tr>
 <tr>
 <td>67 - 68</td>
-<td><a href="../os-design/misc/#shell" target="_blank">Shell Program</a></td>
+<td><a href="../os-design/misc/#shell-process" target="_blank">Shell Program</a></td>
 <td>34304 - 35327</td>
 <td>1024</td>
 </tr>
 <tr>
 <td>69 - 70</td>
-<td><a href="../os-design/misc/#idle" target="_blank">Idle
+<td><a href="../os-design/misc/#idle-process" target="_blank">Idle
 Program</a></td>
 <td>35328 - 36351</td>
 <td>1024</td>

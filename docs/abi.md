@@ -40,7 +40,7 @@ The (virtual) address space of any eXpOS process is logically divided into four 
 
 **Code** contains the header and code part of the XEXE executable file, which is loaded by the eXpOS loader from the file system when the Exec system call is executed. The first eight words of the executable file contains the header. The rest of the code region contains the XSM instructions. The total size of code section cannot exceed X\_CSIZE. The eXpOS implementation for the XSM architecture discussed here sets X\_CSIZE to 2048 words. Hence, the code region will be between memory addressess 2048 and 4095 in the address space of the process.
 
-**Stack** is the space reserved for the runtime stack of the process. Parameters and local variables associated with functions in a program are allocated in the stack. In the XSM architecture, the stack grows upwards and the maximum stack size is X\_SSIZE. Global variables are normally allocated in the stack as the executable file format does not support a separate [Data region](http://en.wikipedia.org/wiki/Data_segment). The eXpOS implementation for the XSM architecture discussed here sets X\_SIZE to 1024 words.Thus the stack will occupy the region between memory address 4096 and 5119 in the address space of the process.
+**Stack** is the space reserved for the runtime stack of the process. Parameters and local variables associated with functions in a program are allocated in the stack. In the XSM architecture, the stack grows upwards and the maximum stack size is X\_SSIZE. Global variables are normally allocated in the stack as the executable file format does not support a separate [Data region](https://en.wikipedia.org/wiki/Data_segment). The eXpOS implementation for the XSM architecture discussed here sets X\_SIZE to 1024 words.Thus the stack will occupy the region between memory address 4096 and 5119 in the address space of the process.
 
 A description of the user level address space provided by XSM is given [here](./virtual-machine-spec.md).
 
@@ -63,7 +63,7 @@ The first eight words of an executable file are reserved for the header which de
 
 ![](./assets/img/header.png)
 
-**XMAGIC** is a number indicating the type of executable file. All XEXE files will have magic number 0. For more on Magic Number, click [here](http://en.wikipedia.org/wiki/File_format#Magic_number).
+**XMAGIC** is a number indicating the type of executable file. All XEXE files will have magic number 0. For more on Magic Number, click [here](https://en.wikipedia.org/wiki/File_format#Magic_number).
 
 **Entry point** contains the virtual address in memory of the first instruction to be executed (entry point) of the program after the OS loader has loaded it. During loading, the program counter must be initialized to this address.
 

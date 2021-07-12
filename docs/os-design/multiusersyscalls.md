@@ -305,7 +305,7 @@ indicating that the process is in the logout system call.
 Save the value of SP to the USER SP field in the <a href="../../os-design/process-table/">Process Table</a> entry of the process.
 Set the value of SP to the beginning of User Area Page.
 
-If the current process is not the shell, return -1.	/* <a href="../../os-design/misc/#shell">Shell process</a> has the PID 2 */
+If the current process is not the shell, return -1.	/* <a href="../../os-design/misc/#shell-process">Shell process</a> has the PID 2 */
 
 Kill all user processes except the shell by calling the <b>kill_all()</b> function in the <a href="../../modules/module-01/">Process Manager</a> module.
 

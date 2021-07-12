@@ -5,7 +5,7 @@ hide:
     - navigation
 ---
 
-The hardware [paging](http://en.wikipedia.org/wiki/Paging) scheme of XSM maps the virtual address space of a user mode program to the physical address space of the machine. Read the [XSM Virtual Machine Model](../virtual-machine-spec.md) before proceeding further.
+The hardware [paging](https://en.wikipedia.org/wiki/Paging) scheme of XSM maps the virtual address space of a user mode program to the physical address space of the machine. Read the [XSM Virtual Machine Model](../virtual-machine-spec.md) before proceeding further.
 
   
 

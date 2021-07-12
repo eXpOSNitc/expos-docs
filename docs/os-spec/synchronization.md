@@ -3,7 +3,7 @@ title: 'Synchronization and Access control'
 original_url: 'http://eXpOSNitc.github.io/os_spec-files/synchronization.html'
 ---
 
-eXpOS assumes a single processor multi programming environment. This means that all processes exist concurrently in the machine and the OS time shares the machine between various processes. The OS specification requires that [Round Robin scheduling](http://en.wikipedia.org/wiki/Round-robin_scheduling) is used with co-operative time-sharing. This is discussed in [Section 6](misc.md) . The OS does not provide any promise to the application program about the order in which processes will be executed.
+eXpOS assumes a single processor multi programming environment. This means that all processes exist concurrently in the machine and the OS time shares the machine between various processes. The OS specification requires that [Round Robin scheduling](https://en.wikipedia.org/wiki/Round-robin_scheduling) is used with co-operative time-sharing. This is discussed in [Section 6](misc.md) . The OS does not provide any promise to the application program about the order in which processes will be executed.
 
 However, application programs often need to stop and wait for another process to execute certain operations before proceeding. The OS provides system calls that allow user processes to **synchronize execution.**
 
@@ -18,7 +18,7 @@ eXpOS provides the **Wait** and **Signal** system calls for process synchronizat
 
 ### Access Control
 
-A second major concurrency related requirement is that when multiple processes access the same data (in memory or files), it is often required to have some kind of locking mechanism to ensure that when one process is accessing the shared data, no other process is allowed to modify the same. This is to ensure data integrity and this issue is called the [critical section problem](http://en.wikipedia.org/wiki/Critical_section). 
+A second major concurrency related requirement is that when multiple processes access the same data (in memory or files), it is often required to have some kind of locking mechanism to ensure that when one process is accessing the shared data, no other process is allowed to modify the same. This is to ensure data integrity and this issue is called the [critical section problem](https://en.wikipedia.org/wiki/Critical_section). 
 
 
 eXpOS provides (binary) **semaphores** to allow application programs to handle the critical section problem. A (binary) semaphore is conceptually a binary-valued variable whose value can be set or reset only by the OS through designated system call. (Internally how it is implemented is an OS concern and is oblivious to the application programmer). 
