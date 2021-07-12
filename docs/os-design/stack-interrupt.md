@@ -10,7 +10,7 @@ This document is a tutorial explaining how the eXpOS kernel must manage the kern
 A hardware interrupt/exception can occur while an application program is executing.Since the application does not have control over the transfer to the interrupt module, it would not have saved its context. 
 
 Thus in this case the Interrupt Service Routine must save the register context of the application in the kernel stack of the current process, perform the required operations and must restore the context before returning to the application. 
-The  **[kernel stack](process-table.md#user_area)**  is used to store the execution context of the user process. (The [backup](../arch-spec/instruction-set.md#backup) and [restore](../arch-spec/instruction-set.md#restore) instructions of the XSM machine facilitate this).
+The  **[kernel stack](process-table.md#user-area)**  is used to store the execution context of the user process. (The [backup](../arch-spec/instruction-set.md#backup) and [restore](../arch-spec/instruction-set.md#restore) instructions of the XSM machine facilitate this).
 
 
 ### Actions done by the XSM machine on receiving an interrupt/ exception

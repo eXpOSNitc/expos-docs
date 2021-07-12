@@ -41,7 +41,7 @@ If file descriptor is invalid, return -1. &nbsp;&nbsp; /* File descriptor value 
 Locate the Per-Process Resource Table of the current process.
 	Find the PID of the current process from the <a href="../../os-design/mem-ds/#system-status-table" target="_blank">System Status Table</a>.
 	Find the User Area page number from the <a href="../../os-design/process-table/#per-process-resource-table" target="_blank">Process Table </a>entry.
-	The <a href="../../os-design/process-table/#per-process-resource-table">Per-Process Resource Table</a> is located at the  <a href="../../support-tools/constants/" target="_blank">RESOURCE_TABLE_OFFSET</a> from the base of the <a href="../../os-design/process-table/#user_area" target="_blank"> User Area Page</a>
+	The <a href="../../os-design/process-table/#per-process-resource-table">Per-Process Resource Table</a> is located at the  <a href="../../support-tools/constants/" target="_blank">RESOURCE_TABLE_OFFSET</a> from the base of the <a href="../../os-design/process-table/#user-area" target="_blank"> User Area Page</a>
 
 If the Resource identifier field of the <a href="../../os-design/process-table/#per-process-resource-table" target="_blank">Per Process Resource Table</a> entry is invalid or does not indicate a <a href="../../support-tools/constants/" target="_blank">FILE</a>, return -1.   
 

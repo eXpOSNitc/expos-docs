@@ -78,7 +78,7 @@ Algorithms specified in this document can fall into any of the five categories -
 <a target="_blank" href="../os-design/disk-ds/#root-file" style="position: absolute; height: 32px; width: 150px; margin-top: 168px; margin-left: 50px"></a>
 <a target="_blank" href="../os-design/disk-ds/#user-table" style="position: absolute; height: 32px; width: 150px; margin-top: 208px; margin-left: 50px"></a>
 <a target="_blank" href="../os-design/process-table/" style="position: absolute; height: 32px; width: 290px; margin-top: 113px; margin-left: 310px"></a>
-<a target="_blank" href="../os-design/process-table/#user_area" style="position: absolute; height: 32px; width: 290px; margin-top: 233px; margin-left: 310px"></a>
+<a target="_blank" href="../os-design/process-table/#user-area" style="position: absolute; height: 32px; width: 290px; margin-top: 233px; margin-left: 310px"></a>
 <a target="_blank" href="../os-design/mem-ds/#open-file-table" style="position: absolute; height: 32px; width: 290px; margin-top: 325px; margin-left: 310px"></a>
 <a target="_blank" href="../os-design/mem-ds/#file-inode-status-table" style="position: absolute; height: 32px; width: 290px; margin-top: 365px; margin-left: 310px"></a>
 <a target="_blank" href="../os-design/mem-ds/#semaphore-table" style="position: absolute; height: 32px; width: 290px; margin-top: 405px; margin-left: 310px"></a>
@@ -90,7 +90,7 @@ Algorithms specified in this document can fall into any of the five categories -
 <a target="_blank" href="../os-design/process-table/#per-process-page-table" style="position: absolute; height: 32px; width: 135px; margin-top: 155px; margin-left: 310px"></a>
 <a target="_blank" href="../os-design/process-table/#per-process-disk-map-table" style="position: absolute; height: 32px; width: 137px; margin-top: 155px; margin-left: 460px"></a>
 <a target="_blank" href="../os-design/process-table/#per-process-resource-table" style="position: absolute; height: 32px; width: 135px; margin-top: 195px; margin-left: 310px"></a>
-<a target="_blank" href="../os-design/process-table/#kernel_stack" style="position: absolute; height: 32px; width: 137px; margin-top: 195px; margin-left: 460px"></a>
+<a target="_blank" href="../os-design/process-table/#per-process-kernel-stack" style="position: absolute; height: 32px; width: 137px; margin-top: 195px; margin-left: 460px"></a>
 </div>
 
 

@@ -25,7 +25,7 @@ The process table of the child is initialized with the same values of the parent
 the values of TICK, PID, PPID, USER AREA PAGE NUMBER, KERNEL STACK POINTER, INPUT BUFFER, MODE
 FLAG, PTBR and PTLR.The contents of the stack of the parent are
 copied into the new stack pages allocated for the child.
-The contents of the per process resource table in the [user area page](../os-design/process-table.md#user_area) of the parent process is copied to the child process.
+The contents of the per process resource table in the [user area page](../os-design/process-table.md#user-area) of the parent process is copied to the child process.
 However, the contents of the parent's kernel stack are not copied
 to the child, and the kernel stack of the child is set to empty (that is, KPTR field in the
 process table entry of the child is set to 0.)

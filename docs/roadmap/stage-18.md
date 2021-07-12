@@ -122,7 +122,7 @@ page of the process. This table has 8 entries with 2 words each, in total it occ
 words.
 <i>We will reserve the last 16 words of the User Area Page to store the per-process
 Resource Table of the process.</i>
-In exec, after reacquiring the [user area page](../os-design/process-table.md#user_area) for the new process, per-process resource table should
+In exec, after reacquiring the [user area page](../os-design/process-table.md#user-area) for the new process, per-process resource table should
 be initialized in this user area page. Since the newly created process has not opened any
 files or semaphores, each entry in the per-process table is initialized to -1.
 

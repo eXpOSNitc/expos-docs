@@ -18,7 +18,7 @@ this will be done.
 
 To isolate the kernel from the user stack, the OS kernel must maintain two stacks for
 a program - **a user stack and a kernel stack**. 
-In eXpOS, one page called the [user area page](../os-design/process-table.md#user_area)
+In eXpOS, one page called the [user area page](../os-design/process-table.md#user-area)
 is allocated for each process. A part of the space in this page will be used for the kernel stack
 (some other process information also will be stored in this page).
 
