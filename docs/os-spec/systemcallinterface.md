@@ -240,7 +240,7 @@ Arguments: None
 
 Return Value: None
 
-Description: Exit system call terminates the execution of the process which invoked it and destroys its memory address space. The calling application ceases to exist after the system call and hence the system call never returns. All processes waiting for this process using [Wait system call](systemcallinterface.md#synsystemcalls), are awakened on exit of this process. Exit never fails.
+Description: Exit system call terminates the execution of the process which invoked it and destroys its memory address space. The calling application ceases to exist after the system call and hence the system call never returns. All processes waiting for this process using [Wait system call](systemcallinterface.md#system-calls-for-access-control-and-synchronization), are awakened on exit of this process. Exit never fails.
 
 \* In [Multiuser](multiuser.md) implementation, if the process created by the login process (shell) exits, all processes with that userid has to be killed and the login process that was waiting for its exit has to be awakened.
 

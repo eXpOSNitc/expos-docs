@@ -296,7 +296,7 @@ peppermint wind
 ```
 
 
-xfs-interface provides the [export](../support-tools/xfs-interface.md#export) command to export files from the XSM machine to the UNIX machine
+xfs-interface provides the [export](../support-tools/xfs-interface.md#exporting-files) command to export files from the XSM machine to the UNIX machine
 in a single step. Export the file `sample.dat` to the UNIX file `$HOME/myexpos/data.txt`
 using <i>xfs-inteface</i> as shown below and verify that the contents are same as sample.dat.
 

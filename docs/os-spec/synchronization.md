@@ -13,7 +13,7 @@ eXpOS provides the **Wait** and **Signal** system calls for process synchronizat
 
 
 1. The process specified as argument terminates by the **exit** system call.
-2. The process specified as argument executes a **Signal** system call. The specification of Signal and Wait system calls are given [here](systemcallinterface.md#synsystemcalls).
+2. The process specified as argument executes a **Signal** system call. The specification of Signal and Wait system calls are given [here](systemcallinterface.md#system-calls-for-access-control-and-synchronization).
 
 
 ### Access Control

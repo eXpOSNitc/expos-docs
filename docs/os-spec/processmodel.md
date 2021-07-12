@@ -80,7 +80,7 @@ When a process executes the **Fork** system call, the following sequence of even
 The parent and the child continue execution from here on.
 
 
-The **Exit** system call terminates a process after closing all files and semaphores. The **Wait** system call suspends the execution of a process till another process exits or executes a **Signal** system call. [(System calls for access control and synchronization)](systemcallinterface.md#synsystemcalls). The **Signal** system call resumes the execution of a process that was suspended by wait. Wait and Signal operations are discussed in more detail in the next section.
+The **Exit** system call terminates a process after closing all files and semaphores. The **Wait** system call suspends the execution of a process till another process exits or executes a **Signal** system call. [(System calls for access control and synchronization)](systemcallinterface.md#system-calls-for-access-control-and-synchronization). The **Signal** system call resumes the execution of a process that was suspended by wait. Wait and Signal operations are discussed in more detail in the next section.
 
 
 * In  [Multiuser](multiuser.md)  implemention of eXpOS, the child inherits the userid of the parent process .

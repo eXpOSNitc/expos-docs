@@ -206,7 +206,7 @@ Compile and load interrupt routine 8, interrupt routine 10, module 2, module 5 i
     the parent and the child has separate pointers to the head of the shared linked list. Now, the
     child prints the 1st, 3rd, 5th, 7th... etc. entries of the list whereas the parent prints the
     2nd, 4th, 6th, 8th....etc. entries of the list. Eventually all numbers will be printed, but in
-    some arbitrary order (why?). The program is given [here](../test-programs/index.md#ll_fork). Try to read and understand the program before running it. Run the program as the INIT program. In the next stages, we will see
+    some arbitrary order (why?). The program is given [here](../test-programs/index.md#test-program-3). Try to read and understand the program before running it. Run the program as the INIT program. In the next stages, we will see
     how to use the sychronization primitives of the OS to modify the above program so that the
     numbers are printed out in sequential order.
     
