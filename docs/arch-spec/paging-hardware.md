@@ -21,7 +21,7 @@ Each Page Table stores the physical page number corresponding to all the logical
 
 Each page table entry for a logical page is of **2 words**. The 1st word must be set to the physical page number in the memory where the logical page is actually loaded. In this case, the page table entry is said to be **valid**. If the page has not been loaded into the memory, the page table entry is said to be **invalid**. The 2nd word in a page table entry stores a sequence of flag bits storing information regarding whether the page a) is **valid** or not b) is **read only/read write**, c) has been **referenced** in the user mode after being set to valid and d) has been **modified** in the user mode after being set to valid (**dirty**). The layout of this word is given below:
 
-![](../assets/img/aux_info.png)
+![](../assets/img/aux_info.png){ id="aux_info" }
 
 **Reference Bit (R)**: This bit must be initialised to 0 (unreferenced) when a page table entry is initially made valid. On a page access, this bit is set to 1 by the machine hardware i.e, as soon as the page is accessed for the first time, this bit is changed from 0 to 1. Page replacement algorithms of operating systems use this bit.
 
@@ -56,7 +56,7 @@ The physical address is computed by multiplying the physical page number by page
 
   
   
-![](../assets/img/address_translation.png)  
+![](../assets/img/address_translation.png)
   
 
 #### Example
