@@ -2,13 +2,12 @@
 title: 'Stage 26 : User Management (12 Hours)'
 original_url: https://exposnitc.github.io/Roadmap.html
 ---
--   [Learning Objectives](index.md#lo26)
-    
+ 
+!!! note "Learning Objectives"
     -   Adding support in eXpOS to manage multiple users.
     -   Implementation of multi-user system calls.
     
--   [Pre-requisite Reading](index.md#lo26a)
-    
+!!! abstract "Pre-requisite Reading"
     -   It is **absolutely necessary** to read and understand **[multi-user management and implementation](../tutorials/multiuser-implementation.md)** documentation.
     -   Description of data structures- [User Table](../os-design/disk-ds.md#user-table)
     -   Description of special processes - [Init (Login) and Shell process](../os-spec/misc.md) .
