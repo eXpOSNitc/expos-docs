@@ -16,7 +16,7 @@ to terminate a process using the exit system call.
 
 The Fork system call spawns a new process. The new process and the process which invoked fork
 have a child-parent relationship. The child process will be allocated a different PID and a new
-[address space](../abi.md#collapse2). Hence, the child process will have a different process
+[address space](../abi.md#virtual-address-space-model). Hence, the child process will have a different process
 table and page table. However, the child and the parent will share the code and heap regions of
 the address space. The child will be allocated two new stack pages and a new user area page.
 
