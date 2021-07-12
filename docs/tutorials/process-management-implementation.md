@@ -78,7 +78,7 @@ We have already seen that a process requires upto 11 pages of memory (10 page lo
 
 ### Per Process Resource Table
 A process may open files or semaphores using ​_Open_ and _​Semget_ system calls respectively. These system calls return a file/semaphore ​**descriptor**​ which is used to access the file/semaphore. Moreover, associated which each such descriptor, there is a [open file table entry](../os-design/mem-ds.md) / [semaphore table entry](../os-design/mem-ds.md#semaphore-table) whose index is maintained by the OS. The descriptors and open file table/semaphore table indices of files/semaphores opened/acquired by a process are stored in the [per process resource table](../os-design/process-table.md#per-process-resource-table).
----
+
 
 We now describe process creation - the ​_Fork_​ system call, which will clarify how these data structures are set up. ​_Fork_​ allocates a new process table entry for a process using the _​GetPCBEntry_​ function of the ​[Process Manager Module](../modules/module-01.md). _GetPCBEntry_ function copies the index of the new entry into the PID field of the process table.
 
