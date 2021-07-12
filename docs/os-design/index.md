@@ -15,7 +15,7 @@ Algorithms specified in this document can fall into any of the five categories -
 
 ## High Level Design
 
-<div style="background: url(http://exposnitc.github.io/img/os-design/os_design_detailed.png); height: 819px; width: 1206px" ;="">
+<div style="background: url(../assets/img/os-design/os_design_detailed.png); height: 819px; width: 1206px" ;="">
 <a target="_blank" href="../os-design/misc/#swapper-daemon" style="position: absolute; height: 62px; width: 120px; margin-top: 10px; margin-left: 260px"></a>
 <a target="_blank" href="../os-spec/shell-spec/" style="position: absolute; height: 62px; width: 100px; margin-top: 10px; margin-left: 410px"></a>
 <a target="_blank" href="../os-spec/shell-spec/" style="position: absolute; height: 62px; width: 100px; margin-top: 10px; margin-left: 540px"></a>
@@ -41,7 +41,7 @@ Algorithms specified in this document can fall into any of the five categories -
 
 ## System Calls
 
-<div style="background: url(https://exposnitc.github.io/img/os-design/SystemCalls.png); height: 442px; width: 1032px" ;="">
+<div style="background: url(../assets/img/os-design/SystemCalls.png); height: 442px; width: 1032px" ;="">
 <a target="_blank" href="../os-design/shutdown/" style="position: absolute; height: 60px; width: 190px; margin-top: 52px; margin-left: 20px"></a>
 <a target="_blank" href="../os-design/create/" style="position: absolute; height: 30px; width: 150px; margin-top: 110px; margin-left: 240px"></a>
 <a target="_blank" href="../os-design/delete/" style="position: absolute; height: 33px; width: 150px; margin-top: 150px; margin-left: 240px"></a>
@@ -72,7 +72,7 @@ Algorithms specified in this document can fall into any of the five categories -
 
 ## Data Structures
 
-<div style="background: url(http://exposnitc.github.io/img/os-design/DataStructures_new.png); height: 671px; width: 671px; margin-bottom:30px" ;="">
+<div style="background: url(../assets/img/os-design/DataStructures_new.png); height: 671px; width: 671px; margin-bottom:30px" ;="">
 <a target="_blank" href="../os-design/disk-ds/#inode-table" style="position: absolute; height: 30px; width: 150px; margin-top: 83px; margin-left: 50px"></a>
 <a target="_blank" href="../os-design/disk-ds/#disk-free-list" style="position: absolute; height: 30px; width: 150px; margin-top: 123px; margin-left: 50px"></a>
 <a target="_blank" href="../os-design/disk-ds/#root-file" style="position: absolute; height: 32px; width: 150px; margin-top: 168px; margin-left: 50px"></a>

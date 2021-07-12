@@ -462,7 +462,7 @@ and the module must save it for future return.
 **In this case the kernel module must switch to the kernel stack and not use the application's stack.**
 This is to avoid potential user level “hacks” into the interrupt modules through the stack.
 
-![](http://exposnitc.github.io/img/memory_management.png)
+![](../assets/img/memory_management.png)
 
 
 **Case b: (Hardware Interrupts)** This case applies to the exception handler, timer interrupt routine, disk interrupt routine and the console interrupt routine. 
