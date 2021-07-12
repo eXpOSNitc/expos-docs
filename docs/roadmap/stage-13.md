@@ -18,7 +18,7 @@ interrupt routines, other modules or the OS startup code.
 As modules execute in kernel mode, the kernel stack of the currently scheduled process is
 used as the caller-stack for module invocation. XSM supports eight modules - `MOD_0` to `MOD_7` -
 which can be invoked using the `CALL MOD_n` / `CALL <module_name>` instruction (see
-[SPL constants](../support-tools/constants.md#interrupts)).While switching to module, the CALL instruction pushes the IP address of the instruction
+[SPL constants](../support-tools/constants.md#spl-constants-defining-the-call-addresses-for-interruptsexceptionsmodules)).While switching to module, the CALL instruction pushes the IP address of the instruction
 following the `CALL` instruction on the top of the kernel stack and starts execution of the 
 corresponding module. A module returns to the caller using the RET instruction (return statement in SPL) 
 which restores the IP value present on the top of the kernel stack, pushed earlier by the CALL
