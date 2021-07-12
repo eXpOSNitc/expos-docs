@@ -93,7 +93,7 @@ entry for the idle process as was done in the previous stage.
 
 6) As the idle process is scheduled first, initialize the STATE field in the process table
 entry of the idle process as RUNNING and current PID field in the
-[System Status Table](../os-design/mem-ds.md#ss_table)
+[System Status Table](../os-design/mem-ds.md#system-status-table)
 to 0 (PID of the idle process).
 
 7) Transfer the entry point value from the header of the idle process to the top of the

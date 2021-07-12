@@ -62,7 +62,7 @@ respectively. After coming back from Terminal Read function, it is expected that
 address (passed as argument to read system call) contains the number/string entered in the
 terminal.   
 
-The OS maintains a global data structure called the [terminal status table](../os-design/mem-ds.md#ts_table) that stores information about the current state of the terminal. A process
+The OS maintains a global data structure called the [terminal status table](../os-design/mem-ds.md#terminal-status-table) that stores information about the current state of the terminal. A process
 can acquire the terminal by invoking the Acquire Terminal function of the
 [resource manager module](../modules/module-00.md).
 **When the Acquire Terminal function assigns the terminal to a process,
@@ -171,7 +171,7 @@ Following steps are executed after return from the scheduler
 
 3) Backup the user context of the currently running process in the kernel stack as done in timer interrupt routine.
 
-4) Get the PID of the process that has aqcuired the terminal from the [terminal status table](../os-design/mem-ds.md#ts_table), Save this as reqPID.
+4) Get the PID of the process that has aqcuired the terminal from the [terminal status table](../os-design/mem-ds.md#terminal-status-table), Save this as reqPID.
 
 5) Using the reqPID obtained in the above step, get the corresponding process table entry.
 

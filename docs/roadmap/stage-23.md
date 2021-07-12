@@ -9,7 +9,7 @@ original_url: https://exposnitc.github.io/Roadmap.html
 
 !!! abstract "Pre-requisite Reading"
     - It is **absolutely necessary** to read and understand **[eXpOS FILE SYSTEM and Implementation Tutorial](../tutorials/filesystem-implementation.md)** documentation.
-    - Description of data structures- [Inode Table](../os-design/disk-ds.md#inode-table) , [Root file](../os-design/disk-ds.md#root-file) , [File(inode) status table](../os-design/mem-ds.md#file_lock_status_table) and [buffer table](../os-design/mem-ds.md#buffer_table) .
+    - Description of data structures- [Inode Table](../os-design/disk-ds.md#inode-table) , [Root file](../os-design/disk-ds.md#root-file) , [File(inode) status table](../os-design/mem-ds.md#file-inode-status-table) and [buffer table](../os-design/mem-ds.md#buffer-table) .
 
 
  
@@ -51,12 +51,12 @@ Implement _Delete_ system call using the detailed algorithm provided [here](../o
 
 #### Acquire Inode (function number = 4, [resource manager module](../modules/module-00.md))
 
-Acquire Inode takes an inode index and PID of a process as arguments. To lock the inode (file), **Acquire Inode** first waits in a busy loop by changing state to (WAIT\_FILE, inode index) until the file becomes free. After the inode becomes free and current process resumes execution, acquire inode checks whether the file is deleted from the system. (This check is necessary because, some other process may delete the file while the current process was waiting for the inode to be free.) **Acquire Inode** then locks the inode by setting LOCKING PID field in the [file status table](../os-design/mem-ds.md#file_lock_status_table) to the given PID.
+Acquire Inode takes an inode index and PID of a process as arguments. To lock the inode (file), **Acquire Inode** first waits in a busy loop by changing state to (WAIT\_FILE, inode index) until the file becomes free. After the inode becomes free and current process resumes execution, acquire inode checks whether the file is deleted from the system. (This check is necessary because, some other process may delete the file while the current process was waiting for the inode to be free.) **Acquire Inode** then locks the inode by setting LOCKING PID field in the [file status table](../os-design/mem-ds.md#file-inode-status-table) to the given PID.
 
 Implement Acquire Inode function using the detailed algorithm given in the resource manager module link above.
 
 #### Release Inode (function number = 5, [resource manager module](../modules/module-00.md))
-Release Inode takes an inode index and PID of a process as arguments. Release Inode frees the inode (file) by invalidating the LOCKING PID field in the [file status table](../os-design/mem-ds.md#file_lock_status_table) . The function then wakes up the processes waiting for the file with given inode index by changing state of those processes to READY.
+Release Inode takes an inode index and PID of a process as arguments. Release Inode frees the inode (file) by invalidating the LOCKING PID field in the [file status table](../os-design/mem-ds.md#file-inode-status-table) . The function then wakes up the processes waiting for the file with given inode index by changing state of those processes to READY.
 
 Implement Release Inode function using the detailed algorithm given in the resource manager module link above.
 
@@ -101,8 +101,8 @@ Implement **Disk Store** function using the detailed algorithm given in the devi
 #### Modifications to boot module
  
 - Load interrupt routine 4 and root file from the disk to the memory. See the memory organization [here](../os-implementation.md) .
-- Initialize the [file status table](../os-design/mem-ds.md#file_lock_status_table) by setting LOCKING PID and FILE OPEN COUNT fields of all entries to -1.
-- Initialize the [buffer table](../os-design/mem-ds.md#buffer_table) by setting BLOCK NUMBER and LOCKING PID fields to -1 and DIRTY BIT to 0 in all entries.
+- Initialize the [file status table](../os-design/mem-ds.md#file-inode-status-table) by setting LOCKING PID and FILE OPEN COUNT fields of all entries to -1.
+- Initialize the [buffer table](../os-design/mem-ds.md#buffer-table) by setting BLOCK NUMBER and LOCKING PID fields to -1 and DIRTY BIT to 0 in all entries.
 - At present to simplify the implementation, we consider a single user system with only one user called root, USERID of root is 1. Hence, set the USERID field in the process table of INIT to 1. Later when INIT is forked, the USERID field is copied to the process table of the child process.
 
 #### Making things work

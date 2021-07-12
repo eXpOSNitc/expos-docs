@@ -30,7 +30,7 @@ other to release the resource by a process. Details about different functions im
 resource manager module are given [here](../modules/module-00.md).
 
 In this stage, you will learn how the terminal is shared by the processes for writing. The
-OS maintains a data structure called the [Terminal Status Table](../os-design/mem-ds.md#ts_table). 
+OS maintains a data structure called the [Terminal Status Table](../os-design/mem-ds.md#terminal-status-table). 
 The Terminal Status table contains details ofthe process that has acquired the terminal. (Since there is only one terminal in the system,
 only one process is allowed to acquire the terminal at a time.) A flag named STATUS in the
 terminal status table indicates whether the terminal is available or not. When a process
@@ -151,7 +151,7 @@ Calling Acquire Terminal :-
 SPL as done earlier.
 
 4) Store the function number 8 in register R1 and PID of the current process from the 
-[System Status table](../os-design/mem-ds.md#ss_table)
+[System Status table](../os-design/mem-ds.md#system-status-table)
 in register R2 (Can use currentPID, as it already contain current PID value).
 
 5) Call module 0.
@@ -209,7 +209,7 @@ following steps.
 
 1. Load Module 0 from disk pages 53 and 54 to memory pages 40 and 41.
 2. Load Module 4 from disk pages 61 and 62 to memory pages 48 and 49.
-3. Initialize the STATUS field in the [Terminal Status table](../os-design/mem-ds.md#ts_table)as 0. This will indicate that the terminal is free before scheduling the first process.
+3. Initialize the STATUS field in the [Terminal Status table](../os-design/mem-ds.md#terminal-status-table)as 0. This will indicate that the terminal is free before scheduling the first process.
 
 #### Making things work
 1. Compile and load boot module code, module 0, module 4, modified INT 7 routine using XFS-interface.

@@ -29,7 +29,7 @@ The *Login* system call is implemented in the interrupt routine 17. *Login* has 
 
 1.  ***Login* system call**
 
-*Login* system call takes two arguments 1) a user name (string) and 2) an unencrypted password (string). ***Login* system call can only be invoked from the [login process](../os-design/misc.md#login) (PID = 1).** The init process of eXpOS is called login process. Login process will ask the user to enter user name and password from the console and invokes *Login* system call with provided login credentials.
+*Login* system call takes two arguments 1) a user name (string) and 2) an unencrypted password (string). ***Login* system call can only be invoked from the [login process](../os-design/misc.md#initlogin-process) (PID = 1).** The init process of eXpOS is called login process. Login process will ask the user to enter user name and password from the console and invokes *Login* system call with provided login credentials.
 
 To login a user into the system, *Login* system call checks whether the user with given user name and password is present in the [user table](../os-design/disk-ds.md#user-table) or not. Note that the password given as input is unencrypted and should be encrypted (using [encrypt statement](../arch-spec/instruction-set.md) ) before comparing to ENCRYPTED PASSWORD field in the user table. *Login* system call fails if the user with given user name and password is not found.
 
@@ -175,14 +175,14 @@ Note that the [memory organization](../os-implementation.md) allocates two pages
 
 Note that shell process is set up for execution but STATE of the shell process is set to TERMINATED in the boot module. The shell process will be made READY only upon successful login of the user.
 
--   Change the initialization of [memory free list](../os-design/mem-ds.md#mem_free_list) according to the memory pages allocated for idle, init and shell processes.
--   Update the MEM\_FREE\_COUNT in the [system status table](../os-design/mem-ds.md#ss_table) to 47 as now 47 memory pages are available.
+-   Change the initialization of [memory free list](../os-design/mem-ds.md#memory-free-list) according to the memory pages allocated for idle, init and shell processes.
+-   Update the MEM\_FREE\_COUNT in the [system status table](../os-design/mem-ds.md#system-status-table) to 47 as now 47 memory pages are available.
 
   
 **Login program**  
   
 
-Login program is run as the Init process from this stage onwards. This program asks user for a user name and a password to log into the system. Login process uses *Login* system call to log in the user into the system. This is repeated in a loop. Write login program using the pseudocode provided [here](../os-design/misc.md#login) and load the XSM excutable as init program using [XFS-interface](../support-tools/xfs-interface.md) .
+Login program is run as the Init process from this stage onwards. This program asks user for a user name and a password to log into the system. Login process uses *Login* system call to log in the user into the system. This is repeated in a loop. Write login program using the pseudocode provided [here](../os-design/misc.md#initlogin-process) and load the XSM excutable as init program using [XFS-interface](../support-tools/xfs-interface.md) .
 
   
 **Extended Shell program**  

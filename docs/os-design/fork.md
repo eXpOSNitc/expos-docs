@@ -28,7 +28,7 @@ Replicates the process invoking the system call. The heap, code and library [reg
 When a process executes the Fork system call, the child process shares with the parent all the file and semaphore descriptors previously acquired by the parent. Semaphore/file descriptors acquired subsequent to the fork operation by either the child or the parent will be exclusive to the respective process and will not be shared.
 
 
-Data Structures modified are [Process Table](process-table.md), [System Status Table](mem-ds.md#ss_table), [Open File Table](mem-ds.md#file_table), [Semaphore Table](mem-ds.md#sem_table), [Memory Free List](mem-ds.md#mem_free_list), [Disk Free List](disk-ds.md#disk-free-list) (in case of swapped pages), [Resource Table](process-table.md#per-process-resource-table) and the [Disk Map Table](process-table.md#per-process-disk-map-table).
+Data Structures modified are [Process Table](process-table.md), [System Status Table](mem-ds.md#system-status-table), [Open File Table](mem-ds.md#open-file-table), [Semaphore Table](mem-ds.md#semaphore-table), [Memory Free List](mem-ds.md#memory-free-list), [Disk Free List](disk-ds.md#disk-free-list) (in case of swapped pages), [Resource Table](process-table.md#per-process-resource-table) and the [Disk Map Table](process-table.md#per-process-disk-map-table).
 
 
 The mode flag in the [Process Table](process-table.md) has to be set to Kernel mode when the process enters the system call and reset before exiting from the system call.

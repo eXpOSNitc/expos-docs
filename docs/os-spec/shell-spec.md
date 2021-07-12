@@ -59,4 +59,4 @@ eXpOS specifies that some standard executable programs called (**system utilitie
 
 A sample shell implementation is given [here](../test-programs/index.md#test-program-7-extended-shell). The details of implementation of system utilities are left to the OS programmer. Since eXpOS ABI does not support command line arguments, these programs may need to ask the user for inputs (like _filename_ in the case of the _cat_ command) using the _Read_ system call.
 
-The eXpOS specification stipulates that shell always executes from the context of the currently logged in user. The shell is spawned by the [login process](../os-design/misc.md#login).
+The eXpOS specification stipulates that shell always executes from the context of the currently logged in user. The shell is spawned by the [login process](../os-design/misc.md#initlogin-process).

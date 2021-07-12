@@ -148,7 +148,7 @@ scheduling. Also update the System status table.
 
 Write an SPL program for the scheduler module (module 5) as given below:
 
-1. Obtain the PID of the current process from the [System Status Table](../os-design/mem-ds.md#ss_table).
+1. Obtain the PID of the current process from the [System Status Table](../os-design/mem-ds.md#system-status-table).
 2. Push the BP of the current process on top of the kernel stack. (See the box below)
 3. Obtain the [Process Table](../os-design/process-table.md) entry corresponding to the current PID.
 4. Save SP % 512 in the kernel stack pointer field, also PTBR and PTLR into the corresponding fields in the Process Table entry.

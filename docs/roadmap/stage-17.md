@@ -47,7 +47,7 @@ use immediate load ([loadi statement](../support-tools/spl.md)
 in SPL). Finally, exec initializes the IP value of new process on top of its user stack and
 initiates execution of the newly loaded process in the user mode.
 
-eXpOS maintains a data structure called [memory free list](../os-design/mem-ds.md#mem_free_list) in page 57 of the [memory](../os-implementation.md).
+eXpOS maintains a data structure called [memory free list](../os-design/mem-ds.md#memory-free-list) in page 57 of the [memory](../os-implementation.md).
 Each Page can be shared by zero or more processes. There are 128 entries in the memory free list corresponding
 to each page of memory. For each page, the corresponding entry in the list stores the number of processes sharing the page. 
 The constant [MEMORY_FREE_LIST](../support-tools/constants.md) gives the
@@ -97,7 +97,7 @@ files and semaphores acquired by the process. We will look into it in later stag
 The Release Page function takes the page number to be released as an argument. The Release
 Page function decrements the value in the memory free list corresponding to the page number
 given as an argument. Note that we don't tamper with the content of the page as the page may
-be shared by other processes. The [system status table](../os-design/mem-ds.md#ss_table)
+be shared by other processes. The [system status table](../os-design/mem-ds.md#system-status-table)
 keeps track of number of free memory pages available to use in the
 MEM_FREE_COUNT field. When the memory free list entry of the page becomes zero, no process is
 currently using the page. In this case, increment the value of MEM_FREE_COUNT in the system
@@ -141,7 +141,7 @@ memory page and updates the WAIT_MEM_COUNT and MEM_FREE_COUNT in the system stat
 4. Search the memory copy of the [inode table](../os-design/disk-ds.md#inode-table) for the file, If the file is not present or file is not in XEXE format return to user mode with return value -1 indicating failure (after setting up MODE FLAG and the user stack).
 5. If the file is present, save the inode index of the file into a register for future use.
 6. Call the **Exit Process** function in [process manager module](../modules/module-01.md) to deallocate the resources and pages of the current process.
-7. Get the user area page number from the process table of the current process. This page has been deallocated by the Exit Process function. Reclaim the same page by incrementing the memory free list entry of user area page and decrementing the MEM_FREE_COUNT field in the [system status table](../os-design/mem-ds.md#ss_table). (same user area page is reclaimed - why?)
+7. Get the user area page number from the process table of the current process. This page has been deallocated by the Exit Process function. Reclaim the same page by incrementing the memory free list entry of user area page and decrementing the MEM_FREE_COUNT field in the [system status table](../os-design/mem-ds.md#system-status-table). (same user area page is reclaimed - why?)
 8. Set the SP to the start of the user area page to intialize the kernel stack of the new process.
 9. New process uses the PID of the terminated process. Update the STATE field to RUNNING and store inode index obtained above in the inode index field in the process table.
 10. Allocate new pages and set the page table entries for the new process.

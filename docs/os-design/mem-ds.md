@@ -129,7 +129,7 @@ The size of the table is 8 words of which the last 2 are unused.
 * **LOAD/STORE BIT** (1 word) - specifies whether the operation being done on the device is a load (indicated by 0) or store (indicated by 1).
 * **PAGE NUMBER** (1 word) - specifies the memory page number involved in the disk transfer.
 * **BLOCK NUMBER** (1 word) - specifies the disk block number involved in the disk transfer.
-* **PID** (1 word) - specifies the PID of the process which invoked the disk transfer. If the disk transfer was initiated by the OS during paging/swapping, the field is set to PID of [idle process](misc.md#idle), which is 0.
+* **PID** (1 word) - specifies the PID of the process which invoked the disk transfer. If the disk transfer was initiated by the OS during paging/swapping, the field is set to PID of [idle process](misc.md#idle-process), which is 0.
 * **Unused** (2 words)
 
 

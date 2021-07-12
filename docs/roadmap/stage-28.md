@@ -16,7 +16,7 @@ original_url: https://exposnitc.github.io/Roadmap.html
 
 Since you will be working on a new machine architecture on this stage, upgraded versions of the XSM machine simulator, SPL compiler, ExpL compiler and xfs-interface has to be downloaded. Create a new folder and download the upgraded eXpOS package so that there are no conflicts with the old version. The OS kernel code and other programs will have to be copied into the new folder before you start working.
 
-Follow the installation instructions [here](../support-tools/setting-up.md#nexsm) to download the upgraded eXpOS package.
+Follow the installation instructions [here](../support-tools/setting-up.md#setting-up-nexsm) to download the upgraded eXpOS package.
 
   
   
@@ -51,7 +51,7 @@ Upon entry into a system call (respectively, scheduler code), the kernel first c
 **Data Structure Updates**  
   
 
-The [system status table](../os-design/mem-ds.md#ss_table) will now contain two new entries.
+The [system status table](../os-design/mem-ds.md#system-status-table) will now contain two new entries.
 
 1.  **CURRENT\_PID2:** Stores the PID of the process running on the secondary core.
 2.  **LOGOUT\_STATUS:** This field is set to 1 if logout is initiated on the primary core; set to 0 otherwise. If LOGOUT\_STATUS is on, only IDLE2 will be scheduled in the secondary core.
@@ -84,7 +84,7 @@ You will add a new module that implements atomic test and set operations on KERN
 !!! note
     The [eXpOS design documentation](../os-design/nexpos.md) supports a general purpose lock called GLOCK, reserved for future enhancements. The present implementation does not need it and we will not discuss it in the roadmap.
 
-The AccessLock functions can be implemented using the NEXSM [TSL instruction](../arch-spec/nexsm.md#instr) to ensure that locking is atomic. SPL provides the [tsl instruction](../support-tools/spl.md#nespl) which is translated to the XSM TSL machine instruction. The general locking logic in SPL would be the following.
+The AccessLock functions can be implemented using the NEXSM [TSL instruction](../arch-spec/nexsm.md#instr) to ensure that locking is atomic. SPL provides the [tsl instruction](../support-tools/spl.md#spl-specification-for-nexsm) which is translated to the XSM TSL machine instruction. The general locking logic in SPL would be the following.
 
 Acquire\*\*\*\*Lock() {
     ....
@@ -112,14 +112,14 @@ The access control module algorithms are given [here](../modules/module-08.md) .
 **Bootstrap Procedure**  
   
 
-When NEXSM boots up, only the primary core will execute. Upon execution of the START instruction from the primary (see [NEXSM specification](../arch-spec/nexsm.md) ), the secondary starts execution from physical address 65536 (page 128 - [see Memory Organisation](../os-implementation.md) ). Hence, the primary bootstrap routine (OS startup code) must load the secondary bootstrap loader into memory before issuing START instruction. The IDLE2 process needs to be set up in memory. The access lock table entries are also initialized during bootstrap. A couple of new entries will be added to the [system status table](../os-design/mem-ds.md#ss_table) as well.
+When NEXSM boots up, only the primary core will execute. Upon execution of the START instruction from the primary (see [NEXSM specification](../arch-spec/nexsm.md) ), the secondary starts execution from physical address 65536 (page 128 - [see Memory Organisation](../os-implementation.md) ). Hence, the primary bootstrap routine (OS startup code) must load the secondary bootstrap loader into memory before issuing START instruction. The IDLE2 process needs to be set up in memory. The access lock table entries are also initialized during bootstrap. A couple of new entries will be added to the [system status table](../os-design/mem-ds.md#system-status-table) as well.
 
   
 
 The required changes to the primary [OS Startup code](../os-design/misc.md#os-startup-code) /boot module are summarized below:
 
 1.  Transfer the secondary bootstrap loader code from disk to memory (from disk block 512 to memory page 128). The access control module also must be loaded from disk to memory (blocks 516-517 to pages 132-133) - see [disk and memory organization](../os-implementation.md) . (Note: The design allows 2 blocks of secondary bootstrap code, but you will only need one block for the present eXpOS version).
-2.  Set up the page tables for IDLE2 (PID=14) in memory. Since one user stack and one kernel stack pages will have to be allocated for IDLE2 (the first two free pages, 83 and 84 may be allocated). The [**memory free list**](../os-design/mem-ds.md#mem_free_list) has to be updated accordingly. Also, the **free memory count** in the [system status table](../os-design/mem-ds.md#ss_table) will need corresponding update. The [process table entries](../os-design/process-table.md) for IDLE2 will be set (similar to IDLE). In particular, the state has to be set to RUNNING (as it is going to be running very soon on the secondary core!).
+2.  Set up the page tables for IDLE2 (PID=14) in memory. Since one user stack and one kernel stack pages will have to be allocated for IDLE2 (the first two free pages, 83 and 84 may be allocated). The [**memory free list**](../os-design/mem-ds.md#memory-free-list) has to be updated accordingly. Also, the **free memory count** in the [system status table](../os-design/mem-ds.md#system-status-table) will need corresponding update. The [process table entries](../os-design/process-table.md) for IDLE2 will be set (similar to IDLE). In particular, the state has to be set to RUNNING (as it is going to be running very soon on the secondary core!).
 3.  New entries in the [system status table](../os-design/process-table.md) must be initialized. a) CURRENT\_PID2 must be set to the the PID of IDLE2 process (PID=14). b) LOGOUT\_STATUS must be set to 0.
 4.  The access control variables KERN\_LOCK and SCHED\_LOCK of the [Access Lock Table](../os-design/mem-ds.md#access-lock-table) must be initialized to 0.
 5.  Issue the START instruction to start the secondary core into execution.
@@ -144,12 +144,12 @@ The scheduler module requires the following modifications:
 2.  SCHED\_LOCK must be acquired by calling AcquireSchedLock() function of the [access control module](../modules/module-08.md) .
 3.  If the core is **primary** , there is no change to existing algorithm **except** that:
     1.  IDLE2 (PID=14) must not be scheduled. (IDLE2 is scheduled only in the secondary).
-    2.  The Process which is currently running on the secondary core must not be scheduled (This can be determined by reading CURRENT\_PID2 field of the [system status table](../os-design/mem-ds.md#ss_table) ).
+    2.  The Process which is currently running on the secondary core must not be scheduled (This can be determined by reading CURRENT\_PID2 field of the [system status table](../os-design/mem-ds.md#system-status-table) ).
     3.  If LOGOUT\_STATUS=1 and the secondary core is not running IDLE2, then schedule IDLE (wait for the current running process to be scheduled out of the secondary core).
 4.  If the core is **secondary** , there is no change to existing algorithm **except** that:
-    1.  If PAGING\_STATUS or LOGOUT\_STATUS is set (in the [system status table](../os-design/mem-ds.md#ss_table) ), then IDLE2 must be scheduled).
+    1.  If PAGING\_STATUS or LOGOUT\_STATUS is set (in the [system status table](../os-design/mem-ds.md#system-status-table) ), then IDLE2 must be scheduled).
     2.  IDLE (PID=0), LOGIN (PID=1), SHELL (PID=2) and SWAPPER\_DAEMON (PID=15) should never be scheduled, as the [eXpOS design](../os-design/nexpos.md) stipulates that these processes will run only on the primary.
-    3.  Process which is currently running on the primary core must not be scheduled (read CURRENT\_PID field of the [system status table](../os-design/mem-ds.md#ss_table) ).
+    3.  Process which is currently running on the primary core must not be scheduled (read CURRENT\_PID field of the [system status table](../os-design/mem-ds.md#system-status-table) ).
     4.  The PID of the process that is selected for scheduling in the secondary core must be set to CURRENT\_PID2 field of the system status table.
 5.  SCHED\_LOCK must be released by calling *ReleaseLock()* function of the [access control module](../modules/module-08.md) before return from the scheduler. (Note: If the new process to be scheduled is in CREATED state, the scheduler directly returns to user mode using the ireturn statement. Do not forget to release SCHED\_LOCK in this case as well!).
 
@@ -186,8 +186,8 @@ The scheduler module requires the following modifications:
 **Modifications to Logout System Call**  
   
 
-1.  In [Logout System call](../os-design/multiusersyscalls.md#logout) , first set LOGOUT\_STATUS=1 in the [system status table](../os-design/mem-ds.md#ss_table) , but then call the scheduler (wait until secondary core schedules IDLE2 before proceeding).
-2.  After execution of *Kill All* function, set LOGOUT\_STATUS=0. In the [system status table](../os-design/mem-ds.md#ss_table) .
+1.  In [Logout System call](../os-design/multiusersyscalls.md#logout) , first set LOGOUT\_STATUS=1 in the [system status table](../os-design/mem-ds.md#system-status-table) , but then call the scheduler (wait until secondary core schedules IDLE2 before proceeding).
+2.  After execution of *Kill All* function, set LOGOUT\_STATUS=0. In the [system status table](../os-design/mem-ds.md#system-status-table) .
 
 !!! note
     Since, Logout is also a system call, all the updates done to system calls in general will apply to Logout as well.

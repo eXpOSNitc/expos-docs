@@ -69,7 +69,7 @@ store the PID in the PID field of the process table.
 [PROCESS_TABLE + 1] = 0;
 ```
 
-3) The kernel maintains a data structure called [System Status Table](../os-design/mem-ds.md#ss_table) where the PID of the currently executing user process is maintained.
+3) The kernel maintains a data structure called [System Status Table](../os-design/mem-ds.md#system-status-table) where the PID of the currently executing user process is maintained.
 This makes it easy to keep track of the current PID whenever the machine enters any kernel
 mode routine. The System Status Table is stored starting from memory address 29560. The second field of
 this table must be set to the PID of the process which is going to be run in user mode.
@@ -85,7 +85,7 @@ Set the current PID field in the System Status Table. The [SPL constant](../supp
 ####   Timer Interrupt
 
 1) Save the current value of User SP into the corresponding Process Table entry.
-Obtain the process id of the currently executing process from [System Status Table](../os-design/mem-ds.md#ss_table).
+Obtain the process id of the currently executing process from [System Status Table](../os-design/mem-ds.md#system-status-table).
 This value can be used to get the [Process Table](../os-design/process-table.md)
 entry of the currently executing process.<br/>
     

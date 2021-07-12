@@ -8,7 +8,7 @@ original_url: https://exposnitc.github.io/Roadmap.html
     -   Implement the pager module that supports Swap in and Swap out functions.
     
 !!! abstract "Pre-requisite Reading"
-    Revisit the description of data structures- [Process table](../os-design/process-table.md) , [Page table](../os-design/process-table.md#per-process-page-table) , [System status table](../os-design/mem-ds.md#ss_table) , [Disk Map table](../os-design/process-table.md#per-process-disk-map-table) .
+    Revisit the description of data structures- [Process table](../os-design/process-table.md) , [Page table](../os-design/process-table.md#per-process-page-table) , [System status table](../os-design/mem-ds.md#system-status-table) , [Disk Map table](../os-design/process-table.md#per-process-disk-map-table) .
     
 
 In this stage, we will learn how the limited physical memory pages of the XSM machine can be used effectively to run the maximum number of concurrent processes. To achieve this, we will implement the functions **Swap Out** and **Swap In** of [Pager module](../modules/module-06.md) (Module 6). Corresponding modifications are done in [Timer Interrupt](../os-design/timer.md) and [Context Switch module](../modules/module-05.md) as well.
@@ -23,7 +23,7 @@ A swapped out process is swapped back into memory, when one of the following eve
 2) The available memory pages exceed certain level denoted by [MEM\_HIGH](../support-tools/constants.md) (MEM\_HIGH is set to 12 in present design).  
   
 
-Each process has an associated TICK value (see [process table](../os-design/process-table.md) ) which is reset whenever the process is swapped out. The TICK value is incremented every time the system enters the timer interrupt routine. If the TICK value of a swapped out process exceeds the value [MAX\_TICK](../support-tools/constants.md#swap) , the OS decides that the process must be swapped in. A second condition when the OS decides that a process can be swapped in is when the available number of free memory pages (see MEM\_FREE\_COUNT in [system status table](../os-design/mem-ds.md#ss_table) ) exceeds the value MEM\_HIGH.
+Each process has an associated TICK value (see [process table](../os-design/process-table.md) ) which is reset whenever the process is swapped out. The TICK value is incremented every time the system enters the timer interrupt routine. If the TICK value of a swapped out process exceeds the value [MAX\_TICK](../support-tools/constants.md#swap) , the OS decides that the process must be swapped in. A second condition when the OS decides that a process can be swapped in is when the available number of free memory pages (see MEM\_FREE\_COUNT in [system status table](../os-design/mem-ds.md#system-status-table) ) exceeds the value MEM\_HIGH.
 
 When does the OS check for MEM\_LOW/MEM\_HIGH condition? This is done in the [timer interrupt handler](../os-design/timer.md) . Since the system enters the timer routine at regular intervals, this design ensures that regular monitoring of TICK/MEM\_FREE\_COUNT is achieved.
 
@@ -138,7 +138,7 @@ Implement *Get Swap Block* function using the detailed algorithm given in the me
 **Modification to Context Switch Module (Module 5)**  
   
 
-Previously, the [Context Switch module](../modules/module-05.md) (scheduler module) would select a new process to schedule according to the Round Robin scheduling algorithm. The procedure for selecting a process to execute is slightly modified in this stage. If swap-in/swap-out is ongoing (that is, if the PAGING\_STATUS field of the [system status table](../os-design/mem-ds.md#ss_table) is set), the context switch module schedules the Swapper Daemon (PID = 15) **whenever it is not blocked** . If the swapper daemon is blocked (for some disk operation), then the idle process (PID = 0) must be scheduled. (The OS design disallows scheduling any process except Idle and Swapper daemon when swapping is on-going.) If the PAGING\_STATUS is set to 0, swapping is not on-going and hence the next READY/CREATED process which is not swapped out is scheduled in normal Round Robin order. Finally, if no process is in READY or CREATED state, then the idle process is scheduled.
+Previously, the [Context Switch module](../modules/module-05.md) (scheduler module) would select a new process to schedule according to the Round Robin scheduling algorithm. The procedure for selecting a process to execute is slightly modified in this stage. If swap-in/swap-out is ongoing (that is, if the PAGING\_STATUS field of the [system status table](../os-design/mem-ds.md#system-status-table) is set), the context switch module schedules the Swapper Daemon (PID = 15) **whenever it is not blocked** . If the swapper daemon is blocked (for some disk operation), then the idle process (PID = 0) must be scheduled. (The OS design disallows scheduling any process except Idle and Swapper daemon when swapping is on-going.) If the PAGING\_STATUS is set to 0, swapping is not on-going and hence the next READY/CREATED process which is not swapped out is scheduled in normal Round Robin order. Finally, if no process is in READY or CREATED state, then the idle process is scheduled.
 
 Modify Context Switch module implemented in earlier stages according to the detailed algorithm given [here](../modules/module-05.md) .
 
@@ -160,9 +160,9 @@ The final algorithm is given [here](../os-design/misc.md#os-startup-code) .
 Modify [Boot module](../modules/module-07.md) to add the following steps :
 
 -   Load module 6 (Pager Module) form disk to memory. See [disk/memory organization](../os-implementation.md) .
--   Initialize the SWAPPED\_COUNT field to 0 and PAGING\_STATUS field to 0 in the [system status table](../os-design/mem-ds.md#ss_table) to 0, as initially there are no swapped out processes.
+-   Initialize the SWAPPED\_COUNT field to 0 and PAGING\_STATUS field to 0 in the [system status table](../os-design/mem-ds.md#system-status-table) to 0, as initially there are no swapped out processes.
 -   Initialize the TICK field to 0 for all the 16 [process table](../os-design/process-table.md) entries.
--   Update the MEM\_FREE\_COUNT to 45 in the [system status table](../os-design/mem-ds.md#ss_table) . (The 2 pages are allocated for the user/kernel stack for Swapper Daemon reducing the number from 47 to 45).
+-   Update the MEM\_FREE\_COUNT to 45 in the [system status table](../os-design/mem-ds.md#system-status-table) . (The 2 pages are allocated for the user/kernel stack for Swapper Daemon reducing the number from 47 to 45).
 
 ??? question "Why only READY state processes are selected for swap in, even though swapped out processes can be in blocked state also?"
     It is not very useful to swap in a process which is in blocked state into the memory. As the process is in blocked state, even after swapping in, the process will not execute until it is made READY. Until the process is made READY, it will just occupy memory pages which could be used for some other READY/RUNNING process.

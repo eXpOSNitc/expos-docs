@@ -147,7 +147,7 @@ Detailed instructions for doing so are given below
 
 1) Set the MODE FLAG field in the [process table](../os-design/process-table.md)
 to the system call number which is 5 for write system call. To get the process table of current process, use the PID obtained from the
-[system status table](../os-design/mem-ds.md#ss_table).
+[system status table](../os-design/mem-ds.md#system-status-table).
 MODE FLAG field in the process table is used to indicate whether the current process is 
 executing in a system call, exception handler or usermode.
 ```

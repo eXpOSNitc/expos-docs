@@ -61,7 +61,7 @@ Suppose a process closes an open instance using the ​_Close_​ system call, t
 
 To implement this somewhat intricate file access and sharing mechanism, the OS maintains two global file data structures - the ​**file status table**​ (also called the inode status table), and the **open file table**​. Moreover, for each process the OS maintains a ​**per-process resource table​**, which contains information pertaining to the open instances of files of the particular process.
 
-The OS further maintains a ​**buffer cache​** which is used for caching data blocks of files in current use. A ​**buffer table**​ is used to manage the data related to the buffer cache. These data structures are described below. Read the description of [open file table](../os-design/mem-ds.md) and [file status table](../os-design/mem-ds.md#file_lock_status_table) before reading further.
+The OS further maintains a ​**buffer cache​** which is used for caching data blocks of files in current use. A ​**buffer table**​ is used to manage the data related to the buffer cache. These data structures are described below. Read the description of [open file table](../os-design/mem-ds.md) and [file status table](../os-design/mem-ds.md#file-inode-status-table) before reading further.
 
   
 #### 1. File (Inode) Status Table

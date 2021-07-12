@@ -20,7 +20,7 @@ File Name (String) of the executable file (which must be of [XEXE format](../abi
 ### Description
 Exec destroys the present process and loads the executable file given as input into a new memory address space. A successful Exec operation results in the extinction of the invoking process and hence never returns to it. All open instances of file and semaphores of the parent process are closed. However, the newly created process will inherit the PID of the calling process.
 
-The data structures that are modified in this system call are [Process Table](process-table.md), [Memory Free List](mem-ds.md#mem_free_list), [Disk Free List](disk-ds.md#disk-free-list), [Open File Table](mem-ds.md#file_table), [Semaphore Table](mem-ds.md#sem_table), [System Status Table](mem-ds.md#ss_table), [Resource Table](process-table.md#per-process-resource-table) and the [Disk Map Table](process-table.md#per-process-disk-map-table).
+The data structures that are modified in this system call are [Process Table](process-table.md), [Memory Free List](mem-ds.md#memory-free-list), [Disk Free List](disk-ds.md#disk-free-list), [Open File Table](mem-ds.md#open-file-table), [Semaphore Table](mem-ds.md#semaphore-table), [System Status Table](mem-ds.md#system-status-table), [Resource Table](process-table.md#per-process-resource-table) and the [Disk Map Table](process-table.md#per-process-disk-map-table).
 
 The mode flag in the [Process Table](process-table.md) has to be set to Kernel mode when the process enters the system call and reset before exiting from the system call.
 

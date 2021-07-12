@@ -10,7 +10,7 @@ original_url: https://exposnitc.github.io/Roadmap.html
     
 !!! abstract "Pre-requisite Reading"
     - Description of disk data structures - [Inode table](../os-design/disk-ds.md#inode-table) and [disk free list](../os-design/disk-ds.md#disk-free-list).
-    - Description of memory data structures - [Buffer table](../os-design/mem-ds.md#buffer_table) , [Open file table](../os-design/mem-ds.md#file_table) and [per-process resource table](../os-design/process-table.md#per-process-resource-table) .
+    - Description of memory data structures - [Buffer table](../os-design/mem-ds.md#buffer-table) , [Open file table](../os-design/mem-ds.md#open-file-table) and [per-process resource table](../os-design/process-table.md#per-process-resource-table) .
     
 In this stage, We will learn how contents of a file are modified using *Write* system call. *Seek* system call which is used to change the LSEEK position for a open instance is also implemented in this stage. *Shutdown* system call is modified to terminate all processes and store back the memory buffers which are modified during *Write* system call to the disk.
 
@@ -33,7 +33,7 @@ Control flow for writing a word to a file
 
 *Write* system call takes as arguments 1) a file descriptor and 2) a word to be written into the file. *Write* system call locks the inode at the beginning of the system call and releases the lock at the end of the system call. The functions **Acquire Inode** and **Release Inode** of [Resource Manager Module](../modules/module-00.md) are used to lock and release inodes.
 
-After acquiring the Inode, *Write* system call writes the given word to the file, at the offset determined by LSEEK (field in the [open file table](../os-design/mem-ds.md#file_table) entry). Previously present data, if any, at the position determined by LSEEK is overwritten by the write operation. The maximum file size permitted by eXpOS is four disk blocks. Hence, *Write* fails if the LSEEK value exceeds 2047.
+After acquiring the Inode, *Write* system call writes the given word to the file, at the offset determined by LSEEK (field in the [open file table](../os-design/mem-ds.md#open-file-table) entry). Previously present data, if any, at the position determined by LSEEK is overwritten by the write operation. The maximum file size permitted by eXpOS is four disk blocks. Hence, *Write* fails if the LSEEK value exceeds 2047.
 
 The *Write* system call finds the **logical block number** corresponding to the LSEEK position using the formula LSEEK / 512. LSEEK % 512 gives the **offset position** in the block to which data must be written into. For example, if the LSEEK value is 1024, then the block number will be 2 (third data block) and the offset is 0. The block numbers of the disk blocks that had been allocated for the file so far are stored in the [inode table](../os-design/disk-ds.md#inode-table) entry corresponding to the file.
 
@@ -91,7 +91,7 @@ Control flow for *Seek* system call
 
 1.  **Seek system call**
 
-*Seek* system call is used to move LSEEK pointer value for an open instance according to users requirement. *Seek* system call takes as argument a file descriptor and an offset from the user program. *Seek* updates the LSEEK field in the [open file table](../os-design/mem-ds.md#file_table) corresponding to the open instance according to the provided offset value. Offset value can be any integer (positive, zero or negative). If the given offset value is 0, then LSEEK field is set to the starting of the file. For a non-zero value of offset, the given offset is added to the current LSEEK value. If the new LSEEK exceeds size of the file, then LSEEK is set to file size. If the new LSEEK position becomes negative, then *Seek* system call fails and return to user program with appropriate error code without changing the LSEEK position.
+*Seek* system call is used to move LSEEK pointer value for an open instance according to users requirement. *Seek* system call takes as argument a file descriptor and an offset from the user program. *Seek* updates the LSEEK field in the [open file table](../os-design/mem-ds.md#open-file-table) corresponding to the open instance according to the provided offset value. Offset value can be any integer (positive, zero or negative). If the given offset value is 0, then LSEEK field is set to the starting of the file. For a non-zero value of offset, the given offset is added to the current LSEEK value. If the new LSEEK exceeds size of the file, then LSEEK is set to file size. If the new LSEEK position becomes negative, then *Seek* system call fails and return to user program with appropriate error code without changing the LSEEK position.
 
 Implement *Seek* system call using detailed algorithm provided [here](../os-design/seek.md) .
 
@@ -117,7 +117,7 @@ Control flow for *Shutdown* system call
 Modify *Shutdown* system call (interrupt routine 15) to perform the following addition steps.
 
 -   Invoke **Kill All** function of [process manager module](../modules/module-01.md) . Kill All terminates all the processes except IDLE, INIT and the process calling *Shutdown* .
--   For every valid entry in the [buffer table](../os-design/mem-ds.md#buffer_table) (BLOCK NUMBER is not equal to -1), if the DIRTY BIT field is set, then store back the buffer page of that buffer entry into the corresponding disk block by invoking **Disk Store** function of the [device manager module](../modules/module-04.md) .
+-   For every valid entry in the [buffer table](../os-design/mem-ds.md#buffer-table) (BLOCK NUMBER is not equal to -1), if the DIRTY BIT field is set, then store back the buffer page of that buffer entry into the corresponding disk block by invoking **Disk Store** function of the [device manager module](../modules/module-04.md) .
 
 Implement *Shutdown* system call using detailed algorithm provided [here](../os-design/shutdown.md) .
 

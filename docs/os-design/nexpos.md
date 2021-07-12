@@ -269,7 +269,7 @@ Acquire****Lock() {
 
 
 
- In the present design, the scheduler will run [LOGIN](misc.md#login), [SHELL](misc.md#shell) and the [Swapper Daemon](misc.md#swapper-daemon) processes only from the primary. The [pager module](../modules/module-06.md) also will be run only from the primary. These constraints simplify implementation of the kernel, but are neither necessary nor very efficient. 
+ In the present design, the scheduler will run [LOGIN](misc.md#initlogin-process), [SHELL](misc.md#shell-process) and the [Swapper Daemon](misc.md#swapper-daemon) processes only from the primary. The [pager module](../modules/module-06.md) also will be run only from the primary. These constraints simplify implementation of the kernel, but are neither necessary nor very efficient. 
  
 
 
@@ -301,9 +301,9 @@ Acquire****Lock() {
  Upon entry into a system call or exception handler, either from an application or from the scheduler, *AcquireKernLock()* must be invoked. The lock must be released before invoking the scheduler or switch back to user mode using *ReleaseLock(KERN\_LOCK)*.
 2. 
  The scheduler module must be modified to set *AcquireSchedLock()* before initiating scheduling actions. Upon completion of scheduling actions, the scheduler must release the lock invoking *ReleaseLock(SCHED\_LOCK)* before setting any process into execution.
-3. *Swapper daemon* will be invoked only from the primary core by the timer interrupt handler (as done in eXpOS). When the scheduler running on the second core finds that pager daemon was initiated from the primary (check PAGING\_STATUS in [system status table](mem-ds.md#ss_table)), it will simply schedule IDLE2.
+3. *Swapper daemon* will be invoked only from the primary core by the timer interrupt handler (as done in eXpOS). When the scheduler running on the second core finds that pager daemon was initiated from the primary (check PAGING\_STATUS in [system status table](mem-ds.md#system-status-table)), it will simply schedule IDLE2.
 4. 
- The *Logout system call* will be invoked only from primary core as the shell process will be scheduled to run only on the primary. When the scheduler running on the second core finds that logout/shutdown system call is initiated, from the primary (check LOGOUT\_STATUS in [system status table](mem-ds.md#ss_table)), it will simply schedule IDLE2.
+ The *Logout system call* will be invoked only from primary core as the shell process will be scheduled to run only on the primary. When the scheduler running on the second core finds that logout/shutdown system call is initiated, from the primary (check LOGOUT\_STATUS in [system status table](mem-ds.md#system-status-table)), it will simply schedule IDLE2.
 
   
 

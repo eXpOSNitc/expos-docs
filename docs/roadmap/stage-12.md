@@ -181,7 +181,7 @@ process, as outlined below:
 
 13) Set the Entry point address for INIT process in the beginning of Stack page of INIT. Also set the SP register accordingly.
 
-14) Set the current PID field in [system status table](../os-design/mem-ds.md#ss_table) to 1, as PID for INIT is 1.
+14) Set the current PID field in [system status table](../os-design/mem-ds.md#system-status-table) to 1, as PID for INIT is 1.
 
 15) Transfer control to INIT using ireturn instruction.
 
@@ -207,7 +207,7 @@ Detailed intructions for scheduling are given below.
 register context using the [backup](../arch-spec/instruction-set.md#backup)
 instruction as done in stage 9.
 
-2) Obtain the PID of currently executing process from [System Status Table](../os-design/mem-ds.md#ss_table).
+2) Obtain the PID of currently executing process from [System Status Table](../os-design/mem-ds.md#system-status-table).
 ```
 alias currentPID R0;
 currentPID = [SYSTEM_STATUS_TABLE+1];
