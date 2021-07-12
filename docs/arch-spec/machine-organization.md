@@ -125,7 +125,7 @@ A block index between 0 and 511 refers to the corresponding disk block.
 The block 0 of the disk is reserved for *boot block* and will be loaded into the memory at the time of system startup.
 
 
-The machine instruction set includes four special **disk access macro routines** (load, loadi and store -  [see instruction set](instruction-set.md#privileged_instruction) ) for disk-block to memory-page data transfer and back. These are actually macros whose internal details are hidden from programs. These macros are accessible only when the machine is executing in privileged mode. XSM gives no provision for programs to access the disk directly while executing in unprivileged mode.
+The machine instruction set includes four special **disk access macro routines** (load, loadi and store -  [see instruction set](instruction-set.md#privileged-instructions) ) for disk-block to memory-page data transfer and back. These are actually macros whose internal details are hidden from programs. These macros are accessible only when the machine is executing in privileged mode. XSM gives no provision for programs to access the disk directly while executing in unprivileged mode.
 
 
 
@@ -143,7 +143,7 @@ The machine instruction set includes four special **disk access macro routines**
 
 ### Timer
 
-Timer is a device that can be set to interrupt the processor each time after the machine executes XSM\_TICKS instructions in **unprivileged mode** (If the XSM\_TICKS numbered instruction changes mode from unprivileged to privileged, then the interrupt occurs before executing the next instruction after the machine is back to unprivileged mode). The value of XSM\_TICKS must be set externally. (XSM specification leaves how XSM\_TICKS is initialized to the implementation.) Upon receipt of the interrupt, the machine switches to the privileged mode and executes the [timer interrupt service routine](interrupts-exception-handling.md#timer_interrupt).
+Timer is a device that can be set to interrupt the processor each time after the machine executes XSM\_TICKS instructions in **unprivileged mode** (If the XSM\_TICKS numbered instruction changes mode from unprivileged to privileged, then the interrupt occurs before executing the next instruction after the machine is back to unprivileged mode). The value of XSM\_TICKS must be set externally. (XSM specification leaves how XSM\_TICKS is initialized to the implementation.) Upon receipt of the interrupt, the machine switches to the privileged mode and executes the [timer interrupt service routine](interrupts-exception-handling.md#timer-interrupt).
 
 ### Disk Controller
 
@@ -156,7 +156,7 @@ Disk Controller is the device that controls the data transfer between the memory
 The console device is a single device that handles the standard input and output. 
 
 
-The **OUT** instruction displays the contents of port P1 onto the terminal [(see instruction set)](instruction-set.md#privileged_instruction).
+The **OUT** instruction displays the contents of port P1 onto the terminal [(see instruction set)](instruction-set.md#privileged-instructions).
 
 
 If the XSM machine executes an **IN** instruction, the console device waits for the user to enter a word

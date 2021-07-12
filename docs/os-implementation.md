@@ -411,7 +411,7 @@ Program</a></td>
 </tr>
 <tr>
 <td>128 - 129</td>
-<td style="color:red">Page for loading the <a href="../os-design/misc/#os2_startup" target="_blank">Secondary BOOT Block</a> <span style="color:red">*</span></td>
+<td style="color:red">Page for loading the <a href="../os-design/misc/#os-startup-code-for-secondary-core" target="_blank">Secondary BOOT Block</a> <span style="color:red">*</span></td>
 <td>65536 - 66559</td>
 <td>1024</td>
 </tr>
