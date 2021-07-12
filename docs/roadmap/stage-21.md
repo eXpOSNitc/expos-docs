@@ -7,7 +7,7 @@ original_url: https://exposnitc.github.io/Roadmap.html
     - Implementation of Wait and Signal system calls
 
 !!! abstract "Pre-requisite Reading"
-    Read and understand [Access control and synchronization](../os-spec/expos-abstractions.md) and [Process synchronization](../os-spec/synchronization.md#process_synchronization) documentations before proceeding further.
+    Read and understand [Access control and synchronization](../os-spec/expos-abstractions.md) and [Process synchronization](../os-spec/synchronization.md#process-synchronization) documentations before proceeding further.
 
 In this stage, we will add support for process synchronization using
 <i> Wait</i> and <i>Signal</i>system calls to eXpOS. With the help of these system calls, we will design a more advanced

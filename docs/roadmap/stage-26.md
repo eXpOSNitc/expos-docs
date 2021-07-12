@@ -190,7 +190,7 @@ Login program is run as the Init process from this stage onwards. This program a
 
 Shell program is improvised to support the built-in shell commands and XSM executable commands/files according to the specification provided in [eXpOS shell specification](../os-spec/shell-spec.md) . An implementation of the ExpL shell program is given [here](../test-programs/index.md#test-program-7-extended-shell) . Compile and load this program as shell into the disk using [XFS-interface](../support-tools/xfs-interface.md) . This program will be run as shell when a user logs into the system.
 
-Now that multiple user related system calls are supported in eXpOS, the shell commands - "lu" and "ru" can be implemented. Implement commands lu, ru as executable files according to the specification of [executable commands/files](../os-spec/shell-spec.md#executable_commands) and load into the disk as executable files.
+Now that multiple user related system calls are supported in eXpOS, the shell commands - "lu" and "ru" can be implemented. Implement commands lu, ru as executable files according to the specification of [executable commands/files](../os-spec/shell-spec.md#executable-commandsfilenames) and load into the disk as executable files.
 
   
 **Making things work**  
