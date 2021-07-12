@@ -374,7 +374,7 @@ Routine</a></td>
 </tr>
 <tr>
 <td>65 - 66</td>
-<td><a href="../os-design/misc/#initlogin-processn" target="_blank">INIT/Login Program</a></td>
+<td><a href="../os-design/misc/#initlogin-process" target="_blank">INIT/Login Program</a></td>
 <td>33280 - 34303</td>
 <td>1024</td>
 </tr>
