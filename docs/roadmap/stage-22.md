@@ -8,7 +8,7 @@ original_url: https://exposnitc.github.io/Roadmap.html
     - Add support for semaphores to eXpOS.
 
 !!! abstract "Pre-requisite Reading"
-    Read and understand [Resource Sharing](https://exposnitc.github.io/os_spec-files/expos_abstractions.html#resource_sharing) and [Access Control](https://exposnitc.github.io/os_spec-files/synchronization.html#access_control) documentations of eXpOS before proceeding further.
+    Read and understand [Resource Sharing](../os-spec/expos-abstractions.md#resource-sharing-in-expos) and [Access Control](../os-spec/synchronization.md#access-control) documentations of eXpOS before proceeding further.
 
 
 
