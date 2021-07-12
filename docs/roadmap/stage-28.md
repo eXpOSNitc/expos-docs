@@ -56,7 +56,7 @@ The [system status table](../os-design/mem-ds.md#ss_table) will now contain two 
 1.  **CURRENT\_PID2:** Stores the PID of the process running on the secondary core.
 2.  **LOGOUT\_STATUS:** This field is set to 1 if logout is initiated on the primary core; set to 0 otherwise. If LOGOUT\_STATUS is on, only IDLE2 will be scheduled in the secondary core.
 
-A new data structure called [**access lock table**](../os-design/mem-ds.md#al_table) is introduced. The fields that are of interest in this data structure are the following:  
+A new data structure called [**access lock table**](../os-design/mem-ds.md#access-lock-table) is introduced. The fields that are of interest in this data structure are the following:  
 a) KERN\_LOCK      b) SCHED\_LOCK
 
 1.  When the kernel enters a system call/exception handler (in either core), it first checks whether KERN\_LOCK=1 (If so, the value should have been set to 1 by the kernel code running on the other core). In that case, the kernel executes a [**spin lock**](https://en.wikipedia.org/wiki/Spinlock) (details will follow) till the kernel code running on the other core sets the lock back to zero. When the lock becomes available, the system call/exception handler sets KERN\_LOCK to 1 and proceed with the normal execution of the system call. This ensures, mutual exclusion (between the two cores) for the critical code of system calls/exception handler. Since paging code is critical, KERN\_LOCK is set before invoking the [pager module](../modules/module-08.md) (from the [timer interrupt handler](../os-design/timer.md) ) and set back to zero upon return from the pager module.
@@ -121,7 +121,7 @@ The required changes to the primary [OS Startup code](../os-design/misc.md#os-st
 1.  Transfer the secondary bootstrap loader code from disk to memory (from disk block 512 to memory page 128). The access control module also must be loaded from disk to memory (blocks 516-517 to pages 132-133) - see [disk and memory organization](../os-implementation.md) . (Note: The design allows 2 blocks of secondary bootstrap code, but you will only need one block for the present eXpOS version).
 2.  Set up the page tables for IDLE2 (PID=14) in memory. Since one user stack and one kernel stack pages will have to be allocated for IDLE2 (the first two free pages, 83 and 84 may be allocated). The [**memory free list**](../os-design/mem-ds.md#mem_free_list) has to be updated accordingly. Also, the **free memory count** in the [system status table](../os-design/mem-ds.md#ss_table) will need corresponding update. The [process table entries](../os-design/process-table.md) for IDLE2 will be set (similar to IDLE). In particular, the state has to be set to RUNNING (as it is going to be running very soon on the secondary core!).
 3.  New entries in the [system status table](../os-design/process-table.md) must be initialized. a) CURRENT\_PID2 must be set to the the PID of IDLE2 process (PID=14). b) LOGOUT\_STATUS must be set to 0.
-4.  The access control variables KERN\_LOCK and SCHED\_LOCK of the [Access Lock Table](../os-design/mem-ds.md#al_table) must be initialized to 0.
+4.  The access control variables KERN\_LOCK and SCHED\_LOCK of the [Access Lock Table](../os-design/mem-ds.md#access-lock-table) must be initialized to 0.
 5.  Issue the START instruction to start the secondary core into execution.
 
   

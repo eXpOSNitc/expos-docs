@@ -208,7 +208,7 @@ The application interface specification of the eXpOS undergoes minor modificatio
 
 
 
- The [Access Lock table](mem-ds.md#al_table) is allocated eight words of memory and is stored in memory locations 29576-29583, of which the last five words are unused. (see [memory organization](../os-implementation.md)). 
+ The [Access Lock table](mem-ds.md#access-lock-table) is allocated eight words of memory and is stored in memory locations 29576-29583, of which the last five words are unused. (see [memory organization](../os-implementation.md)). 
  
 
 

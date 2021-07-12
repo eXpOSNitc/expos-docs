@@ -13,7 +13,7 @@ original_url: https://exposnitc.github.io/Roadmap.html
        - It is absolutely necessary to read the [XSM privileged mode execution tutorial](../tutorials/xsm-instruction-cycle.md) before proceeding further.
 
 
-When the XSM machine is started up, the [ROM Code](../arch-spec/machine-organization.md#Boot ROM), which resides in page 0 of the memory, is executed. It is hard-coded into the machine. 
+When the XSM machine is started up, the [ROM Code](../arch-spec/machine-organization.md#boot-rom-and-boot-block), which resides in page 0 of the memory, is executed. It is hard-coded into the machine. 
 That is, the ROM code at physical address 0 (to 511) is "already there" when machine starts up.
 The ROM code is called the "Boot ROM" in OS literature. Boot ROM code does the following operations :
 

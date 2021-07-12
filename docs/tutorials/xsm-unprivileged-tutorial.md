@@ -264,7 +264,7 @@ We explain each of the above four steps in detail:
 **While executing in user mode, if an instruction in the application refers to a logical address beyond this limit,
  the machine will raise an exception.** This will result in the machine switching to privileged mode and
  control transferred to the starting address of the exception handler routine
- (memory address 1024 – see [Machine Organisation](../arch-spec/machine-organization.md#content)).
+ (memory address 1024 – see [Machine Organisation](../arch-spec/machine-organization.md)).
 
 
 
