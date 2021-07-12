@@ -95,7 +95,7 @@ Typically in eXpOS, the shell process acts as the init process.
 :red_circle: In  [Multiuser](../os-spec/multiuser.md) implemention of eXpOS, the login process acts as the init process, which then executes the shell process with PID = 2.
 
 
-Complete ExpL code for Shell program is provided [here](../test-programs/index.md#test_program_7).
+Complete ExpL code for Shell program is provided [here](../test-programs/index.md#test-program-7-extended-shell).
 
 
   

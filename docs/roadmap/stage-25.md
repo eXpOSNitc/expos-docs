@@ -43,7 +43,7 @@ eXpOS design ensures that the value of LSEEK can never exceed the file size. Thi
 
 For writing to position LSEEK in the file, the disk block corresponding to position LSEEK has to be present in the memory. To bring the required disk block into the memory buffer and write the given word to position LSEEK, *Write* invokes **Buffered Write** function of the [file manager module](../modules/module-03.md) . Buffered Write function expects the physical block number as argument. *Write* system call finds the physical block number corresponding to the logical block number from the inode table entry of the file.
 
-Write (and Delete) fails if the user id of the process calling Write has no access permission to modify the file (see [file access permissions](../os-spec/multiuser.md#file_access_permissions) ). Since in the present stage the user id of all processes is set to root, Write fails only on the root file and executable files.
+Write (and Delete) fails if the user id of the process calling Write has no access permission to modify the file (see [file access permissions](../os-spec/multiuser.md#file-access-permissions) ). Since in the present stage the user id of all processes is set to root, Write fails only on the root file and executable files.
 
 Implement *Write* system call using detailed algorithm provided [here](../os-design/write.md) .
 
@@ -156,10 +156,10 @@ Compile and load the modified files to the disk using XFS-interface.
     Run the program provided [here](../test-programs/index.md#test-program-6) using shell. The program takes a file name and permission as input and creates a new file with given input. It then forks to create two child processes. The two child processes act as writers and parent as reader. A file open instance is shared between two writers and there is separate open instance of the same file for reader. Two writers will write numbers from 1 to 100 into the file, with one writer adding even numbers and other writing odd numbers. The reader reads from the file and prints the data into the console concurrently. To synchronize the use of the shared open file between two writers a semaphore is used. The program prints integers from 1 to 100, not necessarily in sequential order.  
   
 !!! assignment "Assignment 4"
-    Run the program provided [here](../test-programs/index.md#test-program-15) using shell. The program first creates 4 files with values from s to 4\*c+s, where s=1..4 and c=0..511. The program then, merges the 4 files taking 2 at a time, and finally, creates a *merge.dat* file containing numbers from 1 to 2048. Using *cat.xsm* , print the contents of *merge.dat* and check whether it contains the numbers from 1 to 2048 in ascending order.  
+    Run the program provided [here](../test-programs/index.md#test-program-15-merge-files) using shell. The program first creates 4 files with values from s to 4\*c+s, where s=1..4 and c=0..511. The program then, merges the 4 files taking 2 at a time, and finally, creates a *merge.dat* file containing numbers from 1 to 2048. Using *cat.xsm* , print the contents of *merge.dat* and check whether it contains the numbers from 1 to 2048 in ascending order.  
   
 
--   [**POSTSCRIPT:** How does an Operating System handle multiple devices in a uniform way?](index.md#collapseq25x)
+-   **POSTSCRIPT:** How does an Operating System handle multiple devices in a uniform way?
     
       
     

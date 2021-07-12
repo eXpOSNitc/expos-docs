@@ -8,7 +8,7 @@ original_url: http://eXpOSNitc.github.io/Tutorials/filesystem_implementation.htm
     
     1. User level view of [eXpFS file system](../os-spec/expfs.md).  
     2. [Program level interface](../os-spec/systemcallinterface.md#filesystemcalls) to different file system calls.  
-    3. Read about [file permissions](../os-spec/multiuser.md#file_access_permissions).
+    3. Read about [file permissions](../os-spec/multiuser.md#file-access-permissions).
 
 
 To implement the file system, one needs to understand the file system data structures that the OS maintains. One should also understand how various file system routines of the OS access and update these data structures.
