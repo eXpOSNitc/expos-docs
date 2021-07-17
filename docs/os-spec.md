@@ -1,1 +1,0 @@
-Os specification https://exposnitc.github.io/os_spec.html

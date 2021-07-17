@@ -4,7 +4,10 @@
 A modern and feature rich version of [eXpOS NITC](https://exposnitc.github.io/) built using [mkDocs Material](https://squidfunk.github.io/mkdocs-material/).
 
 ## Setting Up
-
+### Using Docker
+```sh
+docker run --rm -it -p 8000:8000 -v ${PWD}:/docs squidfunk/mkdocs-material
+```
 ### Using [`pipenv`](https://pypi.org/project/pipenv/)
 ```bash
 # Clone the repository
