@@ -1,5 +1,5 @@
 site_name: eXpOS NITC
-site_url: https://anandubajith.github.io/expos-v2/
+site_url: https://exposnitc.github.io/expos-docs/
 site_description: >-
   OS Lab website for NIT Calicut
 
@@ -12,8 +12,8 @@ copyright: >-
 
 extra_css:
   - assets/css/extra.css
-# repo_url: https://github.com/eXpOSNitc/eXpOSNitc.github.io
-# repo_name: eXpOSNitc/eXpOSNitc.github.io
+repo_url: https://github.com/eXpOSNitc/expos-docs
+repo_name: eXpOSNitc/expos-docs
 # Configuration
 theme:
   name: material
