@@ -8,7 +8,12 @@ Follow the instructions available [here](https://docs.docker.com/get-docker/) to
 
 You could also go through the [:material-docker: Docker quick start quide](https://docs.docker.com/get-started/) to know more about Docker .
 
-## Setting up 
+!!! warning
+    The following has **not** been tested on _Windows_.
+    
+    If you encounter any issues/ has suggestions raise an issue [here](https://github.com/eXpOSNitc/expos-docs/issues/new)
+
+## Setting up
 
 We'll assume the following directory structure
 
