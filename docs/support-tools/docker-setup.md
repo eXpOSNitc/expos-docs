@@ -64,7 +64,7 @@ We can connect to the container instance using the following commands
 ```sh
 docker start expos # if the container instance is not already running
 
-docker exec -it silc /bin/bash # to get a bash shell inside the container
+docker exec -it expos /bin/bash # to get a bash shell inside the container
 ```
 
 After connecting to the container you can use `spl`, `expl`, `xfs-interface`, and `xsm` binaries as mentioned in [Setting Up Page](./setting-up.md)
