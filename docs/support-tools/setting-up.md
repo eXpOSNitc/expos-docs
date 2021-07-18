@@ -2,6 +2,8 @@
 title: Setting up
 original_url: https://exposnitc.github.io/support_tools-files/setting-up.html
 ---
+The following setup instructions assume that you have a Linux based machine.
+If these instructions do not work, you can try the [:material-docker: Docker based setup](./docker-setup.md). 
 
 ## Setting up
 

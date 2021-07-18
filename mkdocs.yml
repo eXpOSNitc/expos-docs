@@ -149,6 +149,7 @@ nav:
         - XSM Unprivileged tutorial: tutorials/xsm-unprivileged-tutorial.md
       - Support Tools:
         - Setting up: support-tools/setting-up.md
+        - Docker based setup: support-tools/docker-setup.md
         - XFS Interface: support-tools/xfs-interface.md
         - SPL: support-tools/spl.md
         - ExpL: support-tools/expl.md
