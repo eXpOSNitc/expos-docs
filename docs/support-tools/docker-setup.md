@@ -60,9 +60,9 @@ We'll start an instance of Container and map the local folder `workdir` into `/h
 
 ```sh
 # on unix
-docker run -v $PWD:/xsm_expl/files -d --name expos -i expos:ubuntu20.04 
+docker run -v $PWD:/home/expos/myexpos/workdir -d --name expos -i expos:ubuntu20.04 
 # on windows
-docker run -v %cd%:/xsm_expl/files -d --name expos -i expos:ubuntu20.04
+docker run -v %cd%:/home/expos/myexpos/workdir -d --name expos -i expos:ubuntu20.04
 ```
 
 We now have a container instance running in background with the name `expos` and required volume mounts
