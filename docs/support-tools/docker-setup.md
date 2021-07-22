@@ -4,9 +4,9 @@ title: Docker based setup
 
 ## Install and setup Docker on host machine
 
-Follow the instructions available [here](https://docs.docker.com/get-docker/) to install docker on your machine.
+Follow the instructions available [here](https://docs.docker.com/get-docker/){ target="_blank" } to install docker on your machine.
 
-You could also go through the [:material-docker: Docker quick start quide](https://docs.docker.com/get-started/) to know more about Docker .
+You could also go through the [:material-docker: Docker quick start quide](https://docs.docker.com/get-started/){ target="_blank" }  to know more about Docker .
 
 !!! warning
     The following has **not** been tested on _Windows_.
