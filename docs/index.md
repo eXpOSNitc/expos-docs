@@ -12,7 +12,7 @@ hide:
 
     <span style="color: red;">Trial version</span>, errors are being corrected as reported.
     
-    Last updated: 5th April 2021 (see [Release Notes](./changelog.md)) 
+    Last updated: 22nd July 2021 (see [Release Notes](./changelog.md)) 
 
 Project eXpOS (eXperimental Operating System) is an on-line educational platform which helps undergraduate students to learn the working on an operating system. A detailed project roadmap that is part of the platform provides step by step guidance to the student towards writing a small operating system from scratch. The student learns the implementation of various OS data structures and kernel routines during the course of the project. The OS written by the student will run on a machine simulator supplied along with the platform. The project assumes that the student has undergone a course in computer organization, and is comfortable with programming.
 

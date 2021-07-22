@@ -5,7 +5,13 @@ hide:
     - navigation
 ---
 
-!!! quote "05 April 2021"
+!!! quote "22nd July 2021"
+    Website:
+
+    - Added link to modern documentation build using mkDocs in main website
+    - [Docker based environment setup](./support-tools/docker-setup.md) added
+
+??? quote "05 April 2021"
     Website:  
     Add student feedback for 2020 batch.  
     Add bootstrap script that automatically pulls the latest version of code from the git repo.  
