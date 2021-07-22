@@ -1,7 +1,11 @@
-# eXpOS NITC Website
-[![Build](https://github.com/eXpOSNitc/expos-docs/workflows/ci/badge.svg)](https://github.com/eXpOSNitc/expos-docs/actions)
+<div align="center">
+    <img src="./docs/assets/favicon.png">
+</div>
+<h1 align="center">eXpOS NIT-C Website</h1>
 
-A modern and feature rich version of [eXpOS NITC](https://exposnitc.github.io/) built using [mkDocs Material](https://squidfunk.github.io/mkdocs-material/).
+<div align="center">
+  A modern and feature rich version of <a href="https://exposnitc.github.io">eXpOS NITC</a> built using <a href="https://squidfunk.github.io/mkdocs-material/">mkDocs Material</a>.
+</div>
 
 ## Setting Up
 
@@ -37,14 +41,12 @@ $ pip install -r requirements.txt
 $ mkdocs serve
 ```
 
-Your version of the website should be up in `http://localhost:8000/`.
+Your version of the website should be up in [`http://localhost:8000/`](http://localhost:8000/).
 
 ## Troubleshooting
 
 Sometimes changes are not reflected on the website, make sure to disable caching in your browser.
 
-## CONTRIBUTING
+## Contributing
 
-Please port pages from [https://exposnitc.github.io/](https://exposnitc.github.io/) to Markdown and send a pull request.
-
-The directory structure of the project is available here: [https://github.com/eXpOSNitc/eXpOSNitc.github.io](https://github.com/eXpOSNitc/eXpOSNitc.github.io)
+If you encounter issues with the website or have fixes please raise a pull request/issue.
