@@ -25,9 +25,27 @@ We'll assume the following directory structure
 
 We'll store the user written code in `workdir` and map the same into the container.
 
+We can create the structure using the below commands
+
+=== "Windows (Powershell)"
+
+    ``` powershell
+    cd <your directory>
+    New-Item Dockerfile
+    New-Item -path workdir -ItemType directory
+    ```
+
+=== "Unix / Linux"
+
+    ``` sh
+    cd <your directory>
+    touch Dockerfile
+    mkdir workdir
+    ```
+
 The contents of `Dockerfile` are given below
 
-``` dockerfile
+``` Dockerfile
 FROM ubuntu:20.04
 
 RUN apt-get update \
@@ -58,12 +76,15 @@ docker build -t expos:ubuntu20.04 .
 
 We'll start an instance of Container and map the local folder `workdir` into `/home/expos/workdir` directory of container.
 
-```sh
-# on unix
-docker run -v $PWD:/home/expos/myexpos/workdir -d --name expos -i expos:ubuntu20.04 
-# on windows
-docker run -v %cd%:/home/expos/myexpos/workdir -d --name expos -i expos:ubuntu20.04
-```
+=== "Windows (PowerShell)"
+    ``` powershell
+    docker run -v ${PWD}/workdir:/home/expos/myexpos/workdir -d --name expos -i expos:ubuntu20.04
+    ```
+
+=== "Unix / Linux"
+    ``` sh
+    docker run -v $PWD/workdir:/home/expos/myexpos/workdir -d --name expos -i expos:ubuntu20.04 
+    ```
 
 We now have a container instance running in background with the name `expos` and required volume mounts
 
