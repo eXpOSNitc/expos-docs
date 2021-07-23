@@ -6,10 +6,9 @@ original_url: https://exposnitc.github.io/Roadmap.html
 !!! note "Learning Objectives"
     -   Understand the disk swap-out and swap-in mechanisms.
     -   Implement the pager module that supports Swap in and Swap out functions.
-    
+
 !!! abstract "Pre-requisite Reading"
     Revisit the description of data structures- [Process table](../os-design/process-table.md) , [Page table](../os-design/process-table.md#per-process-page-table) , [System status table](../os-design/mem-ds.md#system-status-table) , [Disk Map table](../os-design/process-table.md#per-process-disk-map-table) .
-    
 
 In this stage, we will learn how the limited physical memory pages of the XSM machine can be used effectively to run the maximum number of concurrent processes. To achieve this, we will implement the functions **Swap Out** and **Swap In** of [Pager module](../modules/module-06.md) (Module 6). Corresponding modifications are done in [Timer Interrupt](../os-design/timer.md) and [Context Switch module](../modules/module-05.md) as well.
 
@@ -22,7 +21,6 @@ A swapped out process is swapped back into memory, when one of the following eve
 1) A process has remained in swapped out state for more than a threshold amount of time.  
 2) The available memory pages exceed certain level denoted by [MEM\_HIGH](../support-tools/constants.md) (MEM\_HIGH is set to 12 in present design).  
   
-
 Each process has an associated TICK value (see [process table](../os-design/process-table.md) ) which is reset whenever the process is swapped out. The TICK value is incremented every time the system enters the timer interrupt routine. If the TICK value of a swapped out process exceeds the value [MAX\_TICK](../support-tools/constants.md#spl-constants-related-to-swapping) , the OS decides that the process must be swapped in. A second condition when the OS decides that a process can be swapped in is when the available number of free memory pages (see MEM\_FREE\_COUNT in [system status table](../os-design/mem-ds.md#system-status-table) ) exceeds the value MEM\_HIGH.
 
 When does the OS check for MEM\_LOW/MEM\_HIGH condition? This is done in the [timer interrupt handler](../os-design/timer.md) . Since the system enters the timer routine at regular intervals, this design ensures that regular monitoring of TICK/MEM\_FREE\_COUNT is achieved.
@@ -39,18 +37,11 @@ Once a swap-in/swap-out is initiated from the timer, the OS scheduler will not s
 
 The algorithms for Swap-in and Swap-out are implemented in the [Pager Module](../modules/module-06.md) (Module 6).
 
+### Modifications to Timer Interrupt
   
-  
-**Modifications to Timer Interrupt**  
-  
-  
-
-![](../assets/img/roadmap/timer_interrupt.png)  
+![](../assets/img/roadmap/timer_interrupt.png)
 
 Control flow for timer interrupt
-
-  
-  
 
 Timer interrupt handler is modified as follows:
 
@@ -60,30 +51,19 @@ If the current process is the idle process, there are two possibilities. If swap
 
 Generally, when the timer handler is entered from a process when scheduling was not on, the handler must decide whether normal scheduling shall continue or swap-in/swap-out must be inititiated. Swap-in must be initiated if the value of MEM\_FREE COUNT in the system status table is below MEM\_LOW. Swap-out must be inititated if either a) memory availability is high (MEM\_FREE\_COUNT value exceeds MEM\_HIGH) or b) some swapped process has TICK value exceeding the threshold MAX\_TICK.
 
-  
-
 Another modification in the Timer interrupt is to increment the TICK field in the [process table](../os-design/process-table.md) of every NON-TERMINATED process. When a process is created by the Fork system call, the TICK value of the process is set to 0 in the process table. Each time the system enters the timer interrupt handler, the TICK value of the process is incremented. The TICK value of a process is reset to zero whenever the process is swapped out or swapped in. Thus the tick value of a process that is not swapped out indicates for how long that process had been in memory without being swapped out. Similarly, the tick value of a swapped out process indicates how long the process had been in swapped state. The swap-in/swap-out algorithms will use the value of TICK to determine the process which had been in swapped state (or not swapped state) for the longest time for swapping in (or out).
 
 Modify Timer Interrupt implemented in earlier stages according to the detailed algorithm given [here](../os-design/timer.md) .
 
+### Pager Module (Module 6) 
   
-  
-**Pager Module (Module 6)**  
-  
-
 Pager module is responsible for selecting processes to swap-out/swap-in and also to conduct the swap-out/swap-in operations for effective memory management.
 
+1. **Swap Out (function number = 1, [Pager module](../modules/module-06.md) )**
   
-
-1.  **Swap Out (function number = 1, [Pager module](../modules/module-06.md) )**
-  
-
 ![](../assets/img/roadmap/swap_out.png)  
 
 Control flow for **Swap Out**
-
-  
-  
 
 Swap Out function is invoked from the [timer interrupt handler](../os-design/timer.md) and does not take any arguments. As mentioned earlier, the timer interrupt handler will invoke Swap Out only from the context of the **Swapper Daemon** .
 
@@ -95,17 +75,11 @@ Now that, a process is selected to swap out, the TICK field for the selected pro
 
 Implement *Swap Out* function using the detailed algorithm given in the pager module link above.
 
+12. **Swap In (function number = 2, [Pager module](../modules/module-06.md) )**
   
-12.  **Swap In (function number = 2, [Pager module](../modules/module-06.md) )**
-  
-  
-
 ![](../assets/img/roadmap/swap_in.png)  
 
 Control flow for **Swap In**
-
-  
-  
 
 ***Swap In*** function is invoked from the [timer interrupt handler](../os-design/timer.md) and does not take any arguments.
 
@@ -117,52 +91,38 @@ Now that, a process is selected to be swapped back into the memory, the TICK fie
 
 Implement *Swap In* function using the detailed algorithm given in the pager module link above.
 
-  
-
 !!! danger "Implementation Hazard"
     There is a possibility that the code of the Pager module will exceed more than 2 disk blocks (more than 512 instructions). Try to write optimized code to fit the pager module code in 2 blocks. You can use the following strategy to reduce the number of instructions. According to given algorithm for **Swap Out** function, the actions done for code pages, heap pages, user stack pages are written separately. This results in calling Release Page function 2 times, Get Swap Block and Disk Store functions 2 times each. Combine these actions into a single while loop where each module function is called only once. The loop should traverse through the page table entries one by one (except library page entries) and perform appropriate actions if the page table entry for a page is valid. Apply similar strategy for **Swap In** function also.
 
-  
-26.  **Get Swap Block (function number = 6, [Memory Manager Module](../modules/module-02.md) )**
+26. **Get Swap Block (function number = 6, [Memory Manager Module](../modules/module-02.md) )**
 
 **Get Swap Block** function does not take any arguments. The function returns a free block from the swap area (disk blocks 256 to 511 - see [disk organization](../os-implementation.md) ) of the eXpOS. Get Swap Block searches for a free block from [DISK\_SWAP\_AREA](../support-tools/constants.md) (starting of disk swap area) to [DISK\_SIZE](../support-tools/constants.md) \-1 (ending of the eXpOS disk). If a free block is found, the block number is returned. If no free block in swap area is found, -1 is returned to the caller.
 
 Implement *Get Swap Block* function using the detailed algorithm given in the memory manager module link above.
 
-  
-
 !!! note
     The implementation of module functions ***Swap Out*** , ***Swap In*** and ***Get Swap Block*** are final.
 
+### Modification to Context Switch Module (Module 5)
   
-**Modification to Context Switch Module (Module 5)**  
-  
-
 Previously, the [Context Switch module](../modules/module-05.md) (scheduler module) would select a new process to schedule according to the Round Robin scheduling algorithm. The procedure for selecting a process to execute is slightly modified in this stage. If swap-in/swap-out is ongoing (that is, if the PAGING\_STATUS field of the [system status table](../os-design/mem-ds.md#system-status-table) is set), the context switch module schedules the Swapper Daemon (PID = 15) **whenever it is not blocked** . If the swapper daemon is blocked (for some disk operation), then the idle process (PID = 0) must be scheduled. (The OS design disallows scheduling any process except Idle and Swapper daemon when swapping is on-going.) If the PAGING\_STATUS is set to 0, swapping is not on-going and hence the next READY/CREATED process which is not swapped out is scheduled in normal Round Robin order. Finally, if no process is in READY or CREATED state, then the idle process is scheduled.
 
 Modify Context Switch module implemented in earlier stages according to the detailed algorithm given [here](../modules/module-05.md) .
 
-  
-  
-**Modifications to OS Startup Code**  
-  
+### Modifications to OS Startup Code
 
 Modify [OS Startup Code](../os-design/misc.md#os-startup-code) to initialize the process table and page table for the Swapper Daemon (similar to the Idle Process).
 
 The final algorithm is given [here](../os-design/misc.md#os-startup-code) .
 
+### Modifications to boot module
   
-  
-  
-**Modifications to boot module**  
-  
-
 Modify [Boot module](../modules/module-07.md) to add the following steps :
 
--   Load module 6 (Pager Module) form disk to memory. See [disk/memory organization](../os-implementation.md) .
--   Initialize the SWAPPED\_COUNT field to 0 and PAGING\_STATUS field to 0 in the [system status table](../os-design/mem-ds.md#system-status-table) to 0, as initially there are no swapped out processes.
--   Initialize the TICK field to 0 for all the 16 [process table](../os-design/process-table.md) entries.
--   Update the MEM\_FREE\_COUNT to 45 in the [system status table](../os-design/mem-ds.md#system-status-table) . (The 2 pages are allocated for the user/kernel stack for Swapper Daemon reducing the number from 47 to 45).
+- Load module 6 (Pager Module) form disk to memory. See [disk/memory organization](../os-implementation.md) .
+- Initialize the SWAPPED\_COUNT field to 0 and PAGING\_STATUS field to 0 in the [system status table](../os-design/mem-ds.md#system-status-table) to 0, as initially there are no swapped out processes.
+- Initialize the TICK field to 0 for all the 16 [process table](../os-design/process-table.md) entries.
+- Update the MEM\_FREE\_COUNT to 45 in the [system status table](../os-design/mem-ds.md#system-status-table) . (The 2 pages are allocated for the user/kernel stack for Swapper Daemon reducing the number from 47 to 45).
 
 ??? question "Why only READY state processes are selected for swap in, even though swapped out processes can be in blocked state also?"
     It is not very useful to swap in a process which is in blocked state into the memory. As the process is in blocked state, even after swapping in, the process will not execute until it is made READY. Until the process is made READY, it will just occupy memory pages which could be used for some other READY/RUNNING process.
