@@ -69,7 +69,7 @@ decl
 enddecl
 begin
     num=1;
-    while ( num &lt;= 50 ) do
+    while ( num <= 50 ) do
          temp = exposcall ( "Write" , -2, num );
          num = num + 1;
     endwhile;
