@@ -125,7 +125,7 @@ in register R2 and word to be printed to the terminal in register R3.
 4) Ignore the value present in R0 as Terminal Write does not have any return value.
 
 5) Use multipop statement to restore the registers pushed. Specify the same order of
-registers used in multipush as registers are popped in the**reverse order** 
+registers used in multipush as registers are popped in the **reverse order** 
 in which they are specified in the multipop statement.
 ```
 multipop(R0, R1, R2, R3,...);
@@ -190,15 +190,17 @@ alias currentPID R2;
 
 2) In Module 0, for the Acquire Terminal function (functionNum = 8) implement the
 following steps.
-    1. **The current process should wait in a loop until the terminal is free**. Repeat the following steps if STATUS field in the Terminal Status table is 1(terminal is allocated to other process).
+
+   1. **The current process should wait in a loop until the terminal is free**. Repeat the following steps if STATUS field in the Terminal Status table is 1(terminal is allocated to other process).
        1. Change the state of the current process in its process table entry to WAIT_TERMINAL.
        2. Push the registers used till now using the multipush statement.
        3. Call the scheduler to schedule other process as this process is waiting for terminal.
-       4. Pop the registers pushed before. (Note that this code will be executed only after the scheduler schedules the process again, which in turn occurs only after theterminal was released by the holding process by invoking the release terminal function.)
-    2. Change the STATUS field to 1 and PID field to currentPID in the Terminal Status Table.
-    3. Return using the return statement.
+       4. Pop the registers pushed before. (Note that this code will be executed only after the scheduler schedules the process again, which in turn occurs only after the terminal was released by the holding process by invoking the release terminal function.)
+   2. Change the STATUS field to 1 and PID field to currentPID in the Terminal Status Table.
+   3. Return using the return statement.
 
 3) For the Release Terminal function (functionNum = 9) implement the following steps.
+
    1. currentPID and PID stored in the Terminal Status table should be same. If these are not same, then process is trying to release the terminal without acquiring it. If this case occurs, store -1 as the return value in register R0 and return from the module.
    2. Change the STATUS field in the Terminal Status table to 0, indicating terminal is released.
    3. Update the STATE to READY for all processes (with valid PID) which have STATE as WAIT_TERMINAL.
