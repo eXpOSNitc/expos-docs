@@ -68,13 +68,14 @@ Then returns to the process which was interrupted by disk controller.
 </figure>
 
 
-In this stage, ** you have to modify the exec system call by replacing the [loadi statement](../support-tools/spl.md) by a call to the  Disk Load  function. The  Disk Load  function (in device manager module), the
-Acquire Disk function (in resource manager module) and thedisk interrupt handler must also be implemented in
-this stage.**Minor modifications are also required for the boot module.
+In this stage, **you have to modify the exec system call by replacing the [loadi statement](../support-tools/spl.md) by a call to the  Disk Load  function. The  Disk Load  function (in device manager module), the
+Acquire Disk function (in resource manager module) and the disk interrupt handler must also be implemented in
+this stage.** Minor modifications are also required for the boot module.
 
 #### 1.Disk Load (function number = 2,[device manager module](../modules/module-04.md))
 
 The Disk Load function takes the PID of a process, a page number and a block number as input and performs the following tasks :
+
 1. Acquires the disk by invoking the Acquire Disk function in the [resource manager module](../modules/module-00.md) (module 0)
 2. Set the [Disk Status table](../os-design/mem-ds.md#disk-status-table)entries as mentioned in the algorithm (specified in the above link).
 3. Issue the [load statement](../support-tools/spl.md) to initiate a disk block to memory page DMA transfer.
@@ -99,6 +100,7 @@ respectively.
 #### 3. Implementation of [Disk Interrupt handler](../os-design/disk-interrupt.md)
 
 When the disk-memory transfer is complete, XSM raises the disk interrupt. The disk interrupt handler then performs the following tasks :
+
 1. Switch to the kernel stack and back up the register context.
 2. Set the STATUS field in the Disk Status table to 0 indicating that disk is no longer busy.
 3. Go through all the process table entries, and change the state of the process to READY, which is in WAIT_DISK state.
