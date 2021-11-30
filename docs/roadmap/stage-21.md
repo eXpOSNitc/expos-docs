@@ -9,20 +9,20 @@ original_url: https://exposnitc.github.io/Roadmap.html
 !!! abstract "Pre-requisite Reading"
     Read and understand [Access control and synchronization](../os-spec/expos-abstractions.md) and [Process synchronization](../os-spec/synchronization.md#process-synchronization) documentations before proceeding further.
 
-In this stage, we will add support for process synchronization using
-<i> Wait</i> and <i>Signal</i>system calls to eXpOS. With the help of these system calls, we will design a more advanced
-shell program. We will also implement <i>Getpid </i> and <i>Getppid</i>system calls.
+In this stage, we will add support for process synchronization using 
+<i>Wait</i> and <i>Signal</i> system calls to eXpOS. With the help of these system calls, we will design a more advanced
+shell program. We will also implement <i>Getpid</i> and <i>Getppid</i> system calls.
 
 When a process executes the <i>Wait</i> system call, its execution is suspended till the process whose PID is given as argument to
-<i>Wait</i>terminates or executes the<i>Signal</i>system call. The process that enters<i>Wait</i>sets its state to WAIT_PROCESS and invokes the
+<i>Wait</i> terminates or executes the <i>Signal</i> system call. The process that enters <i>Wait</i> sets its state to WAIT_PROCESS and invokes the
 scheduler.
 
 A process executes the <i>Signal</i> system call to wake up all the processes waiting for it.
-If a process terminates without invoking <i>Signal</i>, then<i>Exit</i>system call voluntarily 
+If a process terminates without invoking <i>Signal</i>, then <i>Exit</i> system call voluntarily 
 wakes up all the processes waiting for it.
 
 When several processes running concurrently share a resource (shared memory or file) it is
-necessary to synchronize access to the shared resource to avoid data inconsistency.<i>Wait</i>
+necessary to synchronize access to the shared resource to avoid data inconsistency. <i>Wait</i>
 and <i>Signal</i> form one pair of primitives that help to achieve synchronization. In general,
 synchronization primitives help two co-operating processes to ensure that one process stops
 execution at certain program point, and waits for the other to issue a signal, before
@@ -37,7 +37,7 @@ or terminates. When process B is done with the resource, it can invoke the
 B permits process A to do so.
 
 In the above example suppose process B had finished using the shared resource and had executed
-<i>Signal</i>system call before process A executed <i>Wait</i> system call, then process A
+<i>Signal</i> system call before process A executed <i>Wait</i> system call, then process A
 will wait for process B to issue another signal. Hence if process B does not issue another
 signal, then process A will resume execution only after process B terminates. The issue here is
 that, although the OS acts on the occurance of a signal immediately, it never records the
@@ -47,10 +47,10 @@ A more advanced synchronization primitive that has a state variable associated w
 [semaphore](https://en.wikipedia.org/wiki/Semaphore_(programming)) - will be 
 added to the OS in the next stage.
 
-When a process issues the<i>Exit</i>system call, all processes waiting for it must be awakened. We will modify the
+When a process issues the <i>Exit</i> system call, all processes waiting for it must be awakened. We will modify the
 **Exit Process** function in the [process manager module](../modules/module-01.md) 
 to wake up all processes waiting for the terminating process. However, there is one special case to handle here. The Exit Process
-function is invoked by the<i> Exec</i> system call as well. In this case, the process waiting
+function is invoked by the <i>Exec</i> system call as well. In this case, the process waiting
 for the current process must not be woken up (why?). The implementation details will be explained below.
 
 Finally, when a process Exits, all its child processes become [orphan processes](https://en.wikipedia.org/wiki/Orphan_process) and their PPID field is set to -1 in the module function **Exit Process**. Here too, if Exit
@@ -64,7 +64,7 @@ The shell asks you to enter a string (called a command). If the string entered i
 
 #### Implementation of Interrupt routine 11
 
-The system calls <i>Wait</i> ,<i>Signal</i>,<i>Getpid</i> and <i> Getppid</i> are all
+The system calls <i>Wait</i>, <i>Signal</i>, <i>Getpid</i> and <i>Getppid</i> are all
 implemented in the interrupt routine 11. Each system call has a different system call number.
 
 - At the beginning of interrupt routine 11, extract the system call number from the user stack and switch to the kernel stack.
