@@ -1,0 +1,98 @@
+.stage-link {
+    font-size: 1.3em;
+    line-height: 1.3;
+    display: block;
+    width: 100%;
+    padding: .25em 0;
+    margin: 0 0 .25em;
+    border-bottom: 2px solid rgb(175, 175, 175);
+    color: var(--md-code-fg-color) !important;
+}
+
+.stage-link:last-child {
+    border-bottom: 0;
+}
+
+/* For images in darkmode */
+.md-content img:not(.twemoji) {
+    padding: 8px;
+    border-radius: 4px;
+    background-color: var(--md-primary-bg-color--light);
+}
+
+/* For the admonition on homepage */
+
+@media screen and (min-width: 45em) {
+    .custom-large {
+        width: 16.7rem !important;
+    }
+}
+
+/* for the custom Assignment admonition */
+
+:root {
+    --md-admonition-icon--assignment: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12z"/></svg>')
+}
+
+.md-typeset .admonition.assignment, .md-typeset details.assignment {
+    border-color: rgb(43, 155, 70);
+}
+
+.md-typeset .assignment>.admonition-title, .md-typeset .assignment>summary {
+    background-color: rgba(43, 155, 70, 0.1);
+    border-color: rgb(43, 155, 70);
+}
+
+.md-typeset .assignment>.admonition-title::before, .md-typeset .assignment>summary::before {
+    background-color: rgb(43, 155, 70);
+    -webkit-mask-image: var(--md-admonition-icon--assignment);
+    mask-image: var(--md-admonition-icon--assignment);
+}
+
+/* For tables */
+
+.table-bordered thead {
+    background-color: var(--md-default-fg-color--light);
+    color: var(--md-default-bg-color);
+    min-width: 5rem;
+    padding: .9375em 1.25em;
+    vertical-align: top;
+}
+
+.table-bordered {
+    border: 1px solid var(--md-code-fg-color);
+    border-collapse: collapse;
+}
+
+.table-bordered th, .table-bordered td {
+    padding: 1em;
+    border: 1px solid var(--md-code-fg-color);
+}
+
+/* For the accordions inside code */
+
+details.code-accordion {
+    all: unset;
+    white-space: pre-wrap;
+    margin: 0.6rem 0;
+}
+
+details.code-accordion summary {
+    all: unset;
+    text-decoration: underline;
+    cursor: pointer;
+    white-space: pre-wrap;
+    color: var(--md-typeset-a-color);
+}
+
+details.code-accordion>summary::before,details.code-accordion>summary::after  {
+    display: none;
+}
+/* Reports page */
+
+.report-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+    width: 100%
+}
