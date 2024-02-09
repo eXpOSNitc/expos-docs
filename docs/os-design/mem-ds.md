@@ -202,7 +202,7 @@ The System Status Table has the following format:
 * **MEM\_FREE\_COUNT** (1 word) - specifies the number of free pages available in memory.
 * **WAIT\_MEM\_COUNT** (1 word) - specifies the number of processes waiting (blocked) for memory.
 * **SWAPPED\_COUNT** (1 word) - specifies the number of processes which are swapped. A process is said to be swapped if any of its user stack pages or its kernel stack page is swapped out.
-* **PAGING\_STATUS** (1 word) - specifies whether swapping is initiated. Swap Out/Swap In are indicated by 0 and 1, respectively. Set to 0 if paging is not in progress.
+* **PAGING\_STATUS** (1 word) - specifies whether swapping is initiated. Swap Out/Swap In are indicated by 1 and 2, respectively. Set to 0 if paging is not in progress.
 * <span style="color:red">**CURRENT\_PID2** (1 word) - specifies the pid of the currently running process on the secondary core. This field is used only when eXpOS is running on [NEXSM](../arch-spec/nexsm.md) (a two-core extension of XSM) machine.</span>
 * <span style="color:red">***LOGOUT\_STATUS** (1 word) - specifies whether logout is initiated on the primary core. Set to 0 if logout is not initiated. This field is used only when eXpOS is running on [NEXSM](../arch-spec/nexsm.md) (a two-core extension of XSM) machine.</span>
 
