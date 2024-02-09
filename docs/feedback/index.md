@@ -12,4 +12,5 @@ eXpOS was used for junior level undergraduate instruction at NIT Calicut for a o
 - [NIT-C 2019](./nitc19/index.md)
 - [NIT-C 2018](./nitc18/index.md)
 - [IIT PKD 2018](./iitpkd18/index.md)
+- [IIT PKD 2023](./iitpkd23/index.md)
 - [Analysis of Student Feedback](./analysis.md)
