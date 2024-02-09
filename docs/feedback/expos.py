@@ -19,21 +19,22 @@ def load_csv(file):
     return data
 
 #%%
-col = "nitc19"
-data = load_csv("nitc19.csv")
+col = "iitpkd23"
+data = load_csv("iitpkd23.csv")
 del data[0]
 num_samples = np.shape(data)[0]
 data = np.array(data)
-data = data[data[:,2]>"Phase 2"] #eliminating samples below phase 2
+data = data[data[:,2]>"2"] #eliminating samples below phase 2
 num_samples = np.shape(data)[0]
-phase5 = data[data[:,2]>="Phase 5"]
+phase5 = data[data[:,2]>="5"]
 num_samples5 = np.shape(phase5)[0]
 #%%
 #colors=['brown', 'g', 'b', 'y', 'magenta', 'c', 'grey', 'r']
 colors=['yellowgreen','orchid', 'crimson', 'royalblue','cyan' , 'red', 'grey', 'burlywood', 'salmon']
 #%%
 #Q1
-labels = ["Phase "+str(i) for i in range(0,9)]
+#labels = ["Phase "+str(i) for i in range(0,8)]
+labels = [str(i) for i in range(0,8)]
 labels.reverse()
 count=[]
 labels1=[]
@@ -48,11 +49,12 @@ fig1, ax1 = plt.subplots()
 ax1.pie(count, autopct='%.0f%%', colors=colors)
 ax1.axis('equal')
 ax1.legend(labels1, loc='upper right', bbox_to_anchor=(1.1, 0.8))
+plt.title("Number of phases completed by all students.", y=-0.05)
 plt.savefig(col+"q1.png", bbox_inches='tight', transparent=True)
 plt.close(fig1)
 #%%
 #Q2
-labels = ["<5 hours", "5-10 hours", "10-15 hours", ">15 hours"]
+labels = ["< 5 Hours", "5-10 Hours", "10-15 Hours", "> 15 Hours"]
 count=[]
 for label in labels:
     count.append(sum(data[:,3]==label))
@@ -77,7 +79,7 @@ plt.close()
 
 #%%
 #Q3
-labels=["100%", ">90%", ">75%", ">50%"]
+labels=["100% Sufficient", ">90% Sufficient", ">75% Sufficient", ">50% Sufficient"]
 count=[]
 for label in labels:
     count.append(sum(data[:,4]==label))
@@ -128,7 +130,7 @@ plt.close()
 
 #%%
 #Q5
-labels = ["The lab brought about considerable improvement in my coding skills", "The lab brought about moderate improvement in my coding skills", "The lab did not bring about a serious improvement in my coding skills"]
+labels = ["The lab brought a considerable improvement", "The lab brought about moderate improvement", "This lab did not bring about a serious improvement"]
 count=[]
 for label in labels:
     count.append(sum(data[:,6]==label))
@@ -154,7 +156,7 @@ plt.close()
 
 #%%
 #Q6
-labels=["Sufficient", "Computer Organization / Hardware", "Compilers", "Data Structures", "Programming"]
+labels=["Sufficient", "Computer Organization/Hardware", "Compilers", "Datastructures", "Programming"]
 count=[]
 for label in labels:
     count.append(sum([label in val for val in data[:,7]]))
