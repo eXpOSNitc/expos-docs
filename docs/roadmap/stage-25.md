@@ -15,7 +15,7 @@ original_url: https://exposnitc.github.io/Roadmap.html
 In this stage, We will learn how contents of a file are modified using *Write* system call. *Seek* system call which is used to change the LSEEK position for a open instance is also implemented in this stage. *Shutdown* system call is modified to terminate all processes and store back the memory buffers which are modified during *Write* system call to the disk.
 
   
-**Interrupt routine 7 ( *Write* system call)**  
+#### **Interrupt routine 7 ( *Write* system call)**  
   
 
 Interrupt routine 7 written in stage 15, writes data (words) only to the terminal. In this stage, we will modify *Write* system call to write data into a file. *Write* system call has system call number 5. From ExpL programs, *Write* system call is called using [exposcall function](../os-spec/dynamicmemoryroutines.md) .
@@ -29,7 +29,7 @@ Control flow for writing a word to a file
   
   
 
-1.  **Write system call**
+##### **Write system call**
 
 *Write* system call takes as arguments 1) a file descriptor and 2) a word to be written into the file. *Write* system call locks the inode at the beginning of the system call and releases the lock at the end of the system call. The functions **Acquire Inode** and **Release Inode** of [Resource Manager Module](../modules/module-00.md) are used to lock and release inodes.
 
@@ -48,7 +48,7 @@ Write (and Delete) fails if the user id of the process calling Write has no acce
 Implement *Write* system call using detailed algorithm provided [here](../os-design/write.md) .
 
   
-11.  **Buffered Write (function number = 1, [file manager module](../modules/module-03.md) )**
+#### **Buffered Write (function number = 1, [file manager module](../modules/module-03.md) )**
 
 **Buffered Write** takes a disk block number, offset and a word as arguments. The task of Buffered Write is to write the given word to the given disk block at the position specified by the offset. To write a word to a disk block, the disk block has to be brought into memory. [Memory buffer cache](../tutorials/filesystem-implementation.md#4-memory-buffer-cache) is used for this purpose. The disk block is loaded (if not loaded already) into the buffer page with buffer number specified by the formula - *(disk block number%4)* . To use a buffer page, it has to be locked by invoking **Acquire Buffer** function of [resource manager module](../modules/module-00.md) . To load a disk block into a memory buffer page, Buffered Write invokes the function **Disk Load** of [device manager module](../modules/module-04.md) . After loading the given disk block into the corresponding buffer, the given word is written to the memory buffer at the position specified by the offset. **As the buffer is modified, the DIRTY BIT in the corresponding buffer table entry is set to 1.**
 
@@ -62,7 +62,7 @@ Implement *Buffered Write* function using the detailed algorithm given in the fi
     **\[Implementation Hazard\]** Algorithms of Buffered Write and Buffered Read functions are almost identical, except that in Buffered Write - given word is written to the buffer whereas in Buffered Read - a word is read from the buffer. If your code for file manager module exceeds maximum number of assembly instructions permitted for a eXpOS module (512 instructions), then implement the code for **Buffered Read** and **Buffered Write** in a single 'if block' to reduce number of instructions.
 
   
-1.   **Get Free Block (function number = 3, [memory manager module](../modules/module-02.md) )**
+#### **Get Free Block (function number = 3, [memory manager module](../modules/module-02.md) )**
 
 **Get Free Block** function does not take any argument and returns the block number of a free block in the disk. If no free block is found, Get Free Block returns -1. A free block can be found by searching for a free entry in the [disk free list](../os-design/disk-ds.md#disk-free-list) from position DISK\_FREE\_AREA to DISK\_SWAP\_AREA-1. A free entry in the disk free list is denoted by 0. In the disk, the blocks from 69 to 255 called User blocks, are reserved for allocation to executable and data files. SPL constant [DISK\_FREE\_AREA](../support-tools/constants.md) gives the starting block number for User blocks. [DISK\_SWAP\_AREA](../support-tools/constants.md) gives the starting block number of swap area. See [disk organization](../os-implementation.md) .
 
@@ -74,7 +74,7 @@ Implement *Get Free Block* function using the detailed algorithm given in the me
     The implementation of ***Write*** system call and **Buffered Write** , **Get Free Block** functions are final.
 
   
-**Interrupt routine 5 ( *Seek* system call)**  
+#### **Interrupt routine 5 ( *Seek* system call)**  
   
 
 Interrupt routine 5 implements *Seek* system call along with *Open* and *Close* system calls. *Seek* has system call number 6. From ExpL programs, *Seek* system call is called using [exposcall function](../os-spec/dynamicmemoryroutines.md) .
@@ -89,7 +89,7 @@ Control flow for *Seek* system call
   
   
 
-1.  **Seek system call**
+##### **Seek system call**
 
 *Seek* system call is used to move LSEEK pointer value for an open instance according to users requirement. *Seek* system call takes as argument a file descriptor and an offset from the user program. *Seek* updates the LSEEK field in the [open file table](../os-design/mem-ds.md#open-file-table) corresponding to the open instance according to the provided offset value. Offset value can be any integer (positive, zero or negative). If the given offset value is 0, then LSEEK field is set to the starting of the file. For a non-zero value of offset, the given offset is added to the current LSEEK value. If the new LSEEK exceeds size of the file, then LSEEK is set to file size. If the new LSEEK position becomes negative, then *Seek* system call fails and return to user program with appropriate error code without changing the LSEEK position.
 
@@ -100,7 +100,7 @@ Implement *Seek* system call using detailed algorithm provided [here](../os-desi
     The implementation of *Seek* system call is final.
 
   
-**Interrupt routine 15 ( *Shutdown* system call)**  
+#### **Interrupt routine 15 ( *Shutdown* system call)**  
   
 
 Now that eXpOS supports writing to the files, the disk has to be consistent with the modified files before the system shuts down. *Shutdown* system call is modified in this stage to store back the buffers changed by the *Write* system call. *Shutdown* system call also terminates all the processes except current process, IDLE and INIT by invoking **Kill All** function of [process manager module](../modules/module-01.md) . Finally *Shutdown* halts the system after disk is made consistent.
@@ -122,7 +122,7 @@ Modify *Shutdown* system call (interrupt routine 15) to perform the following ad
 Implement *Shutdown* system call using detailed algorithm provided [here](../os-design/shutdown.md) .
 
   
-**Kill All (function number = 5, [process manager module](../modules/module-01.md) )**  
+#### **Kill All (function number = 5, [process manager module](../modules/module-01.md) )**  
   
 
 **Kill All** function takes PID of a process as an argument. Kill All terminates all the processes except IDLE, INIT and the process with given PID. Kill All first locks all the files present in the inode table by invoking **Acquire Inode** function of [resource manager module](../modules/module-00.md) for every file. Locking all the inodes makes sure that, no process is in the middle of any file operation. If suppose a process (say A) is using a file and has locked the inode, then the process which has invoked Kill All will wait until process A completes the file operation and releases the inode. After acquiring all the inodes, Kill All terminates all the processes (except IDLE, INIT and process with given PID) by invoking **Exit Process** function of [process manager module](../modules/module-01.md) for every process. Finally, all the acquired inodes are released by invoking **Release Inode** function of resource manager module for each valid file.
